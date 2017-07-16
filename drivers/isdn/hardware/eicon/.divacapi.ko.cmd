@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hardware/eicon/divacapi.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hardware/eicon/divacapi.ko drivers/isdn/hardware/eicon/divacapi.o drivers/isdn/hardware/eicon/divacapi.mod.o ;  true

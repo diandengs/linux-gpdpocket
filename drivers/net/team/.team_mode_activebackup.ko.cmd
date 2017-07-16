@@ -1,0 +1,1 @@
+cmd_drivers/net/team/team_mode_activebackup.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/team/team_mode_activebackup.ko drivers/net/team/team_mode_activebackup.o drivers/net/team/team_mode_activebackup.mod.o ;  true

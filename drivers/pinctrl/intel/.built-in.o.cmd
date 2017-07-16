@@ -1,0 +1,1 @@
+cmd_drivers/pinctrl/intel/built-in.o :=  rm -f drivers/pinctrl/intel/built-in.o; ar rcSTPD drivers/pinctrl/intel/built-in.o drivers/pinctrl/intel/pinctrl-baytrail.o drivers/pinctrl/intel/pinctrl-cherryview.o 

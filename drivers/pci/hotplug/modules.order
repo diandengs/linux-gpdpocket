@@ -1,0 +1,2 @@
+kernel/drivers/pci/hotplug/shpchp.ko
+kernel/drivers/pci/hotplug/acpiphp_ibm.ko

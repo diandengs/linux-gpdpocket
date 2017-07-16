@@ -1,0 +1,5 @@
+kernel/drivers/fmc/fmc.ko
+kernel/drivers/fmc/fmc-fakedev.ko
+kernel/drivers/fmc/fmc-trivial.ko
+kernel/drivers/fmc/fmc-write-eeprom.ko
+kernel/drivers/fmc/fmc-chardev.ko

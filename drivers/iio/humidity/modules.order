@@ -1,0 +1,5 @@
+kernel/drivers/iio/humidity/dht11.ko
+kernel/drivers/iio/humidity/hid-sensor-humidity.ko
+kernel/drivers/iio/humidity/hts221.ko
+kernel/drivers/iio/humidity/hts221_i2c.ko
+kernel/drivers/iio/humidity/hts221_spi.ko

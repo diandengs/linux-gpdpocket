@@ -1,0 +1,1 @@
+cmd_drivers/watchdog/alim7101_wdt.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/watchdog/alim7101_wdt.ko drivers/watchdog/alim7101_wdt.o drivers/watchdog/alim7101_wdt.mod.o ;  true

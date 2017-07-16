@@ -1,0 +1,1 @@
+cmd_drivers/firewire/firewire-sbp2.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/firewire/firewire-sbp2.ko drivers/firewire/firewire-sbp2.o drivers/firewire/firewire-sbp2.mod.o ;  true

@@ -1,0 +1,12 @@
+!<thin>
+//                                              86        `
+xenbus_client.o/
+xenbus_comms.o/
+xenbus_xs.o/
+xenbus_probe.o/
+xenbus_probe_backend.o/
+/0             /0           0     0     644     31120     `
+/17             0           0     0     644     13656     `
+/33             0           0     0     644     33464     `
+/46             0           0     0     644     40344     `
+/62             0           0     0     644     13440     `

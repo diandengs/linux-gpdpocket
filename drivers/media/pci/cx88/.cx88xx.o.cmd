@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/cx88/cx88xx.o := ld -m elf_x86_64   -r -o drivers/media/pci/cx88/cx88xx.o drivers/media/pci/cx88/cx88-cards.o drivers/media/pci/cx88/cx88-core.o drivers/media/pci/cx88/cx88-i2c.o drivers/media/pci/cx88/cx88-tvaudio.o drivers/media/pci/cx88/cx88-dsp.o drivers/media/pci/cx88/cx88-input.o 

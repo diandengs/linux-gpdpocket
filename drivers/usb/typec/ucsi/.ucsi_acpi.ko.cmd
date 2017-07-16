@@ -1,0 +1,1 @@
+cmd_drivers/usb/typec/ucsi/ucsi_acpi.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/usb/typec/ucsi/ucsi_acpi.ko drivers/usb/typec/ucsi/ucsi_acpi.o drivers/usb/typec/ucsi/ucsi_acpi.mod.o ;  true

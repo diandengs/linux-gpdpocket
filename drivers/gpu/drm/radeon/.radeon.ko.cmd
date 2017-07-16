@@ -1,0 +1,1 @@
+cmd_drivers/gpu/drm/radeon/radeon.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/gpu/drm/radeon/radeon.ko drivers/gpu/drm/radeon/radeon.o drivers/gpu/drm/radeon/radeon.mod.o ;  true

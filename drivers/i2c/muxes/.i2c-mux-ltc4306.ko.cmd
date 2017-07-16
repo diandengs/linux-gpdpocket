@@ -1,0 +1,1 @@
+cmd_drivers/i2c/muxes/i2c-mux-ltc4306.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/i2c/muxes/i2c-mux-ltc4306.ko drivers/i2c/muxes/i2c-mux-ltc4306.o drivers/i2c/muxes/i2c-mux-ltc4306.mod.o ;  true

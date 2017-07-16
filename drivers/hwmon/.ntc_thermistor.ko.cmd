@@ -1,0 +1,1 @@
+cmd_drivers/hwmon/ntc_thermistor.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/hwmon/ntc_thermistor.ko drivers/hwmon/ntc_thermistor.o drivers/hwmon/ntc_thermistor.mod.o ;  true

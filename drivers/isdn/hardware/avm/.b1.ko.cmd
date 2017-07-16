@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hardware/avm/b1.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hardware/avm/b1.ko drivers/isdn/hardware/avm/b1.o drivers/isdn/hardware/avm/b1.mod.o ;  true

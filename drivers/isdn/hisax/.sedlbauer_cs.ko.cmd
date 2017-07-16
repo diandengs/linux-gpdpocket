@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hisax/sedlbauer_cs.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hisax/sedlbauer_cs.ko drivers/isdn/hisax/sedlbauer_cs.o drivers/isdn/hisax/sedlbauer_cs.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/net/ethernet/mellanox/mlxsw/mlxsw_minimal.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/ethernet/mellanox/mlxsw/mlxsw_minimal.ko drivers/net/ethernet/mellanox/mlxsw/mlxsw_minimal.o drivers/net/ethernet/mellanox/mlxsw/mlxsw_minimal.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/net/dsa/lan9303-core.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/dsa/lan9303-core.ko drivers/net/dsa/lan9303-core.o drivers/net/dsa/lan9303-core.mod.o ;  true

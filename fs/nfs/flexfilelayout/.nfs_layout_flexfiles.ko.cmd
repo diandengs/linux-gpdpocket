@@ -1,0 +1,1 @@
+cmd_fs/nfs/flexfilelayout/nfs_layout_flexfiles.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o fs/nfs/flexfilelayout/nfs_layout_flexfiles.ko fs/nfs/flexfilelayout/nfs_layout_flexfiles.o fs/nfs/flexfilelayout/nfs_layout_flexfiles.mod.o ;  true

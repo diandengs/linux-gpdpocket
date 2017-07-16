@@ -1,0 +1,1 @@
+cmd_drivers/ata/pata_serverworks.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/ata/pata_serverworks.ko drivers/ata/pata_serverworks.o drivers/ata/pata_serverworks.mod.o ;  true

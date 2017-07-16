@@ -1,0 +1,1 @@
+cmd_drivers/leds/led-class-flash.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/leds/led-class-flash.ko drivers/leds/led-class-flash.o drivers/leds/led-class-flash.mod.o ;  true

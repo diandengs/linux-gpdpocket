@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/keymaps/rc-apac-viewcomp.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/keymaps/rc-apac-viewcomp.ko drivers/media/rc/keymaps/rc-apac-viewcomp.o drivers/media/rc/keymaps/rc-apac-viewcomp.mod.o ;  true

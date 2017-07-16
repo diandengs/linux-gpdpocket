@@ -1,0 +1,1 @@
+cmd_drivers/ntb/test/ntb_pingpong.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/ntb/test/ntb_pingpong.ko drivers/ntb/test/ntb_pingpong.o drivers/ntb/test/ntb_pingpong.mod.o ;  true

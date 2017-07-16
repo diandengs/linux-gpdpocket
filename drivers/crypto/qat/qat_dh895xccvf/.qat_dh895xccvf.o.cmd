@@ -1,0 +1,1 @@
+cmd_drivers/crypto/qat/qat_dh895xccvf/qat_dh895xccvf.o := ld -m elf_x86_64   -r -o drivers/crypto/qat/qat_dh895xccvf/qat_dh895xccvf.o drivers/crypto/qat/qat_dh895xccvf/adf_drv.o drivers/crypto/qat/qat_dh895xccvf/adf_dh895xccvf_hw_data.o 

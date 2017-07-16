@@ -1,0 +1,1 @@
+cmd_drivers/net/irda/smsc-ircc2.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/irda/smsc-ircc2.ko drivers/net/irda/smsc-ircc2.o drivers/net/irda/smsc-ircc2.mod.o ;  true

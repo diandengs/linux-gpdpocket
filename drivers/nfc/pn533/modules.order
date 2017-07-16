@@ -1,0 +1,3 @@
+kernel/drivers/nfc/pn533/pn533.ko
+kernel/drivers/nfc/pn533/pn533_usb.ko
+kernel/drivers/nfc/pn533/pn533_i2c.ko

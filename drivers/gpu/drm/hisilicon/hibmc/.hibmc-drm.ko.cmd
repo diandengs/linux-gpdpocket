@@ -1,0 +1,1 @@
+cmd_drivers/gpu/drm/hisilicon/hibmc/hibmc-drm.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/gpu/drm/hisilicon/hibmc/hibmc-drm.ko drivers/gpu/drm/hisilicon/hibmc/hibmc-drm.o drivers/gpu/drm/hisilicon/hibmc/hibmc-drm.mod.o ;  true

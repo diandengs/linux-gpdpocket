@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hisax/elsa_cs.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hisax/elsa_cs.ko drivers/isdn/hisax/elsa_cs.o drivers/isdn/hisax/elsa_cs.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/iio/industrialio-sw-trigger.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/industrialio-sw-trigger.ko drivers/iio/industrialio-sw-trigger.o drivers/iio/industrialio-sw-trigger.mod.o ;  true

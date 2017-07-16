@@ -1,0 +1,4 @@
+kernel/drivers/input/keyboard/dlink-dir685-touchkeys.ko
+kernel/drivers/input/keyboard/gpio_keys.ko
+kernel/drivers/input/keyboard/qt1070.ko
+kernel/drivers/input/keyboard/tm2-touchkey.ko

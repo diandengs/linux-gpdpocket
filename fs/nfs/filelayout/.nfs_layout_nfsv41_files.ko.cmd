@@ -1,0 +1,1 @@
+cmd_fs/nfs/filelayout/nfs_layout_nfsv41_files.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o fs/nfs/filelayout/nfs_layout_nfsv41_files.ko fs/nfs/filelayout/nfs_layout_nfsv41_files.o fs/nfs/filelayout/nfs_layout_nfsv41_files.mod.o ;  true

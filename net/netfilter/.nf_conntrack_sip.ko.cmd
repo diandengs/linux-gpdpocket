@@ -1,0 +1,1 @@
+cmd_net/netfilter/nf_conntrack_sip.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/netfilter/nf_conntrack_sip.ko net/netfilter/nf_conntrack_sip.o net/netfilter/nf_conntrack_sip.mod.o ;  true

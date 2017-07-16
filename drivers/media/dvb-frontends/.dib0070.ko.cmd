@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/dib0070.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/dib0070.ko drivers/media/dvb-frontends/dib0070.o drivers/media/dvb-frontends/dib0070.mod.o ;  true

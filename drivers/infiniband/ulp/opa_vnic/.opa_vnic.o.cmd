@@ -1,0 +1,1 @@
+cmd_drivers/infiniband/ulp/opa_vnic/opa_vnic.o := ld -m elf_x86_64   -r -o drivers/infiniband/ulp/opa_vnic/opa_vnic.o drivers/infiniband/ulp/opa_vnic/opa_vnic_netdev.o drivers/infiniband/ulp/opa_vnic/opa_vnic_encap.o drivers/infiniband/ulp/opa_vnic/opa_vnic_ethtool.o drivers/infiniband/ulp/opa_vnic/opa_vnic_vema.o drivers/infiniband/ulp/opa_vnic/opa_vnic_vema_iface.o 

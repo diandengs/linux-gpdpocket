@@ -1,0 +1,1 @@
+cmd_drivers/platform/x86/dell-wmi.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/x86/dell-wmi.ko drivers/platform/x86/dell-wmi.o drivers/platform/x86/dell-wmi.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/extcon/extcon-intel-int3496.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/extcon/extcon-intel-int3496.ko drivers/extcon/extcon-intel-int3496.o drivers/extcon/extcon-intel-int3496.mod.o ;  true

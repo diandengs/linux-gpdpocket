@@ -1,0 +1,1 @@
+cmd_drivers/usb/storage/usb-storage.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/usb/storage/usb-storage.ko drivers/usb/storage/usb-storage.o drivers/usb/storage/usb-storage.mod.o ;  true

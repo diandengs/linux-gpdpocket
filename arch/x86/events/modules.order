@@ -1,0 +1,4 @@
+kernel/arch/x86/events/amd/power.ko
+kernel/arch/x86/events/intel/intel-rapl-perf.ko
+kernel/arch/x86/events/intel/intel-uncore.ko
+kernel/arch/x86/events/intel/intel-cstate.ko

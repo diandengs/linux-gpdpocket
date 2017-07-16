@@ -1,0 +1,3 @@
+drivers/devfreq/governor_simpleondemand.ko
+drivers/devfreq/governor_simpleondemand.o
+

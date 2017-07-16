@@ -1,0 +1,1 @@
+cmd_drivers/platform/x86/acerhdf.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/x86/acerhdf.ko drivers/platform/x86/acerhdf.o drivers/platform/x86/acerhdf.mod.o ;  true

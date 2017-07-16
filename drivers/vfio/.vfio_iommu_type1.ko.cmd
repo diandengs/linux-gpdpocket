@@ -1,0 +1,1 @@
+cmd_drivers/vfio/vfio_iommu_type1.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/vfio/vfio_iommu_type1.ko drivers/vfio/vfio_iommu_type1.o drivers/vfio/vfio_iommu_type1.mod.o ;  true

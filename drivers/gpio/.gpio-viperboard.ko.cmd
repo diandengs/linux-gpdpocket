@@ -1,0 +1,1 @@
+cmd_drivers/gpio/gpio-viperboard.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/gpio/gpio-viperboard.ko drivers/gpio/gpio-viperboard.o drivers/gpio/gpio-viperboard.mod.o ;  true

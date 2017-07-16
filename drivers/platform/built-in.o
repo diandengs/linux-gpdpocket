@@ -1,0 +1,13 @@
+!<thin>
+//                                              108       `
+x86/intel-smartconnect.o/
+x86/silead_dmi.o/
+x86/intel_pmc_core.o/
+x86/pmc_atom.o/
+x86/intel_turbo_max_3.o/
+
+/0              0           0     0     644     5784      `
+/26             0           0     0     644     12904     `
+/44             0           0     0     644     20960     `
+/66             0           0     0     644     17232     `
+/82             0           0     0     644     9032      `

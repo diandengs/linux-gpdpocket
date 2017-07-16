@@ -1,0 +1,1 @@
+cmd_drivers/infiniband/ulp/srpt/ib_srpt.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/infiniband/ulp/srpt/ib_srpt.ko drivers/infiniband/ulp/srpt/ib_srpt.o drivers/infiniband/ulp/srpt/ib_srpt.mod.o ;  true

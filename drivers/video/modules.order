@@ -1,0 +1,9 @@
+kernel/drivers/video/backlight/lcd.ko
+kernel/drivers/video/backlight/platform_lcd.ko
+kernel/drivers/video/backlight/apple_bl.ko
+kernel/drivers/video/backlight/lp855x_bl.ko
+kernel/drivers/video/backlight/arcxcnn_bl.ko
+kernel/drivers/video/fbdev/hyperv_fb.ko
+kernel/drivers/video/fbdev/vga16fb.ko
+kernel/drivers/video/fbdev/vfb.ko
+kernel/drivers/video/vgastate.ko

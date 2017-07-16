@@ -1,0 +1,1 @@
+cmd_drivers/thermal/int340x_thermal/processor_thermal_device.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/thermal/int340x_thermal/processor_thermal_device.ko drivers/thermal/int340x_thermal/processor_thermal_device.o drivers/thermal/int340x_thermal/processor_thermal_device.mod.o ;  true

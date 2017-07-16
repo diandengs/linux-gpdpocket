@@ -1,0 +1,5 @@
+kernel/drivers/nvme/host/nvme-core.ko
+kernel/drivers/nvme/host/nvme.ko
+kernel/drivers/nvme/host/nvme-fabrics.ko
+kernel/drivers/nvme/host/nvme-rdma.ko
+kernel/drivers/nvme/host/nvme-fc.ko

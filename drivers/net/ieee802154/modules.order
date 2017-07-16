@@ -1,0 +1,7 @@
+kernel/drivers/net/ieee802154/fakelb.ko
+kernel/drivers/net/ieee802154/at86rf230.ko
+kernel/drivers/net/ieee802154/mrf24j40.ko
+kernel/drivers/net/ieee802154/cc2520.ko
+kernel/drivers/net/ieee802154/atusb.ko
+kernel/drivers/net/ieee802154/adf7242.ko
+kernel/drivers/net/ieee802154/ca8210.ko

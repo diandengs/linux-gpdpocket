@@ -1,0 +1,9 @@
+kernel/drivers/net/wireless/intersil/orinoco/orinoco.ko
+kernel/drivers/net/wireless/intersil/orinoco/orinoco_cs.ko
+kernel/drivers/net/wireless/intersil/orinoco/orinoco_plx.ko
+kernel/drivers/net/wireless/intersil/orinoco/orinoco_pci.ko
+kernel/drivers/net/wireless/intersil/orinoco/orinoco_nortel.ko
+kernel/drivers/net/wireless/intersil/orinoco/orinoco_usb.ko
+kernel/drivers/net/wireless/intersil/p54/p54common.ko
+kernel/drivers/net/wireless/intersil/p54/p54usb.ko
+kernel/drivers/net/wireless/intersil/p54/p54pci.ko

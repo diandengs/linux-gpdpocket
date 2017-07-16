@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/ir-sony-decoder.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/ir-sony-decoder.ko drivers/media/rc/ir-sony-decoder.o drivers/media/rc/ir-sony-decoder.mod.o ;  true

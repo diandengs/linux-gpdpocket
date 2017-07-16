@@ -1,0 +1,17 @@
+kernel/drivers/tty/serial/8250/8250_pci.ko
+kernel/drivers/tty/serial/8250/8250_exar.ko
+kernel/drivers/tty/serial/8250/serial_cs.ko
+kernel/drivers/tty/serial/8250/8250_lpss.ko
+kernel/drivers/tty/serial/8250/8250_moxa.ko
+kernel/drivers/tty/serial/jsm/jsm.ko
+kernel/drivers/tty/serial/arc_uart.ko
+kernel/drivers/tty/ipwireless/ipwireless.ko
+kernel/drivers/tty/n_hdlc.ko
+kernel/drivers/tty/n_gsm.ko
+kernel/drivers/tty/n_r3964.ko
+kernel/drivers/tty/cyclades.ko
+kernel/drivers/tty/nozomi.ko
+kernel/drivers/tty/rocket.ko
+kernel/drivers/tty/synclink_gt.ko
+kernel/drivers/tty/synclinkmp.ko
+kernel/drivers/tty/synclink.ko

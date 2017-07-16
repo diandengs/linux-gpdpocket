@@ -1,0 +1,1 @@
+cmd_drivers/net/dsa/mv88e6xxx/mv88e6xxx.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/dsa/mv88e6xxx/mv88e6xxx.ko drivers/net/dsa/mv88e6xxx/mv88e6xxx.o drivers/net/dsa/mv88e6xxx/mv88e6xxx.mod.o ;  true

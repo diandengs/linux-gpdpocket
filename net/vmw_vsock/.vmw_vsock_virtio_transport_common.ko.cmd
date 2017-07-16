@@ -1,0 +1,1 @@
+cmd_net/vmw_vsock/vmw_vsock_virtio_transport_common.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/vmw_vsock/vmw_vsock_virtio_transport_common.ko net/vmw_vsock/vmw_vsock_virtio_transport_common.o net/vmw_vsock/vmw_vsock_virtio_transport_common.mod.o ;  true

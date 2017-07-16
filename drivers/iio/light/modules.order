@@ -1,0 +1,9 @@
+kernel/drivers/iio/light/acpi-als.ko
+kernel/drivers/iio/light/bh1750.ko
+kernel/drivers/iio/light/cm32181.ko
+kernel/drivers/iio/light/hid-sensor-als.ko
+kernel/drivers/iio/light/opt3001.ko
+kernel/drivers/iio/light/pa12203001.ko
+kernel/drivers/iio/light/rpr0521.ko
+kernel/drivers/iio/light/stk3310.ko
+kernel/drivers/iio/light/vl6180.ko

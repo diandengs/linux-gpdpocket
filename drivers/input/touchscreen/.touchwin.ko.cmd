@@ -1,0 +1,1 @@
+cmd_drivers/input/touchscreen/touchwin.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/touchscreen/touchwin.ko drivers/input/touchscreen/touchwin.o drivers/input/touchscreen/touchwin.mod.o ;  true

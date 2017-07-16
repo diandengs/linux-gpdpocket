@@ -1,0 +1,1 @@
+cmd_drivers/message/fusion/mptbase.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/message/fusion/mptbase.ko drivers/message/fusion/mptbase.o drivers/message/fusion/mptbase.mod.o ;  true

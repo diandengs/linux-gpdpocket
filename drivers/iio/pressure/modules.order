@@ -1,0 +1,4 @@
+kernel/drivers/iio/pressure/abp060mg.ko
+kernel/drivers/iio/pressure/bmp280.ko
+kernel/drivers/iio/pressure/bmp280-i2c.ko
+kernel/drivers/iio/pressure/bmp280-spi.ko

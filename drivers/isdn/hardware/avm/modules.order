@@ -1,0 +1,11 @@
+kernel/drivers/isdn/hardware/avm/b1pci.ko
+kernel/drivers/isdn/hardware/avm/b1.ko
+kernel/drivers/isdn/hardware/avm/b1dma.ko
+kernel/drivers/isdn/hardware/avm/b1pcmcia.ko
+kernel/drivers/isdn/hardware/avm/b1.ko
+kernel/drivers/isdn/hardware/avm/avm_cs.ko
+kernel/drivers/isdn/hardware/avm/t1pci.ko
+kernel/drivers/isdn/hardware/avm/b1.ko
+kernel/drivers/isdn/hardware/avm/b1dma.ko
+kernel/drivers/isdn/hardware/avm/c4.ko
+kernel/drivers/isdn/hardware/avm/b1.ko

@@ -1,0 +1,1 @@
+cmd_drivers/nvme/target/nvme-loop.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/nvme/target/nvme-loop.ko drivers/nvme/target/nvme-loop.o drivers/nvme/target/nvme-loop.mod.o ;  true

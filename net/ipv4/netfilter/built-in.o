@@ -1,0 +1,11 @@
+!<thin>
+//                                              64        `
+nf_reject_ipv4.o/
+ip_tables.o/
+iptable_filter.o/
+ipt_REJECT.o/
+
+/0              0           0     0     644     7712      `
+/18             0           0     0     644     34048     `
+/31             0           0     0     644     7208      `
+/49             0           0     0     644     6360      `

@@ -1,0 +1,1 @@
+cmd_drivers/thermal/int340x_thermal/int3406_thermal.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/thermal/int340x_thermal/int3406_thermal.ko drivers/thermal/int340x_thermal/int3406_thermal.o drivers/thermal/int340x_thermal/int3406_thermal.mod.o ;  true

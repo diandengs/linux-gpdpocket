@@ -1,0 +1,2 @@
+kernel/sound/soc/intel/skylake/snd-soc-skl.ko
+kernel/sound/soc/intel/skylake/snd-soc-skl-ipc.ko

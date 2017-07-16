@@ -1,0 +1,1 @@
+cmd_drivers/thermal/int340x_thermal/int340x_thermal_zone.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/thermal/int340x_thermal/int340x_thermal_zone.ko drivers/thermal/int340x_thermal/int340x_thermal_zone.o drivers/thermal/int340x_thermal/int340x_thermal_zone.mod.o ;  true

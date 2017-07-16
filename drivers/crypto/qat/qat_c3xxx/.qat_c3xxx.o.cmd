@@ -1,0 +1,1 @@
+cmd_drivers/crypto/qat/qat_c3xxx/qat_c3xxx.o := ld -m elf_x86_64   -r -o drivers/crypto/qat/qat_c3xxx/qat_c3xxx.o drivers/crypto/qat/qat_c3xxx/adf_drv.o drivers/crypto/qat/qat_c3xxx/adf_c3xxx_hw_data.o 

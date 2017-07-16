@@ -1,0 +1,1 @@
+cmd_drivers/net/ethernet/3com/3c59x.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/ethernet/3com/3c59x.ko drivers/net/ethernet/3com/3c59x.o drivers/net/ethernet/3com/3c59x.mod.o ;  true

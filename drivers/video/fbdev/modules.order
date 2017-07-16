@@ -1,0 +1,3 @@
+kernel/drivers/video/fbdev/hyperv_fb.ko
+kernel/drivers/video/fbdev/vga16fb.ko
+kernel/drivers/video/fbdev/vfb.ko

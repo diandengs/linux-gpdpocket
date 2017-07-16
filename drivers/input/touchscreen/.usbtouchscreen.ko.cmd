@@ -1,0 +1,1 @@
+cmd_drivers/input/touchscreen/usbtouchscreen.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/touchscreen/usbtouchscreen.ko drivers/input/touchscreen/usbtouchscreen.o drivers/input/touchscreen/usbtouchscreen.mod.o ;  true

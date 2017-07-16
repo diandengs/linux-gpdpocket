@@ -1,0 +1,7 @@
+kernel/drivers/net/ethernet/broadcom/b44.ko
+kernel/drivers/net/ethernet/broadcom/genet/genet.ko
+kernel/drivers/net/ethernet/broadcom/bnx2.ko
+kernel/drivers/net/ethernet/broadcom/cnic.ko
+kernel/drivers/net/ethernet/broadcom/bnx2x/bnx2x.ko
+kernel/drivers/net/ethernet/broadcom/tg3.ko
+kernel/drivers/net/ethernet/broadcom/bnxt/bnxt_en.ko

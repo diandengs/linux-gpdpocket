@@ -1,0 +1,1 @@
+cmd_drivers/iio/gyro/st_gyro_spi.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/gyro/st_gyro_spi.ko drivers/iio/gyro/st_gyro_spi.o drivers/iio/gyro/st_gyro_spi.mod.o ;  true

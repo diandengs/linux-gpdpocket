@@ -1,0 +1,1 @@
+cmd_drivers/scsi/cxgbi/cxgb4i/cxgb4i.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/scsi/cxgbi/cxgb4i/cxgb4i.ko drivers/scsi/cxgbi/cxgb4i/cxgb4i.o drivers/scsi/cxgbi/cxgb4i/cxgb4i.mod.o ;  true

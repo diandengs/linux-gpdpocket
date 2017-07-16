@@ -1,0 +1,1 @@
+cmd_drivers/ata/libahci_platform.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/ata/libahci_platform.ko drivers/ata/libahci_platform.o drivers/ata/libahci_platform.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/platform/x86/fujitsu-laptop.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/x86/fujitsu-laptop.ko drivers/platform/x86/fujitsu-laptop.o drivers/platform/x86/fujitsu-laptop.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/fmc/fmc-write-eeprom.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/fmc/fmc-write-eeprom.ko drivers/fmc/fmc-write-eeprom.o drivers/fmc/fmc-write-eeprom.mod.o ;  true

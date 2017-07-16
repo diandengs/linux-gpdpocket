@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.ko drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.o drivers/media/rc/keymaps/rc-pinnacle-pctv-hd.mod.o ;  true

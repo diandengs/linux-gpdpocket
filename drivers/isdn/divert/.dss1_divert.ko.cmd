@@ -1,0 +1,1 @@
+cmd_drivers/isdn/divert/dss1_divert.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/divert/dss1_divert.ko drivers/isdn/divert/dss1_divert.o drivers/isdn/divert/dss1_divert.mod.o ;  true

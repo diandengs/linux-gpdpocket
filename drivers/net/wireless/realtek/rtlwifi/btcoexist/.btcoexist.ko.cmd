@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/realtek/rtlwifi/btcoexist/btcoexist.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/wireless/realtek/rtlwifi/btcoexist/btcoexist.ko drivers/net/wireless/realtek/rtlwifi/btcoexist/btcoexist.o drivers/net/wireless/realtek/rtlwifi/btcoexist/btcoexist.mod.o ;  true

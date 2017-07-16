@@ -1,0 +1,1 @@
+cmd_drivers/net/ethernet/dec/tulip/de4x5.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/ethernet/dec/tulip/de4x5.ko drivers/net/ethernet/dec/tulip/de4x5.o drivers/net/ethernet/dec/tulip/de4x5.mod.o ;  true

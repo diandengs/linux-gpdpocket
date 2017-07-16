@@ -1,0 +1,2 @@
+kernel/drivers/media/usb/ttusb-dec/ttusb_dec.ko
+kernel/drivers/media/usb/ttusb-dec/ttusbdecfe.ko

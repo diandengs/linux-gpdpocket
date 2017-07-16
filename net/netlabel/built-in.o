@@ -1,0 +1,18 @@
+!<thin>
+//                                              158       `
+netlabel_user.o/
+netlabel_kapi.o/
+netlabel_domainhash.o/
+netlabel_addrlist.o/
+netlabel_mgmt.o/
+netlabel_unlabeled.o/
+netlabel_cipso_v4.o/
+netlabel_calipso.o/
+/0             /0           0     0     644     4048      `
+/17            /0           0     0     644     19424     `
+/34             0           0     0     644     14072     `
+/57             0           0     0     644     5944      `
+/78            /0           0     0     644     13496     `
+/95             0           0     0     644     20880     `
+/117            0           0     0     644     12216     `
+/138            0           0     0     644     11968     `

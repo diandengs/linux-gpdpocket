@@ -1,0 +1,1 @@
+cmd_sound/soc/codecs/snd-soc-rt5677.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/soc/codecs/snd-soc-rt5677.ko sound/soc/codecs/snd-soc-rt5677.o sound/soc/codecs/snd-soc-rt5677.mod.o ;  true

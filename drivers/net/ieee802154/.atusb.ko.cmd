@@ -1,0 +1,1 @@
+cmd_drivers/net/ieee802154/atusb.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/ieee802154/atusb.ko drivers/net/ieee802154/atusb.o drivers/net/ieee802154/atusb.mod.o ;  true

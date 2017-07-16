@@ -1,0 +1,1 @@
+cmd_drivers/iio/accel/kxcjk-1013.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/accel/kxcjk-1013.ko drivers/iio/accel/kxcjk-1013.o drivers/iio/accel/kxcjk-1013.mod.o ;  true

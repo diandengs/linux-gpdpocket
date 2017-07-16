@@ -1,0 +1,1 @@
+cmd_drivers/input/touchscreen/wacom_w8001.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/touchscreen/wacom_w8001.ko drivers/input/touchscreen/wacom_w8001.o drivers/input/touchscreen/wacom_w8001.mod.o ;  true

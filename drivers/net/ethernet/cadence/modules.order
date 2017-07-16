@@ -1,0 +1,2 @@
+kernel/drivers/net/ethernet/cadence/macb.ko
+kernel/drivers/net/ethernet/cadence/macb_pci.ko

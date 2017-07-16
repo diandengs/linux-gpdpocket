@@ -1,0 +1,1 @@
+cmd_drivers/usb/misc/trancevibrator.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/usb/misc/trancevibrator.ko drivers/usb/misc/trancevibrator.o drivers/usb/misc/trancevibrator.mod.o ;  true

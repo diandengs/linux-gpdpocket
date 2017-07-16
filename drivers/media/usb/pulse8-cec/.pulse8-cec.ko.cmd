@@ -1,0 +1,1 @@
+cmd_drivers/media/usb/pulse8-cec/pulse8-cec.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/usb/pulse8-cec/pulse8-cec.ko drivers/media/usb/pulse8-cec/pulse8-cec.o drivers/media/usb/pulse8-cec/pulse8-cec.mod.o ;  true

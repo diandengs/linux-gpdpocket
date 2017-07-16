@@ -1,0 +1,1 @@
+cmd_sound/pci/echoaudio/snd-indigo.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/pci/echoaudio/snd-indigo.ko sound/pci/echoaudio/snd-indigo.o sound/pci/echoaudio/snd-indigo.mod.o ;  true

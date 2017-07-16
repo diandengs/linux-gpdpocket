@@ -1,0 +1,1 @@
+cmd_net/netfilter/ipvs/ip_vs_ovf.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/netfilter/ipvs/ip_vs_ovf.ko net/netfilter/ipvs/ip_vs_ovf.o net/netfilter/ipvs/ip_vs_ovf.mod.o ;  true

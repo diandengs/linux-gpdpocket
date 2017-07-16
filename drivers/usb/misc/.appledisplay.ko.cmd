@@ -1,0 +1,1 @@
+cmd_drivers/usb/misc/appledisplay.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/usb/misc/appledisplay.ko drivers/usb/misc/appledisplay.o drivers/usb/misc/appledisplay.mod.o ;  true

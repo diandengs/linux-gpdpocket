@@ -1,0 +1,1 @@
+cmd_drivers/uio/uio_pci_generic.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/uio/uio_pci_generic.ko drivers/uio/uio_pci_generic.o drivers/uio/uio_pci_generic.mod.o ;  true

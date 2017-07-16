@@ -1,0 +1,1 @@
+cmd_drivers/misc/mic/card/mic_card.o := ld -m elf_x86_64   -r -o drivers/misc/mic/card/mic_card.o drivers/misc/mic/card/mic_x100.o drivers/misc/mic/card/mic_device.o drivers/misc/mic/card/mic_debugfs.o 

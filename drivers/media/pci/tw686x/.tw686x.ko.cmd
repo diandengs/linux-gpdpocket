@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/tw686x/tw686x.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/pci/tw686x/tw686x.ko drivers/media/pci/tw686x/tw686x.o drivers/media/pci/tw686x/tw686x.mod.o ;  true

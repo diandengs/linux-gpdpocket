@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hisax/hisax_isac.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hisax/hisax_isac.ko drivers/isdn/hisax/hisax_isac.o drivers/isdn/hisax/hisax_isac.mod.o ;  true

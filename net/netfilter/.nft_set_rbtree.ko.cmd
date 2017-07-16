@@ -1,0 +1,1 @@
+cmd_net/netfilter/nft_set_rbtree.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/netfilter/nft_set_rbtree.ko net/netfilter/nft_set_rbtree.o net/netfilter/nft_set_rbtree.mod.o ;  true

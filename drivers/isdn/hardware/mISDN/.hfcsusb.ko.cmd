@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hardware/mISDN/hfcsusb.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hardware/mISDN/hfcsusb.ko drivers/isdn/hardware/mISDN/hfcsusb.o drivers/isdn/hardware/mISDN/hfcsusb.mod.o ;  true

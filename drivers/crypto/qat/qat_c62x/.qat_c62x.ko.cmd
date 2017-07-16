@@ -1,0 +1,1 @@
+cmd_drivers/crypto/qat/qat_c62x/qat_c62x.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/crypto/qat/qat_c62x/qat_c62x.ko drivers/crypto/qat/qat_c62x/qat_c62x.o drivers/crypto/qat/qat_c62x/qat_c62x.mod.o ;  true

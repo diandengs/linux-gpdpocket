@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/dvb-pll.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/dvb-pll.ko drivers/media/dvb-frontends/dvb-pll.o drivers/media/dvb-frontends/dvb-pll.mod.o ;  true

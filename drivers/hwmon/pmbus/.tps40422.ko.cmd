@@ -1,0 +1,1 @@
+cmd_drivers/hwmon/pmbus/tps40422.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/hwmon/pmbus/tps40422.ko drivers/hwmon/pmbus/tps40422.o drivers/hwmon/pmbus/tps40422.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_net/vmw_vsock/vmw_vsock_vmci_transport.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/vmw_vsock/vmw_vsock_vmci_transport.ko net/vmw_vsock/vmw_vsock_vmci_transport.o net/vmw_vsock/vmw_vsock_vmci_transport.mod.o ;  true

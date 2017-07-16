@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hardware/eicon/diva_idi.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hardware/eicon/diva_idi.ko drivers/isdn/hardware/eicon/diva_idi.o drivers/isdn/hardware/eicon/diva_idi.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/media/common/b2c2/b2c2-flexcop.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/common/b2c2/b2c2-flexcop.ko drivers/media/common/b2c2/b2c2-flexcop.o drivers/media/common/b2c2/b2c2-flexcop.mod.o ;  true

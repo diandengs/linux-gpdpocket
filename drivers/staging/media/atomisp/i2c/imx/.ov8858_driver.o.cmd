@@ -1,0 +1,1 @@
+cmd_drivers/staging/media/atomisp/i2c/imx/ov8858_driver.o := ld -m elf_x86_64   -r -o drivers/staging/media/atomisp/i2c/imx/ov8858_driver.o drivers/staging/media/atomisp/i2c/imx/../ov8858.o drivers/staging/media/atomisp/i2c/imx/dw9718.o drivers/staging/media/atomisp/i2c/imx/vcm.o 

@@ -1,0 +1,10 @@
+kernel/drivers/acpi/dptf/dptf_power.ko
+kernel/drivers/acpi/acpi_ipmi.ko
+kernel/drivers/acpi/video.ko
+kernel/drivers/acpi/nfit/nfit.ko
+kernel/drivers/acpi/sbshc.ko
+kernel/drivers/acpi/sbs.ko
+kernel/drivers/acpi/ec_sys.ko
+kernel/drivers/acpi/custom_method.ko
+kernel/drivers/acpi/acpi_pad.ko
+kernel/drivers/acpi/acpi_configfs.ko

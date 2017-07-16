@@ -1,0 +1,1 @@
+cmd_drivers/net/irda/toim3232-sir.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/irda/toim3232-sir.ko drivers/net/irda/toim3232-sir.o drivers/net/irda/toim3232-sir.mod.o ;  true

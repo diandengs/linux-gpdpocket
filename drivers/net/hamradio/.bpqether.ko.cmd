@@ -1,0 +1,1 @@
+cmd_drivers/net/hamradio/bpqether.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/hamradio/bpqether.ko drivers/net/hamradio/bpqether.o drivers/net/hamradio/bpqether.mod.o ;  true

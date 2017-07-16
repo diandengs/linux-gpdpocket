@@ -1,0 +1,5 @@
+kernel/drivers/memstick/host/tifm_ms.ko
+kernel/drivers/memstick/host/jmb38x_ms.ko
+kernel/drivers/memstick/host/r592.ko
+kernel/drivers/memstick/host/rtsx_pci_ms.ko
+kernel/drivers/memstick/host/rtsx_usb_ms.ko

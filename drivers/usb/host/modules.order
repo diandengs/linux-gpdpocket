@@ -1,0 +1,4 @@
+kernel/drivers/usb/host/isp1362-hcd.ko
+kernel/drivers/usb/host/xhci-plat-hcd.ko
+kernel/drivers/usb/host/sl811-hcd.ko
+kernel/drivers/usb/host/hwa-hc.ko

@@ -1,0 +1,1 @@
+cmd_drivers/input/misc/gp2ap002a00f.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/misc/gp2ap002a00f.ko drivers/input/misc/gp2ap002a00f.o drivers/input/misc/gp2ap002a00f.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_sound/x86/snd-hdmi-lpe-audio.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/x86/snd-hdmi-lpe-audio.ko sound/x86/snd-hdmi-lpe-audio.o sound/x86/snd-hdmi-lpe-audio.mod.o ;  true

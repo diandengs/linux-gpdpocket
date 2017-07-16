@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/keymaps/rc-geekbox.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/keymaps/rc-geekbox.ko drivers/media/rc/keymaps/rc-geekbox.o drivers/media/rc/keymaps/rc-geekbox.mod.o ;  true

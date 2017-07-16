@@ -1,0 +1,1 @@
+cmd_sound/firewire/motu/snd-firewire-motu.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/firewire/motu/snd-firewire-motu.ko sound/firewire/motu/snd-firewire-motu.o sound/firewire/motu/snd-firewire-motu.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/misc/mic/cosm_client/cosm_client.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/misc/mic/cosm_client/cosm_client.ko drivers/misc/mic/cosm_client/cosm_client.o drivers/misc/mic/cosm_client/cosm_client.mod.o ;  true

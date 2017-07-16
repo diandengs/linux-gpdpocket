@@ -1,0 +1,1 @@
+cmd_crypto/asymmetric_keys/verify_signed_pefile.o := rm -f crypto/asymmetric_keys/verify_signed_pefile.o; ar rcSTPD crypto/asymmetric_keys/verify_signed_pefile.o crypto/asymmetric_keys/verify_pefile.o crypto/asymmetric_keys/mscode_parser.o crypto/asymmetric_keys/mscode-asn1.o

@@ -1,0 +1,1 @@
+cmd_drivers/nfc/st21nfca/st21nfca_hci.o := ld -m elf_x86_64   -r -o drivers/nfc/st21nfca/st21nfca_hci.o drivers/nfc/st21nfca/core.o drivers/nfc/st21nfca/dep.o drivers/nfc/st21nfca/se.o drivers/nfc/st21nfca/vendor_cmds.o 

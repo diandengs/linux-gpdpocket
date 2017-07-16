@@ -1,0 +1,1 @@
+cmd_drivers/staging/media/atomisp/pci/atomisp2/atomisp.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/staging/media/atomisp/pci/atomisp2/atomisp.ko drivers/staging/media/atomisp/pci/atomisp2/atomisp.o drivers/staging/media/atomisp/pci/atomisp2/atomisp.mod.o ;  true

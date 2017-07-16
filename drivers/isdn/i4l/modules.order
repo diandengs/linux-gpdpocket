@@ -1,0 +1,2 @@
+kernel/drivers/isdn/i4l/isdn.ko
+kernel/drivers/isdn/i4l/isdnhdlc.ko

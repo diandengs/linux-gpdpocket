@@ -1,0 +1,1 @@
+cmd_drivers/scsi/mpt3sas/mpt3sas.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/scsi/mpt3sas/mpt3sas.ko drivers/scsi/mpt3sas/mpt3sas.o drivers/scsi/mpt3sas/mpt3sas.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/platform/x86/mlx-platform.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/x86/mlx-platform.ko drivers/platform/x86/mlx-platform.o drivers/platform/x86/mlx-platform.mod.o ;  true

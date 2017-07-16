@@ -1,0 +1,1 @@
+cmd_sound/firewire/snd-firewire-lib.o := ld -m elf_x86_64   -r -o sound/firewire/snd-firewire-lib.o sound/firewire/lib.o sound/firewire/iso-resources.o sound/firewire/packets-buffer.o sound/firewire/fcp.o sound/firewire/cmp.o sound/firewire/amdtp-stream.o sound/firewire/amdtp-am824.o 

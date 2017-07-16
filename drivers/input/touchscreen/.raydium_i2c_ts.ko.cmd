@@ -1,0 +1,1 @@
+cmd_drivers/input/touchscreen/raydium_i2c_ts.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/touchscreen/raydium_i2c_ts.ko drivers/input/touchscreen/raydium_i2c_ts.o drivers/input/touchscreen/raydium_i2c_ts.mod.o ;  true

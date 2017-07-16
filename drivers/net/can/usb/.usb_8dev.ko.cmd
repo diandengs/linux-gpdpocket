@@ -1,0 +1,1 @@
+cmd_drivers/net/can/usb/usb_8dev.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/can/usb/usb_8dev.ko drivers/net/can/usb/usb_8dev.o drivers/net/can/usb/usb_8dev.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/misc/eeprom/eeprom.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/misc/eeprom/eeprom.ko drivers/misc/eeprom/eeprom.o drivers/misc/eeprom/eeprom.mod.o ;  true

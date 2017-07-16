@@ -1,0 +1,1 @@
+cmd_drivers/char/hw_random/intel-rng.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/char/hw_random/intel-rng.ko drivers/char/hw_random/intel-rng.o drivers/char/hw_random/intel-rng.mod.o ;  true

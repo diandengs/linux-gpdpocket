@@ -1,0 +1,14 @@
+kernel/drivers/net/dsa/b53/b53_common.ko
+kernel/drivers/net/dsa/b53/b53_spi.ko
+kernel/drivers/net/dsa/b53/b53_mdio.ko
+kernel/drivers/net/dsa/b53/b53_mmap.ko
+kernel/drivers/net/dsa/b53/b53_srab.ko
+kernel/drivers/net/dsa/mv88e6xxx/mv88e6xxx.ko
+kernel/drivers/net/dsa/dsa_loop.ko
+kernel/drivers/net/dsa/dsa_loop_bdinfo.ko
+kernel/drivers/net/dsa/mt7530.ko
+kernel/drivers/net/dsa/mv88e6060.ko
+kernel/drivers/net/dsa/qca8k.ko
+kernel/drivers/net/dsa/lan9303-core.ko
+kernel/drivers/net/dsa/lan9303_i2c.ko
+kernel/drivers/net/dsa/lan9303_mdio.ko

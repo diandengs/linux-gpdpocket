@@ -1,0 +1,1 @@
+cmd_drivers/scsi/xen-scsifront.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/scsi/xen-scsifront.ko drivers/scsi/xen-scsifront.o drivers/scsi/xen-scsifront.mod.o ;  true

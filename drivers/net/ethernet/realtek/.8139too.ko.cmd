@@ -1,0 +1,1 @@
+cmd_drivers/net/ethernet/realtek/8139too.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/ethernet/realtek/8139too.ko drivers/net/ethernet/realtek/8139too.o drivers/net/ethernet/realtek/8139too.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/iio/pressure/abp060mg.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/pressure/abp060mg.ko drivers/iio/pressure/abp060mg.o drivers/iio/pressure/abp060mg.mod.o ;  true

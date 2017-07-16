@@ -1,0 +1,1 @@
+cmd_drivers/isdn/gigaset/ser_gigaset.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/gigaset/ser_gigaset.ko drivers/isdn/gigaset/ser_gigaset.o drivers/isdn/gigaset/ser_gigaset.mod.o ;  true

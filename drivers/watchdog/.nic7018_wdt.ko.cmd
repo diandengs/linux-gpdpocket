@@ -1,0 +1,1 @@
+cmd_drivers/watchdog/nic7018_wdt.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/watchdog/nic7018_wdt.ko drivers/watchdog/nic7018_wdt.o drivers/watchdog/nic7018_wdt.mod.o ;  true

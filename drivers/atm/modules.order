@@ -1,0 +1,7 @@
+kernel/drivers/atm/nicstar.ko
+kernel/drivers/atm/eni.ko
+kernel/drivers/atm/suni.ko
+kernel/drivers/atm/solos-pci.ko
+kernel/drivers/atm/atmtcp.ko
+kernel/drivers/atm/firestream.ko
+kernel/drivers/atm/he.ko

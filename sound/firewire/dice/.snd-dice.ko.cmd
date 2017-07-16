@@ -1,0 +1,1 @@
+cmd_sound/firewire/dice/snd-dice.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/firewire/dice/snd-dice.ko sound/firewire/dice/snd-dice.o sound/firewire/dice/snd-dice.mod.o ;  true

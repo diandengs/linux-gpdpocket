@@ -1,0 +1,3 @@
+kernel/net/mpls/mpls_gso.ko
+kernel/net/mpls/mpls_router.ko
+kernel/net/mpls/mpls_iptunnel.ko

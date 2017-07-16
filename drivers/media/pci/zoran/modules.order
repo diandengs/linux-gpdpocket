@@ -1,0 +1,5 @@
+kernel/drivers/media/pci/zoran/zr36067.ko
+kernel/drivers/media/pci/zoran/videocodec.ko
+kernel/drivers/media/pci/zoran/zr36050.ko
+kernel/drivers/media/pci/zoran/zr36016.ko
+kernel/drivers/media/pci/zoran/zr36060.ko

@@ -1,0 +1,1 @@
+cmd_drivers/input/joystick/analog.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/joystick/analog.ko drivers/input/joystick/analog.o drivers/input/joystick/analog.mod.o ;  true

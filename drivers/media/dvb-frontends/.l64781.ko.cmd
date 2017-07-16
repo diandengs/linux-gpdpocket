@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/l64781.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/l64781.ko drivers/media/dvb-frontends/l64781.o drivers/media/dvb-frontends/l64781.mod.o ;  true

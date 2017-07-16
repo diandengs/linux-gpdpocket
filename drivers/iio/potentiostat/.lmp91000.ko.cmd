@@ -1,0 +1,1 @@
+cmd_drivers/iio/potentiostat/lmp91000.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/potentiostat/lmp91000.ko drivers/iio/potentiostat/lmp91000.o drivers/iio/potentiostat/lmp91000.mod.o ;  true

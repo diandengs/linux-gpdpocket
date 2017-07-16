@@ -1,0 +1,1 @@
+cmd_net/sched/act_meta_skbprio.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/sched/act_meta_skbprio.ko net/sched/act_meta_skbprio.o net/sched/act_meta_skbprio.mod.o ;  true

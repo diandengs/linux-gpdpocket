@@ -1,0 +1,1 @@
+cmd_drivers/misc/mic/bus/scif_bus.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/misc/mic/bus/scif_bus.ko drivers/misc/mic/bus/scif_bus.o drivers/misc/mic/bus/scif_bus.mod.o ;  true

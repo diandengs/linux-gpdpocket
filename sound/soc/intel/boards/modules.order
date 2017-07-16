@@ -1,0 +1,16 @@
+kernel/sound/soc/intel/boards/snd-soc-sst-haswell.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-bxt-da7219_max98357a.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-bxt-rt298.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-broadwell.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-bdw-rt5677-mach.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-bytcr-rt5640.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-bytcr-rt5651.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-cht-bsw-rt5672.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-cht-bsw-rt5645.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-cht-bsw-max98090_ti.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-byt-cht-da7213.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-byt-cht-es8316.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-byt-cht-nocodec.ko
+kernel/sound/soc/intel/boards/snd-soc-skl_rt286.ko
+kernel/sound/soc/intel/boards/snd-skl_nau88l25_max98357a.ko
+kernel/sound/soc/intel/boards/snd-soc-skl_nau88l25_ssm4567.ko

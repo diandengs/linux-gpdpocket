@@ -1,0 +1,1 @@
+cmd_drivers/input/joystick/zhenhua.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/joystick/zhenhua.ko drivers/input/joystick/zhenhua.o drivers/input/joystick/zhenhua.mod.o ;  true

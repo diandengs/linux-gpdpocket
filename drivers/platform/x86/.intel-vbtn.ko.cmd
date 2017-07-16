@@ -1,0 +1,1 @@
+cmd_drivers/platform/x86/intel-vbtn.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/x86/intel-vbtn.ko drivers/platform/x86/intel-vbtn.o drivers/platform/x86/intel-vbtn.mod.o ;  true

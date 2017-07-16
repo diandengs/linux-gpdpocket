@@ -1,0 +1,1 @@
+cmd_drivers/input/tablet/pegasus_notetaker.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/tablet/pegasus_notetaker.ko drivers/input/tablet/pegasus_notetaker.o drivers/input/tablet/pegasus_notetaker.mod.o ;  true

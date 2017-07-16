@@ -1,0 +1,1 @@
+cmd_drivers/net/ethernet/3com/typhoon.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/ethernet/3com/typhoon.ko drivers/net/ethernet/3com/typhoon.o drivers/net/ethernet/3com/typhoon.mod.o ;  true

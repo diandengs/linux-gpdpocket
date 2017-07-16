@@ -1,0 +1,9 @@
+!<thin>
+//                                              52        `
+vsyscall_gtod.o/
+vsyscall_64.o/
+vsyscall_emu_64.o/
+
+/0             /0           0     0     644     3880      `
+/17             0           0     0     644     14984     `
+/32             0           0     0     644     8936      `

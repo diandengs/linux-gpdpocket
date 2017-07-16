@@ -1,0 +1,1 @@
+cmd_drivers/gpu/drm/bridge/analogix-anx78xx.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/gpu/drm/bridge/analogix-anx78xx.ko drivers/gpu/drm/bridge/analogix-anx78xx.o drivers/gpu/drm/bridge/analogix-anx78xx.mod.o ;  true

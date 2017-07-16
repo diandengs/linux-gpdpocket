@@ -1,0 +1,1 @@
+cmd_sound/soc/intel/boards/snd-soc-skl_rt286.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/soc/intel/boards/snd-soc-skl_rt286.ko sound/soc/intel/boards/snd-soc-skl_rt286.o sound/soc/intel/boards/snd-soc-skl_rt286.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hardware/mISDN/hfcpci.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hardware/mISDN/hfcpci.ko drivers/isdn/hardware/mISDN/hfcpci.o drivers/isdn/hardware/mISDN/hfcpci.mod.o ;  true

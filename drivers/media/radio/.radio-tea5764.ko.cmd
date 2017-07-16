@@ -1,0 +1,1 @@
+cmd_drivers/media/radio/radio-tea5764.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/radio/radio-tea5764.ko drivers/media/radio/radio-tea5764.o drivers/media/radio/radio-tea5764.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/iio/buffer/kfifo_buf.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/buffer/kfifo_buf.ko drivers/iio/buffer/kfifo_buf.o drivers/iio/buffer/kfifo_buf.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/input/misc/atlas_btns.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/misc/atlas_btns.ko drivers/input/misc/atlas_btns.o drivers/input/misc/atlas_btns.mod.o ;  true

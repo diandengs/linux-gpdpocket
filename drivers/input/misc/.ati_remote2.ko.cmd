@@ -1,0 +1,1 @@
+cmd_drivers/input/misc/ati_remote2.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/misc/ati_remote2.ko drivers/input/misc/ati_remote2.o drivers/input/misc/ati_remote2.mod.o ;  true

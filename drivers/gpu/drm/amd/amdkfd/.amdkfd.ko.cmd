@@ -1,0 +1,1 @@
+cmd_drivers/gpu/drm/amd/amdkfd/amdkfd.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/gpu/drm/amd/amdkfd/amdkfd.ko drivers/gpu/drm/amd/amdkfd/amdkfd.o drivers/gpu/drm/amd/amdkfd/amdkfd.mod.o ;  true

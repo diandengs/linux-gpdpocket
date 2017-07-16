@@ -1,0 +1,1 @@
+cmd_drivers/media/radio/saa7706h.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/radio/saa7706h.ko drivers/media/radio/saa7706h.o drivers/media/radio/saa7706h.mod.o ;  true

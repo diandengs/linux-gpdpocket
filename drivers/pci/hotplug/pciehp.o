@@ -1,0 +1,10 @@
+!<thin>
+//                                              58        `
+pciehp_core.o/
+pciehp_ctrl.o/
+pciehp_pci.o/
+pciehp_hpc.o/
+/0              0           0     0     644     11520     `
+/15             0           0     0     644     12528     `
+/30             0           0     0     644     5944      `
+/44             0           0     0     644     21504     `

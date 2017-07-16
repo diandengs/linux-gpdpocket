@@ -1,0 +1,1 @@
+cmd_drivers/input/mouse/synaptics_usb.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/mouse/synaptics_usb.ko drivers/input/mouse/synaptics_usb.o drivers/input/mouse/synaptics_usb.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/remoteproc/remoteproc.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/remoteproc/remoteproc.ko drivers/remoteproc/remoteproc.o drivers/remoteproc/remoteproc.mod.o ;  true

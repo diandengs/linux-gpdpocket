@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.ko drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.o drivers/media/rc/keymaps/rc-twinhan-dtv-cab-ci.mod.o ;  true

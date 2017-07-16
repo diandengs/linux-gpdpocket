@@ -1,0 +1,1 @@
+cmd_net/bridge/netfilter/ebtables.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/bridge/netfilter/ebtables.ko net/bridge/netfilter/ebtables.o net/bridge/netfilter/ebtables.mod.o ;  true

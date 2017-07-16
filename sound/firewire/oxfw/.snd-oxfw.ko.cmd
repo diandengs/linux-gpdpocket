@@ -1,0 +1,1 @@
+cmd_sound/firewire/oxfw/snd-oxfw.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/firewire/oxfw/snd-oxfw.ko sound/firewire/oxfw/snd-oxfw.o sound/firewire/oxfw/snd-oxfw.mod.o ;  true

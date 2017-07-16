@@ -1,0 +1,1 @@
+cmd_drivers/iio/industrialio-configfs.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/industrialio-configfs.ko drivers/iio/industrialio-configfs.o drivers/iio/industrialio-configfs.mod.o ;  true

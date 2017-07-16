@@ -1,0 +1,5 @@
+kernel/drivers/media/pci/bt8xx/bttv.ko
+kernel/drivers/media/pci/bt8xx/bt878.ko
+kernel/drivers/media/pci/bt8xx/dvb-bt8xx.ko
+kernel/drivers/media/pci/bt8xx/dst.ko
+kernel/drivers/media/pci/bt8xx/dst_ca.ko

@@ -1,0 +1,1 @@
+cmd_drivers/staging/media/atomisp/i2c/libmsrlisthelper.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/staging/media/atomisp/i2c/libmsrlisthelper.ko drivers/staging/media/atomisp/i2c/libmsrlisthelper.o drivers/staging/media/atomisp/i2c/libmsrlisthelper.mod.o ;  true

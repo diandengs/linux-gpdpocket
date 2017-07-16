@@ -1,0 +1,1 @@
+cmd_drivers/firewire/firewire-ohci.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/firewire/firewire-ohci.ko drivers/firewire/firewire-ohci.o drivers/firewire/firewire-ohci.mod.o ;  true

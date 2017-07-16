@@ -1,0 +1,1 @@
+cmd_drivers/char/tpm/tpm_tis_core.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/char/tpm/tpm_tis_core.ko drivers/char/tpm/tpm_tis_core.o drivers/char/tpm/tpm_tis_core.mod.o ;  true

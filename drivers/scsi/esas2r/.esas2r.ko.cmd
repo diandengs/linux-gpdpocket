@@ -1,0 +1,1 @@
+cmd_drivers/scsi/esas2r/esas2r.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/scsi/esas2r/esas2r.ko drivers/scsi/esas2r/esas2r.o drivers/scsi/esas2r/esas2r.mod.o ;  true

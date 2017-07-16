@@ -1,0 +1,1 @@
+cmd_drivers/input/joystick/warrior.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/joystick/warrior.ko drivers/input/joystick/warrior.o drivers/input/joystick/warrior.mod.o ;  true

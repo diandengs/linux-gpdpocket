@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hardware/avm/c4.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hardware/avm/c4.ko drivers/isdn/hardware/avm/c4.o drivers/isdn/hardware/avm/c4.mod.o ;  true

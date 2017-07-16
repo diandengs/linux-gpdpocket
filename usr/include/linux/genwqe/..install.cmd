@@ -1,0 +1,1 @@
+cmd_usr/include/linux/genwqe/.install := /bin/bash scripts/headers_install.sh ./usr/include/linux/genwqe ./include/uapi/linux/genwqe genwqe_card.h; /bin/bash scripts/headers_install.sh ./usr/include/linux/genwqe ./include/generated/uapi/linux/genwqe ; for F in ; do echo "\#include <asm-generic/$$F>" > ./usr/include/linux/genwqe/$$F; done; touch usr/include/linux/genwqe/.install

@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/intel/iwlwifi/mvm/iwlmvm.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/wireless/intel/iwlwifi/mvm/iwlmvm.ko drivers/net/wireless/intel/iwlwifi/mvm/iwlmvm.o drivers/net/wireless/intel/iwlwifi/mvm/iwlmvm.mod.o ;  true

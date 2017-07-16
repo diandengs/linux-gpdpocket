@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hardware/mISDN/mISDNipac.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hardware/mISDN/mISDNipac.ko drivers/isdn/hardware/mISDN/mISDNipac.o drivers/isdn/hardware/mISDN/mISDNipac.mod.o ;  true

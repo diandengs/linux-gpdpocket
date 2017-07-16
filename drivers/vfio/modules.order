@@ -1,0 +1,6 @@
+kernel/drivers/vfio/vfio.ko
+kernel/drivers/vfio/vfio_virqfd.ko
+kernel/drivers/vfio/vfio_iommu_type1.ko
+kernel/drivers/vfio/pci/vfio-pci.ko
+kernel/drivers/vfio/mdev/mdev.ko
+kernel/drivers/vfio/mdev/vfio_mdev.ko

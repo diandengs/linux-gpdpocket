@@ -1,0 +1,1 @@
+cmd_drivers/net/can/usb/gs_usb.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/can/usb/gs_usb.ko drivers/net/can/usb/gs_usb.o drivers/net/can/usb/gs_usb.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/power/supply/axp288_charger.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/power/supply/axp288_charger.ko drivers/power/supply/axp288_charger.o drivers/power/supply/axp288_charger.mod.o ;  true

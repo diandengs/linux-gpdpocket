@@ -1,0 +1,1 @@
+cmd_drivers/input/joystick/grip_mp.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/joystick/grip_mp.ko drivers/input/joystick/grip_mp.o drivers/input/joystick/grip_mp.mod.o ;  true

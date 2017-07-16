@@ -1,0 +1,1 @@
+cmd_drivers/misc/mic/bus/mic_bus.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/misc/mic/bus/mic_bus.ko drivers/misc/mic/bus/mic_bus.o drivers/misc/mic/bus/mic_bus.mod.o ;  true

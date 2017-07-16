@@ -1,0 +1,10 @@
+!<thin>
+//                                              126       `
+clock/vlv2_plat_clock.o/
+clock/platform_vlv2_plat_clk.o/
+intel-mid/intel_mid_pcihelpers.o/
+intel-mid/atomisp_gmin_platform.o/
+/0              0           0     0     644     10248     `
+/25             0           0     0     644     3408      `
+/57             0           0     0     644     16256     `
+/91             0           0     0     644     29040     `

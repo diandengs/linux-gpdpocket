@@ -1,0 +1,1 @@
+cmd_drivers/input/misc/cma3000_d0x.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/misc/cma3000_d0x.ko drivers/input/misc/cma3000_d0x.o drivers/input/misc/cma3000_d0x.mod.o ;  true

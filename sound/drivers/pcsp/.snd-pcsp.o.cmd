@@ -1,0 +1,1 @@
+cmd_sound/drivers/pcsp/snd-pcsp.o := ld -m elf_x86_64   -r -o sound/drivers/pcsp/snd-pcsp.o sound/drivers/pcsp/pcsp.o sound/drivers/pcsp/pcsp_lib.o sound/drivers/pcsp/pcsp_mixer.o sound/drivers/pcsp/pcsp_input.o 

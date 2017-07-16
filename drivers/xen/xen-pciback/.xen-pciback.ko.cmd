@@ -1,0 +1,1 @@
+cmd_drivers/xen/xen-pciback/xen-pciback.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/xen/xen-pciback/xen-pciback.ko drivers/xen/xen-pciback/xen-pciback.o drivers/xen/xen-pciback/xen-pciback.mod.o ;  true

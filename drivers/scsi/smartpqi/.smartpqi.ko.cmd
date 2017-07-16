@@ -1,0 +1,1 @@
+cmd_drivers/scsi/smartpqi/smartpqi.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/scsi/smartpqi/smartpqi.ko drivers/scsi/smartpqi/smartpqi.o drivers/scsi/smartpqi/smartpqi.mod.o ;  true

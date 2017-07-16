@@ -1,0 +1,7 @@
+kernel/drivers/crypto/qat/qat_common/intel_qat.ko
+kernel/drivers/crypto/qat/qat_dh895xcc/qat_dh895xcc.ko
+kernel/drivers/crypto/qat/qat_c3xxx/qat_c3xxx.ko
+kernel/drivers/crypto/qat/qat_c62x/qat_c62x.ko
+kernel/drivers/crypto/qat/qat_dh895xccvf/qat_dh895xccvf.ko
+kernel/drivers/crypto/qat/qat_c3xxxvf/qat_c3xxxvf.ko
+kernel/drivers/crypto/qat/qat_c62xvf/qat_c62xvf.ko

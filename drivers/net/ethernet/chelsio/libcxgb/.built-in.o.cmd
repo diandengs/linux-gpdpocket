@@ -1,0 +1,1 @@
+cmd_drivers/net/ethernet/chelsio/libcxgb/built-in.o :=  rm -f drivers/net/ethernet/chelsio/libcxgb/built-in.o; ar rcSTPD drivers/net/ethernet/chelsio/libcxgb/built-in.o

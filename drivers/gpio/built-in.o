@@ -1,0 +1,17 @@
+!<thin>
+//                                              112       `
+devres.o/
+gpiolib.o/
+gpiolib-legacy.o/
+gpiolib-devprop.o/
+gpiolib-sysfs.o/
+gpiolib-acpi.o/
+gpio-crystalcove.o/
+
+/0              0           0     0     644     14976     `
+/10             0           0     0     644     102384    `
+/21             0           0     0     644     6928      `
+/39             0           0     0     644     3400      `
+/58            /0           0     0     644     24624     `
+/75             0           0     0     644     27816     `
+/91             0           0     0     644     11816     `

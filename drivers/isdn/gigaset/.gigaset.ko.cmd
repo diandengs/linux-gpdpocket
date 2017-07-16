@@ -1,0 +1,1 @@
+cmd_drivers/isdn/gigaset/gigaset.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/gigaset/gigaset.ko drivers/isdn/gigaset/gigaset.o drivers/isdn/gigaset/gigaset.mod.o ;  true

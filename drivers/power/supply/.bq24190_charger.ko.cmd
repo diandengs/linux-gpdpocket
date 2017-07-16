@@ -1,0 +1,1 @@
+cmd_drivers/power/supply/bq24190_charger.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/power/supply/bq24190_charger.ko drivers/power/supply/bq24190_charger.o drivers/power/supply/bq24190_charger.mod.o ;  true

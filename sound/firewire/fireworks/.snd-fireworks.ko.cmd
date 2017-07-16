@@ -1,0 +1,1 @@
+cmd_sound/firewire/fireworks/snd-fireworks.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/firewire/fireworks/snd-fireworks.ko sound/firewire/fireworks/snd-fireworks.o sound/firewire/fireworks/snd-fireworks.mod.o ;  true

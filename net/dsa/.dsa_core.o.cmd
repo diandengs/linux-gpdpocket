@@ -1,0 +1,1 @@
+cmd_net/dsa/dsa_core.o := ld -m elf_x86_64   -r -o net/dsa/dsa_core.o net/dsa/dsa.o net/dsa/dsa2.o net/dsa/legacy.o net/dsa/port.o net/dsa/slave.o net/dsa/switch.o net/dsa/tag_dsa.o net/dsa/tag_edsa.o net/dsa/tag_lan9303.o net/dsa/tag_mtk.o net/dsa/tag_qca.o net/dsa/tag_trailer.o 

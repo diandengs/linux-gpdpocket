@@ -1,0 +1,1 @@
+cmd_drivers/scsi/device_handler/scsi_dh_hp_sw.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/scsi/device_handler/scsi_dh_hp_sw.ko drivers/scsi/device_handler/scsi_dh_hp_sw.o drivers/scsi/device_handler/scsi_dh_hp_sw.mod.o ;  true

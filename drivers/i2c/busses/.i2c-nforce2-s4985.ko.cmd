@@ -1,0 +1,1 @@
+cmd_drivers/i2c/busses/i2c-nforce2-s4985.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/i2c/busses/i2c-nforce2-s4985.ko drivers/i2c/busses/i2c-nforce2-s4985.o drivers/i2c/busses/i2c-nforce2-s4985.mod.o ;  true

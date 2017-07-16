@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/mantis/mantis_core.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/pci/mantis/mantis_core.ko drivers/media/pci/mantis/mantis_core.o drivers/media/pci/mantis/mantis_core.mod.o ;  true

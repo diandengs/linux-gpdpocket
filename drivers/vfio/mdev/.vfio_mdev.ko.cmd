@@ -1,0 +1,1 @@
+cmd_drivers/vfio/mdev/vfio_mdev.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/vfio/mdev/vfio_mdev.ko drivers/vfio/mdev/vfio_mdev.o drivers/vfio/mdev/vfio_mdev.mod.o ;  true

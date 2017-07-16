@@ -1,0 +1,1 @@
+cmd_drivers/i2c/i2c-slave-eeprom.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/i2c/i2c-slave-eeprom.ko drivers/i2c/i2c-slave-eeprom.o drivers/i2c/i2c-slave-eeprom.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/iio/pressure/bmp280-i2c.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/pressure/bmp280-i2c.ko drivers/iio/pressure/bmp280-i2c.o drivers/iio/pressure/bmp280-i2c.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/marvell/mwl8k.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/wireless/marvell/mwl8k.ko drivers/net/wireless/marvell/mwl8k.o drivers/net/wireless/marvell/mwl8k.mod.o ;  true

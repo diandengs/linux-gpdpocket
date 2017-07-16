@@ -1,0 +1,25 @@
+!<thin>
+//                                              154       `
+libata-core.o/
+libata-scsi.o/
+libata-eh.o/
+libata-transport.o/
+libata-trace.o/
+libata-sff.o/
+libata-pmp.o/
+libata-acpi.o/
+ahci.o/
+libahci.o/
+ata_piix.o/
+
+/0              0           0     0     644     200608    `
+/15             0           0     0     644     87648     `
+/30             0           0     0     644     62608     `
+/43             0           0     0     644     24000     `
+/63             0           0     0     644     8232      `
+/79             0           0     0     644     71496     `
+/93             0           0     0     644     19800     `
+/107            0           0     0     644     19064     `
+/122            0           0     0     644     44088     `
+/130            0           0     0     644     54720     `
+/141            0           0     0     644     41576     `

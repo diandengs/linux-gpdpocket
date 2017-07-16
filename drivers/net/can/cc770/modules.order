@@ -1,0 +1,2 @@
+kernel/drivers/net/can/cc770/cc770.ko
+kernel/drivers/net/can/cc770/cc770_platform.ko

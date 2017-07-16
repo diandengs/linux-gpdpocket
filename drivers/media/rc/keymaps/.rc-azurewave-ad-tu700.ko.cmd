@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/keymaps/rc-azurewave-ad-tu700.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/keymaps/rc-azurewave-ad-tu700.ko drivers/media/rc/keymaps/rc-azurewave-ad-tu700.o drivers/media/rc/keymaps/rc-azurewave-ad-tu700.mod.o ;  true

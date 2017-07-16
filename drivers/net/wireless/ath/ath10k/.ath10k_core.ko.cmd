@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/ath/ath10k/ath10k_core.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/wireless/ath/ath10k/ath10k_core.ko drivers/net/wireless/ath/ath10k/ath10k_core.o drivers/net/wireless/ath/ath10k/ath10k_core.mod.o ;  true

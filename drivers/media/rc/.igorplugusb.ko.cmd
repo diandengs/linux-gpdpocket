@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/igorplugusb.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/igorplugusb.ko drivers/media/rc/igorplugusb.o drivers/media/rc/igorplugusb.mod.o ;  true

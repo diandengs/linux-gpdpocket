@@ -1,0 +1,4 @@
+kernel/drivers/dma/dw/dw_dmac.ko
+kernel/drivers/dma/idma64.ko
+kernel/drivers/dma/ioat/ioatdma.ko
+kernel/drivers/dma/mic_x100_dma.ko

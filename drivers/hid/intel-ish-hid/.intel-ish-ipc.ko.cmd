@@ -1,0 +1,1 @@
+cmd_drivers/hid/intel-ish-hid/intel-ish-ipc.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/hid/intel-ish-hid/intel-ish-ipc.ko drivers/hid/intel-ish-hid/intel-ish-ipc.o drivers/hid/intel-ish-hid/intel-ish-ipc.mod.o ;  true

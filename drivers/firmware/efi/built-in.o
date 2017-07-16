@@ -1,0 +1,30 @@
+!<thin>
+//                                              180       `
+efi-bgrt.o/
+efi.o/
+vars.o/
+reboot.o/
+memattr.o/
+capsule.o/
+memmap.o/
+esrt.o/
+cper.o/
+runtime-map.o/
+runtime-wrappers.o/
+libstub/lib-ksyms.o/
+dev-path-parser.o/
+apple-properties.o/
+/0              0           0     0     644     4512      `
+/12             0           0     0     644     23400     `
+/19             0           0     0     644     30144     `
+/27             0           0     0     644     4760      `
+/37             0           0     0     644     6536      `
+/48             0           0     0     644     7864      `
+/59             0           0     0     644     6568      `
+/69             0           0     0     644     17048     `
+/77             0           0     0     644     22104     `
+/85             0           0     0     644     8136      `
+/100            0           0     0     644     23600     `
+/120            0           0     0     644     656       `
+/141            0           0     0     644     4288      `
+/160            0           0     0     644     8152      `

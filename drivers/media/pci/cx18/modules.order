@@ -1,0 +1,2 @@
+kernel/drivers/media/pci/cx18/cx18.ko
+kernel/drivers/media/pci/cx18/cx18-alsa.ko

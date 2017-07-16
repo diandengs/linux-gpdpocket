@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/rtl2832.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/rtl2832.ko drivers/media/dvb-frontends/rtl2832.o drivers/media/dvb-frontends/rtl2832.mod.o ;  true

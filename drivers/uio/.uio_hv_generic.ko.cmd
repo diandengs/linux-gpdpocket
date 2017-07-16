@@ -1,0 +1,1 @@
+cmd_drivers/uio/uio_hv_generic.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/uio/uio_hv_generic.ko drivers/uio/uio_hv_generic.o drivers/uio/uio_hv_generic.mod.o ;  true

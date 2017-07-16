@@ -1,0 +1,1 @@
+cmd_drivers/net/hamradio/hdlcdrv.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/hamradio/hdlcdrv.ko drivers/net/hamradio/hdlcdrv.o drivers/net/hamradio/hdlcdrv.mod.o ;  true

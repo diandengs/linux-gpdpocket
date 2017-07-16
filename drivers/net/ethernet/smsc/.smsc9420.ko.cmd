@@ -1,0 +1,1 @@
+cmd_drivers/net/ethernet/smsc/smsc9420.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/ethernet/smsc/smsc9420.ko drivers/net/ethernet/smsc/smsc9420.o drivers/net/ethernet/smsc/smsc9420.mod.o ;  true

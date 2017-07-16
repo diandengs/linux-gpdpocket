@@ -1,0 +1,1 @@
+cmd_drivers/platform/chrome/cros_kbd_led_backlight.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/chrome/cros_kbd_led_backlight.ko drivers/platform/chrome/cros_kbd_led_backlight.o drivers/platform/chrome/cros_kbd_led_backlight.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/watchdog/w83627hf_wdt.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/watchdog/w83627hf_wdt.ko drivers/watchdog/w83627hf_wdt.o drivers/watchdog/w83627hf_wdt.mod.o ;  true

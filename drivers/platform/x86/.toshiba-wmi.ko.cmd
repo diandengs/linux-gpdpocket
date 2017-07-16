@@ -1,0 +1,1 @@
+cmd_drivers/platform/x86/toshiba-wmi.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/x86/toshiba-wmi.ko drivers/platform/x86/toshiba-wmi.o drivers/platform/x86/toshiba-wmi.mod.o ;  true

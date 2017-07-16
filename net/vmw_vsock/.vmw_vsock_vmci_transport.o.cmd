@@ -1,0 +1,1 @@
+cmd_net/vmw_vsock/vmw_vsock_vmci_transport.o := ld -m elf_x86_64   -r -o net/vmw_vsock/vmw_vsock_vmci_transport.o net/vmw_vsock/vmci_transport.o net/vmw_vsock/vmci_transport_notify.o net/vmw_vsock/vmci_transport_notify_qstate.o 

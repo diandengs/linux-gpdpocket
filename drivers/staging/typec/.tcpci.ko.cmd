@@ -1,0 +1,1 @@
+cmd_drivers/staging/typec/tcpci.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/staging/typec/tcpci.ko drivers/staging/typec/tcpci.o drivers/staging/typec/tcpci.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/net/irda/act200l-sir.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/irda/act200l-sir.ko drivers/net/irda/act200l-sir.o drivers/net/irda/act200l-sir.mod.o ;  true

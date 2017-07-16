@@ -1,0 +1,1 @@
+cmd_drivers/media/common/siano/smsmdtv.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/common/siano/smsmdtv.ko drivers/media/common/siano/smsmdtv.o drivers/media/common/siano/smsmdtv.mod.o ;  true

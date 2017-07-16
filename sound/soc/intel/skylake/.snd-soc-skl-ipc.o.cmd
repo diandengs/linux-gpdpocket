@@ -1,0 +1,1 @@
+cmd_sound/soc/intel/skylake/snd-soc-skl-ipc.o := ld -m elf_x86_64   -r -o sound/soc/intel/skylake/snd-soc-skl-ipc.o sound/soc/intel/skylake/skl-sst-ipc.o sound/soc/intel/skylake/skl-sst-dsp.o sound/soc/intel/skylake/skl-sst-cldma.o sound/soc/intel/skylake/skl-sst.o sound/soc/intel/skylake/bxt-sst.o sound/soc/intel/skylake/skl-sst-utils.o 

@@ -1,0 +1,1 @@
+cmd_drivers/media/firewire/firedtv.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/firewire/firedtv.ko drivers/media/firewire/firedtv.o drivers/media/firewire/firedtv.mod.o ;  true

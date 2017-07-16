@@ -11,7 +11,7 @@
 #include <linux/etherdevice.h>
 #include <linux/list.h>
 #include <linux/slab.h>
-
+#include <net/dsa.h>
 #include "dsa_priv.h"
 
 static struct sk_buff *trailer_xmit(struct sk_buff *skb, struct net_device *dev)
@@ -32,8 +32,10 @@ static struct sk_buff *trailer_xmit(struct sk_buff *skb, struct net_device *dev)
 		padlen = 60 - skb->len;
 
 	nskb = alloc_skb(NET_IP_ALIGN + skb->len + padlen + 4, GFP_ATOMIC);
-	if (!nskb)
+	if (nskb == NULL) {
+		kfree_skb(skb);
 		return NULL;
+	}
 	skb_reserve(nskb, NET_IP_ALIGN);
 
 	skb_reset_mac_header(nskb);
@@ -43,7 +45,8 @@ static struct sk_buff *trailer_xmit(struct sk_buff *skb, struct net_device *dev)
 	kfree_skb(skb);
 
 	if (padlen) {
-		skb_put_zero(nskb, padlen);
+		u8 *pad = skb_put(nskb, padlen);
+		memset(pad, 0, padlen);
 	}
 
 	trailer = skb_put(nskb, 4);
@@ -60,28 +63,32 @@ static struct sk_buff *trailer_rcv(struct sk_buff *skb, struct net_device *dev,
 				   struct net_device *orig_dev)
 {
 	struct dsa_switch_tree *dst = dev->dsa_ptr;
-	struct dsa_port *cpu_dp = dsa_get_cpu_port(dst);
-	struct dsa_switch *ds = cpu_dp->ds;
+	struct dsa_switch *ds;
 	u8 *trailer;
 	int source_port;
 
+	ds = dst->cpu_switch;
+
 	if (skb_linearize(skb))
-		return NULL;
+		goto out_drop;
 
 	trailer = skb_tail_pointer(skb) - 4;
 	if (trailer[0] != 0x80 || (trailer[1] & 0xf8) != 0x00 ||
 	    (trailer[2] & 0xef) != 0x00 || trailer[3] != 0x00)
-		return NULL;
+		goto out_drop;
 
 	source_port = trailer[1] & 7;
 	if (source_port >= ds->num_ports || !ds->ports[source_port].netdev)
-		return NULL;
+		goto out_drop;
 
 	pskb_trim_rcsum(skb, skb->len - 4);
 
 	skb->dev = ds->ports[source_port].netdev;
 
 	return skb;
+
+out_drop:
+	return NULL;
 }
 
 const struct dsa_device_ops trailer_netdev_ops = {

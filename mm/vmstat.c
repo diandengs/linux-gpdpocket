@@ -928,6 +928,8 @@ const char * const vmstat_text[] = {
 	"nr_zone_unevictable",
 	"nr_zone_write_pending",
 	"nr_mlock",
+	"nr_slab_reclaimable",
+	"nr_slab_unreclaimable",
 	"nr_page_table_pages",
 	"nr_kernel_stack",
 	"nr_bounce",
@@ -950,8 +952,6 @@ const char * const vmstat_text[] = {
 	"nr_inactive_file",
 	"nr_active_file",
 	"nr_unevictable",
-	"nr_slab_reclaimable",
-	"nr_slab_unreclaimable",
 	"nr_isolated_anon",
 	"nr_isolated_file",
 	"workingset_refault",
@@ -1018,7 +1018,6 @@ const char * const vmstat_text[] = {
 
 	"drop_pagecache",
 	"drop_slab",
-	"oom_kill",
 
 #ifdef CONFIG_NUMA_BALANCING
 	"numa_pte_updates",
@@ -1130,7 +1129,7 @@ static void frag_stop(struct seq_file *m, void *arg)
  * If @assert_populated is true, only use callback for zones that are populated.
  */
 static void walk_zones_in_node(struct seq_file *m, pg_data_t *pgdat,
-		bool assert_populated, bool nolock,
+		bool assert_populated,
 		void (*print)(struct seq_file *m, pg_data_t *, struct zone *))
 {
 	struct zone *zone;
@@ -1141,11 +1140,9 @@ static void walk_zones_in_node(struct seq_file *m, pg_data_t *pgdat,
 		if (assert_populated && !populated_zone(zone))
 			continue;
 
-		if (!nolock)
-			spin_lock_irqsave(&zone->lock, flags);
+		spin_lock_irqsave(&zone->lock, flags);
 		print(m, pgdat, zone);
-		if (!nolock)
-			spin_unlock_irqrestore(&zone->lock, flags);
+		spin_unlock_irqrestore(&zone->lock, flags);
 	}
 }
 #endif
@@ -1168,7 +1165,7 @@ static void frag_show_print(struct seq_file *m, pg_data_t *pgdat,
 static int frag_show(struct seq_file *m, void *arg)
 {
 	pg_data_t *pgdat = (pg_data_t *)arg;
-	walk_zones_in_node(m, pgdat, true, false, frag_show_print);
+	walk_zones_in_node(m, pgdat, true, frag_show_print);
 	return 0;
 }
 
@@ -1209,7 +1206,7 @@ static int pagetypeinfo_showfree(struct seq_file *m, void *arg)
 		seq_printf(m, "%6d ", order);
 	seq_putc(m, '\n');
 
-	walk_zones_in_node(m, pgdat, true, false, pagetypeinfo_showfree_print);
+	walk_zones_in_node(m, pgdat, true, pagetypeinfo_showfree_print);
 
 	return 0;
 }
@@ -1226,9 +1223,10 @@ static void pagetypeinfo_showblockcount_print(struct seq_file *m,
 	for (pfn = start_pfn; pfn < end_pfn; pfn += pageblock_nr_pages) {
 		struct page *page;
 
-		page = pfn_to_online_page(pfn);
-		if (!page)
+		if (!pfn_valid(pfn))
 			continue;
+
+		page = pfn_to_page(pfn);
 
 		/* Watch for unexpected holes punched in the memmap */
 		if (!memmap_valid_within(pfn, page, zone))
@@ -1260,8 +1258,7 @@ static int pagetypeinfo_showblockcount(struct seq_file *m, void *arg)
 	for (mtype = 0; mtype < MIGRATE_TYPES; mtype++)
 		seq_printf(m, "%12s ", migratetype_names[mtype]);
 	seq_putc(m, '\n');
-	walk_zones_in_node(m, pgdat, true, false,
-		pagetypeinfo_showblockcount_print);
+	walk_zones_in_node(m, pgdat, true, pagetypeinfo_showblockcount_print);
 
 	return 0;
 }
@@ -1287,8 +1284,7 @@ static void pagetypeinfo_showmixedcount(struct seq_file *m, pg_data_t *pgdat)
 		seq_printf(m, "%12s ", migratetype_names[mtype]);
 	seq_putc(m, '\n');
 
-	walk_zones_in_node(m, pgdat, true, true,
-		pagetypeinfo_showmixedcount_print);
+	walk_zones_in_node(m, pgdat, true, pagetypeinfo_showmixedcount_print);
 #endif /* CONFIG_PAGE_OWNER */
 }
 
@@ -1326,7 +1322,7 @@ static int fragmentation_open(struct inode *inode, struct file *file)
 	return seq_open(file, &fragmentation_op);
 }
 
-static const struct file_operations buddyinfo_file_operations = {
+static const struct file_operations fragmentation_file_operations = {
 	.open		= fragmentation_open,
 	.read		= seq_read,
 	.llseek		= seq_lseek,
@@ -1345,7 +1341,7 @@ static int pagetypeinfo_open(struct inode *inode, struct file *file)
 	return seq_open(file, &pagetypeinfo_op);
 }
 
-static const struct file_operations pagetypeinfo_file_operations = {
+static const struct file_operations pagetypeinfo_file_ops = {
 	.open		= pagetypeinfo_open,
 	.read		= seq_read,
 	.llseek		= seq_lseek,
@@ -1450,7 +1446,7 @@ static void zoneinfo_show_print(struct seq_file *m, pg_data_t *pgdat,
 static int zoneinfo_show(struct seq_file *m, void *arg)
 {
 	pg_data_t *pgdat = (pg_data_t *)arg;
-	walk_zones_in_node(m, pgdat, false, false, zoneinfo_show_print);
+	walk_zones_in_node(m, pgdat, false, zoneinfo_show_print);
 	return 0;
 }
 
@@ -1467,7 +1463,7 @@ static int zoneinfo_open(struct inode *inode, struct file *file)
 	return seq_open(file, &zoneinfo_op);
 }
 
-static const struct file_operations zoneinfo_file_operations = {
+static const struct file_operations proc_zoneinfo_file_operations = {
 	.open		= zoneinfo_open,
 	.read		= seq_read,
 	.llseek		= seq_lseek,
@@ -1556,7 +1552,7 @@ static int vmstat_open(struct inode *inode, struct file *file)
 	return seq_open(file, &vmstat_op);
 }
 
-static const struct file_operations vmstat_file_operations = {
+static const struct file_operations proc_vmstat_file_operations = {
 	.open		= vmstat_open,
 	.read		= seq_read,
 	.llseek		= seq_lseek,
@@ -1789,10 +1785,10 @@ void __init init_mm_internals(void)
 	start_shepherd_timer();
 #endif
 #ifdef CONFIG_PROC_FS
-	proc_create("buddyinfo", 0444, NULL, &buddyinfo_file_operations);
-	proc_create("pagetypeinfo", 0444, NULL, &pagetypeinfo_file_operations);
-	proc_create("vmstat", 0444, NULL, &vmstat_file_operations);
-	proc_create("zoneinfo", 0444, NULL, &zoneinfo_file_operations);
+	proc_create("buddyinfo", S_IRUGO, NULL, &fragmentation_file_operations);
+	proc_create("pagetypeinfo", S_IRUGO, NULL, &pagetypeinfo_file_ops);
+	proc_create("vmstat", S_IRUGO, NULL, &proc_vmstat_file_operations);
+	proc_create("zoneinfo", S_IRUGO, NULL, &proc_zoneinfo_file_operations);
 #endif
 }
 
@@ -1856,7 +1852,7 @@ static int unusable_show(struct seq_file *m, void *arg)
 	if (!node_state(pgdat->node_id, N_MEMORY))
 		return 0;
 
-	walk_zones_in_node(m, pgdat, true, false, unusable_show_print);
+	walk_zones_in_node(m, pgdat, true, unusable_show_print);
 
 	return 0;
 }
@@ -1908,7 +1904,7 @@ static int extfrag_show(struct seq_file *m, void *arg)
 {
 	pg_data_t *pgdat = (pg_data_t *)arg;
 
-	walk_zones_in_node(m, pgdat, true, false, extfrag_show_print);
+	walk_zones_in_node(m, pgdat, true, extfrag_show_print);
 
 	return 0;
 }

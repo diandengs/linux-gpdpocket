@@ -1,1 +1,1 @@
-cmd_kernel/trace/libftrace.o := rm -f kernel/trace/libftrace.o; ar rcSTPD kernel/trace/libftrace.o kernel/trace/ftrace.o
+cmd_kernel/trace/libftrace.o := ld -m elf_x86_64   -r -o kernel/trace/libftrace.o kernel/trace/ftrace.o 

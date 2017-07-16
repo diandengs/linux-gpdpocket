@@ -1,1 +1,1 @@
-cmd_crypto/crypto.o := rm -f crypto/crypto.o; ar rcSTPD crypto/crypto.o crypto/api.o crypto/cipher.o crypto/compress.o crypto/memneq.o
+cmd_crypto/crypto.o := ld -m elf_x86_64   -r -o crypto/crypto.o crypto/api.o crypto/cipher.o crypto/compress.o crypto/memneq.o 

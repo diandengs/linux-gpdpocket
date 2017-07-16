@@ -1,1 +1,1 @@
-cmd_fs/ecryptfs/built-in.o :=  rm -f fs/ecryptfs/built-in.o; ar rcSTPD fs/ecryptfs/built-in.o
+cmd_fs/ecryptfs/built-in.o :=  rm -f fs/ecryptfs/built-in.o; ar rcsD fs/ecryptfs/built-in.o

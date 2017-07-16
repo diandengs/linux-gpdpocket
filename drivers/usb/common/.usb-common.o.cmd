@@ -1,1 +1,1 @@
-cmd_drivers/usb/common/usb-common.o := rm -f drivers/usb/common/usb-common.o; ar rcSTPD drivers/usb/common/usb-common.o drivers/usb/common/common.o drivers/usb/common/led.o
+cmd_drivers/usb/common/usb-common.o := ld -m elf_x86_64   -r -o drivers/usb/common/usb-common.o drivers/usb/common/common.o drivers/usb/common/led.o 

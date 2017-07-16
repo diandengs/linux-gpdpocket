@@ -1,1 +1,1 @@
-cmd_drivers/hid/built-in.o :=  rm -f drivers/hid/built-in.o; ar rcSTPD drivers/hid/built-in.o drivers/hid/hid.o drivers/hid/hid-generic.o drivers/hid/hid-ite.o drivers/hid/hid-magicmouse.o drivers/hid/hid-ntrig.o drivers/hid/usbhid/built-in.o 
+cmd_drivers/hid/built-in.o :=  ld -m elf_x86_64   -r -o drivers/hid/built-in.o drivers/hid/hid.o drivers/hid/hid-generic.o drivers/hid/hid-ite.o drivers/hid/hid-magicmouse.o drivers/hid/hid-ntrig.o drivers/hid/usbhid/built-in.o 

@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -23,4 +22,4 @@ __attribute__((section(".modinfo"))) =
 "depends=l2tp_ip,l2tp_core";
 
 
-MODULE_INFO(srcversion, "C504DC7EB08D0A0A43938B7");
+MODULE_INFO(srcversion, "C78D4C5909C10AB992C3B2F");

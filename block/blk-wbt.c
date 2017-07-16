@@ -503,7 +503,7 @@ static inline unsigned int get_limit(struct rq_wb *rwb, unsigned long rw)
 }
 
 static inline bool may_queue(struct rq_wb *rwb, struct rq_wait *rqw,
-			     wait_queue_entry_t *wait, unsigned long rw)
+			     wait_queue_t *wait, unsigned long rw)
 {
 	/*
 	 * inc it here even if disabled, since we'll dec it at completion.
@@ -520,7 +520,7 @@ static inline bool may_queue(struct rq_wb *rwb, struct rq_wait *rqw,
 	 * in line to be woken up, wait for our turn.
 	 */
 	if (waitqueue_active(&rqw->wait) &&
-	    rqw->wait.head.next != &wait->entry)
+	    rqw->wait.task_list.next != &wait->task_list)
 		return false;
 
 	return atomic_inc_below(&rqw->inflight, get_limit(rwb, rw));

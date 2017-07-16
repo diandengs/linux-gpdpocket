@@ -26,7 +26,6 @@
 #include <linux/resource_ext.h>
 #include <linux/device.h>
 #include <linux/property.h>
-#include <linux/uuid.h>
 
 #ifndef _LINUX
 #define _LINUX
@@ -57,9 +56,6 @@ static inline acpi_handle acpi_device_handle(struct acpi_device *adev)
 	acpi_fwnode_handle(adev) : NULL)
 #define ACPI_HANDLE(dev)		acpi_device_handle(ACPI_COMPANION(dev))
 
-
-extern const struct fwnode_operations acpi_fwnode_ops;
-
 static inline struct fwnode_handle *acpi_alloc_fwnode_static(void)
 {
 	struct fwnode_handle *fwnode;
@@ -69,7 +65,6 @@ static inline struct fwnode_handle *acpi_alloc_fwnode_static(void)
 		return NULL;
 
 	fwnode->type = FWNODE_ACPI_STATIC;
-	fwnode->ops = &acpi_fwnode_ops;
 
 	return fwnode;
 }
@@ -462,6 +457,7 @@ struct acpi_osc_context {
 	struct acpi_buffer ret;		/* free by caller if success */
 };
 
+acpi_status acpi_str_to_uuid(char *str, u8 *uuid);
 acpi_status acpi_run_osc(acpi_handle handle, struct acpi_osc_context *context);
 
 /* Indexes into _OSC Capabilities Buffer (DWORDs 2 & 3 are device-specific) */
@@ -745,7 +741,7 @@ static inline bool acpi_driver_match_device(struct device *dev,
 }
 
 static inline union acpi_object *acpi_evaluate_dsm(acpi_handle handle,
-						   const guid_t *guid,
+						   const u8 *uuid,
 						   int rev, int func,
 						   union acpi_object *argv4)
 {
@@ -968,8 +964,6 @@ int devm_acpi_dev_add_driver_gpios(struct device *dev,
 				   const struct acpi_gpio_mapping *gpios);
 void devm_acpi_dev_remove_driver_gpios(struct device *dev);
 
-bool acpi_gpio_get_irq_resource(struct acpi_resource *ares,
-				struct acpi_resource_gpio **agpio);
 int acpi_dev_gpio_irq_get(struct acpi_device *adev, int index);
 #else
 static inline int acpi_dev_add_driver_gpios(struct acpi_device *adev,
@@ -986,11 +980,6 @@ static inline int devm_acpi_dev_add_driver_gpios(struct device *dev,
 }
 static inline void devm_acpi_dev_remove_driver_gpios(struct device *dev) {}
 
-static inline bool acpi_gpio_get_irq_resource(struct acpi_resource *ares,
-					      struct acpi_resource_gpio **agpio)
-{
-	return false;
-}
 static inline int acpi_dev_gpio_irq_get(struct acpi_device *adev, int index)
 {
 	return -ENXIO;

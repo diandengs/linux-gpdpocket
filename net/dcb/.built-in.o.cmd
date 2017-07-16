@@ -1,1 +1,1 @@
-cmd_net/dcb/built-in.o :=  rm -f net/dcb/built-in.o; ar rcSTPD net/dcb/built-in.o net/dcb/dcbnl.o net/dcb/dcbevent.o 
+cmd_net/dcb/built-in.o :=  ld -m elf_x86_64   -r -o net/dcb/built-in.o net/dcb/dcbnl.o net/dcb/dcbevent.o 

@@ -1,1 +1,1 @@
-cmd_drivers/nvmem/built-in.o :=  rm -f drivers/nvmem/built-in.o; ar rcSTPD drivers/nvmem/built-in.o
+cmd_drivers/nvmem/built-in.o :=  rm -f drivers/nvmem/built-in.o; ar rcsD drivers/nvmem/built-in.o

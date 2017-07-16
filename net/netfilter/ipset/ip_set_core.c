@@ -841,16 +841,14 @@ find_free_id(struct ip_set_net *inst, const char *name, ip_set_id_t *index,
 
 static int ip_set_none(struct net *net, struct sock *ctnl, struct sk_buff *skb,
 		       const struct nlmsghdr *nlh,
-		       const struct nlattr * const attr[],
-		       struct netlink_ext_ack *extack)
+		       const struct nlattr * const attr[])
 {
 	return -EOPNOTSUPP;
 }
 
 static int ip_set_create(struct net *net, struct sock *ctnl,
 			 struct sk_buff *skb, const struct nlmsghdr *nlh,
-			 const struct nlattr * const attr[],
-			 struct netlink_ext_ack *extack)
+			 const struct nlattr * const attr[])
 {
 	struct ip_set_net *inst = ip_set_pernet(net);
 	struct ip_set *set, *clash = NULL;
@@ -991,8 +989,7 @@ ip_set_destroy_set(struct ip_set *set)
 
 static int ip_set_destroy(struct net *net, struct sock *ctnl,
 			  struct sk_buff *skb, const struct nlmsghdr *nlh,
-			  const struct nlattr * const attr[],
-			  struct netlink_ext_ack *extack)
+			  const struct nlattr * const attr[])
 {
 	struct ip_set_net *inst = ip_set_pernet(net);
 	struct ip_set *s;
@@ -1070,8 +1067,7 @@ ip_set_flush_set(struct ip_set *set)
 
 static int ip_set_flush(struct net *net, struct sock *ctnl, struct sk_buff *skb,
 			const struct nlmsghdr *nlh,
-			const struct nlattr * const attr[],
-			struct netlink_ext_ack *extack)
+			const struct nlattr * const attr[])
 {
 	struct ip_set_net *inst = ip_set_pernet(net);
 	struct ip_set *s;
@@ -1110,8 +1106,7 @@ ip_set_setname2_policy[IPSET_ATTR_CMD_MAX + 1] = {
 
 static int ip_set_rename(struct net *net, struct sock *ctnl,
 			 struct sk_buff *skb, const struct nlmsghdr *nlh,
-			 const struct nlattr * const attr[],
-			 struct netlink_ext_ack *extack)
+			 const struct nlattr * const attr[])
 {
 	struct ip_set_net *inst = ip_set_pernet(net);
 	struct ip_set *set, *s;
@@ -1160,8 +1155,7 @@ out:
 
 static int ip_set_swap(struct net *net, struct sock *ctnl, struct sk_buff *skb,
 		       const struct nlmsghdr *nlh,
-		       const struct nlattr * const attr[],
-		       struct netlink_ext_ack *extack)
+		       const struct nlattr * const attr[])
 {
 	struct ip_set_net *inst = ip_set_pernet(net);
 	struct ip_set *from, *to;
@@ -1434,8 +1428,7 @@ out:
 
 static int ip_set_dump(struct net *net, struct sock *ctnl, struct sk_buff *skb,
 		       const struct nlmsghdr *nlh,
-		       const struct nlattr * const attr[],
-		       struct netlink_ext_ack *extack)
+		       const struct nlattr * const attr[])
 {
 	if (unlikely(protocol_failed(attr)))
 		return -IPSET_ERR_PROTOCOL;
@@ -1520,8 +1513,7 @@ call_ad(struct sock *ctnl, struct sk_buff *skb, struct ip_set *set,
 
 static int ip_set_uadd(struct net *net, struct sock *ctnl, struct sk_buff *skb,
 		       const struct nlmsghdr *nlh,
-		       const struct nlattr * const attr[],
-		       struct netlink_ext_ack *extack)
+		       const struct nlattr * const attr[])
 {
 	struct ip_set_net *inst = ip_set_pernet(net);
 	struct ip_set *set;
@@ -1575,8 +1567,7 @@ static int ip_set_uadd(struct net *net, struct sock *ctnl, struct sk_buff *skb,
 
 static int ip_set_udel(struct net *net, struct sock *ctnl, struct sk_buff *skb,
 		       const struct nlmsghdr *nlh,
-		       const struct nlattr * const attr[],
-		       struct netlink_ext_ack *extack)
+		       const struct nlattr * const attr[])
 {
 	struct ip_set_net *inst = ip_set_pernet(net);
 	struct ip_set *set;
@@ -1630,8 +1621,7 @@ static int ip_set_udel(struct net *net, struct sock *ctnl, struct sk_buff *skb,
 
 static int ip_set_utest(struct net *net, struct sock *ctnl, struct sk_buff *skb,
 			const struct nlmsghdr *nlh,
-			const struct nlattr * const attr[],
-			struct netlink_ext_ack *extack)
+			const struct nlattr * const attr[])
 {
 	struct ip_set_net *inst = ip_set_pernet(net);
 	struct ip_set *set;
@@ -1666,8 +1656,7 @@ static int ip_set_utest(struct net *net, struct sock *ctnl, struct sk_buff *skb,
 
 static int ip_set_header(struct net *net, struct sock *ctnl,
 			 struct sk_buff *skb, const struct nlmsghdr *nlh,
-			 const struct nlattr * const attr[],
-			 struct netlink_ext_ack *extack)
+			 const struct nlattr * const attr[])
 {
 	struct ip_set_net *inst = ip_set_pernet(net);
 	const struct ip_set *set;
@@ -1723,8 +1712,7 @@ static const struct nla_policy ip_set_type_policy[IPSET_ATTR_CMD_MAX + 1] = {
 
 static int ip_set_type(struct net *net, struct sock *ctnl, struct sk_buff *skb,
 		       const struct nlmsghdr *nlh,
-		       const struct nlattr * const attr[],
-		       struct netlink_ext_ack *extack)
+		       const struct nlattr * const attr[])
 {
 	struct sk_buff *skb2;
 	struct nlmsghdr *nlh2;
@@ -1782,8 +1770,7 @@ ip_set_protocol_policy[IPSET_ATTR_CMD_MAX + 1] = {
 
 static int ip_set_protocol(struct net *net, struct sock *ctnl,
 			   struct sk_buff *skb, const struct nlmsghdr *nlh,
-			   const struct nlattr * const attr[],
-			   struct netlink_ext_ack *extack)
+			   const struct nlattr * const attr[])
 {
 	struct sk_buff *skb2;
 	struct nlmsghdr *nlh2;

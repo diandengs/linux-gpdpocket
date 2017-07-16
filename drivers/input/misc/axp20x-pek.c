@@ -352,7 +352,7 @@ static int __maybe_unused axp20x_pek_resume_noirq(struct device *dev)
 	return 0;
 }
 
-static const struct dev_pm_ops axp20x_pek_pm_ops = {
+const struct dev_pm_ops axp20x_pek_pm_ops = {
 #ifdef CONFIG_PM_SLEEP
 	.resume_noirq = axp20x_pek_resume_noirq,
 #endif

@@ -1,1 +1,1 @@
-cmd_drivers/md/md-mod.o := rm -f drivers/md/md-mod.o; ar rcSTPD drivers/md/md-mod.o drivers/md/md.o drivers/md/bitmap.o
+cmd_drivers/md/md-mod.o := ld -m elf_x86_64   -r -o drivers/md/md-mod.o drivers/md/md.o drivers/md/bitmap.o 

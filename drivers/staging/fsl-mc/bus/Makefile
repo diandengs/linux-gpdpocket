@@ -11,6 +11,7 @@ mc-bus-driver-objs := fsl-mc-bus.o \
 		      mc-sys.o \
 		      mc-io.o \
 		      dprc.o \
+		      dpmng.o \
 		      dprc-driver.o \
 		      fsl-mc-allocator.o \
 		      fsl-mc-msi.o \

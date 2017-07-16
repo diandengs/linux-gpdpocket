@@ -934,9 +934,14 @@ static int do_ip_setsockopt(struct sock *sk, int level,
 			err = -ENOBUFS;
 			break;
 		}
-		msf = memdup_user(optval, optlen);
-		if (IS_ERR(msf)) {
-			err = PTR_ERR(msf);
+		msf = kmalloc(optlen, GFP_KERNEL);
+		if (!msf) {
+			err = -ENOBUFS;
+			break;
+		}
+		err = -EFAULT;
+		if (copy_from_user(msf, optval, optlen)) {
+			kfree(msf);
 			break;
 		}
 		/* numsrc >= (1G-4) overflow in 32 bits */
@@ -1085,11 +1090,14 @@ static int do_ip_setsockopt(struct sock *sk, int level,
 			err = -ENOBUFS;
 			break;
 		}
-		gsf = memdup_user(optval, optlen);
-		if (IS_ERR(gsf)) {
-			err = PTR_ERR(gsf);
+		gsf = kmalloc(optlen, GFP_KERNEL);
+		if (!gsf) {
+			err = -ENOBUFS;
 			break;
 		}
+		err = -EFAULT;
+		if (copy_from_user(gsf, optval, optlen))
+			goto mc_msf_out;
 
 		/* numsrc >= (4G-140)/128 overflow in 32 bits */
 		if (gsf->gf_numsrc >= 0x1ffffff ||

@@ -1,1 +1,1 @@
-cmd_drivers/idle/built-in.o :=  rm -f drivers/idle/built-in.o; ar rcSTPD drivers/idle/built-in.o drivers/idle/intel_idle.o 
+cmd_drivers/idle/built-in.o :=  ld -m elf_x86_64   -r -o drivers/idle/built-in.o drivers/idle/intel_idle.o 

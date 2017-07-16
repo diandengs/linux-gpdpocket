@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -178,4 +177,4 @@ MODULE_ALIAS("hid:b0003g0101v0000056Ap*");
 MODULE_ALIAS("hid:b0018g0101v0000056Ap*");
 MODULE_ALIAS("hid:b0005g0101v0000056Ap*");
 
-MODULE_INFO(srcversion, "D1C496726B802940BF38F05");
+MODULE_INFO(srcversion, "4D0C7950C74738B9A8A5328");

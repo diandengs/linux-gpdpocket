@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -20,8 +19,6 @@ MODULE_INFO(intree, "Y");
 static const char __module_depends[]
 __used
 __attribute__((section(".modinfo"))) =
-"depends=hid-sensor-trigger,industrialio,hid-sensor-hub,industrialio-triggered-buffer,hid-sensor-iio-common";
+"depends=hid-sensor-trigger,hid-sensor-hub,industrialio,industrialio-triggered-buffer,hid-sensor-iio-common";
 
 MODULE_ALIAS("platform:HID-SENSOR-20008a");
-MODULE_ALIAS("platform:HID-SENSOR-20008e");
-MODULE_ALIAS("platform:HID-SENSOR-2000c1");

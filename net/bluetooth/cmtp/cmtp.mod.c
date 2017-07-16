@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -23,4 +22,4 @@ __attribute__((section(".modinfo"))) =
 "depends=kernelcapi,bluetooth";
 
 
-MODULE_INFO(srcversion, "1BD2781A708AAC8BF415DD2");
+MODULE_INFO(srcversion, "6AF4C1F6A2477C143C7A3BA");

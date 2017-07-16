@@ -397,6 +397,4 @@ static inline int kvm_s390_use_sca_entries(void)
 	 */
 	return sclp.has_sigpif;
 }
-void kvm_s390_reinject_machine_check(struct kvm_vcpu *vcpu,
-				     struct mcck_volatile_info *mcck_info);
 #endif

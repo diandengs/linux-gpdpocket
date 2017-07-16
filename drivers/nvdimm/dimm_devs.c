@@ -20,7 +20,6 @@
 #include <linux/mm.h>
 #include "nd-core.h"
 #include "label.h"
-#include "pmem.h"
 #include "nd.h"
 
 static DEFINE_IDA(dimm_ida);
@@ -236,13 +235,6 @@ struct nvdimm *nd_blk_region_to_dimm(struct nd_blk_region *ndbr)
 }
 EXPORT_SYMBOL_GPL(nd_blk_region_to_dimm);
 
-unsigned long nd_blk_memremap_flags(struct nd_blk_region *ndbr)
-{
-	/* pmem mapping properties are private to libnvdimm */
-	return ARCH_MEMREMAP_PMEM;
-}
-EXPORT_SYMBOL_GPL(nd_blk_memremap_flags);
-
 struct nvdimm_drvdata *to_ndd(struct nd_mapping *nd_mapping)
 {
 	struct nvdimm *nvdimm = nd_mapping->nvdimm;
@@ -419,7 +411,7 @@ int alias_dpa_busy(struct device *dev, void *data)
 	struct resource *res;
 	int i;
 
-	if (!is_memory(dev))
+	if (!is_nd_pmem(dev))
 		return 0;
 
 	nd_region = to_nd_region(dev);

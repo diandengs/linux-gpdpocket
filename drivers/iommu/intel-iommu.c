@@ -481,7 +481,7 @@ struct deferred_flush_data {
 	struct deferred_flush_table *tables;
 };
 
-static DEFINE_PER_CPU(struct deferred_flush_data, deferred_flush);
+DEFINE_PER_CPU(struct deferred_flush_data, deferred_flush);
 
 /* bitmap for indexing intel_iommus */
 static int g_num_of_iommus;
@@ -2390,7 +2390,7 @@ static struct dmar_domain *find_domain(struct device *dev)
 
 	/* No lock here, assumes no domain exit in normal case */
 	info = dev->archdata.iommu;
-	if (likely(info))
+	if (info)
 		return info->domain;
 	return NULL;
 }
@@ -3478,7 +3478,7 @@ static unsigned long intel_alloc_iova(struct device *dev,
 	return iova_pfn;
 }
 
-static struct dmar_domain *get_valid_domain_for_dev(struct device *dev)
+static struct dmar_domain *__get_valid_domain_for_dev(struct device *dev)
 {
 	struct dmar_domain *domain, *tmp;
 	struct dmar_rmrr_unit *rmrr;
@@ -3523,6 +3523,18 @@ out:
 
 
 	return domain;
+}
+
+static inline struct dmar_domain *get_valid_domain_for_dev(struct device *dev)
+{
+	struct device_domain_info *info;
+
+	/* No lock here, assumes no domain exit in normal case */
+	info = dev->archdata.iommu;
+	if (likely(info))
+		return info->domain;
+
+	return __get_valid_domain_for_dev(dev);
 }
 
 /* Check if the dev needs to go through non-identity map and unmap process.*/
@@ -3713,8 +3725,10 @@ static void add_unmap(struct dmar_domain *dom, unsigned long iova_pfn,
 	struct intel_iommu *iommu;
 	struct deferred_flush_entry *entry;
 	struct deferred_flush_data *flush_data;
+	unsigned int cpuid;
 
-	flush_data = raw_cpu_ptr(&deferred_flush);
+	cpuid = get_cpu();
+	flush_data = per_cpu_ptr(&deferred_flush, cpuid);
 
 	/* Flush all CPUs' entries to avoid deferring too much.  If
 	 * this becomes a bottleneck, can just flush us, and rely on
@@ -3747,6 +3761,8 @@ static void add_unmap(struct dmar_domain *dom, unsigned long iova_pfn,
 	}
 	flush_data->size++;
 	spin_unlock_irqrestore(&flush_data->lock, flags);
+
+	put_cpu();
 }
 
 static void intel_unmap(struct device *dev, dma_addr_t dev_addr, size_t size)
@@ -3957,7 +3973,7 @@ static int intel_mapping_error(struct device *dev, dma_addr_t dma_addr)
 	return !dma_addr;
 }
 
-const struct dma_map_ops intel_dma_ops = {
+struct dma_map_ops intel_dma_ops = {
 	.alloc = intel_alloc_coherent,
 	.free = intel_free_coherent,
 	.map_sg = intel_map_sg,
@@ -3965,9 +3981,6 @@ const struct dma_map_ops intel_dma_ops = {
 	.map_page = intel_map_page,
 	.unmap_page = intel_unmap_page,
 	.mapping_error = intel_mapping_error,
-#ifdef CONFIG_X86
-	.dma_supported = x86_dma_supported,
-#endif
 };
 
 static inline int iommu_domain_cache_init(void)
@@ -4302,7 +4315,7 @@ int dmar_parse_one_atsr(struct acpi_dmar_header *hdr, void *arg)
 	struct acpi_dmar_atsr *atsr;
 	struct dmar_atsr_unit *atsru;
 
-	if (system_state >= SYSTEM_RUNNING && !intel_iommu_enabled)
+	if (system_state != SYSTEM_BOOTING && !intel_iommu_enabled)
 		return 0;
 
 	atsr = container_of(hdr, struct acpi_dmar_atsr, header);
@@ -4552,7 +4565,7 @@ int dmar_iommu_notify_scope_dev(struct dmar_pci_notify_info *info)
 	struct acpi_dmar_atsr *atsr;
 	struct acpi_dmar_reserved_memory *rmrr;
 
-	if (!intel_iommu_enabled && system_state >= SYSTEM_RUNNING)
+	if (!intel_iommu_enabled && system_state != SYSTEM_BOOTING)
 		return 0;
 
 	list_for_each_entry(rmrru, &dmar_rmrr_units, list) {

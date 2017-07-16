@@ -3241,9 +3241,8 @@ void be_detect_error(struct be_adapter *adapter)
 {
 	u32 ue_lo = 0, ue_hi = 0, ue_lo_mask = 0, ue_hi_mask = 0;
 	u32 sliport_status = 0, sliport_err1 = 0, sliport_err2 = 0;
-	struct device *dev = &adapter->pdev->dev;
-	u16 val;
 	u32 i;
+	struct device *dev = &adapter->pdev->dev;
 
 	if (be_check_error(adapter, BE_ERROR_HW))
 		return;
@@ -3281,25 +3280,15 @@ void be_detect_error(struct be_adapter *adapter)
 		ue_lo = (ue_lo & ~ue_lo_mask);
 		ue_hi = (ue_hi & ~ue_hi_mask);
 
-		if (ue_lo || ue_hi) {
-			/* On certain platforms BE3 hardware can indicate
-			 * spurious UEs. In case of a UE in the chip,
-			 * the POST register correctly reports either a
-			 * FAT_LOG_START state (FW is currently dumping
-			 * FAT log data) or a ARMFW_UE state. Check for the
-			 * above states to ascertain if the UE is valid or not.
-			 */
-			if (BE3_chip(adapter)) {
-				val = be_POST_stage_get(adapter);
-				if ((val & POST_STAGE_FAT_LOG_START)
-				     != POST_STAGE_FAT_LOG_START &&
-				    (val & POST_STAGE_ARMFW_UE)
-				     != POST_STAGE_ARMFW_UE)
-					return;
-			}
+		/* On certain platforms BE hardware can indicate spurious UEs.
+		 * Allow HW to stop working completely in case of a real UE.
+		 * Hence not setting the hw_error for UE detection.
+		 */
 
+		if (ue_lo || ue_hi) {
 			dev_err(dev, "Error detected in the adapter");
-			be_set_error(adapter, BE_ERROR_UE);
+			if (skyhawk_chip(adapter))
+				be_set_error(adapter, BE_ERROR_UE);
 
 			for (i = 0; ue_lo; ue_lo >>= 1, i++) {
 				if (ue_lo & 1)

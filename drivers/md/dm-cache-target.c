@@ -119,7 +119,7 @@ static void iot_io_end(struct io_tracker *iot, sector_t len)
  */
 struct continuation {
 	struct work_struct ws;
-	blk_status_t input;
+	int input;
 };
 
 static inline void init_continuation(struct continuation *k,
@@ -145,7 +145,7 @@ struct batcher {
 	/*
 	 * The operation that everyone is waiting for.
 	 */
-	blk_status_t (*commit_op)(void *context);
+	int (*commit_op)(void *context);
 	void *commit_context;
 
 	/*
@@ -171,7 +171,8 @@ struct batcher {
 static void __commit(struct work_struct *_ws)
 {
 	struct batcher *b = container_of(_ws, struct batcher, commit_work);
-	blk_status_t r;
+
+	int r;
 	unsigned long flags;
 	struct list_head work_items;
 	struct work_struct *ws, *tmp;
@@ -204,7 +205,7 @@ static void __commit(struct work_struct *_ws)
 
 	while ((bio = bio_list_pop(&bios))) {
 		if (r) {
-			bio->bi_status = r;
+			bio->bi_error = r;
 			bio_endio(bio);
 		} else
 			b->issue_op(bio, b->issue_context);
@@ -212,7 +213,7 @@ static void __commit(struct work_struct *_ws)
 }
 
 static void batcher_init(struct batcher *b,
-			 blk_status_t (*commit_op)(void *),
+			 int (*commit_op)(void *),
 			 void *commit_context,
 			 void (*issue_op)(struct bio *bio, void *),
 			 void *issue_context,
@@ -954,7 +955,7 @@ static void writethrough_endio(struct bio *bio)
 
 	dm_unhook_bio(&pb->hook_info, bio);
 
-	if (bio->bi_status) {
+	if (bio->bi_error) {
 		bio_endio(bio);
 		return;
 	}
@@ -1219,7 +1220,7 @@ static void copy_complete(int read_err, unsigned long write_err, void *context)
 	struct dm_cache_migration *mg = container_of(context, struct dm_cache_migration, k);
 
 	if (read_err || write_err)
-		mg->k.input = BLK_STS_IOERR;
+		mg->k.input = -EIO;
 
 	queue_continuation(mg->cache->wq, &mg->k);
 }
@@ -1265,8 +1266,8 @@ static void overwrite_endio(struct bio *bio)
 
 	dm_unhook_bio(&pb->hook_info, bio);
 
-	if (bio->bi_status)
-		mg->k.input = bio->bi_status;
+	if (bio->bi_error)
+		mg->k.input = bio->bi_error;
 
 	queue_continuation(mg->cache->wq, &mg->k);
 }
@@ -1322,10 +1323,8 @@ static void mg_complete(struct dm_cache_migration *mg, bool success)
 		if (mg->overwrite_bio) {
 			if (success)
 				force_set_dirty(cache, cblock);
-			else if (mg->k.input)
-				mg->overwrite_bio->bi_status = mg->k.input;
 			else
-				mg->overwrite_bio->bi_status = BLK_STS_IOERR;
+				mg->overwrite_bio->bi_error = (mg->k.input ? : -EIO);
 			bio_endio(mg->overwrite_bio);
 		} else {
 			if (success)
@@ -1505,7 +1504,7 @@ static void mg_copy(struct work_struct *ws)
 		r = copy(mg, is_policy_promote);
 		if (r) {
 			DMERR_LIMIT("%s: migration copy failed", cache_device_name(cache));
-			mg->k.input = BLK_STS_IOERR;
+			mg->k.input = -EIO;
 			mg_complete(mg, false);
 		}
 	}
@@ -1908,12 +1907,12 @@ static int commit(struct cache *cache, bool clean_shutdown)
 /*
  * Used by the batcher.
  */
-static blk_status_t commit_op(void *context)
+static int commit_op(void *context)
 {
 	struct cache *cache = context;
 
 	if (dm_cache_changed_this_transaction(cache->cmd))
-		return errno_to_blk_status(commit(cache, false));
+		return commit(cache, false);
 
 	return 0;
 }
@@ -2019,7 +2018,7 @@ static void requeue_deferred_bios(struct cache *cache)
 	bio_list_init(&cache->deferred_bios);
 
 	while ((bio = bio_list_pop(&bios))) {
-		bio->bi_status = BLK_STS_DM_REQUEUE;
+		bio->bi_error = DM_ENDIO_REQUEUE;
 		bio_endio(bio);
 	}
 }
@@ -2821,8 +2820,7 @@ static int cache_map(struct dm_target *ti, struct bio *bio)
 	return r;
 }
 
-static int cache_end_io(struct dm_target *ti, struct bio *bio,
-		blk_status_t *error)
+static int cache_end_io(struct dm_target *ti, struct bio *bio, int error)
 {
 	struct cache *cache = ti->private;
 	unsigned long flags;
@@ -2840,7 +2838,7 @@ static int cache_end_io(struct dm_target *ti, struct bio *bio,
 	bio_drop_shared_lock(cache, bio);
 	accounted_complete(cache, bio);
 
-	return DM_ENDIO_DONE;
+	return 0;
 }
 
 static int write_dirty_bitset(struct cache *cache)

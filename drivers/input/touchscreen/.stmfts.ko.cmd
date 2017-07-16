@@ -1,1 +1,0 @@
-cmd_drivers/input/touchscreen/stmfts.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/touchscreen/stmfts.ko drivers/input/touchscreen/stmfts.o drivers/input/touchscreen/stmfts.mod.o ;  true

@@ -343,6 +343,43 @@ int perf_event_paranoid(void)
 
 	return value;
 }
+
+bool find_process(const char *name)
+{
+	size_t len = strlen(name);
+	DIR *dir;
+	struct dirent *d;
+	int ret = -1;
+
+	dir = opendir(procfs__mountpoint());
+	if (!dir)
+		return false;
+
+	/* Walk through the directory. */
+	while (ret && (d = readdir(dir)) != NULL) {
+		char path[PATH_MAX];
+		char *data;
+		size_t size;
+
+		if ((d->d_type != DT_DIR) ||
+		     !strcmp(".", d->d_name) ||
+		     !strcmp("..", d->d_name))
+			continue;
+
+		scnprintf(path, sizeof(path), "%s/%s/comm",
+			  procfs__mountpoint(), d->d_name);
+
+		if (filename__read_str(path, &data, &size))
+			continue;
+
+		ret = strncmp(name, data, len);
+		free(data);
+	}
+
+	closedir(dir);
+	return ret ? false : true;
+}
+
 static int
 fetch_ubuntu_kernel_version(unsigned int *puint)
 {
@@ -350,12 +387,8 @@ fetch_ubuntu_kernel_version(unsigned int *puint)
 	size_t line_len = 0;
 	char *ptr, *line = NULL;
 	int version, patchlevel, sublevel, err;
-	FILE *vsig;
+	FILE *vsig = fopen("/proc/version_signature", "r");
 
-	if (!puint)
-		return 0;
-
-	vsig = fopen("/proc/version_signature", "r");
 	if (!vsig) {
 		pr_debug("Open /proc/version_signature failed: %s\n",
 			 strerror(errno));
@@ -385,7 +418,8 @@ fetch_ubuntu_kernel_version(unsigned int *puint)
 		goto errout;
 	}
 
-	*puint = (version << 16) + (patchlevel << 8) + sublevel;
+	if (puint)
+		*puint = (version << 16) + (patchlevel << 8) + sublevel;
 	err = 0;
 errout:
 	free(line);
@@ -412,9 +446,6 @@ fetch_kernel_version(unsigned int *puint, char *str,
 		str[str_size - 1] = '\0';
 	}
 
-	if (!puint || int_ver_ready)
-		return 0;
-
 	err = sscanf(utsname.release, "%d.%d.%d",
 		     &version, &patchlevel, &sublevel);
 
@@ -424,7 +455,8 @@ fetch_kernel_version(unsigned int *puint, char *str,
 		return -1;
 	}
 
-	*puint = (version << 16) + (patchlevel << 8) + sublevel;
+	if (puint && !int_ver_ready)
+		*puint = (version << 16) + (patchlevel << 8) + sublevel;
 	return 0;
 }
 

@@ -398,8 +398,7 @@ nfnl_cthelper_update(const struct nlattr * const tb[],
 
 static int nfnl_cthelper_new(struct net *net, struct sock *nfnl,
 			     struct sk_buff *skb, const struct nlmsghdr *nlh,
-			     const struct nlattr * const tb[],
-			     struct netlink_ext_ack *extack)
+			     const struct nlattr * const tb[])
 {
 	const char *helper_name;
 	struct nf_conntrack_helper *cur, *helper = NULL;
@@ -600,8 +599,7 @@ out:
 
 static int nfnl_cthelper_get(struct net *net, struct sock *nfnl,
 			     struct sk_buff *skb, const struct nlmsghdr *nlh,
-			     const struct nlattr * const tb[],
-			     struct netlink_ext_ack *extack)
+			     const struct nlattr * const tb[])
 {
 	int ret = -ENOENT;
 	struct nf_conntrack_helper *cur;
@@ -668,8 +666,7 @@ static int nfnl_cthelper_get(struct net *net, struct sock *nfnl,
 
 static int nfnl_cthelper_del(struct net *net, struct sock *nfnl,
 			     struct sk_buff *skb, const struct nlmsghdr *nlh,
-			     const struct nlattr * const tb[],
-			     struct netlink_ext_ack *extack)
+			     const struct nlattr * const tb[])
 {
 	char *helper_name = NULL;
 	struct nf_conntrack_helper *cur;

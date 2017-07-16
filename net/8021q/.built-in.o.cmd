@@ -1,1 +1,1 @@
-cmd_net/8021q/built-in.o :=  rm -f net/8021q/built-in.o; ar rcSTPD net/8021q/built-in.o net/8021q/vlan_core.o 
+cmd_net/8021q/built-in.o :=  ld -m elf_x86_64   -r -o net/8021q/built-in.o net/8021q/vlan_core.o 

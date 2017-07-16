@@ -13,7 +13,7 @@
  *        of Berkeley Packet Filters/Linux Socket Filters.
  */
 
-#include <linux/refcount.h>
+#include <linux/atomic.h>
 #include <linux/audit.h>
 #include <linux/compat.h>
 #include <linux/coredump.h>
@@ -56,7 +56,7 @@
  * to a task_struct (other than @usage).
  */
 struct seccomp_filter {
-	refcount_t usage;
+	atomic_t usage;
 	struct seccomp_filter *prev;
 	struct bpf_prog *prog;
 };
@@ -378,7 +378,7 @@ static struct seccomp_filter *seccomp_prepare_filter(struct sock_fprog *fprog)
 		return ERR_PTR(ret);
 	}
 
-	refcount_set(&sfilter->usage, 1);
+	atomic_set(&sfilter->usage, 1);
 
 	return sfilter;
 }
@@ -465,7 +465,7 @@ void get_seccomp_filter(struct task_struct *tsk)
 	if (!orig)
 		return;
 	/* Reference count is bounded by the number of total processes. */
-	refcount_inc(&orig->usage);
+	atomic_inc(&orig->usage);
 }
 
 static inline void seccomp_filter_free(struct seccomp_filter *filter)
@@ -481,7 +481,7 @@ void put_seccomp_filter(struct task_struct *tsk)
 {
 	struct seccomp_filter *orig = tsk->seccomp.filter;
 	/* Clean up single-reference branches iteratively. */
-	while (orig && refcount_dec_and_test(&orig->usage)) {
+	while (orig && atomic_dec_and_test(&orig->usage)) {
 		struct seccomp_filter *freeme = orig;
 		orig = orig->prev;
 		seccomp_filter_free(freeme);
@@ -641,12 +641,11 @@ static int __seccomp_filter(int this_syscall, const struct seccomp_data *sd,
 		return 0;
 
 	case SECCOMP_RET_KILL:
-	default:
+	default: {
+		siginfo_t info;
 		audit_seccomp(this_syscall, SIGSYS, action);
 		/* Dump core only if this is the last remaining thread. */
 		if (get_nr_threads(current) == 1) {
-			siginfo_t info;
-
 			/* Show the original registers in the dump. */
 			syscall_rollback(current, task_pt_regs(current));
 			/* Trigger a manual coredump since do_exit skips it. */
@@ -654,6 +653,7 @@ static int __seccomp_filter(int this_syscall, const struct seccomp_data *sd,
 			do_coredump(&info);
 		}
 		do_exit(SIGSYS);
+	}
 	}
 
 	unreachable();

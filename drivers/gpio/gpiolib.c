@@ -1,4 +1,4 @@
-#include <linux/bitmap.h>
+#include <linux/bitops.h>
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/interrupt.h>
@@ -1472,6 +1472,8 @@ static struct gpio_chip *find_chip_by_name(const char *name)
 
 static int gpiochip_irqchip_init_valid_mask(struct gpio_chip *gpiochip)
 {
+	int i;
+
 	if (!gpiochip->irq_need_valid_mask)
 		return 0;
 
@@ -1481,7 +1483,8 @@ static int gpiochip_irqchip_init_valid_mask(struct gpio_chip *gpiochip)
 		return -ENOMEM;
 
 	/* Assume by default all GPIOs are valid */
-	bitmap_fill(gpiochip->irq_valid_mask, gpiochip->ngpio);
+	for (i = 0; i < gpiochip->ngpio; i++)
+		set_bit(i, gpiochip->irq_valid_mask);
 
 	return 0;
 }
@@ -2867,16 +2870,6 @@ bool gpiochip_line_is_open_source(struct gpio_chip *chip, unsigned int offset)
 }
 EXPORT_SYMBOL_GPL(gpiochip_line_is_open_source);
 
-bool gpiochip_line_is_persistent(struct gpio_chip *chip, unsigned int offset)
-{
-	if (offset >= chip->ngpio)
-		return false;
-
-	return !test_bit(FLAG_SLEEP_MAY_LOOSE_VALUE,
-			 &chip->gpiodev->descs[offset].flags);
-}
-EXPORT_SYMBOL_GPL(gpiochip_line_is_persistent);
-
 /**
  * gpiod_get_raw_value_cansleep() - return a gpio's raw value
  * @desc: gpio whose value will be returned
@@ -3016,7 +3009,6 @@ void gpiod_add_lookup_table(struct gpiod_lookup_table *table)
 
 	mutex_unlock(&gpio_lookup_lock);
 }
-EXPORT_SYMBOL_GPL(gpiod_add_lookup_table);
 
 /**
  * gpiod_remove_lookup_table() - unregister GPIO device consumers
@@ -3030,7 +3022,6 @@ void gpiod_remove_lookup_table(struct gpiod_lookup_table *table)
 
 	mutex_unlock(&gpio_lookup_lock);
 }
-EXPORT_SYMBOL_GPL(gpiod_remove_lookup_table);
 
 static struct gpiod_lookup_table *gpiod_find_lookup_table(struct device *dev)
 {
@@ -3222,7 +3213,7 @@ EXPORT_SYMBOL_GPL(gpiod_get_optional);
  * requested function and/or index, or another IS_ERR() code if an error
  * occurred while trying to acquire the GPIO.
  */
-int gpiod_configure_flags(struct gpio_desc *desc, const char *con_id,
+static int gpiod_configure_flags(struct gpio_desc *desc, const char *con_id,
 		unsigned long lflags, enum gpiod_flags dflags)
 {
 	int status;
@@ -3233,8 +3224,6 @@ int gpiod_configure_flags(struct gpio_desc *desc, const char *con_id,
 		set_bit(FLAG_OPEN_DRAIN, &desc->flags);
 	if (lflags & GPIO_OPEN_SOURCE)
 		set_bit(FLAG_OPEN_SOURCE, &desc->flags);
-	if (lflags & GPIO_SLEEP_MAY_LOOSE_VALUE)
-		set_bit(FLAG_SLEEP_MAY_LOOSE_VALUE, &desc->flags);
 
 	/* No particular flag request, return here... */
 	if (!(dflags & GPIOD_FLAGS_BIT_DIR_SET)) {
@@ -3284,7 +3273,7 @@ struct gpio_desc *__must_check gpiod_get_index(struct device *dev,
 			desc = of_find_gpio(dev, con_id, idx, &lookupflags);
 		} else if (ACPI_COMPANION(dev)) {
 			dev_dbg(dev, "using ACPI for GPIO lookup\n");
-			desc = acpi_find_gpio(dev, con_id, idx, &flags, &lookupflags);
+			desc = acpi_find_gpio(dev, con_id, idx, flags, &lookupflags);
 		}
 	}
 
@@ -3365,12 +3354,8 @@ struct gpio_desc *fwnode_get_named_gpiod(struct fwnode_handle *fwnode,
 		struct acpi_gpio_info info;
 
 		desc = acpi_node_get_gpiod(fwnode, propname, index, &info);
-		if (!IS_ERR(desc)) {
+		if (!IS_ERR(desc))
 			active_low = info.polarity == GPIO_ACTIVE_LOW;
-			ret = acpi_gpio_update_gpiod_flags(&dflags, info.flags);
-			if (ret)
-				pr_debug("Override GPIO initialization flags\n");
-		}
 	}
 
 	if (IS_ERR(desc))

@@ -252,9 +252,8 @@ static int nvm_create_tgt(struct nvm_dev *dev, struct nvm_ioctl_create *create)
 	}
 	mutex_unlock(&dev->mlock);
 
-	ret = nvm_reserve_luns(dev, s->lun_begin, s->lun_end);
-	if (ret)
-		return ret;
+	if (nvm_reserve_luns(dev, s->lun_begin, s->lun_end))
+		return -ENOMEM;
 
 	t = kmalloc(sizeof(struct nvm_target), GFP_KERNEL);
 	if (!t) {
@@ -641,7 +640,6 @@ EXPORT_SYMBOL(nvm_max_phys_sects);
 int nvm_submit_io(struct nvm_tgt_dev *tgt_dev, struct nvm_rq *rqd)
 {
 	struct nvm_dev *dev = tgt_dev->parent;
-	int ret;
 
 	if (!dev->ops->submit_io)
 		return -ENODEV;
@@ -649,12 +647,7 @@ int nvm_submit_io(struct nvm_tgt_dev *tgt_dev, struct nvm_rq *rqd)
 	nvm_rq_tgt_to_dev(tgt_dev, rqd);
 
 	rqd->dev = tgt_dev;
-
-	/* In case of error, fail with right address format */
-	ret = dev->ops->submit_io(dev, rqd);
-	if (ret)
-		nvm_rq_dev_to_tgt(tgt_dev, rqd);
-	return ret;
+	return dev->ops->submit_io(dev, rqd);
 }
 EXPORT_SYMBOL(nvm_submit_io);
 

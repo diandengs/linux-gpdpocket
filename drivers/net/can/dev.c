@@ -648,7 +648,7 @@ struct sk_buff *alloc_can_skb(struct net_device *dev, struct can_frame **cf)
 	can_skb_prv(skb)->ifindex = dev->ifindex;
 	can_skb_prv(skb)->skbcnt = 0;
 
-	*cf = skb_put(skb, sizeof(struct can_frame));
+	*cf = (struct can_frame *)skb_put(skb, sizeof(struct can_frame));
 	memset(*cf, 0, sizeof(struct can_frame));
 
 	return skb;
@@ -677,7 +677,7 @@ struct sk_buff *alloc_canfd_skb(struct net_device *dev,
 	can_skb_prv(skb)->ifindex = dev->ifindex;
 	can_skb_prv(skb)->skbcnt = 0;
 
-	*cfd = skb_put(skb, sizeof(struct canfd_frame));
+	*cfd = (struct canfd_frame *)skb_put(skb, sizeof(struct canfd_frame));
 	memset(*cfd, 0, sizeof(struct canfd_frame));
 
 	return skb;
@@ -848,8 +848,7 @@ static const struct nla_policy can_policy[IFLA_CAN_MAX + 1] = {
 				= { .len = sizeof(struct can_bittiming_const) },
 };
 
-static int can_validate(struct nlattr *tb[], struct nlattr *data[],
-			struct netlink_ext_ack *extack)
+static int can_validate(struct nlattr *tb[], struct nlattr *data[])
 {
 	bool is_can_fd = false;
 
@@ -881,9 +880,8 @@ static int can_validate(struct nlattr *tb[], struct nlattr *data[],
 	return 0;
 }
 
-static int can_changelink(struct net_device *dev, struct nlattr *tb[],
-			  struct nlattr *data[],
-			  struct netlink_ext_ack *extack)
+static int can_changelink(struct net_device *dev,
+			  struct nlattr *tb[], struct nlattr *data[])
 {
 	struct can_priv *priv = netdev_priv(dev);
 	int err;
@@ -1148,8 +1146,7 @@ nla_put_failure:
 }
 
 static int can_newlink(struct net *src_net, struct net_device *dev,
-		       struct nlattr *tb[], struct nlattr *data[],
-		       struct netlink_ext_ack *extack)
+		       struct nlattr *tb[], struct nlattr *data[])
 {
 	return -EOPNOTSUPP;
 }

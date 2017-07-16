@@ -1,1 +1,1 @@
-cmd_drivers/pps/built-in.o :=  rm -f drivers/pps/built-in.o; ar rcSTPD drivers/pps/built-in.o drivers/pps/clients/built-in.o drivers/pps/generators/built-in.o 
+cmd_drivers/pps/built-in.o :=  ld -m elf_x86_64   -r -o drivers/pps/built-in.o drivers/pps/clients/built-in.o drivers/pps/generators/built-in.o 

@@ -133,7 +133,7 @@ static void iwl_mvm_pass_packet_to_mac80211(struct iwl_mvm *mvm,
 	 */
 	hdrlen = (len <= skb_tailroom(skb)) ? len : hdrlen + crypt_len + 8;
 
-	skb_put_data(skb, hdr, hdrlen);
+	memcpy(skb_put(skb, hdrlen), hdr, hdrlen);
 	fraglen = len - hdrlen;
 
 	if (fraglen) {
@@ -504,6 +504,14 @@ void iwl_mvm_rx_rx_mpdu(struct iwl_mvm *mvm, struct napi_struct *napi,
 		iwl_mvm_unref(mvm, IWL_MVM_REF_RX);
 }
 
+static void iwl_mvm_update_rx_statistics(struct iwl_mvm *mvm,
+					 struct mvm_statistics_rx *rx_stats)
+{
+	lockdep_assert_held(&mvm->mutex);
+
+	mvm->rx_stats = *rx_stats;
+}
+
 struct iwl_mvm_stat_data {
 	struct iwl_mvm *mvm;
 	__le32 mac_id;
@@ -547,6 +555,7 @@ static void iwl_mvm_stat_iterator(void *_data, u8 *mac,
 			mvmvif->beacon_stats.avg_signal =
 				-general->beacon_average_energy[vif_id];
 		}
+
 	}
 
 	if (mvmvif->id != id)
@@ -642,6 +651,7 @@ iwl_mvm_rx_stats_check_trigger(struct iwl_mvm *mvm, struct iwl_rx_packet *pkt)
 void iwl_mvm_handle_rx_statistics(struct iwl_mvm *mvm,
 				  struct iwl_rx_packet *pkt)
 {
+	struct iwl_notif_statistics_cdb *stats = (void *)&pkt->data;
 	struct iwl_mvm_stat_data data = {
 		.mvm = mvm,
 	};
@@ -649,16 +659,13 @@ void iwl_mvm_handle_rx_statistics(struct iwl_mvm *mvm,
 	int i;
 	u8 *energy;
 	__le32 *bytes, *air_time;
-	__le32 flags;
 
-	if (!iwl_mvm_has_new_rx_stats_api(mvm)) {
-		if (iwl_mvm_has_new_rx_api(mvm))
-			expected_size = sizeof(struct iwl_notif_statistics_v11);
-		else
-			expected_size = sizeof(struct iwl_notif_statistics_v10);
-	} else {
-		expected_size = sizeof(struct iwl_notif_statistics_cdb);
-	}
+	if (iwl_mvm_is_cdb_supported(mvm))
+		expected_size = sizeof(*stats);
+	else if (iwl_mvm_has_new_rx_api(mvm))
+		expected_size = sizeof(struct iwl_notif_statistics_v11);
+	else
+		expected_size = sizeof(struct iwl_notif_statistics_v10);
 
 	if (iwl_rx_packet_payload_len(pkt) != expected_size) {
 		IWL_ERR(mvm, "received invalid statistics size (%d)!\n",
@@ -666,49 +673,20 @@ void iwl_mvm_handle_rx_statistics(struct iwl_mvm *mvm,
 		return;
 	}
 
-	if (!iwl_mvm_has_new_rx_stats_api(mvm)) {
-		struct iwl_notif_statistics_v11 *stats = (void *)&pkt->data;
+	data.mac_id = stats->rx.general.mac_id;
+	data.beacon_filter_average_energy =
+		stats->general.common.beacon_filter_average_energy;
 
-		data.mac_id = stats->rx.general.mac_id;
-		data.beacon_filter_average_energy =
-			stats->general.common.beacon_filter_average_energy;
+	iwl_mvm_update_rx_statistics(mvm, &stats->rx);
 
-		mvm->rx_stats_v3 = stats->rx;
+	mvm->radio_stats.rx_time = le64_to_cpu(stats->general.common.rx_time);
+	mvm->radio_stats.tx_time = le64_to_cpu(stats->general.common.tx_time);
+	mvm->radio_stats.on_time_rf =
+		le64_to_cpu(stats->general.common.on_time_rf);
+	mvm->radio_stats.on_time_scan =
+		le64_to_cpu(stats->general.common.on_time_scan);
 
-		mvm->radio_stats.rx_time =
-			le64_to_cpu(stats->general.common.rx_time);
-		mvm->radio_stats.tx_time =
-			le64_to_cpu(stats->general.common.tx_time);
-		mvm->radio_stats.on_time_rf =
-			le64_to_cpu(stats->general.common.on_time_rf);
-		mvm->radio_stats.on_time_scan =
-			le64_to_cpu(stats->general.common.on_time_scan);
-
-		data.general = &stats->general;
-
-		flags = stats->flag;
-	} else {
-		struct iwl_notif_statistics_cdb *stats = (void *)&pkt->data;
-
-		data.mac_id = stats->rx.general.mac_id;
-		data.beacon_filter_average_energy =
-			stats->general.common.beacon_filter_average_energy;
-
-		mvm->rx_stats = stats->rx;
-
-		mvm->radio_stats.rx_time =
-			le64_to_cpu(stats->general.common.rx_time);
-		mvm->radio_stats.tx_time =
-			le64_to_cpu(stats->general.common.tx_time);
-		mvm->radio_stats.on_time_rf =
-			le64_to_cpu(stats->general.common.on_time_rf);
-		mvm->radio_stats.on_time_scan =
-			le64_to_cpu(stats->general.common.on_time_scan);
-
-		data.general = &stats->general;
-
-		flags = stats->flag;
-	}
+	data.general = &stats->general;
 
 	iwl_mvm_rx_stats_check_trigger(mvm, pkt);
 
@@ -720,15 +698,14 @@ void iwl_mvm_handle_rx_statistics(struct iwl_mvm *mvm,
 	if (!iwl_mvm_has_new_rx_api(mvm))
 		return;
 
-	if (!iwl_mvm_has_new_rx_stats_api(mvm)) {
-		struct iwl_notif_statistics_v11 *v11 = (void *)&pkt->data;
+	if (!iwl_mvm_is_cdb_supported(mvm)) {
+		struct iwl_notif_statistics_v11 *v11 =
+			(void *)&pkt->data;
 
 		energy = (void *)&v11->load_stats.avg_energy;
 		bytes = (void *)&v11->load_stats.byte_count;
 		air_time = (void *)&v11->load_stats.air_time;
 	} else {
-		struct iwl_notif_statistics_cdb *stats = (void *)&pkt->data;
-
 		energy = (void *)&stats->load_stats.avg_energy;
 		bytes = (void *)&stats->load_stats.byte_count;
 		air_time = (void *)&stats->load_stats.air_time;

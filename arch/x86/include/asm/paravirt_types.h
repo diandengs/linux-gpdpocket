@@ -51,7 +51,6 @@ struct mm_struct;
 struct desc_struct;
 struct task_struct;
 struct cpumask;
-struct flush_tlb_info;
 
 /*
  * Wrapper type for pointers to code which uses the non-standard
@@ -224,7 +223,9 @@ struct pv_mmu_ops {
 	void (*flush_tlb_kernel)(void);
 	void (*flush_tlb_single)(unsigned long addr);
 	void (*flush_tlb_others)(const struct cpumask *cpus,
-				 const struct flush_tlb_info *info);
+				 struct mm_struct *mm,
+				 unsigned long start,
+				 unsigned long end);
 
 	/* Hooks for allocating and freeing a pagetable top-level */
 	int  (*pgd_alloc)(struct mm_struct *mm);

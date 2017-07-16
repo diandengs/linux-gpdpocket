@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -23,4 +22,4 @@ __attribute__((section(".modinfo"))) =
 "depends=mlx5_core,ib_core";
 
 
-MODULE_INFO(srcversion, "188D65E8F10ED0548B88628");
+MODULE_INFO(srcversion, "6017F626059C92EFF8B5EC5");

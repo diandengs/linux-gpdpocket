@@ -1,1 +1,1 @@
-cmd_drivers/uwb/i1480/built-in.o :=  rm -f drivers/uwb/i1480/built-in.o; ar rcSTPD drivers/uwb/i1480/built-in.o
+cmd_drivers/uwb/i1480/built-in.o :=  rm -f drivers/uwb/i1480/built-in.o; ar rcsD drivers/uwb/i1480/built-in.o

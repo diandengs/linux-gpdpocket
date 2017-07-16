@@ -1,4 +1,4 @@
-cmd_arch/x86/kernel/apic/apic_noop.o := gcc -Wp,-MD,arch/x86/kernel/apic/.apic_noop.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init    -DKBUILD_BASENAME='"apic_noop"'  -DKBUILD_MODNAME='"apic_noop"' -c -o arch/x86/kernel/apic/apic_noop.o arch/x86/kernel/apic/apic_noop.c
+cmd_arch/x86/kernel/apic/apic_noop.o := gcc -Wp,-MD,arch/x86/kernel/apic/.apic_noop.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init    -DKBUILD_BASENAME='"apic_noop"'  -DKBUILD_MODNAME='"apic_noop"' -c -o arch/x86/kernel/apic/apic_noop.o arch/x86/kernel/apic/apic_noop.c
 
 source_arch/x86/kernel/apic/apic_noop.o := arch/x86/kernel/apic/apic_noop.c
 
@@ -24,6 +24,7 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
   /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
   include/linux/linkage.h \
   include/linux/compiler.h \
+    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/kasan.h) \
@@ -133,6 +134,7 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
   include/linux/jump_label.h \
   arch/x86/include/asm/jump_label.h \
   include/linux/bitmap.h \
+    $(wildcard include/config/s390.h) \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
   include/uapi/linux/string.h \
@@ -140,7 +142,6 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
   arch/x86/include/asm/string_64.h \
     $(wildcard include/config/kmemcheck.h) \
     $(wildcard include/config/x86/mce.h) \
-    $(wildcard include/config/arch/has/uaccess/flushcache.h) \
   include/linux/bug.h \
     $(wildcard include/config/generic/bug.h) \
     $(wildcard include/config/bug/on/data/corruption.h) \
@@ -149,7 +150,6 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
   include/asm-generic/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
-  include/linux/build_bug.h \
   include/linux/ctype.h \
   include/linux/errno.h \
   include/uapi/linux/errno.h \
@@ -174,6 +174,7 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
     $(wildcard include/config/numa/emu.h) \
   include/linux/nodemask.h \
     $(wildcard include/config/highmem.h) \
+    $(wildcard include/config/movable/node.h) \
   include/linux/numa.h \
     $(wildcard include/config/nodes/shift.h) \
   arch/x86/include/asm/topology.h \
@@ -213,7 +214,6 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
     $(wildcard include/config/cc/stackprotector.h) \
     $(wildcard include/config/vm86.h) \
     $(wildcard include/config/x86/debugctlmsr.h) \
-    $(wildcard include/config/cpu/sup/amd.h) \
     $(wildcard include/config/xen.h) \
   arch/x86/include/asm/processor-flags.h \
   arch/x86/include/uapi/asm/processor-flags.h \
@@ -439,7 +439,6 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
   include/linux/interrupt.h \
     $(wildcard include/config/irq/forced/threading.h) \
     $(wildcard include/config/generic/irq/probe.h) \
-    $(wildcard include/config/irq/timings.h) \
     $(wildcard include/config/function/graph/tracer.h) \
   include/linux/irqreturn.h \
   include/linux/irqnr.h \
@@ -462,10 +461,8 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
     $(wildcard include/config/x86/mce/amd.h) \
     $(wildcard include/config/hyperv.h) \
   include/linux/irq.h \
-    $(wildcard include/config/generic/irq/effective/aff/mask.h) \
     $(wildcard include/config/generic/irq/ipi.h) \
     $(wildcard include/config/irq/domain/hierarchy.h) \
-    $(wildcard include/config/generic/irq/migration.h) \
     $(wildcard include/config/generic/pending/irq.h) \
     $(wildcard include/config/hardirqs/sw/resend.h) \
     $(wildcard include/config/generic/irq/legacy/alloc/hwirq.h) \
@@ -495,7 +492,6 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
     $(wildcard include/config/need/multiple/nodes.h) \
     $(wildcard include/config/have/arch/early/pfn/to/nid.h) \
     $(wildcard include/config/sparsemem/extreme.h) \
-    $(wildcard include/config/memory/hotremove.h) \
     $(wildcard include/config/have/arch/pfn/valid.h) \
     $(wildcard include/config/holes/in/zone.h) \
     $(wildcard include/config/arch/has/holes/memorymodel.h) \
@@ -508,6 +504,7 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
   include/linux/page-flags-layout.h \
   include/generated/bounds.h \
   include/linux/memory_hotplug.h \
+    $(wildcard include/config/memory/hotremove.h) \
     $(wildcard include/config/have/arch/nodedata/extension.h) \
     $(wildcard include/config/have/bootmem/info/node.h) \
   include/linux/notifier.h \
@@ -518,27 +515,24 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
   include/linux/srcu.h \
     $(wildcard include/config/tiny/srcu.h) \
     $(wildcard include/config/tree/srcu.h) \
-    $(wildcard include/config/srcu.h) \
+    $(wildcard include/config/classic/srcu.h) \
   include/linux/rcupdate.h \
+    $(wildcard include/config/tree/rcu.h) \
     $(wildcard include/config/preempt/rcu.h) \
+    $(wildcard include/config/rcu/trace.h) \
     $(wildcard include/config/rcu/stall/common.h) \
     $(wildcard include/config/no/hz/full.h) \
     $(wildcard include/config/rcu/nocb/cpu.h) \
     $(wildcard include/config/tasks/rcu.h) \
-    $(wildcard include/config/tree/rcu.h) \
     $(wildcard include/config/debug/objects/rcu/head.h) \
     $(wildcard include/config/prove/rcu.h) \
     $(wildcard include/config/rcu/boost.h) \
+    $(wildcard include/config/rcu/nocb/cpu/all.h) \
+    $(wildcard include/config/no/hz/full/sysidle.h) \
     $(wildcard include/config/arch/weak/release/acquire.h) \
-  include/linux/rcutree.h \
-  include/linux/workqueue.h \
-    $(wildcard include/config/debug/objects/work.h) \
-    $(wildcard include/config/freezer.h) \
-    $(wildcard include/config/sysfs.h) \
-    $(wildcard include/config/wq/watchdog.h) \
-  include/linux/timer.h \
-    $(wildcard include/config/debug/objects/timers.h) \
-    $(wildcard include/config/no/hz/common.h) \
+  include/linux/debugobjects.h \
+    $(wildcard include/config/debug/objects.h) \
+    $(wildcard include/config/debug/objects/free.h) \
   include/linux/ktime.h \
   include/linux/time.h \
     $(wildcard include/config/arch/uses/gettimeoffset.h) \
@@ -557,9 +551,15 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
     $(wildcard include/config/x86/tsc.h) \
   include/generated/timeconst.h \
   include/linux/timekeeping.h \
-  include/linux/debugobjects.h \
-    $(wildcard include/config/debug/objects.h) \
-    $(wildcard include/config/debug/objects/free.h) \
+  include/linux/rcutree.h \
+  include/linux/workqueue.h \
+    $(wildcard include/config/debug/objects/work.h) \
+    $(wildcard include/config/freezer.h) \
+    $(wildcard include/config/sysfs.h) \
+    $(wildcard include/config/wq/watchdog.h) \
+  include/linux/timer.h \
+    $(wildcard include/config/debug/objects/timers.h) \
+    $(wildcard include/config/no/hz/common.h) \
   include/linux/rcu_segcblist.h \
   include/linux/srcutree.h \
   include/linux/rcu_node_tree.h \
@@ -574,22 +574,9 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
   include/linux/irqhandler.h \
   include/linux/io.h \
     $(wildcard include/config/have/arch/huge/vmap.h) \
-  include/linux/slab.h \
-    $(wildcard include/config/debug/slab.h) \
-    $(wildcard include/config/failslab.h) \
-    $(wildcard include/config/slob.h) \
-    $(wildcard include/config/have/hardened/usercopy/allocator.h) \
-    $(wildcard include/config/slab.h) \
-    $(wildcard include/config/slub.h) \
-  include/linux/kmemleak.h \
-    $(wildcard include/config/debug/kmemleak.h) \
-  include/linux/vmalloc.h \
-  include/linux/rbtree.h \
-  include/linux/kasan.h \
   arch/x86/include/asm/irq_regs.h \
   include/linux/irqdesc.h \
     $(wildcard include/config/irq/preflow/fasteoi.h) \
-    $(wildcard include/config/generic/irq/debugfs.h) \
     $(wildcard include/config/sparse/irq.h) \
     $(wildcard include/config/handle/domain/irq.h) \
   include/linux/kobject.h \
@@ -601,6 +588,7 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
   include/linux/idr.h \
   include/linux/radix-tree.h \
     $(wildcard include/config/radix/tree/multiorder.h) \
+  include/linux/rbtree.h \
   include/linux/kobject_ns.h \
   include/linux/stat.h \
   arch/x86/include/uapi/asm/stat.h \
@@ -611,7 +599,6 @@ deps_arch/x86/kernel/apic/apic_noop.o := \
   include/linux/highuid.h \
   include/linux/kref.h \
   include/linux/refcount.h \
-    $(wildcard include/config/refcount/full.h) \
   include/linux/hrtimer.h \
     $(wildcard include/config/high/res/timers.h) \
     $(wildcard include/config/time/low/res.h) \

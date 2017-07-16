@@ -1,4 +1,4 @@
-cmd_/usr/src/linux-gpdpocket/tools/objtool/arch/x86/decode.o := gcc -Wp,-MD,/usr/src/linux-gpdpocket/tools/objtool/arch/x86/.decode.o.d -Wp,-MT,/usr/src/linux-gpdpocket/tools/objtool/arch/x86/decode.o -Wall -Werror -Wbad-function-cast -Wdeclaration-after-statement -Wformat-security -Wformat-y2k -Winit-self -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-system-headers -Wold-style-definition -Wpacked -Wredundant-decls -Wshadow -Wstrict-prototypes -Wswitch-default -Wswitch-enum -Wundef -Wwrite-strings -Wformat -Wstrict-aliasing=3 -Wno-switch-default -Wno-switch-enum -fomit-frame-pointer -O2 -g -I/usr/src/linux-gpdpocket/tools/include -I/usr/src/linux-gpdpocket/tools/arch/x86/include/uapi -I/usr/src/linux-gpdpocket/tools/lib -D"BUILD_STR(s)=\#s" -I/usr/src/linux-gpdpocket/tools/objtool/arch/x86/insn -c -o /usr/src/linux-gpdpocket/tools/objtool/arch/x86/decode.o arch/x86/decode.c
+cmd_/usr/src/linux-gpdpocket/tools/objtool/arch/x86/decode.o := gcc -Wp,-MD,/usr/src/linux-gpdpocket/tools/objtool/arch/x86/.decode.o.d -Wp,-MT,/usr/src/linux-gpdpocket/tools/objtool/arch/x86/decode.o -Wall -Werror -Wbad-function-cast -Wdeclaration-after-statement -Wformat-security -Wformat-y2k -Winit-self -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-system-headers -Wold-style-definition -Wpacked -Wredundant-decls -Wshadow -Wstrict-prototypes -Wswitch-default -Wswitch-enum -Wundef -Wwrite-strings -Wformat -Wstrict-aliasing=3 -fomit-frame-pointer -O2 -g -I/usr/src/linux-gpdpocket/tools/include -I/usr/src/linux-gpdpocket/tools/arch/x86/include/uapi -I/usr/src/linux-gpdpocket/tools/lib -D"BUILD_STR(s)=\#s" -I/usr/src/linux-gpdpocket/tools/objtool/arch/x86/insn -c -o /usr/src/linux-gpdpocket/tools/objtool/arch/x86/decode.o arch/x86/decode.c
 
 source_/usr/src/linux-gpdpocket/tools/objtool/arch/x86/decode.o := arch/x86/decode.c
 
@@ -78,7 +78,6 @@ deps_/usr/src/linux-gpdpocket/tools/objtool/arch/x86/decode.o := \
   /usr/include/assert.h \
   /usr/src/linux-gpdpocket/tools/include/linux/compiler.h \
   /usr/src/linux-gpdpocket/tools/include/linux/compiler-gcc.h \
-  /usr/include/byteswap.h \
   /usr/src/linux-gpdpocket/tools/include/linux/hashtable.h \
   /usr/src/linux-gpdpocket/tools/include/linux/bitops.h \
   /usr/src/linux-gpdpocket/tools/include/asm-generic/bitops.h \
@@ -96,14 +95,7 @@ deps_/usr/src/linux-gpdpocket/tools/objtool/arch/x86/decode.o := \
   /usr/src/linux-gpdpocket/tools/include/linux/log2.h \
   arch/x86/../../arch.h \
   arch/x86/../../elf.h \
-  arch/x86/../../cfi.h \
   arch/x86/../../warn.h \
-  /usr/include/x86_64-linux-gnu/sys/stat.h \
-  /usr/include/x86_64-linux-gnu/bits/stat.h \
-  /usr/include/fcntl.h \
-  /usr/include/x86_64-linux-gnu/bits/fcntl.h \
-  /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
-  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
 
 /usr/src/linux-gpdpocket/tools/objtool/arch/x86/decode.o: $(deps_/usr/src/linux-gpdpocket/tools/objtool/arch/x86/decode.o)
 

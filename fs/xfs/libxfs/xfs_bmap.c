@@ -3992,7 +3992,7 @@ xfs_bmapi_read(
 	if (unlikely(XFS_TEST_ERROR(
 	    (XFS_IFORK_FORMAT(ip, whichfork) != XFS_DINODE_FMT_EXTENTS &&
 	     XFS_IFORK_FORMAT(ip, whichfork) != XFS_DINODE_FMT_BTREE),
-	     mp, XFS_ERRTAG_BMAPIFORMAT))) {
+	     mp, XFS_ERRTAG_BMAPIFORMAT, XFS_RANDOM_BMAPIFORMAT))) {
 		XFS_ERROR_REPORT("xfs_bmapi_read", XFS_ERRLEVEL_LOW, mp);
 		return -EFSCORRUPTED;
 	}
@@ -4473,7 +4473,7 @@ xfs_bmapi_write(
 	if (unlikely(XFS_TEST_ERROR(
 	    (XFS_IFORK_FORMAT(ip, whichfork) != XFS_DINODE_FMT_EXTENTS &&
 	     XFS_IFORK_FORMAT(ip, whichfork) != XFS_DINODE_FMT_BTREE),
-	     mp, XFS_ERRTAG_BMAPIFORMAT))) {
+	     mp, XFS_ERRTAG_BMAPIFORMAT, XFS_RANDOM_BMAPIFORMAT))) {
 		XFS_ERROR_REPORT("xfs_bmapi_write", XFS_ERRLEVEL_LOW, mp);
 		return -EFSCORRUPTED;
 	}
@@ -4694,7 +4694,7 @@ xfs_bmapi_remap(
 	if (unlikely(XFS_TEST_ERROR(
 	    (XFS_IFORK_FORMAT(ip, XFS_DATA_FORK) != XFS_DINODE_FMT_EXTENTS &&
 	     XFS_IFORK_FORMAT(ip, XFS_DATA_FORK) != XFS_DINODE_FMT_BTREE),
-	     mp, XFS_ERRTAG_BMAPIFORMAT))) {
+	     mp, XFS_ERRTAG_BMAPIFORMAT, XFS_RANDOM_BMAPIFORMAT))) {
 		XFS_ERROR_REPORT("xfs_bmapi_remap", XFS_ERRLEVEL_LOW, mp);
 		return -EFSCORRUPTED;
 	}
@@ -5434,7 +5434,6 @@ __xfs_bunmapi(
 	int			whichfork;	/* data or attribute fork */
 	xfs_fsblock_t		sum;
 	xfs_filblks_t		len = *rlen;	/* length to unmap in file */
-	xfs_fileoff_t		max_len;
 
 	trace_xfs_bunmap(ip, bno, len, flags, _RET_IP_);
 
@@ -5455,16 +5454,6 @@ __xfs_bunmapi(
 	ASSERT(xfs_isilocked(ip, XFS_ILOCK_EXCL));
 	ASSERT(len > 0);
 	ASSERT(nexts >= 0);
-
-	/*
-	 * Guesstimate how many blocks we can unmap without running the risk of
-	 * blowing out the transaction with a mix of EFIs and reflink
-	 * adjustments.
-	 */
-	if (xfs_is_reflink_inode(ip) && whichfork == XFS_DATA_FORK)
-		max_len = min(len, xfs_refcount_max_unmap(tp->t_log_res));
-	else
-		max_len = len;
 
 	if (!(ifp->if_flags & XFS_IFEXTENTS) &&
 	    (error = xfs_iread_extents(tp, ip, whichfork)))
@@ -5510,7 +5499,7 @@ __xfs_bunmapi(
 
 	extno = 0;
 	while (bno != (xfs_fileoff_t)-1 && bno >= start && lastx >= 0 &&
-	       (nexts == 0 || extno < nexts) && max_len > 0) {
+	       (nexts == 0 || extno < nexts)) {
 		/*
 		 * Is the found extent after a hole in which bno lives?
 		 * Just back up to the previous extent, if so.
@@ -5542,15 +5531,6 @@ __xfs_bunmapi(
 		}
 		if (del.br_startoff + del.br_blockcount > bno + 1)
 			del.br_blockcount = bno + 1 - del.br_startoff;
-
-		/* How much can we safely unmap? */
-		if (max_len < del.br_blockcount) {
-			del.br_startoff += del.br_blockcount - max_len;
-			if (!wasdel)
-				del.br_startblock += del.br_blockcount - max_len;
-			del.br_blockcount = max_len;
-		}
-
 		sum = del.br_startblock + del.br_blockcount;
 		if (isrt &&
 		    (mod = do_mod(sum, mp->m_sb.sb_rextsize))) {
@@ -5727,7 +5707,6 @@ __xfs_bunmapi(
 		if (!isrt && wasdel)
 			xfs_mod_fdblocks(mp, (int64_t)del.br_blockcount, false);
 
-		max_len -= del.br_blockcount;
 		bno = del.br_startoff - 1;
 nodelete:
 		/*
@@ -6098,7 +6077,7 @@ xfs_bmap_shift_extents(
 	if (unlikely(XFS_TEST_ERROR(
 	    (XFS_IFORK_FORMAT(ip, whichfork) != XFS_DINODE_FMT_EXTENTS &&
 	     XFS_IFORK_FORMAT(ip, whichfork) != XFS_DINODE_FMT_BTREE),
-	     mp, XFS_ERRTAG_BMAPIFORMAT))) {
+	     mp, XFS_ERRTAG_BMAPIFORMAT, XFS_RANDOM_BMAPIFORMAT))) {
 		XFS_ERROR_REPORT("xfs_bmap_shift_extents",
 				 XFS_ERRLEVEL_LOW, mp);
 		return -EFSCORRUPTED;
@@ -6250,7 +6229,7 @@ xfs_bmap_split_extent_at(
 	if (unlikely(XFS_TEST_ERROR(
 	    (XFS_IFORK_FORMAT(ip, whichfork) != XFS_DINODE_FMT_EXTENTS &&
 	     XFS_IFORK_FORMAT(ip, whichfork) != XFS_DINODE_FMT_BTREE),
-	     mp, XFS_ERRTAG_BMAPIFORMAT))) {
+	     mp, XFS_ERRTAG_BMAPIFORMAT, XFS_RANDOM_BMAPIFORMAT))) {
 		XFS_ERROR_REPORT("xfs_bmap_split_extent_at",
 				 XFS_ERRLEVEL_LOW, mp);
 		return -EFSCORRUPTED;
@@ -6493,33 +6472,33 @@ xfs_bmap_finish_one(
 	int				whichfork,
 	xfs_fileoff_t			startoff,
 	xfs_fsblock_t			startblock,
-	xfs_filblks_t			*blockcount,
+	xfs_filblks_t			blockcount,
 	xfs_exntst_t			state)
 {
-	xfs_fsblock_t			firstfsb;
-	int				error = 0;
+	int				error = 0, done;
 
 	trace_xfs_bmap_deferred(tp->t_mountp,
 			XFS_FSB_TO_AGNO(tp->t_mountp, startblock), type,
 			XFS_FSB_TO_AGBNO(tp->t_mountp, startblock),
-			ip->i_ino, whichfork, startoff, *blockcount, state);
+			ip->i_ino, whichfork, startoff, blockcount, state);
 
 	if (WARN_ON_ONCE(whichfork != XFS_DATA_FORK))
 		return -EFSCORRUPTED;
 
 	if (XFS_TEST_ERROR(false, tp->t_mountp,
-			XFS_ERRTAG_BMAP_FINISH_ONE))
+			XFS_ERRTAG_BMAP_FINISH_ONE,
+			XFS_RANDOM_BMAP_FINISH_ONE))
 		return -EIO;
 
 	switch (type) {
 	case XFS_BMAP_MAP:
-		error = xfs_bmapi_remap(tp, ip, startoff, *blockcount,
+		error = xfs_bmapi_remap(tp, ip, startoff, blockcount,
 				startblock, dfops);
-		*blockcount = 0;
 		break;
 	case XFS_BMAP_UNMAP:
-		error = __xfs_bunmapi(tp, ip, startoff, blockcount,
-				XFS_BMAPI_REMAP, 1, &firstfsb, dfops);
+		error = xfs_bunmapi(tp, ip, startoff, blockcount,
+				XFS_BMAPI_REMAP, 1, &startblock, dfops, &done);
+		ASSERT(done);
 		break;
 	default:
 		ASSERT(0);

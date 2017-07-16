@@ -13,7 +13,7 @@
  */
 
 #include <linux/etherdevice.h>
-
+#include <net/dsa.h>
 #include "dsa_priv.h"
 
 #define MTK_HDR_LEN		4
@@ -27,7 +27,7 @@ static struct sk_buff *mtk_tag_xmit(struct sk_buff *skb,
 	u8 *mtk_tag;
 
 	if (skb_cow_head(skb, MTK_HDR_LEN) < 0)
-		return NULL;
+		goto out_free;
 
 	skb_push(skb, MTK_HDR_LEN);
 
@@ -41,6 +41,10 @@ static struct sk_buff *mtk_tag_xmit(struct sk_buff *skb,
 	mtk_tag[3] = 0;
 
 	return skb;
+
+out_free:
+	kfree_skb(skb);
+	return NULL;
 }
 
 static struct sk_buff *mtk_tag_rcv(struct sk_buff *skb, struct net_device *dev,
@@ -53,7 +57,7 @@ static struct sk_buff *mtk_tag_rcv(struct sk_buff *skb, struct net_device *dev,
 	__be16 *phdr, hdr;
 
 	if (unlikely(!pskb_may_pull(skb, MTK_HDR_LEN)))
-		return NULL;
+		goto out_drop;
 
 	/* The MTK header is added by the switch between src addr
 	 * and ethertype at this point, skb->data points to 2 bytes
@@ -75,16 +79,19 @@ static struct sk_buff *mtk_tag_rcv(struct sk_buff *skb, struct net_device *dev,
 	 */
 	ds = dst->ds[0];
 	if (!ds)
-		return NULL;
+		goto out_drop;
 
 	/* Get source port information */
 	port = (hdr & MTK_HDR_RECV_SOURCE_PORT_MASK);
 	if (!ds->ports[port].netdev)
-		return NULL;
+		goto out_drop;
 
 	skb->dev = ds->ports[port].netdev;
 
 	return skb;
+
+out_drop:
+	return NULL;
 }
 
 const struct dsa_device_ops mtk_netdev_ops = {

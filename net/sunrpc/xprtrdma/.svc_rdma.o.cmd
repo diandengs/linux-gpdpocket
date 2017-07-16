@@ -1,4 +1,4 @@
-cmd_net/sunrpc/xprtrdma/svc_rdma.o := gcc -Wp,-MD,net/sunrpc/xprtrdma/.svc_rdma.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init  -DMODULE  -DKBUILD_BASENAME='"svc_rdma"'  -DKBUILD_MODNAME='"rpcrdma"' -c -o net/sunrpc/xprtrdma/svc_rdma.o net/sunrpc/xprtrdma/svc_rdma.c
+cmd_net/sunrpc/xprtrdma/svc_rdma.o := gcc -Wp,-MD,net/sunrpc/xprtrdma/.svc_rdma.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init  -DMODULE  -DKBUILD_BASENAME='"svc_rdma"'  -DKBUILD_MODNAME='"rpcrdma"' -c -o net/sunrpc/xprtrdma/svc_rdma.o net/sunrpc/xprtrdma/svc_rdma.c
 
 source_net/sunrpc/xprtrdma/svc_rdma.o := net/sunrpc/xprtrdma/svc_rdma.c
 
@@ -43,6 +43,7 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
   include/linux/compiler.h \
+    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/enable/must/check.h) \
@@ -159,7 +160,6 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/jump/label.h) \
   include/linux/jump_label.h \
   arch/x86/include/asm/jump_label.h \
-  include/linux/build_bug.h \
   include/linux/mmzone.h \
     $(wildcard include/config/force/max/zoneorder.h) \
     $(wildcard include/config/zsmalloc.h) \
@@ -180,7 +180,6 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/have/arch/early/pfn/to/nid.h) \
     $(wildcard include/config/flatmem.h) \
     $(wildcard include/config/sparsemem/extreme.h) \
-    $(wildcard include/config/memory/hotremove.h) \
     $(wildcard include/config/have/arch/pfn/valid.h) \
     $(wildcard include/config/holes/in/zone.h) \
     $(wildcard include/config/arch/has/holes/memorymodel.h) \
@@ -243,7 +242,6 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
   arch/x86/include/asm/processor.h \
     $(wildcard include/config/cc/stackprotector.h) \
     $(wildcard include/config/x86/debugctlmsr.h) \
-    $(wildcard include/config/cpu/sup/amd.h) \
     $(wildcard include/config/xen.h) \
   arch/x86/include/asm/processor-flags.h \
   arch/x86/include/uapi/asm/processor-flags.h \
@@ -289,13 +287,13 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/hotplug/cpu.h) \
     $(wildcard include/config/debug/per/cpu/maps.h) \
   include/linux/bitmap.h \
+    $(wildcard include/config/s390.h) \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
   include/uapi/linux/string.h \
   arch/x86/include/asm/string.h \
   arch/x86/include/asm/string_64.h \
     $(wildcard include/config/x86/mce.h) \
-    $(wildcard include/config/arch/has/uaccess/flushcache.h) \
   arch/x86/include/uapi/asm/msr.h \
   include/uapi/linux/ioctl.h \
   arch/x86/include/uapi/asm/ioctl.h \
@@ -374,12 +372,14 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/nodes/shift.h) \
   include/linux/seqlock.h \
   include/linux/nodemask.h \
+    $(wildcard include/config/movable/node.h) \
   include/linux/pageblock-flags.h \
     $(wildcard include/config/hugetlb/page.h) \
     $(wildcard include/config/hugetlb/page/size/variable.h) \
   include/linux/page-flags-layout.h \
   include/generated/bounds.h \
   include/linux/memory_hotplug.h \
+    $(wildcard include/config/memory/hotremove.h) \
     $(wildcard include/config/have/arch/nodedata/extension.h) \
     $(wildcard include/config/have/bootmem/info/node.h) \
   include/linux/notifier.h \
@@ -398,28 +398,24 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
   include/linux/srcu.h \
     $(wildcard include/config/tiny/srcu.h) \
     $(wildcard include/config/tree/srcu.h) \
-    $(wildcard include/config/srcu.h) \
+    $(wildcard include/config/classic/srcu.h) \
   include/linux/rcupdate.h \
+    $(wildcard include/config/tiny/rcu.h) \
+    $(wildcard include/config/tree/rcu.h) \
     $(wildcard include/config/preempt/rcu.h) \
+    $(wildcard include/config/rcu/trace.h) \
     $(wildcard include/config/rcu/stall/common.h) \
     $(wildcard include/config/no/hz/full.h) \
     $(wildcard include/config/rcu/nocb/cpu.h) \
     $(wildcard include/config/tasks/rcu.h) \
-    $(wildcard include/config/tree/rcu.h) \
-    $(wildcard include/config/tiny/rcu.h) \
     $(wildcard include/config/debug/objects/rcu/head.h) \
     $(wildcard include/config/prove/rcu.h) \
     $(wildcard include/config/rcu/boost.h) \
+    $(wildcard include/config/rcu/nocb/cpu/all.h) \
+    $(wildcard include/config/no/hz/full/sysidle.h) \
     $(wildcard include/config/arch/weak/release/acquire.h) \
-  include/linux/rcutree.h \
-  include/linux/workqueue.h \
-    $(wildcard include/config/debug/objects/work.h) \
-    $(wildcard include/config/freezer.h) \
-    $(wildcard include/config/sysfs.h) \
-    $(wildcard include/config/wq/watchdog.h) \
-  include/linux/timer.h \
-    $(wildcard include/config/debug/objects/timers.h) \
-    $(wildcard include/config/no/hz/common.h) \
+  include/linux/debugobjects.h \
+    $(wildcard include/config/debug/objects/free.h) \
   include/linux/ktime.h \
   include/linux/time.h \
     $(wildcard include/config/arch/uses/gettimeoffset.h) \
@@ -438,8 +434,15 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/x86/tsc.h) \
   include/generated/timeconst.h \
   include/linux/timekeeping.h \
-  include/linux/debugobjects.h \
-    $(wildcard include/config/debug/objects/free.h) \
+  include/linux/rcutree.h \
+  include/linux/workqueue.h \
+    $(wildcard include/config/debug/objects/work.h) \
+    $(wildcard include/config/freezer.h) \
+    $(wildcard include/config/sysfs.h) \
+    $(wildcard include/config/wq/watchdog.h) \
+  include/linux/timer.h \
+    $(wildcard include/config/debug/objects/timers.h) \
+    $(wildcard include/config/no/hz/common.h) \
   include/linux/rcu_segcblist.h \
   include/linux/srcutree.h \
   include/linux/rcu_node_tree.h \
@@ -530,8 +533,6 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/need/per/cpu/page/first/chunk.h) \
   include/linux/kmemleak.h \
     $(wildcard include/config/debug/kmemleak.h) \
-  include/linux/vmalloc.h \
-  include/linux/rbtree.h \
   include/linux/kasan.h \
   include/linux/fs.h \
     $(wildcard include/config/fs/posix/acl.h) \
@@ -547,7 +548,6 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/mandatory/file/locking.h) \
     $(wildcard include/config/block.h) \
     $(wildcard include/config/migration.h) \
-  include/linux/wait_bit.h \
   include/linux/kdev_t.h \
   include/uapi/linux/kdev_t.h \
   include/linux/dcache.h \
@@ -573,41 +573,17 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
   include/linux/shrinker.h \
   include/linux/radix-tree.h \
     $(wildcard include/config/radix/tree/multiorder.h) \
+  include/linux/rbtree.h \
   include/linux/pid.h \
-  include/linux/mm_types.h \
-    $(wildcard include/config/have/cmpxchg/double.h) \
-    $(wildcard include/config/have/aligned/struct/page.h) \
-    $(wildcard include/config/userfaultfd.h) \
-    $(wildcard include/config/have/arch/compat/mmap/bases.h) \
-    $(wildcard include/config/aio.h) \
-    $(wildcard include/config/mmu/notifier.h) \
-  include/linux/mm_types_task.h \
-    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
-    $(wildcard include/config/split/ptlock/cpus.h) \
-    $(wildcard include/config/arch/enable/split/pmd/ptlock.h) \
-  arch/x86/include/asm/tlbbatch.h \
-  include/linux/auxvec.h \
-  include/uapi/linux/auxvec.h \
-  arch/x86/include/uapi/asm/auxvec.h \
-  include/linux/uprobes.h \
-    $(wildcard include/config/uprobes.h) \
-  arch/x86/include/asm/uprobes.h \
   include/linux/capability.h \
   include/uapi/linux/capability.h \
   include/linux/semaphore.h \
-  include/linux/fcntl.h \
-  include/uapi/linux/fcntl.h \
-  arch/x86/include/uapi/asm/fcntl.h \
-  include/uapi/asm-generic/fcntl.h \
   include/uapi/linux/fiemap.h \
   include/linux/migrate_mode.h \
   include/linux/percpu-rwsem.h \
   include/linux/rcuwait.h \
   include/linux/rcu_sync.h \
   include/linux/delayed_call.h \
-  include/linux/uuid.h \
-  include/uapi/linux/uuid.h \
-  include/linux/errseq.h \
   include/uapi/linux/fs.h \
   include/uapi/linux/limits.h \
   include/linux/quota.h \
@@ -620,6 +596,10 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
   include/linux/projid.h \
   include/uapi/linux/quota.h \
   include/linux/nfs_fs_i.h \
+  include/linux/fcntl.h \
+  include/uapi/linux/fcntl.h \
+  arch/x86/include/uapi/asm/fcntl.h \
+  include/uapi/asm-generic/fcntl.h \
   include/linux/sysctl.h \
     $(wildcard include/config/sysctl.h) \
   include/uapi/linux/sysctl.h \
@@ -659,8 +639,6 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/mpls.h) \
     $(wildcard include/config/can.h) \
     $(wildcard include/config/net/ns.h) \
-  include/linux/refcount.h \
-    $(wildcard include/config/refcount/full.h) \
   include/net/flow.h \
   include/net/flow_dissector.h \
   include/uapi/linux/if_ether.h \
@@ -715,7 +693,6 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
   include/linux/interrupt.h \
     $(wildcard include/config/irq/forced/threading.h) \
     $(wildcard include/config/generic/irq/probe.h) \
-    $(wildcard include/config/irq/timings.h) \
     $(wildcard include/config/function/graph/tracer.h) \
   include/linux/irqreturn.h \
   include/linux/irqnr.h \
@@ -737,10 +714,8 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/x86/mce/amd.h) \
     $(wildcard include/config/hyperv.h) \
   include/linux/irq.h \
-    $(wildcard include/config/generic/irq/effective/aff/mask.h) \
     $(wildcard include/config/generic/irq/ipi.h) \
     $(wildcard include/config/irq/domain/hierarchy.h) \
-    $(wildcard include/config/generic/irq/migration.h) \
     $(wildcard include/config/generic/pending/irq.h) \
     $(wildcard include/config/hardirqs/sw/resend.h) \
     $(wildcard include/config/generic/irq/legacy/alloc/hwirq.h) \
@@ -752,7 +727,6 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
   arch/x86/include/asm/irq_regs.h \
   include/linux/irqdesc.h \
     $(wildcard include/config/irq/preflow/fasteoi.h) \
-    $(wildcard include/config/generic/irq/debugfs.h) \
     $(wildcard include/config/sparse/irq.h) \
     $(wildcard include/config/handle/domain/irq.h) \
   include/linux/kobject.h \
@@ -764,6 +738,7 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
   include/linux/idr.h \
   include/linux/kobject_ns.h \
   include/linux/kref.h \
+  include/linux/refcount.h \
   arch/x86/include/asm/hw_irq.h \
     $(wildcard include/config/hpet/timer.h) \
     $(wildcard include/config/dmar/table.h) \
@@ -795,6 +770,23 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/network/phy/timestamping.h) \
     $(wildcard include/config/netfilter/xt/target/trace.h) \
   include/linux/kmemcheck.h \
+  include/linux/mm_types.h \
+    $(wildcard include/config/have/cmpxchg/double.h) \
+    $(wildcard include/config/have/aligned/struct/page.h) \
+    $(wildcard include/config/userfaultfd.h) \
+    $(wildcard include/config/have/arch/compat/mmap/bases.h) \
+    $(wildcard include/config/aio.h) \
+    $(wildcard include/config/mmu/notifier.h) \
+  include/linux/mm_types_task.h \
+    $(wildcard include/config/split/ptlock/cpus.h) \
+    $(wildcard include/config/arch/enable/split/pmd/ptlock.h) \
+    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
+  include/linux/auxvec.h \
+  include/uapi/linux/auxvec.h \
+  arch/x86/include/uapi/asm/auxvec.h \
+  include/linux/uprobes.h \
+    $(wildcard include/config/uprobes.h) \
+  arch/x86/include/asm/uprobes.h \
   include/linux/net.h \
   include/linux/random.h \
     $(wildcard include/config/gcc/plugin/latent/entropy.h) \
@@ -881,6 +873,7 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
   arch/x86/include/uapi/asm/signal.h \
   include/uapi/asm-generic/signal-defs.h \
   arch/x86/include/uapi/asm/siginfo.h \
+  include/asm-generic/siginfo.h \
   include/uapi/asm-generic/siginfo.h \
   include/linux/task_io_accounting.h \
     $(wildcard include/config/task/io/accounting.h) \
@@ -901,6 +894,7 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
   include/linux/sizes.h \
   include/linux/device.h \
     $(wildcard include/config/debug/devres.h) \
+    $(wildcard include/config/srcu.h) \
     $(wildcard include/config/generic/msi/irq/domain.h) \
     $(wildcard include/config/pinctrl.h) \
     $(wildcard include/config/generic/msi/irq.h) \
@@ -973,7 +967,6 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/arch/uses/pg/uncached.h) \
     $(wildcard include/config/memory/failure.h) \
     $(wildcard include/config/swap.h) \
-    $(wildcard include/config/thp/swap.h) \
     $(wildcard include/config/ksm.h) \
   arch/x86/include/asm/pgtable.h \
     $(wildcard include/config/debug/wx.h) \
@@ -982,8 +975,6 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
   arch/x86/include/asm/pgtable_64.h \
   include/asm-generic/pgtable.h \
   include/linux/huge_mm.h \
-  include/linux/sched/coredump.h \
-    $(wildcard include/config/core/dump/default/elf/headers.h) \
   include/linux/vmstat.h \
     $(wildcard include/config/vm/event/counters.h) \
     $(wildcard include/config/debug/tlbflush.h) \
@@ -1131,7 +1122,6 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
   include/net/scm.h \
     $(wildcard include/config/security/network.h) \
   include/linux/security.h \
-    $(wildcard include/config/security/infiniband.h) \
     $(wildcard include/config/security/network/xfrm.h) \
     $(wildcard include/config/security/path.h) \
     $(wildcard include/config/securityfs.h) \
@@ -1177,9 +1167,6 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
     $(wildcard include/config/bpf/jit.h) \
     $(wildcard include/config/have/ebpf/jit.h) \
   include/linux/cryptohash.h \
-  include/linux/set_memory.h \
-  arch/x86/include/asm/set_memory.h \
-  include/asm-generic/set_memory.h \
   include/net/sch_generic.h \
   include/uapi/linux/pkt_cls.h \
   include/net/gen_stats.h \
@@ -1191,6 +1178,8 @@ deps_net/sunrpc/xprtrdma/svc_rdma.o := \
   include/uapi/linux/if_addr.h \
   include/net/rtnetlink.h \
   include/net/netlink.h \
+  arch/x86/include/asm/set_memory.h \
+  include/asm-generic/set_memory.h \
   include/uapi/linux/filter.h \
   include/linux/rculist_nulls.h \
   include/linux/poll.h \

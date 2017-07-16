@@ -1,5 +1,6 @@
 kernel/crypto/crypto_engine.ko
 kernel/crypto/echainiv.ko
+kernel/crypto/ecdh_generic.ko
 kernel/crypto/crypto_user.ko
 kernel/crypto/cmac.ko
 kernel/crypto/vmac.ko
@@ -51,7 +52,6 @@ kernel/crypto/842.ko
 kernel/crypto/ansi_cprng.ko
 kernel/crypto/tcrypt.ko
 kernel/crypto/ghash-generic.ko
-kernel/crypto/ecdh_generic.ko
 kernel/crypto/xor.ko
 kernel/crypto/async_tx/async_tx.ko
 kernel/crypto/async_tx/async_memcpy.ko

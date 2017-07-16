@@ -317,8 +317,7 @@ const struct exception_table_entry *search_module_dbetables(unsigned long addr)
 
 	spin_lock_irqsave(&dbe_lock, flags);
 	list_for_each_entry(dbe, &dbe_list, dbe_list) {
-		e = search_extable(dbe->dbe_start,
-				   dbe->dbe_end - dbe->dbe_start, addr);
+		e = search_extable(dbe->dbe_start, dbe->dbe_end - 1, addr);
 		if (e)
 			break;
 	}

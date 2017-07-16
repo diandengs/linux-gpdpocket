@@ -1,1 +1,1 @@
-cmd_drivers/md/built-in.o :=  rm -f drivers/md/built-in.o; ar rcSTPD drivers/md/built-in.o drivers/md/md-mod.o drivers/md/dm-mod.o drivers/md/dm-builtin.o drivers/md/dm-bufio.o drivers/md/dm-snapshot.o drivers/md/dm-mirror.o drivers/md/dm-log.o drivers/md/dm-region-hash.o drivers/md/dm-zero.o 
+cmd_drivers/md/built-in.o :=  ld -m elf_x86_64   -r -o drivers/md/built-in.o drivers/md/md-mod.o drivers/md/dm-mod.o drivers/md/dm-builtin.o drivers/md/dm-bufio.o drivers/md/dm-snapshot.o drivers/md/dm-mirror.o drivers/md/dm-log.o drivers/md/dm-region-hash.o drivers/md/dm-zero.o 

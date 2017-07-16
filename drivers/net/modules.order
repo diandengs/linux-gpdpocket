@@ -104,7 +104,6 @@ kernel/drivers/net/ethernet/mellanox/mlxsw/mlxsw_switchib.ko
 kernel/drivers/net/ethernet/mellanox/mlxsw/mlxsw_switchx2.ko
 kernel/drivers/net/ethernet/mellanox/mlxsw/mlxsw_spectrum.ko
 kernel/drivers/net/ethernet/mellanox/mlxsw/mlxsw_minimal.ko
-kernel/drivers/net/ethernet/mellanox/mlxfw/mlxfw.ko
 kernel/drivers/net/ethernet/micrel/ksz884x.ko
 kernel/drivers/net/ethernet/myricom/myri10ge/myri10ge.ko
 kernel/drivers/net/ethernet/natsemi/natsemi.ko
@@ -363,14 +362,14 @@ kernel/drivers/net/dsa/b53/b53_mdio.ko
 kernel/drivers/net/dsa/b53/b53_mmap.ko
 kernel/drivers/net/dsa/b53/b53_srab.ko
 kernel/drivers/net/dsa/mv88e6xxx/mv88e6xxx.ko
-kernel/drivers/net/dsa/dsa_loop.ko
-kernel/drivers/net/dsa/dsa_loop_bdinfo.ko
-kernel/drivers/net/dsa/mt7530.ko
 kernel/drivers/net/dsa/mv88e6060.ko
 kernel/drivers/net/dsa/qca8k.ko
+kernel/drivers/net/dsa/mt7530.ko
 kernel/drivers/net/dsa/lan9303-core.ko
 kernel/drivers/net/dsa/lan9303_i2c.ko
 kernel/drivers/net/dsa/lan9303_mdio.ko
+kernel/drivers/net/dsa/dsa_loop.ko
+kernel/drivers/net/dsa/dsa_loop_bdinfo.ko
 kernel/drivers/net/irda/irda-usb.ko
 kernel/drivers/net/irda/stir4200.ko
 kernel/drivers/net/irda/nsc-ircc.ko

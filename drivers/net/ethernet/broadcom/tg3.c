@@ -12097,9 +12097,7 @@ static int tg3_get_link_ksettings(struct net_device *dev,
 		if (!(tp->phy_flags & TG3_PHYFLG_IS_CONNECTED))
 			return -EAGAIN;
 		phydev = mdiobus_get_phy(tp->mdio_bus, tp->phy_addr);
-		phy_ethtool_ksettings_get(phydev, cmd);
-
-		return 0;
+		return phy_ethtool_ksettings_get(phydev, cmd);
 	}
 
 	supported = (SUPPORTED_Autoneg);

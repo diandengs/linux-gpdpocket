@@ -28,8 +28,7 @@
  *
  * Find the node from device tree according to its port number.
  *
- * Return: A pointer to the node with incremented refcount if found, or
- * %NULL otherwise.
+ * Return: On success, a pointer to the device node, %NULL on failure.
  */
 struct device_node *usb_of_get_child_node(struct device_node *parent,
 					int portnum)

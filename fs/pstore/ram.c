@@ -27,6 +27,7 @@
 #include <linux/module.h>
 #include <linux/version.h>
 #include <linux/pstore.h>
+#include <linux/time.h>
 #include <linux/io.h>
 #include <linux/ioport.h>
 #include <linux/platform_device.h>
@@ -355,15 +356,20 @@ out:
 }
 
 static size_t ramoops_write_kmsg_hdr(struct persistent_ram_zone *prz,
-				     struct pstore_record *record)
+				     bool compressed)
 {
 	char *hdr;
+	struct timespec timestamp;
 	size_t len;
 
+	/* Report zeroed timestamp if called before timekeeping has resumed. */
+	if (__getnstimeofday(&timestamp)) {
+		timestamp.tv_sec = 0;
+		timestamp.tv_nsec = 0;
+	}
 	hdr = kasprintf(GFP_ATOMIC, RAMOOPS_KERNMSG_HDR "%lu.%lu-%c\n",
-		record->time.tv_sec,
-		record->time.tv_nsec / 1000,
-		record->compressed ? 'C' : 'D');
+		(long)timestamp.tv_sec, (long)(timestamp.tv_nsec / 1000),
+		compressed ? 'C' : 'D');
 	WARN_ON_ONCE(!hdr);
 	len = hdr ? strlen(hdr) : 0;
 	persistent_ram_write(prz, hdr, len);
@@ -434,7 +440,7 @@ static int notrace ramoops_pstore_write(struct pstore_record *record)
 	prz = cxt->dprzs[cxt->dump_write_cnt];
 
 	/* Build header and append record contents. */
-	hlen = ramoops_write_kmsg_hdr(prz, record);
+	hlen = ramoops_write_kmsg_hdr(prz, record->compressed);
 	size = record->size;
 	if (size + hlen > prz->buffer_size)
 		size = prz->buffer_size - hlen;

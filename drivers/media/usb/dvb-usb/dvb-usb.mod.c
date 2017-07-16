@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -19,4 +18,4 @@ __attribute__((section(".modinfo"))) =
 "depends=rc-core,dvb-core";
 
 
-MODULE_INFO(srcversion, "E2795BA63CF784A150C01C6");
+MODULE_INFO(srcversion, "D17990EB6100A87DD774609");

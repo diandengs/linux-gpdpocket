@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -20,6 +19,6 @@ MODULE_INFO(intree, "Y");
 static const char __module_depends[]
 __used
 __attribute__((section(".modinfo"))) =
-"depends=devlink,mlxsw_core,parman,bridge,mlxsw_pci,mlxfw,psample";
+"depends=devlink,mlxsw_core,parman,mlxsw_pci,psample";
 
 MODULE_ALIAS("pci:v000015B3d0000CB84sv*sd*bc*sc*i*");

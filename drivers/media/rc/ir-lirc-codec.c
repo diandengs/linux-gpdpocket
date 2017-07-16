@@ -327,6 +327,16 @@ static long ir_lirc_ioctl(struct file *filep, unsigned int cmd,
 	return ret;
 }
 
+static int ir_lirc_open(void *data)
+{
+	return 0;
+}
+
+static void ir_lirc_close(void *data)
+{
+	return;
+}
+
 static const struct file_operations lirc_fops = {
 	.owner		= THIS_MODULE,
 	.write		= ir_lirc_transmit_ir,
@@ -344,6 +354,7 @@ static const struct file_operations lirc_fops = {
 static int ir_lirc_register(struct rc_dev *dev)
 {
 	struct lirc_driver *drv;
+	struct lirc_buffer *rbuf;
 	int rc = -ENOMEM;
 	unsigned long features = 0;
 
@@ -351,12 +362,19 @@ static int ir_lirc_register(struct rc_dev *dev)
 	if (!drv)
 		return rc;
 
+	rbuf = kzalloc(sizeof(struct lirc_buffer), GFP_KERNEL);
+	if (!rbuf)
+		goto rbuf_alloc_failed;
+
+	rc = lirc_buffer_init(rbuf, sizeof(int), LIRCBUF_SIZE);
+	if (rc)
+		goto rbuf_init_failed;
+
 	if (dev->driver_type != RC_DRIVER_IR_RAW_TX) {
 		features |= LIRC_CAN_REC_MODE2;
 		if (dev->rx_resolution)
 			features |= LIRC_CAN_GET_REC_RESOLUTION;
 	}
-
 	if (dev->tx_ir) {
 		features |= LIRC_CAN_SEND_PULSE;
 		if (dev->s_tx_mask)
@@ -385,10 +403,10 @@ static int ir_lirc_register(struct rc_dev *dev)
 	drv->minor = -1;
 	drv->features = features;
 	drv->data = &dev->raw->lirc;
-	drv->rbuf = NULL;
+	drv->rbuf = rbuf;
+	drv->set_use_inc = &ir_lirc_open;
+	drv->set_use_dec = &ir_lirc_close;
 	drv->code_length = sizeof(struct ir_raw_event) * 8;
-	drv->chunk_size = sizeof(int);
-	drv->buffer_size = LIRCBUF_SIZE;
 	drv->fops = &lirc_fops;
 	drv->dev = &dev->dev;
 	drv->rdev = dev;
@@ -397,15 +415,19 @@ static int ir_lirc_register(struct rc_dev *dev)
 	drv->minor = lirc_register_driver(drv);
 	if (drv->minor < 0) {
 		rc = -ENODEV;
-		goto out;
+		goto lirc_register_failed;
 	}
 
 	dev->raw->lirc.drv = drv;
 	dev->raw->lirc.dev = dev;
 	return 0;
 
-out:
+lirc_register_failed:
+rbuf_init_failed:
+	kfree(rbuf);
+rbuf_alloc_failed:
 	kfree(drv);
+
 	return rc;
 }
 
@@ -414,8 +436,9 @@ static int ir_lirc_unregister(struct rc_dev *dev)
 	struct lirc_codec *lirc = &dev->raw->lirc;
 
 	lirc_unregister_driver(lirc->drv->minor);
+	lirc_buffer_free(lirc->drv->rbuf);
+	kfree(lirc->drv->rbuf);
 	kfree(lirc->drv);
-	lirc->drv = NULL;
 
 	return 0;
 }

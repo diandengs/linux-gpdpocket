@@ -13,7 +13,6 @@
 #define _INTERNAL_H
 
 #include <linux/sched.h>
-#include <linux/wait_bit.h>
 #include <linux/cred.h>
 #include <linux/key-type.h>
 #include <linux/task_work.h>

@@ -3304,8 +3304,9 @@ static void ath10k_wmi_update_noa(struct ath10k *ar, struct ath10k_vif *arvif,
 
 	if (arvif->u.ap.noa_data)
 		if (!pskb_expand_head(bcn, 0, arvif->u.ap.noa_len, GFP_ATOMIC))
-			skb_put_data(bcn, arvif->u.ap.noa_data,
-			             arvif->u.ap.noa_len);
+			memcpy(skb_put(bcn, arvif->u.ap.noa_len),
+			       arvif->u.ap.noa_data,
+			       arvif->u.ap.noa_len);
 }
 
 static int ath10k_wmi_op_pull_swba_ev(struct ath10k *ar, struct sk_buff *skb,
@@ -4481,17 +4482,31 @@ static int ath10k_wmi_alloc_chunk(struct ath10k *ar, u32 req_id,
 				  u32 num_units, u32 unit_len)
 {
 	dma_addr_t paddr;
-	u32 pool_size;
+	u32 pool_size = 0;
 	int idx = ar->wmi.num_mem_chunks;
-	void *vaddr;
+	void *vaddr = NULL;
 
-	pool_size = num_units * round_up(unit_len, 4);
-	vaddr = dma_alloc_coherent(ar->dev, pool_size, &paddr, GFP_KERNEL);
-
-	if (!vaddr)
+	if (ar->wmi.num_mem_chunks == ARRAY_SIZE(ar->wmi.mem_chunks))
 		return -ENOMEM;
 
-	memset(vaddr, 0, pool_size);
+	while (!vaddr && num_units) {
+		pool_size = num_units * round_up(unit_len, 4);
+		if (!pool_size)
+			return -EINVAL;
+
+		vaddr = kzalloc(pool_size, GFP_KERNEL | __GFP_NOWARN);
+		if (!vaddr)
+			num_units /= 2;
+	}
+
+	if (!num_units)
+		return -ENOMEM;
+
+	paddr = dma_map_single(ar->dev, vaddr, pool_size, DMA_BIDIRECTIONAL);
+	if (dma_mapping_error(ar->dev, paddr)) {
+		kfree(vaddr);
+		return -ENOMEM;
+	}
 
 	ar->wmi.mem_chunks[idx].vaddr = vaddr;
 	ar->wmi.mem_chunks[idx].paddr = paddr;
@@ -5933,6 +5948,15 @@ static struct sk_buff *ath10k_wmi_10_4_op_gen_init(struct ath10k *ar)
 
 int ath10k_wmi_start_scan_verify(const struct wmi_start_scan_arg *arg)
 {
+	if (arg->ie_len && !arg->ie)
+		return -EINVAL;
+	if (arg->n_channels && !arg->channels)
+		return -EINVAL;
+	if (arg->n_ssids && !arg->ssids)
+		return -EINVAL;
+	if (arg->n_bssids && !arg->bssids)
+		return -EINVAL;
+
 	if (arg->ie_len > WLAN_SCAN_PARAMS_MAX_IE_LEN)
 		return -EINVAL;
 	if (arg->n_channels > ARRAY_SIZE(arg->channels))
@@ -6733,12 +6757,7 @@ ath10k_wmi_peer_assoc_fill_10_4(struct ath10k *ar, void *buf,
 	struct wmi_10_4_peer_assoc_complete_cmd *cmd = buf;
 
 	ath10k_wmi_peer_assoc_fill_10_2(ar, buf, arg);
-	if (arg->peer_bw_rxnss_override)
-		cmd->peer_bw_rxnss_override =
-			__cpu_to_le32((arg->peer_bw_rxnss_override - 1) |
-				      BIT(PEER_BW_RXNSS_OVERRIDE_OFFSET));
-	else
-		cmd->peer_bw_rxnss_override = 0;
+	cmd->peer_bw_rxnss_override = 0;
 }
 
 static int
@@ -8271,10 +8290,11 @@ void ath10k_wmi_free_host_mem(struct ath10k *ar)
 
 	/* free the host memory chunks requested by firmware */
 	for (i = 0; i < ar->wmi.num_mem_chunks; i++) {
-		dma_free_coherent(ar->dev,
-				  ar->wmi.mem_chunks[i].len,
-				  ar->wmi.mem_chunks[i].vaddr,
-				  ar->wmi.mem_chunks[i].paddr);
+		dma_unmap_single(ar->dev,
+				 ar->wmi.mem_chunks[i].paddr,
+				 ar->wmi.mem_chunks[i].len,
+				 DMA_BIDIRECTIONAL);
+		kfree(ar->wmi.mem_chunks[i].vaddr);
 	}
 
 	ar->wmi.num_mem_chunks = 0;

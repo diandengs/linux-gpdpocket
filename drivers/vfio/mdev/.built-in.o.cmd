@@ -1,1 +1,1 @@
-cmd_drivers/vfio/mdev/built-in.o :=  rm -f drivers/vfio/mdev/built-in.o; ar rcSTPD drivers/vfio/mdev/built-in.o
+cmd_drivers/vfio/mdev/built-in.o :=  rm -f drivers/vfio/mdev/built-in.o; ar rcsD drivers/vfio/mdev/built-in.o

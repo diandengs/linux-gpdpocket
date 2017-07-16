@@ -530,8 +530,7 @@ nla_put_failure:
 
 static int nfnl_compat_get(struct net *net, struct sock *nfnl,
 			   struct sk_buff *skb, const struct nlmsghdr *nlh,
-			   const struct nlattr * const tb[],
-			   struct netlink_ext_ack *extack)
+			   const struct nlattr * const tb[])
 {
 	int ret = 0, target;
 	struct nfgenmsg *nfmsg;

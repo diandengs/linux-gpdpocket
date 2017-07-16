@@ -1,1 +1,0 @@
-cmd_drivers/net/ethernet/mellanox/mlxfw/mlxfw.o := ld -m elf_x86_64   -r -o drivers/net/ethernet/mellanox/mlxfw/mlxfw.o drivers/net/ethernet/mellanox/mlxfw/mlxfw_fsm.o drivers/net/ethernet/mellanox/mlxfw/mlxfw_mfa2_tlv_multi.o drivers/net/ethernet/mellanox/mlxfw/mlxfw_mfa2.o 

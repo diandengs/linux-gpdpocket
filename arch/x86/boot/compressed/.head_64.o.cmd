@@ -1,4 +1,4 @@
-cmd_arch/x86/boot/compressed/head_64.o := gcc -Wp,-MD,arch/x86/boot/compressed/.head_64.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -m64 -D__KERNEL__ -O2 -fno-strict-aliasing -fPIE -DDISABLE_BRANCH_PROFILING -mcmodel=small -mno-mmx -mno-sse -ffreestanding -fno-stack-protector -D__ASSEMBLY__   -c -o arch/x86/boot/compressed/head_64.o arch/x86/boot/compressed/head_64.S
+cmd_arch/x86/boot/compressed/head_64.o := gcc -Wp,-MD,arch/x86/boot/compressed/.head_64.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -m64 -D__KERNEL__ -O2 -fno-strict-aliasing -fPIE -DDISABLE_BRANCH_PROFILING -mcmodel=small -mno-mmx -mno-sse -ffreestanding -fno-stack-protector -D__ASSEMBLY__   -c -o arch/x86/boot/compressed/head_64.o arch/x86/boot/compressed/head_64.S
 
 source_arch/x86/boot/compressed/head_64.o := arch/x86/boot/compressed/head_64.S
 
@@ -6,11 +6,11 @@ deps_arch/x86/boot/compressed/head_64.o := \
     $(wildcard include/config/relocatable.h) \
     $(wildcard include/config/efi/mixed.h) \
     $(wildcard include/config/efi/stub.h) \
-    $(wildcard include/config/x86/5level.h) \
   include/linux/init.h \
     $(wildcard include/config/strict/kernel/rwx.h) \
     $(wildcard include/config/strict/module/rwx.h) \
   include/linux/compiler.h \
+    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/kasan.h) \
@@ -71,6 +71,7 @@ deps_arch/x86/boot/compressed/head_64.o := \
     $(wildcard include/config/proc/fs.h) \
   arch/x86/include/asm/page_types.h \
   arch/x86/include/asm/page_64_types.h \
+    $(wildcard include/config/x86/5level.h) \
     $(wildcard include/config/randomize/memory.h) \
   arch/x86/include/asm/pgtable_64_types.h \
   arch/x86/include/asm/sparsemem.h \

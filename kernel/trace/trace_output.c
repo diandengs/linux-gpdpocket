@@ -340,41 +340,31 @@ static inline const char *kretprobed(const char *name)
 static void
 seq_print_sym_short(struct trace_seq *s, const char *fmt, unsigned long address)
 {
-	char str[KSYM_SYMBOL_LEN];
 #ifdef CONFIG_KALLSYMS
+	char str[KSYM_SYMBOL_LEN];
 	const char *name;
 
 	kallsyms_lookup(address, NULL, NULL, NULL, str);
 
 	name = kretprobed(str);
 
-	if (name && strlen(name)) {
-		trace_seq_printf(s, fmt, name);
-		return;
-	}
+	trace_seq_printf(s, fmt, name);
 #endif
-	snprintf(str, KSYM_SYMBOL_LEN, "0x%08lx", address);
-	trace_seq_printf(s, fmt, str);
 }
 
 static void
 seq_print_sym_offset(struct trace_seq *s, const char *fmt,
 		     unsigned long address)
 {
-	char str[KSYM_SYMBOL_LEN];
 #ifdef CONFIG_KALLSYMS
+	char str[KSYM_SYMBOL_LEN];
 	const char *name;
 
 	sprint_symbol(str, address);
 	name = kretprobed(str);
 
-	if (name && strlen(name)) {
-		trace_seq_printf(s, fmt, name);
-		return;
-	}
+	trace_seq_printf(s, fmt, name);
 #endif
-	snprintf(str, KSYM_SYMBOL_LEN, "0x%08lx", address);
-	trace_seq_printf(s, fmt, str);
 }
 
 #ifndef CONFIG_64BIT
@@ -596,15 +586,6 @@ int trace_print_context(struct trace_iterator *iter)
 
 	trace_seq_printf(s, "%16s-%-5d [%03d] ",
 			       comm, entry->pid, iter->cpu);
-
-	if (tr->trace_flags & TRACE_ITER_RECORD_TGID) {
-		unsigned int tgid = trace_find_tgid(entry->pid);
-
-		if (!tgid)
-			trace_seq_printf(s, "(-----) ");
-		else
-			trace_seq_printf(s, "(%5d) ", tgid);
-	}
 
 	if (tr->trace_flags & TRACE_ITER_IRQ_INFO)
 		trace_print_lat_fmt(s, entry);

@@ -72,6 +72,7 @@ int rtw_os_recvbuf_resource_free(struct adapter *padapter, struct recv_buf *prec
 _pkt *rtw_os_alloc_msdu_pkt(union recv_frame *prframe, u16 nSubframe_Length, u8 *pdata)
 {
 	u16 eth_type;
+	u8 *data_ptr;
 	_pkt *sub_skb;
 	struct rx_pkt_attrib *pattrib;
 
@@ -81,7 +82,8 @@ _pkt *rtw_os_alloc_msdu_pkt(union recv_frame *prframe, u16 nSubframe_Length, u8 
 	if (sub_skb)
 	{
 		skb_reserve(sub_skb, 12);
-		skb_put_data(sub_skb, (pdata + ETH_HLEN), nSubframe_Length);
+		data_ptr = (u8 *)skb_put(sub_skb, nSubframe_Length);
+		memcpy(data_ptr, (pdata + ETH_HLEN), nSubframe_Length);
 	}
 	else
 	{

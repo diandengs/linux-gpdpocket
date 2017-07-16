@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -24,6 +23,6 @@ __attribute__((section(".modinfo"))) =
 
 MODULE_ALIAS("i2c:rt5677");
 MODULE_ALIAS("i2c:rt5676");
+MODULE_ALIAS("i2c:RT5677CE:00");
 MODULE_ALIAS("of:N*T*Crealtek,rt5677");
 MODULE_ALIAS("of:N*T*Crealtek,rt5677C*");
-MODULE_ALIAS("acpi*:RT5677CE:*");

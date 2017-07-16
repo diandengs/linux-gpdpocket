@@ -167,11 +167,10 @@ static int __init gic_clocksource_of_init(struct device_node *node)
 
 	clk = of_clk_get(node, 0);
 	if (!IS_ERR(clk)) {
-		ret = clk_prepare_enable(clk);
-		if (ret < 0) {
+		if (clk_prepare_enable(clk) < 0) {
 			pr_err("GIC failed to enable clock\n");
 			clk_put(clk);
-			return ret;
+			return PTR_ERR(clk);
 		}
 
 		gic_frequency = clk_get_rate(clk);
@@ -201,5 +200,5 @@ static int __init gic_clocksource_of_init(struct device_node *node)
 
 	return 0;
 }
-TIMER_OF_DECLARE(mips_gic_timer, "mti,gic-timer",
+CLOCKSOURCE_OF_DECLARE(mips_gic_timer, "mti,gic-timer",
 		       gic_clocksource_of_init);

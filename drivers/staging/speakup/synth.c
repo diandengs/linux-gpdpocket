@@ -120,16 +120,9 @@ EXPORT_SYMBOL_GPL(spk_do_catch_up);
 
 void spk_synth_flush(struct spk_synth *synth)
 {
-	synth->io_ops->flush_buffer();
 	synth->io_ops->synth_out(synth, synth->clear);
 }
 EXPORT_SYMBOL_GPL(spk_synth_flush);
-
-unsigned char spk_synth_get_index(struct spk_synth *synth)
-{
-	return synth->io_ops->synth_in_nowait();
-}
-EXPORT_SYMBOL_GPL(spk_synth_get_index);
 
 int spk_synth_is_alive_nop(struct spk_synth *synth)
 {
@@ -256,7 +249,7 @@ void spk_reset_index_count(int sc)
 	if (first)
 		first = 0;
 	else
-		synth->get_index(synth);
+		synth->get_index();
 	index_count = 0;
 	sentence_count = sc;
 }
@@ -289,7 +282,7 @@ void synth_insert_next_index(int sent_num)
 
 void spk_get_index_count(int *linecount, int *sentcount)
 {
-	int ind = synth->get_index(synth);
+	int ind = synth->get_index();
 
 	if (ind) {
 		sentence_count = ind % 10;
@@ -445,15 +438,10 @@ int synth_add(struct spk_synth *in_synth)
 		mutex_unlock(&spk_mutex);
 		return -1;
 	}
-
+	synths[i++] = in_synth;
+	synths[i] = NULL;
 	if (in_synth->startup)
 		status = do_synth_init(in_synth);
-
-	if (!status) {
-		synths[i++] = in_synth;
-		synths[i] = NULL;
-	}
-
 	mutex_unlock(&spk_mutex);
 	return status;
 }

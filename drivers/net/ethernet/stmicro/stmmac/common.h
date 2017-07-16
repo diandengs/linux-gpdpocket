@@ -549,11 +549,9 @@ extern const struct stmmac_hwtimestamp stmmac_ptp;
 extern const struct stmmac_mode_ops dwmac4_ring_mode_ops;
 
 struct mac_link {
-	u32 speed_mask;
-	u32 speed10;
-	u32 speed100;
-	u32 speed1000;
-	u32 duplex;
+	int port;
+	int duplex;
+	int speed;
 };
 
 struct mii_regs {

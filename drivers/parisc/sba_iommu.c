@@ -93,8 +93,6 @@
 
 #define DEFAULT_DMA_HINT_REG	0
 
-#define SBA_MAPPING_ERROR    (~(dma_addr_t)0)
-
 struct sba_device *sba_list;
 EXPORT_SYMBOL_GPL(sba_list);
 
@@ -693,8 +691,6 @@ static int sba_dma_supported( struct device *dev, u64 mask)
 		return 0;
 
 	ioc = GET_IOC(dev);
-	if (!ioc)
-		return 0;
 
 	/*
 	 * check if mask is >= than the current max IO Virt Address
@@ -726,8 +722,6 @@ sba_map_single(struct device *dev, void *addr, size_t size,
 	int pide;
 
 	ioc = GET_IOC(dev);
-	if (!ioc)
-		return SBA_MAPPING_ERROR;
 
 	/* save offset bits */
 	offset = ((dma_addr_t) (long) addr) & ~IOVP_MASK;
@@ -819,10 +813,6 @@ sba_unmap_page(struct device *dev, dma_addr_t iova, size_t size,
 	DBG_RUN("%s() iovp 0x%lx/%x\n", __func__, (long) iova, size);
 
 	ioc = GET_IOC(dev);
-	if (!ioc) {
-		WARN_ON(!ioc);
-		return;
-	}
 	offset = iova & ~IOVP_MASK;
 	iova ^= offset;        /* clear offset bits */
 	size += offset;
@@ -962,8 +952,6 @@ sba_map_sg(struct device *dev, struct scatterlist *sglist, int nents,
 	DBG_RUN_SG("%s() START %d entries\n", __func__, nents);
 
 	ioc = GET_IOC(dev);
-	if (!ioc)
-		return 0;
 
 	/* Fast path single entry scatterlists. */
 	if (nents == 1) {
@@ -1049,10 +1037,6 @@ sba_unmap_sg(struct device *dev, struct scatterlist *sglist, int nents,
 		__func__, nents, sg_virt(sglist), sglist->length);
 
 	ioc = GET_IOC(dev);
-	if (!ioc) {
-		WARN_ON(!ioc);
-		return;
-	}
 
 #ifdef SBA_COLLECT_STATS
 	ioc->usg_calls++;
@@ -1085,11 +1069,6 @@ sba_unmap_sg(struct device *dev, struct scatterlist *sglist, int nents,
 
 }
 
-static int sba_mapping_error(struct device *dev, dma_addr_t dma_addr)
-{
-	return dma_addr == SBA_MAPPING_ERROR;
-}
-
 static const struct dma_map_ops sba_ops = {
 	.dma_supported =	sba_dma_supported,
 	.alloc =		sba_alloc,
@@ -1098,7 +1077,6 @@ static const struct dma_map_ops sba_ops = {
 	.unmap_page =		sba_unmap_page,
 	.map_sg =		sba_map_sg,
 	.unmap_sg =		sba_unmap_sg,
-	.mapping_error =	sba_mapping_error,
 };
 
 

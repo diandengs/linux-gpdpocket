@@ -1,1 +1,0 @@
-cmd_drivers/input/keyboard/dlink-dir685-touchkeys.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/keyboard/dlink-dir685-touchkeys.ko drivers/input/keyboard/dlink-dir685-touchkeys.o drivers/input/keyboard/dlink-dir685-touchkeys.mod.o ;  true

@@ -1,1 +1,1 @@
-cmd_fs/hugetlbfs/hugetlbfs.o := rm -f fs/hugetlbfs/hugetlbfs.o; ar rcSTPD fs/hugetlbfs/hugetlbfs.o fs/hugetlbfs/inode.o
+cmd_fs/hugetlbfs/hugetlbfs.o := ld -m elf_x86_64   -r -o fs/hugetlbfs/hugetlbfs.o fs/hugetlbfs/inode.o 

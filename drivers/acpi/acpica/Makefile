@@ -172,7 +172,6 @@ acpi-y +=		\
 	utosi.o		\
 	utownerid.o	\
 	utpredef.o	\
-	utresdecode.o	\
 	utresrc.o	\
 	utstate.o	\
 	utstring.o	\

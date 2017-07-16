@@ -1,4 +1,4 @@
-cmd_arch/x86/boot/compressed/cpuflags.o := gcc -Wp,-MD,arch/x86/boot/compressed/.cpuflags.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -m64 -D__KERNEL__ -O2 -fno-strict-aliasing -fPIE -DDISABLE_BRANCH_PROFILING -mcmodel=small -mno-mmx -mno-sse -ffreestanding -fno-stack-protector    -DKBUILD_BASENAME='"cpuflags"'  -DKBUILD_MODNAME='"cpuflags"' -c -o arch/x86/boot/compressed/cpuflags.o arch/x86/boot/compressed/cpuflags.c
+cmd_arch/x86/boot/compressed/cpuflags.o := gcc -Wp,-MD,arch/x86/boot/compressed/.cpuflags.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -m64 -D__KERNEL__ -O2 -fno-strict-aliasing -fPIE -DDISABLE_BRANCH_PROFILING -mcmodel=small -mno-mmx -mno-sse -ffreestanding -fno-stack-protector    -DKBUILD_BASENAME='"cpuflags"'  -DKBUILD_MODNAME='"cpuflags"' -c -o arch/x86/boot/compressed/cpuflags.o arch/x86/boot/compressed/cpuflags.c
 
 source_arch/x86/boot/compressed/cpuflags.o := arch/x86/boot/compressed/cpuflags.c
 
@@ -24,6 +24,7 @@ deps_arch/x86/boot/compressed/cpuflags.o := \
   include/linux/stddef.h \
   include/uapi/linux/stddef.h \
   include/linux/compiler.h \
+    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/kasan.h) \
@@ -42,13 +43,13 @@ deps_arch/x86/boot/compressed/cpuflags.o := \
   arch/x86/boot/compressed/../bitops.h \
   arch/x86/include/asm/processor-flags.h \
     $(wildcard include/config/vm86.h) \
-    $(wildcard include/config/x86/64.h) \
   arch/x86/include/uapi/asm/processor-flags.h \
   include/uapi/linux/const.h \
   arch/x86/include/asm/required-features.h \
     $(wildcard include/config/x86/minimum/cpu/family.h) \
     $(wildcard include/config/math/emulation.h) \
     $(wildcard include/config/x86/pae.h) \
+    $(wildcard include/config/x86/64.h) \
     $(wildcard include/config/x86/cmpxchg64.h) \
     $(wildcard include/config/x86/cmov.h) \
     $(wildcard include/config/x86/use/3dnow.h) \

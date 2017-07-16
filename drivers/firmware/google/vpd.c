@@ -118,12 +118,13 @@ static int vpd_section_attrib_add(const u8 *key, s32 key_len,
 	info = kzalloc(sizeof(*info), GFP_KERNEL);
 	if (!info)
 		return -ENOMEM;
-
-	info->key = kstrndup(key, key_len, GFP_KERNEL);
+	info->key = kzalloc(key_len + 1, GFP_KERNEL);
 	if (!info->key) {
 		ret = -ENOMEM;
 		goto free_info;
 	}
+
+	memcpy(info->key, key, key_len);
 
 	sysfs_bin_attr_init(&info->bin_attr);
 	info->bin_attr.attr.name = info->key;
@@ -190,7 +191,8 @@ static int vpd_section_create_attribs(struct vpd_section *sec)
 static int vpd_section_init(const char *name, struct vpd_section *sec,
 			    phys_addr_t physaddr, size_t size)
 {
-	int err;
+	int ret;
+	int raw_len;
 
 	sec->baseaddr = memremap(physaddr, size, MEMREMAP_WB);
 	if (!sec->baseaddr)
@@ -199,11 +201,10 @@ static int vpd_section_init(const char *name, struct vpd_section *sec,
 	sec->name = name;
 
 	/* We want to export the raw partion with name ${name}_raw */
-	sec->raw_name = kasprintf(GFP_KERNEL, "%s_raw", name);
-	if (!sec->raw_name) {
-		err = -ENOMEM;
-		goto err_iounmap;
-	}
+	raw_len = strlen(name) + 5;
+	sec->raw_name = kzalloc(raw_len, GFP_KERNEL);
+	strncpy(sec->raw_name, name, raw_len);
+	strncat(sec->raw_name, "_raw", raw_len);
 
 	sysfs_bin_attr_init(&sec->bin_attr);
 	sec->bin_attr.attr.name = sec->raw_name;
@@ -212,14 +213,14 @@ static int vpd_section_init(const char *name, struct vpd_section *sec,
 	sec->bin_attr.read = vpd_section_read;
 	sec->bin_attr.private = sec;
 
-	err = sysfs_create_bin_file(vpd_kobj, &sec->bin_attr);
-	if (err)
-		goto err_free_raw_name;
+	ret = sysfs_create_bin_file(vpd_kobj, &sec->bin_attr);
+	if (ret)
+		goto free_sec;
 
 	sec->kobj = kobject_create_and_add(name, vpd_kobj);
 	if (!sec->kobj) {
-		err = -EINVAL;
-		goto err_sysfs_remove;
+		ret = -EINVAL;
+		goto sysfs_remove;
 	}
 
 	INIT_LIST_HEAD(&sec->attribs);
@@ -229,13 +230,14 @@ static int vpd_section_init(const char *name, struct vpd_section *sec,
 
 	return 0;
 
-err_sysfs_remove:
+sysfs_remove:
 	sysfs_remove_bin_file(vpd_kobj, &sec->bin_attr);
-err_free_raw_name:
+
+free_sec:
 	kfree(sec->raw_name);
-err_iounmap:
 	iounmap(sec->baseaddr);
-	return err;
+
+	return ret;
 }
 
 static int vpd_section_destroy(struct vpd_section *sec)
@@ -316,6 +318,9 @@ static int __init vpd_platform_init(void)
 	vpd_kobj = kobject_create_and_add("vpd", firmware_kobj);
 	if (!vpd_kobj)
 		return -ENOMEM;
+
+	memset(&ro_vpd, 0, sizeof(ro_vpd));
+	memset(&rw_vpd, 0, sizeof(rw_vpd));
 
 	platform_driver_register(&vpd_driver);
 

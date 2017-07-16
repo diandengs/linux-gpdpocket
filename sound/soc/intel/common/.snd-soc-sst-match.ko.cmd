@@ -1,0 +1,1 @@
+cmd_sound/soc/intel/common/snd-soc-sst-match.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/soc/intel/common/snd-soc-sst-match.ko sound/soc/intel/common/snd-soc-sst-match.o sound/soc/intel/common/snd-soc-sst-match.mod.o ;  true

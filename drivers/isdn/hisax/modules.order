@@ -1,0 +1,9 @@
+kernel/drivers/isdn/hisax/hisax.ko
+kernel/drivers/isdn/hisax/sedlbauer_cs.ko
+kernel/drivers/isdn/hisax/elsa_cs.ko
+kernel/drivers/isdn/hisax/avma1_cs.ko
+kernel/drivers/isdn/hisax/teles_cs.ko
+kernel/drivers/isdn/hisax/hisax_st5481.ko
+kernel/drivers/isdn/hisax/hfc4s8s_l1.ko
+kernel/drivers/isdn/hisax/hisax_isac.ko
+kernel/drivers/isdn/hisax/hisax_fcpcipnp.ko

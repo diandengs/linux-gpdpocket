@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/ralink/rt2x00/rt2x00mmio.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/wireless/ralink/rt2x00/rt2x00mmio.ko drivers/net/wireless/ralink/rt2x00/rt2x00mmio.o drivers/net/wireless/ralink/rt2x00/rt2x00mmio.mod.o ;  true

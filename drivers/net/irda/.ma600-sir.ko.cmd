@@ -1,0 +1,1 @@
+cmd_drivers/net/irda/ma600-sir.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/irda/ma600-sir.ko drivers/net/irda/ma600-sir.o drivers/net/irda/ma600-sir.mod.o ;  true

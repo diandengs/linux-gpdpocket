@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/zoran/zr36067.o := ld -m elf_x86_64   -r -o drivers/media/pci/zoran/zr36067.o drivers/media/pci/zoran/zoran_procfs.o drivers/media/pci/zoran/zoran_device.o drivers/media/pci/zoran/zoran_driver.o drivers/media/pci/zoran/zoran_card.o 

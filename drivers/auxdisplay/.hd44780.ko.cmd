@@ -1,0 +1,1 @@
+cmd_drivers/auxdisplay/hd44780.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/auxdisplay/hd44780.ko drivers/auxdisplay/hd44780.o drivers/auxdisplay/hd44780.mod.o ;  true

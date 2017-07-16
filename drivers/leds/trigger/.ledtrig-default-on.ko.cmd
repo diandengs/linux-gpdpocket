@@ -1,0 +1,1 @@
+cmd_drivers/leds/trigger/ledtrig-default-on.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/leds/trigger/ledtrig-default-on.ko drivers/leds/trigger/ledtrig-default-on.o drivers/leds/trigger/ledtrig-default-on.mod.o ;  true

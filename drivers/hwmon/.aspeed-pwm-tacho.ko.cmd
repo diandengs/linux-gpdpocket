@@ -1,0 +1,1 @@
+cmd_drivers/hwmon/aspeed-pwm-tacho.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/hwmon/aspeed-pwm-tacho.ko drivers/hwmon/aspeed-pwm-tacho.o drivers/hwmon/aspeed-pwm-tacho.mod.o ;  true

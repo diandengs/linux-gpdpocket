@@ -1,0 +1,1 @@
+cmd_drivers/media/mmc/siano/smssdio.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/mmc/siano/smssdio.ko drivers/media/mmc/siano/smssdio.o drivers/media/mmc/siano/smssdio.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/mb86a20s.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/mb86a20s.ko drivers/media/dvb-frontends/mb86a20s.o drivers/media/dvb-frontends/mb86a20s.mod.o ;  true

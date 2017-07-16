@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/keymaps/rc-msi-tvanywhere.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/keymaps/rc-msi-tvanywhere.ko drivers/media/rc/keymaps/rc-msi-tvanywhere.o drivers/media/rc/keymaps/rc-msi-tvanywhere.mod.o ;  true

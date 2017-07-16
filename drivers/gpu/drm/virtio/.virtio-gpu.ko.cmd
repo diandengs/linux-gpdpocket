@@ -1,0 +1,1 @@
+cmd_drivers/gpu/drm/virtio/virtio-gpu.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/gpu/drm/virtio/virtio-gpu.ko drivers/gpu/drm/virtio/virtio-gpu.o drivers/gpu/drm/virtio/virtio-gpu.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/realtek/rtlwifi/rtl8192ee/rtl8192ee.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/wireless/realtek/rtlwifi/rtl8192ee/rtl8192ee.ko drivers/net/wireless/realtek/rtlwifi/rtl8192ee/rtl8192ee.o drivers/net/wireless/realtek/rtlwifi/rtl8192ee/rtl8192ee.mod.o ;  true

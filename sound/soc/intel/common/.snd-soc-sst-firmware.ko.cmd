@@ -1,0 +1,1 @@
+cmd_sound/soc/intel/common/snd-soc-sst-firmware.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/soc/intel/common/snd-soc-sst-firmware.ko sound/soc/intel/common/snd-soc-sst-firmware.o sound/soc/intel/common/snd-soc-sst-firmware.mod.o ;  true

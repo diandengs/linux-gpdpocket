@@ -1,0 +1,4 @@
+kernel/drivers/misc/mic/bus/mic_bus.ko
+kernel/drivers/misc/mic/bus/scif_bus.ko
+kernel/drivers/misc/mic/bus/cosm_bus.ko
+kernel/drivers/misc/mic/bus/vop_bus.ko

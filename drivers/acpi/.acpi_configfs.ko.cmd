@@ -1,0 +1,1 @@
+cmd_drivers/acpi/acpi_configfs.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/acpi/acpi_configfs.ko drivers/acpi/acpi_configfs.o drivers/acpi/acpi_configfs.mod.o ;  true

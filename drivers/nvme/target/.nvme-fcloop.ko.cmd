@@ -1,0 +1,1 @@
+cmd_drivers/nvme/target/nvme-fcloop.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/nvme/target/nvme-fcloop.ko drivers/nvme/target/nvme-fcloop.o drivers/nvme/target/nvme-fcloop.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/cpufreq/speedstep-lib.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/cpufreq/speedstep-lib.ko drivers/cpufreq/speedstep-lib.o drivers/cpufreq/speedstep-lib.mod.o ;  true

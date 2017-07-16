@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/saa7134/saa7134.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/pci/saa7134/saa7134.ko drivers/media/pci/saa7134/saa7134.o drivers/media/pci/saa7134/saa7134.mod.o ;  true

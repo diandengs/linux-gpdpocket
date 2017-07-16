@@ -1,0 +1,1 @@
+cmd_drivers/base/test/test_async_driver_probe.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/base/test/test_async_driver_probe.ko drivers/base/test/test_async_driver_probe.o drivers/base/test/test_async_driver_probe.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_usr/include/scsi/fc/.check := for f in fc_els.h fc_gs.h fc_ns.h fc_fs.h  ; do echo "./usr/include/scsi/fc/$${f}"; done | xargs perl scripts/headers_check.pl ./usr/include x86; touch usr/include/scsi/fc/.check

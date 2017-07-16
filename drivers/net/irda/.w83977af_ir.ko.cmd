@@ -1,0 +1,1 @@
+cmd_drivers/net/irda/w83977af_ir.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/irda/w83977af_ir.ko drivers/net/irda/w83977af_ir.o drivers/net/irda/w83977af_ir.mod.o ;  true

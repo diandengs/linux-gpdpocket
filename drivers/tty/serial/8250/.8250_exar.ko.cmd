@@ -1,0 +1,1 @@
+cmd_drivers/tty/serial/8250/8250_exar.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/tty/serial/8250/8250_exar.ko drivers/tty/serial/8250/8250_exar.o drivers/tty/serial/8250/8250_exar.mod.o ;  true

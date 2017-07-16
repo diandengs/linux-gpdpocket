@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/tda10048.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/tda10048.ko drivers/media/dvb-frontends/tda10048.o drivers/media/dvb-frontends/tda10048.mod.o ;  true

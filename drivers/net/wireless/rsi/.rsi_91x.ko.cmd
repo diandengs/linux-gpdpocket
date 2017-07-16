@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/rsi/rsi_91x.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/wireless/rsi/rsi_91x.ko drivers/net/wireless/rsi/rsi_91x.o drivers/net/wireless/rsi/rsi_91x.mod.o ;  true

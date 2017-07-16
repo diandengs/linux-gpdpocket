@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/zoran/videocodec.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/pci/zoran/videocodec.ko drivers/media/pci/zoran/videocodec.o drivers/media/pci/zoran/videocodec.mod.o ;  true

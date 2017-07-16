@@ -1,0 +1,1 @@
+cmd_drivers/platform/x86/panasonic-laptop.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/x86/panasonic-laptop.ko drivers/platform/x86/panasonic-laptop.o drivers/platform/x86/panasonic-laptop.mod.o ;  true

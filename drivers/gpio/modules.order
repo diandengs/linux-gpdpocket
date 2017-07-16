@@ -1,0 +1,4 @@
+kernel/drivers/gpio/gpio-exar.ko
+kernel/drivers/gpio/gpio-ich.ko
+kernel/drivers/gpio/gpio-pci-idio-16.ko
+kernel/drivers/gpio/gpio-viperboard.ko

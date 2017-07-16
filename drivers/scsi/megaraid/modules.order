@@ -1,0 +1,3 @@
+kernel/drivers/scsi/megaraid/megaraid_mm.ko
+kernel/drivers/scsi/megaraid/megaraid_mbox.ko
+kernel/drivers/scsi/megaraid/megaraid_sas.ko

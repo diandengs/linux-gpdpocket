@@ -1,0 +1,11 @@
+kernel/drivers/mfd/sm501.ko
+kernel/drivers/mfd/rtsx_pci.ko
+kernel/drivers/mfd/rtsx_usb.ko
+kernel/drivers/mfd/lpc_sch.ko
+kernel/drivers/mfd/lpc_ich.ko
+kernel/drivers/mfd/vx855.ko
+kernel/drivers/mfd/wl1273-core.ko
+kernel/drivers/mfd/intel-lpss.ko
+kernel/drivers/mfd/intel-lpss-pci.ko
+kernel/drivers/mfd/intel-lpss-acpi.ko
+kernel/drivers/mfd/viperboard.ko

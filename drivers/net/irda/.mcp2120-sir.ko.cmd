@@ -1,0 +1,1 @@
+cmd_drivers/net/irda/mcp2120-sir.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/irda/mcp2120-sir.ko drivers/net/irda/mcp2120-sir.o drivers/net/irda/mcp2120-sir.mod.o ;  true

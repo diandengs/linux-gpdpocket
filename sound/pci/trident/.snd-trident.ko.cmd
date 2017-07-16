@@ -1,0 +1,1 @@
+cmd_sound/pci/trident/snd-trident.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/pci/trident/snd-trident.ko sound/pci/trident/snd-trident.o sound/pci/trident/snd-trident.mod.o ;  true

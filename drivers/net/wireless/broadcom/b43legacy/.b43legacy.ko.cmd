@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/broadcom/b43legacy/b43legacy.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/wireless/broadcom/b43legacy/b43legacy.ko drivers/net/wireless/broadcom/b43legacy/b43legacy.o drivers/net/wireless/broadcom/b43legacy/b43legacy.mod.o ;  true

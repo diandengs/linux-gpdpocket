@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/keymaps/rc-avermedia-a16d.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/keymaps/rc-avermedia-a16d.ko drivers/media/rc/keymaps/rc-avermedia-a16d.o drivers/media/rc/keymaps/rc-avermedia-a16d.mod.o ;  true

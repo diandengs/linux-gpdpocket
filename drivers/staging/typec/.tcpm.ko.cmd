@@ -1,0 +1,1 @@
+cmd_drivers/staging/typec/tcpm.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/staging/typec/tcpm.ko drivers/staging/typec/tcpm.o drivers/staging/typec/tcpm.mod.o ;  true

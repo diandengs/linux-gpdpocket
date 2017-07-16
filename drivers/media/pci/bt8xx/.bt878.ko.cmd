@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/bt8xx/bt878.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/pci/bt8xx/bt878.ko drivers/media/pci/bt8xx/bt878.o drivers/media/pci/bt8xx/bt878.mod.o ;  true

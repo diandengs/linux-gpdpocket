@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/netup_unidvb/netup-unidvb.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/pci/netup_unidvb/netup-unidvb.ko drivers/media/pci/netup_unidvb/netup-unidvb.o drivers/media/pci/netup_unidvb/netup-unidvb.mod.o ;  true

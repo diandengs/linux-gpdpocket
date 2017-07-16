@@ -1,0 +1,1 @@
+cmd_drivers/acpi/dptf/dptf_power.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/acpi/dptf/dptf_power.ko drivers/acpi/dptf/dptf_power.o drivers/acpi/dptf/dptf_power.mod.o ;  true

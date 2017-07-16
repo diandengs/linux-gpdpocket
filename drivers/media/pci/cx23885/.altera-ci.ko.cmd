@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/cx23885/altera-ci.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/pci/cx23885/altera-ci.ko drivers/media/pci/cx23885/altera-ci.o drivers/media/pci/cx23885/altera-ci.mod.o ;  true

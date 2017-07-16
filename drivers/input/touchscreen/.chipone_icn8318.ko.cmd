@@ -1,0 +1,1 @@
+cmd_drivers/input/touchscreen/chipone_icn8318.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/touchscreen/chipone_icn8318.ko drivers/input/touchscreen/chipone_icn8318.o drivers/input/touchscreen/chipone_icn8318.mod.o ;  true

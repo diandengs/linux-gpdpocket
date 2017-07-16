@@ -1,0 +1,1 @@
+cmd_drivers/input/serio/hyperv-keyboard.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/serio/hyperv-keyboard.ko drivers/input/serio/hyperv-keyboard.o drivers/input/serio/hyperv-keyboard.mod.o ;  true

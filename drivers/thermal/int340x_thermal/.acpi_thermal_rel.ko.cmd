@@ -1,0 +1,1 @@
+cmd_drivers/thermal/int340x_thermal/acpi_thermal_rel.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/thermal/int340x_thermal/acpi_thermal_rel.ko drivers/thermal/int340x_thermal/acpi_thermal_rel.o drivers/thermal/int340x_thermal/acpi_thermal_rel.mod.o ;  true

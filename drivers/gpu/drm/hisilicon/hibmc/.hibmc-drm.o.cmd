@@ -1,0 +1,1 @@
+cmd_drivers/gpu/drm/hisilicon/hibmc/hibmc-drm.o := ld -m elf_x86_64   -r -o drivers/gpu/drm/hisilicon/hibmc/hibmc-drm.o drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.o drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.o drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.o drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.o drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.o 

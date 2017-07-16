@@ -1,0 +1,1 @@
+cmd_sound/soc/intel/atom/sst/snd-intel-sst-core.o := ld -m elf_x86_64   -r -o sound/soc/intel/atom/sst/snd-intel-sst-core.o sound/soc/intel/atom/sst/sst.o sound/soc/intel/atom/sst/sst_ipc.o sound/soc/intel/atom/sst/sst_stream.o sound/soc/intel/atom/sst/sst_drv_interface.o sound/soc/intel/atom/sst/sst_loader.o sound/soc/intel/atom/sst/sst_pvt.o 

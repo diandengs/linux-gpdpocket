@@ -1,0 +1,1 @@
+cmd_drivers/net/can/sja1000/sja1000.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/can/sja1000/sja1000.ko drivers/net/can/sja1000/sja1000.o drivers/net/can/sja1000/sja1000.mod.o ;  true

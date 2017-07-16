@@ -1,0 +1,1 @@
+cmd_drivers/media/radio/radio-wl1273.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/radio/radio-wl1273.ko drivers/media/radio/radio-wl1273.o drivers/media/radio/radio-wl1273.mod.o ;  true

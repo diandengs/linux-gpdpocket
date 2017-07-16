@@ -1,0 +1,4 @@
+kernel/drivers/scsi/cxgbi/libcxgbi.ko
+kernel/drivers/scsi/cxgbi/cxgb3i/cxgb3i.ko
+kernel/drivers/scsi/cxgbi/libcxgbi.ko
+kernel/drivers/scsi/cxgbi/cxgb4i/cxgb4i.ko

@@ -1,0 +1,1 @@
+cmd_drivers/usb/gadget/function/usb_f_ncm.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/usb/gadget/function/usb_f_ncm.ko drivers/usb/gadget/function/usb_f_ncm.o drivers/usb/gadget/function/usb_f_ncm.mod.o ;  true

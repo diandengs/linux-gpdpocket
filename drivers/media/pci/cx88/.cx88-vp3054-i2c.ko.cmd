@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/cx88/cx88-vp3054-i2c.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/pci/cx88/cx88-vp3054-i2c.ko drivers/media/pci/cx88/cx88-vp3054-i2c.o drivers/media/pci/cx88/cx88-vp3054-i2c.mod.o ;  true

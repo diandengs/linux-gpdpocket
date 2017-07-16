@@ -1,0 +1,1 @@
+cmd_net/bridge/netfilter/ebtable_broute.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/bridge/netfilter/ebtable_broute.ko net/bridge/netfilter/ebtable_broute.o net/bridge/netfilter/ebtable_broute.mod.o ;  true

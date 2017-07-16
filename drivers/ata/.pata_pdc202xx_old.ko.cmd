@@ -1,0 +1,1 @@
+cmd_drivers/ata/pata_pdc202xx_old.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/ata/pata_pdc202xx_old.ko drivers/ata/pata_pdc202xx_old.o drivers/ata/pata_pdc202xx_old.mod.o ;  true

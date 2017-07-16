@@ -1,0 +1,12 @@
+kernel/drivers/iio/accel/bmc150-accel-core.ko
+kernel/drivers/iio/accel/bmc150-accel-i2c.ko
+kernel/drivers/iio/accel/bmc150-accel-spi.ko
+kernel/drivers/iio/accel/da280.ko
+kernel/drivers/iio/accel/da311.ko
+kernel/drivers/iio/accel/dmard10.ko
+kernel/drivers/iio/accel/hid-sensor-accel-3d.ko
+kernel/drivers/iio/accel/kxcjk-1013.ko
+kernel/drivers/iio/accel/mma7660.ko
+kernel/drivers/iio/accel/st_accel.ko
+kernel/drivers/iio/accel/st_accel_i2c.ko
+kernel/drivers/iio/accel/st_accel_spi.ko

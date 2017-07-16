@@ -1,0 +1,1 @@
+cmd_drivers/power/supply/axp288_fuel_gauge.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/power/supply/axp288_fuel_gauge.ko drivers/power/supply/axp288_fuel_gauge.o drivers/power/supply/axp288_fuel_gauge.mod.o ;  true

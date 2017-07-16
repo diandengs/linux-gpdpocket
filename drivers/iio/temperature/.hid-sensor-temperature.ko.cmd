@@ -1,0 +1,1 @@
+cmd_drivers/iio/temperature/hid-sensor-temperature.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/temperature/hid-sensor-temperature.ko drivers/iio/temperature/hid-sensor-temperature.o drivers/iio/temperature/hid-sensor-temperature.mod.o ;  true

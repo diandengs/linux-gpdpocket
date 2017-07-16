@@ -1,0 +1,1 @@
+cmd_sound/soc/amd/snd-soc-acp-pcm.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/soc/amd/snd-soc-acp-pcm.ko sound/soc/amd/snd-soc-acp-pcm.o sound/soc/amd/snd-soc-acp-pcm.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/mmc/host/rtsx_usb_sdmmc.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/mmc/host/rtsx_usb_sdmmc.ko drivers/mmc/host/rtsx_usb_sdmmc.o drivers/mmc/host/rtsx_usb_sdmmc.mod.o ;  true

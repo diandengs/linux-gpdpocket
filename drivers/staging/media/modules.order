@@ -1,0 +1,13 @@
+kernel/drivers/staging/media/lirc/lirc_zilog.ko
+kernel/drivers/staging/media/atomisp/pci/atomisp2/atomisp.ko
+kernel/drivers/staging/media/atomisp/i2c/imx/imx1x5.ko
+kernel/drivers/staging/media/atomisp/i2c/imx/ov8858_driver.ko
+kernel/drivers/staging/media/atomisp/i2c/ov5693/ov5693.ko
+kernel/drivers/staging/media/atomisp/i2c/mt9m114.ko
+kernel/drivers/staging/media/atomisp/i2c/gc2235.ko
+kernel/drivers/staging/media/atomisp/i2c/ov2722.ko
+kernel/drivers/staging/media/atomisp/i2c/ov2680.ko
+kernel/drivers/staging/media/atomisp/i2c/gc0310.ko
+kernel/drivers/staging/media/atomisp/i2c/libmsrlisthelper.ko
+kernel/drivers/staging/media/atomisp/i2c/ap1302.ko
+kernel/drivers/staging/media/atomisp/i2c/lm3554.ko

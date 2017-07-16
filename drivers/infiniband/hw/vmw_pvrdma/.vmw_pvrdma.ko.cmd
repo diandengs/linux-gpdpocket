@@ -1,0 +1,1 @@
+cmd_drivers/infiniband/hw/vmw_pvrdma/vmw_pvrdma.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/infiniband/hw/vmw_pvrdma/vmw_pvrdma.ko drivers/infiniband/hw/vmw_pvrdma/vmw_pvrdma.o drivers/infiniband/hw/vmw_pvrdma/vmw_pvrdma.mod.o ;  true

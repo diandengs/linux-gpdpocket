@@ -1,0 +1,1 @@
+cmd_drivers/input/joystick/turbografx.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/joystick/turbografx.ko drivers/input/joystick/turbografx.o drivers/input/joystick/turbografx.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/isdn/mISDN/mISDN_core.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/mISDN/mISDN_core.ko drivers/isdn/mISDN/mISDN_core.o drivers/isdn/mISDN/mISDN_core.mod.o ;  true

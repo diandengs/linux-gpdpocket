@@ -1,0 +1,1 @@
+cmd_drivers/platform/x86/dell-smo8800.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/x86/dell-smo8800.ko drivers/platform/x86/dell-smo8800.o drivers/platform/x86/dell-smo8800.mod.o ;  true

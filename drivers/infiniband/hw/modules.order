@@ -1,0 +1,12 @@
+kernel/drivers/infiniband/hw/mthca/ib_mthca.ko
+kernel/drivers/infiniband/hw/qib/ib_qib.ko
+kernel/drivers/infiniband/hw/cxgb3/iw_cxgb3.ko
+kernel/drivers/infiniband/hw/cxgb4/iw_cxgb4.ko
+kernel/drivers/infiniband/hw/i40iw/i40iw.ko
+kernel/drivers/infiniband/hw/mlx4/mlx4_ib.ko
+kernel/drivers/infiniband/hw/mlx5/mlx5_ib.ko
+kernel/drivers/infiniband/hw/nes/iw_nes.ko
+kernel/drivers/infiniband/hw/ocrdma/ocrdma.ko
+kernel/drivers/infiniband/hw/vmw_pvrdma/vmw_pvrdma.ko
+kernel/drivers/infiniband/hw/usnic/usnic_verbs.ko
+kernel/drivers/infiniband/hw/hfi1/hfi1.ko

@@ -1,0 +1,1 @@
+cmd_drivers/hid/intel-ish-hid/intel-ishtp-hid.o := ld -m elf_x86_64   -r -o drivers/hid/intel-ish-hid/intel-ishtp-hid.o drivers/hid/intel-ish-hid/ishtp-hid.o drivers/hid/intel-ish-hid/ishtp-hid-client.o 

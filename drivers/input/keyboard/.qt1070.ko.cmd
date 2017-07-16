@@ -1,0 +1,1 @@
+cmd_drivers/input/keyboard/qt1070.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/keyboard/qt1070.ko drivers/input/keyboard/qt1070.o drivers/input/keyboard/qt1070.mod.o ;  true

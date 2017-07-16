@@ -1,0 +1,1 @@
+cmd_drivers/net/team/team_mode_random.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/team/team_mode_random.ko drivers/net/team/team_mode_random.o drivers/net/team/team_mode_random.mod.o ;  true

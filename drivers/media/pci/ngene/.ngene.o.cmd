@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/ngene/ngene.o := ld -m elf_x86_64   -r -o drivers/media/pci/ngene/ngene.o drivers/media/pci/ngene/ngene-core.o drivers/media/pci/ngene/ngene-i2c.o drivers/media/pci/ngene/ngene-cards.o drivers/media/pci/ngene/ngene-dvb.o 

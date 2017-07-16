@@ -1,0 +1,1 @@
+cmd_drivers/media/radio/si470x/radio-i2c-si470x.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/radio/si470x/radio-i2c-si470x.ko drivers/media/radio/si470x/radio-i2c-si470x.o drivers/media/radio/si470x/radio-i2c-si470x.mod.o ;  true

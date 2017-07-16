@@ -1,0 +1,7 @@
+kernel/drivers/ntb/ntb.ko
+kernel/drivers/ntb/hw/amd/ntb_hw_amd.ko
+kernel/drivers/ntb/hw/intel/ntb_hw_intel.ko
+kernel/drivers/ntb/test/ntb_pingpong.ko
+kernel/drivers/ntb/test/ntb_tool.ko
+kernel/drivers/ntb/test/ntb_perf.ko
+kernel/drivers/ntb/ntb_transport.ko

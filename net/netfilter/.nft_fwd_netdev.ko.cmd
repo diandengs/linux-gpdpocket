@@ -1,0 +1,1 @@
+cmd_net/netfilter/nft_fwd_netdev.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/netfilter/nft_fwd_netdev.ko net/netfilter/nft_fwd_netdev.o net/netfilter/nft_fwd_netdev.mod.o ;  true

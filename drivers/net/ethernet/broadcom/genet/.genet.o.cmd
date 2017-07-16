@@ -1,0 +1,1 @@
+cmd_drivers/net/ethernet/broadcom/genet/genet.o := ld -m elf_x86_64   -r -o drivers/net/ethernet/broadcom/genet/genet.o drivers/net/ethernet/broadcom/genet/bcmgenet.o drivers/net/ethernet/broadcom/genet/bcmmii.o drivers/net/ethernet/broadcom/genet/bcmgenet_wol.o 

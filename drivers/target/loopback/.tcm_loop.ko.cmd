@@ -1,0 +1,1 @@
+cmd_drivers/target/loopback/tcm_loop.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/target/loopback/tcm_loop.ko drivers/target/loopback/tcm_loop.o drivers/target/loopback/tcm_loop.mod.o ;  true

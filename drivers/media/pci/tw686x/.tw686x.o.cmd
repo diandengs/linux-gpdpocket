@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/tw686x/tw686x.o := ld -m elf_x86_64   -r -o drivers/media/pci/tw686x/tw686x.o drivers/media/pci/tw686x/tw686x-core.o drivers/media/pci/tw686x/tw686x-video.o drivers/media/pci/tw686x/tw686x-audio.o 

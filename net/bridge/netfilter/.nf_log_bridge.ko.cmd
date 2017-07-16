@@ -1,0 +1,1 @@
+cmd_net/bridge/netfilter/nf_log_bridge.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/bridge/netfilter/nf_log_bridge.ko net/bridge/netfilter/nf_log_bridge.o net/bridge/netfilter/nf_log_bridge.mod.o ;  true

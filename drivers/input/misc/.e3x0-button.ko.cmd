@@ -1,0 +1,1 @@
+cmd_drivers/input/misc/e3x0-button.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/misc/e3x0-button.ko drivers/input/misc/e3x0-button.o drivers/input/misc/e3x0-button.mod.o ;  true

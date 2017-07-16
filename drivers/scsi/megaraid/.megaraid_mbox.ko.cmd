@@ -1,0 +1,1 @@
+cmd_drivers/scsi/megaraid/megaraid_mbox.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/scsi/megaraid/megaraid_mbox.ko drivers/scsi/megaraid/megaraid_mbox.o drivers/scsi/megaraid/megaraid_mbox.mod.o ;  true

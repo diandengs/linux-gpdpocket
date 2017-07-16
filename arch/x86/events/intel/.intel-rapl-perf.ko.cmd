@@ -1,0 +1,1 @@
+cmd_arch/x86/events/intel/intel-rapl-perf.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o arch/x86/events/intel/intel-rapl-perf.ko arch/x86/events/intel/intel-rapl-perf.o arch/x86/events/intel/intel-rapl-perf.mod.o ;  true

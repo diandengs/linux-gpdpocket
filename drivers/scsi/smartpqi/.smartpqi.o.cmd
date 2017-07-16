@@ -1,0 +1,1 @@
+cmd_drivers/scsi/smartpqi/smartpqi.o := ld -m elf_x86_64   -r -o drivers/scsi/smartpqi/smartpqi.o drivers/scsi/smartpqi/smartpqi_init.o drivers/scsi/smartpqi/smartpqi_sis.o drivers/scsi/smartpqi/smartpqi_sas_transport.o 

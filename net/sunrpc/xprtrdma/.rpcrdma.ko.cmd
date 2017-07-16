@@ -1,0 +1,1 @@
+cmd_net/sunrpc/xprtrdma/rpcrdma.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/sunrpc/xprtrdma/rpcrdma.ko net/sunrpc/xprtrdma/rpcrdma.o net/sunrpc/xprtrdma/rpcrdma.mod.o ;  true

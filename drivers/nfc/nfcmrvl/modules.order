@@ -1,0 +1,2 @@
+kernel/drivers/nfc/nfcmrvl/nfcmrvl.ko
+kernel/drivers/nfc/nfcmrvl/nfcmrvl_usb.ko

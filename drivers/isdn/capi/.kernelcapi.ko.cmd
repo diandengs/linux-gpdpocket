@@ -1,0 +1,1 @@
+cmd_drivers/isdn/capi/kernelcapi.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/capi/kernelcapi.ko drivers/isdn/capi/kernelcapi.o drivers/isdn/capi/kernelcapi.mod.o ;  true

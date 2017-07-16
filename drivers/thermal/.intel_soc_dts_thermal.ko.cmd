@@ -1,0 +1,1 @@
+cmd_drivers/thermal/intel_soc_dts_thermal.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/thermal/intel_soc_dts_thermal.ko drivers/thermal/intel_soc_dts_thermal.o drivers/thermal/intel_soc_dts_thermal.mod.o ;  true

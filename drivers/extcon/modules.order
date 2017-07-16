@@ -1,0 +1,3 @@
+kernel/drivers/extcon/extcon-axp288.ko
+kernel/drivers/extcon/extcon-intel-int3496.ko
+kernel/drivers/extcon/extcon-intel-cht-wc.ko

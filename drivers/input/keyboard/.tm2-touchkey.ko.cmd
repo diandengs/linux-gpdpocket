@@ -1,0 +1,1 @@
+cmd_drivers/input/keyboard/tm2-touchkey.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/keyboard/tm2-touchkey.ko drivers/input/keyboard/tm2-touchkey.o drivers/input/keyboard/tm2-touchkey.mod.o ;  true

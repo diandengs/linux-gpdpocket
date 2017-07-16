@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/ti/wl1251/wl1251_spi.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/wireless/ti/wl1251/wl1251_spi.ko drivers/net/wireless/ti/wl1251/wl1251_spi.o drivers/net/wireless/ti/wl1251/wl1251_spi.mod.o ;  true

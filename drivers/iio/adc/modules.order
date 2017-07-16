@@ -1,0 +1,4 @@
+kernel/drivers/iio/adc/ad7766.ko
+kernel/drivers/iio/adc/axp288_adc.ko
+kernel/drivers/iio/adc/max1363.ko
+kernel/drivers/iio/adc/ti-ads1015.ko

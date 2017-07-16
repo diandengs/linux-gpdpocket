@@ -1,0 +1,5 @@
+kernel/drivers/tty/serial/8250/8250_pci.ko
+kernel/drivers/tty/serial/8250/8250_exar.ko
+kernel/drivers/tty/serial/8250/serial_cs.ko
+kernel/drivers/tty/serial/8250/8250_lpss.ko
+kernel/drivers/tty/serial/8250/8250_moxa.ko

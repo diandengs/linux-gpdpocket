@@ -1,0 +1,5 @@
+kernel/drivers/isdn/hardware/eicon/divadidd.ko
+kernel/drivers/isdn/hardware/eicon/divas.ko
+kernel/drivers/isdn/hardware/eicon/diva_mnt.ko
+kernel/drivers/isdn/hardware/eicon/diva_idi.ko
+kernel/drivers/isdn/hardware/eicon/divacapi.ko

@@ -1,0 +1,1 @@
+cmd_drivers/input/touchscreen/mms114.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/touchscreen/mms114.ko drivers/input/touchscreen/mms114.o drivers/input/touchscreen/mms114.mod.o ;  true

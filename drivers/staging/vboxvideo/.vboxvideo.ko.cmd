@@ -1,0 +1,1 @@
+cmd_drivers/staging/vboxvideo/vboxvideo.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/staging/vboxvideo/vboxvideo.ko drivers/staging/vboxvideo/vboxvideo.o drivers/staging/vboxvideo/vboxvideo.mod.o ;  true

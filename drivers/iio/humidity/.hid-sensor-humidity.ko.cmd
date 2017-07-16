@@ -1,0 +1,1 @@
+cmd_drivers/iio/humidity/hid-sensor-humidity.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/humidity/hid-sensor-humidity.ko drivers/iio/humidity/hid-sensor-humidity.o drivers/iio/humidity/hid-sensor-humidity.mod.o ;  true

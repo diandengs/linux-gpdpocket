@@ -1,0 +1,1 @@
+cmd_sound/soc/codecs/snd-soc-adau1761-spi.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/soc/codecs/snd-soc-adau1761-spi.ko sound/soc/codecs/snd-soc-adau1761-spi.o sound/soc/codecs/snd-soc-adau1761-spi.mod.o ;  true

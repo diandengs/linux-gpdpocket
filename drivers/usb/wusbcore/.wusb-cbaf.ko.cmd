@@ -1,0 +1,1 @@
+cmd_drivers/usb/wusbcore/wusb-cbaf.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/usb/wusbcore/wusb-cbaf.ko drivers/usb/wusbcore/wusb-cbaf.o drivers/usb/wusbcore/wusb-cbaf.mod.o ;  true

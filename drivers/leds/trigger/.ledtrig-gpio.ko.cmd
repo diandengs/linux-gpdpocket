@@ -1,0 +1,1 @@
+cmd_drivers/leds/trigger/ledtrig-gpio.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/leds/trigger/ledtrig-gpio.ko drivers/leds/trigger/ledtrig-gpio.o drivers/leds/trigger/ledtrig-gpio.mod.o ;  true

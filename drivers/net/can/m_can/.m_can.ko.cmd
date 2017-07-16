@@ -1,0 +1,1 @@
+cmd_drivers/net/can/m_can/m_can.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/can/m_can/m_can.ko drivers/net/can/m_can/m_can.o drivers/net/can/m_can/m_can.mod.o ;  true

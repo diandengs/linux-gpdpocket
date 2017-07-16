@@ -1,0 +1,1 @@
+cmd_drivers/cpufreq/acpi-cpufreq.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/cpufreq/acpi-cpufreq.ko drivers/cpufreq/acpi-cpufreq.o drivers/cpufreq/acpi-cpufreq.mod.o ;  true

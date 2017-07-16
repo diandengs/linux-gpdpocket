@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/ir-jvc-decoder.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/ir-jvc-decoder.ko drivers/media/rc/ir-jvc-decoder.o drivers/media/rc/ir-jvc-decoder.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/lgdt3306a.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/lgdt3306a.ko drivers/media/dvb-frontends/lgdt3306a.o drivers/media/dvb-frontends/lgdt3306a.mod.o ;  true

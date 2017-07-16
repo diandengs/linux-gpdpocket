@@ -1,0 +1,1 @@
+cmd_drivers/staging/media/atomisp/i2c/ov5693/ov5693.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/staging/media/atomisp/i2c/ov5693/ov5693.ko drivers/staging/media/atomisp/i2c/ov5693/ov5693.o drivers/staging/media/atomisp/i2c/ov5693/ov5693.mod.o ;  true

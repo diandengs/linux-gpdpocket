@@ -1,0 +1,1 @@
+cmd_drivers/leds/trigger/ledtrig-oneshot.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/leds/trigger/ledtrig-oneshot.ko drivers/leds/trigger/ledtrig-oneshot.o drivers/leds/trigger/ledtrig-oneshot.mod.o ;  true

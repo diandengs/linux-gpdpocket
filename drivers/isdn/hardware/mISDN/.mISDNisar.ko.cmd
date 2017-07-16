@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hardware/mISDN/mISDNisar.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hardware/mISDN/mISDNisar.ko drivers/isdn/hardware/mISDN/mISDNisar.o drivers/isdn/hardware/mISDN/mISDNisar.mod.o ;  true

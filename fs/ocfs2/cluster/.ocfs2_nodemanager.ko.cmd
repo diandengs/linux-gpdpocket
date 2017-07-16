@@ -1,0 +1,1 @@
+cmd_fs/ocfs2/cluster/ocfs2_nodemanager.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o fs/ocfs2/cluster/ocfs2_nodemanager.ko fs/ocfs2/cluster/ocfs2_nodemanager.o fs/ocfs2/cluster/ocfs2_nodemanager.mod.o ;  true

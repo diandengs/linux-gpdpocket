@@ -1,0 +1,1 @@
+cmd_drivers/platform/x86/eeepc-laptop.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/x86/eeepc-laptop.ko drivers/platform/x86/eeepc-laptop.o drivers/platform/x86/eeepc-laptop.mod.o ;  true

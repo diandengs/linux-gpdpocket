@@ -1,0 +1,1 @@
+cmd_drivers/media/usb/em28xx/em28xx-dvb.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/usb/em28xx/em28xx-dvb.ko drivers/media/usb/em28xx/em28xx-dvb.o drivers/media/usb/em28xx/em28xx-dvb.mod.o ;  true

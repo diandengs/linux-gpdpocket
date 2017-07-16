@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/keymaps/rc-behold-columbus.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/keymaps/rc-behold-columbus.ko drivers/media/rc/keymaps/rc-behold-columbus.o drivers/media/rc/keymaps/rc-behold-columbus.mod.o ;  true

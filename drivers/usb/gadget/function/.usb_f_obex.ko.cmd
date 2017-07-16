@@ -1,0 +1,1 @@
+cmd_drivers/usb/gadget/function/usb_f_obex.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/usb/gadget/function/usb_f_obex.ko drivers/usb/gadget/function/usb_f_obex.o drivers/usb/gadget/function/usb_f_obex.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hardware/eicon/divadidd.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hardware/eicon/divadidd.ko drivers/isdn/hardware/eicon/divadidd.o drivers/isdn/hardware/eicon/divadidd.mod.o ;  true

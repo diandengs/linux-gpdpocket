@@ -1,0 +1,1 @@
+cmd_drivers/w1/slaves/w1_ds2760.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/w1/slaves/w1_ds2760.ko drivers/w1/slaves/w1_ds2760.o drivers/w1/slaves/w1_ds2760.mod.o ;  true

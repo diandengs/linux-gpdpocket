@@ -1,0 +1,2 @@
+kernel/drivers/infiniband/sw/rdmavt/rdmavt.ko
+kernel/drivers/infiniband/sw/rxe/rdma_rxe.ko

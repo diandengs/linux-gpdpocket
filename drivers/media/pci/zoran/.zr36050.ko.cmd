@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/zoran/zr36050.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/pci/zoran/zr36050.ko drivers/media/pci/zoran/zr36050.o drivers/media/pci/zoran/zr36050.mod.o ;  true

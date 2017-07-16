@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/ir-lirc-codec.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/ir-lirc-codec.ko drivers/media/rc/ir-lirc-codec.o drivers/media/rc/ir-lirc-codec.mod.o ;  true

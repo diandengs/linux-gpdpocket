@@ -1,0 +1,1 @@
+cmd_net/bridge/netfilter/ebt_limit.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/bridge/netfilter/ebt_limit.ko net/bridge/netfilter/ebt_limit.o net/bridge/netfilter/ebt_limit.mod.o ;  true

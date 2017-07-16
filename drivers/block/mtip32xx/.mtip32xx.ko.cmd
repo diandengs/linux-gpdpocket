@@ -1,0 +1,1 @@
+cmd_drivers/block/mtip32xx/mtip32xx.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/block/mtip32xx/mtip32xx.ko drivers/block/mtip32xx/mtip32xx.o drivers/block/mtip32xx/mtip32xx.mod.o ;  true

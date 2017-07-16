@@ -1,0 +1,1 @@
+cmd_drivers/platform/chrome/chromeos_pstore.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/chrome/chromeos_pstore.ko drivers/platform/chrome/chromeos_pstore.o drivers/platform/chrome/chromeos_pstore.mod.o ;  true

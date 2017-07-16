@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/gp8psk-fe.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/gp8psk-fe.ko drivers/media/dvb-frontends/gp8psk-fe.o drivers/media/dvb-frontends/gp8psk-fe.mod.o ;  true

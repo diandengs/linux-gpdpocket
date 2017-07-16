@@ -1,0 +1,1 @@
+cmd_drivers/ntb/hw/amd/ntb_hw_amd.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/ntb/hw/amd/ntb_hw_amd.ko drivers/ntb/hw/amd/ntb_hw_amd.o drivers/ntb/hw/amd/ntb_hw_amd.mod.o ;  true

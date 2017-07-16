@@ -1,0 +1,1 @@
+cmd_drivers/iio/magnetometer/hid-sensor-magn-3d.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/magnetometer/hid-sensor-magn-3d.ko drivers/iio/magnetometer/hid-sensor-magn-3d.o drivers/iio/magnetometer/hid-sensor-magn-3d.mod.o ;  true

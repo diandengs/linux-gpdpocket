@@ -1,0 +1,1 @@
+cmd_drivers/leds/trigger/ledtrig-heartbeat.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/leds/trigger/ledtrig-heartbeat.ko drivers/leds/trigger/ledtrig-heartbeat.o drivers/leds/trigger/ledtrig-heartbeat.mod.o ;  true

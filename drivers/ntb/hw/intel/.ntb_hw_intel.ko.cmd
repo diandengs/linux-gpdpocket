@@ -1,0 +1,1 @@
+cmd_drivers/ntb/hw/intel/ntb_hw_intel.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/ntb/hw/intel/ntb_hw_intel.ko drivers/ntb/hw/intel/ntb_hw_intel.o drivers/ntb/hw/intel/ntb_hw_intel.mod.o ;  true

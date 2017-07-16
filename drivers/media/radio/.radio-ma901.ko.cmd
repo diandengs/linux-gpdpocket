@@ -1,0 +1,1 @@
+cmd_drivers/media/radio/radio-ma901.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/radio/radio-ma901.ko drivers/media/radio/radio-ma901.o drivers/media/radio/radio-ma901.mod.o ;  true

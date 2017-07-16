@@ -1,0 +1,1 @@
+cmd_drivers/iio/pressure/bmp280-spi.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/pressure/bmp280-spi.ko drivers/iio/pressure/bmp280-spi.o drivers/iio/pressure/bmp280-spi.mod.o ;  true

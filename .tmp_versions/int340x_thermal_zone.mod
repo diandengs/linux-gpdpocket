@@ -1,0 +1,3 @@
+drivers/thermal/int340x_thermal/int340x_thermal_zone.ko
+drivers/thermal/int340x_thermal/int340x_thermal_zone.o
+

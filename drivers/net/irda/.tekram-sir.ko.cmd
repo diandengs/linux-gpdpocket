@@ -1,0 +1,1 @@
+cmd_drivers/net/irda/tekram-sir.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/irda/tekram-sir.ko drivers/net/irda/tekram-sir.o drivers/net/irda/tekram-sir.mod.o ;  true

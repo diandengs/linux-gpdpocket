@@ -1,0 +1,4 @@
+kernel/drivers/input/serio/serio_raw.ko
+kernel/drivers/input/serio/altera_ps2.ko
+kernel/drivers/input/serio/arc_ps2.ko
+kernel/drivers/input/serio/hyperv-keyboard.ko

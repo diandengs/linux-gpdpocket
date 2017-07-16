@@ -1,0 +1,1 @@
+cmd_sound/firewire/snd-firewire-lib.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/firewire/snd-firewire-lib.ko sound/firewire/snd-firewire-lib.o sound/firewire/snd-firewire-lib.mod.o ;  true

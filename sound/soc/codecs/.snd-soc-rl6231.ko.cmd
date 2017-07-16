@@ -1,0 +1,1 @@
+cmd_sound/soc/codecs/snd-soc-rl6231.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/soc/codecs/snd-soc-rl6231.ko sound/soc/codecs/snd-soc-rl6231.o sound/soc/codecs/snd-soc-rl6231.mod.o ;  true

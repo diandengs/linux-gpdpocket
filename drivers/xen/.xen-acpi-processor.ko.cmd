@@ -1,0 +1,1 @@
+cmd_drivers/xen/xen-acpi-processor.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/xen/xen-acpi-processor.ko drivers/xen/xen-acpi-processor.o drivers/xen/xen-acpi-processor.mod.o ;  true

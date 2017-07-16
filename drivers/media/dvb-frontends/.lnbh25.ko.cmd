@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/lnbh25.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/lnbh25.ko drivers/media/dvb-frontends/lnbh25.o drivers/media/dvb-frontends/lnbh25.mod.o ;  true

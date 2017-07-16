@@ -1,0 +1,1 @@
+cmd_drivers/message/fusion/mptlan.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/message/fusion/mptlan.ko drivers/message/fusion/mptlan.o drivers/message/fusion/mptlan.mod.o ;  true

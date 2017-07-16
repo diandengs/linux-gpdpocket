@@ -1,0 +1,1 @@
+cmd_drivers/input/joystick/stinger.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/joystick/stinger.ko drivers/input/joystick/stinger.o drivers/input/joystick/stinger.mod.o ;  true

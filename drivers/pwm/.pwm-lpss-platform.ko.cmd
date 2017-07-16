@@ -1,0 +1,1 @@
+cmd_drivers/pwm/pwm-lpss-platform.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/pwm/pwm-lpss-platform.ko drivers/pwm/pwm-lpss-platform.o drivers/pwm/pwm-lpss-platform.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/firmware/qemu_fw_cfg.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/firmware/qemu_fw_cfg.ko drivers/firmware/qemu_fw_cfg.o drivers/firmware/qemu_fw_cfg.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/net/ethernet/mellanox/mlx5/core/mlx5_core.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/ethernet/mellanox/mlx5/core/mlx5_core.ko drivers/net/ethernet/mellanox/mlx5/core/mlx5_core.o drivers/net/ethernet/mellanox/mlx5/core/mlx5_core.mod.o ;  true

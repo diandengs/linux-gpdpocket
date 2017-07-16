@@ -1,0 +1,3 @@
+kernel/arch/x86/crypto/glue_helper.ko
+kernel/arch/x86/crypto/aes-x86_64.ko
+kernel/arch/x86/crypto/aesni-intel.ko

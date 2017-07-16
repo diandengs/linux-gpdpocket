@@ -1,0 +1,1 @@
+cmd_drivers/input/tablet/wacom_serial4.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/tablet/wacom_serial4.ko drivers/input/tablet/wacom_serial4.o drivers/input/tablet/wacom_serial4.mod.o ;  true

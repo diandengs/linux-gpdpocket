@@ -1,0 +1,1 @@
+cmd_net/bridge/netfilter/nft_meta_bridge.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/bridge/netfilter/nft_meta_bridge.ko net/bridge/netfilter/nft_meta_bridge.o net/bridge/netfilter/nft_meta_bridge.mod.o ;  true

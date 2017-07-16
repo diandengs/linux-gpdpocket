@@ -1,0 +1,2 @@
+kernel/drivers/scsi/qla2xxx/qla2xxx.ko
+kernel/drivers/scsi/qla2xxx/tcm_qla2xxx.ko

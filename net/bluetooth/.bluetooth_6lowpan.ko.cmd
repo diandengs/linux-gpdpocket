@@ -1,0 +1,1 @@
+cmd_net/bluetooth/bluetooth_6lowpan.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/bluetooth/bluetooth_6lowpan.ko net/bluetooth/bluetooth_6lowpan.o net/bluetooth/bluetooth_6lowpan.mod.o ;  true

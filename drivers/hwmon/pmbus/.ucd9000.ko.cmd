@@ -1,0 +1,1 @@
+cmd_drivers/hwmon/pmbus/ucd9000.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/hwmon/pmbus/ucd9000.ko drivers/hwmon/pmbus/ucd9000.o drivers/hwmon/pmbus/ucd9000.mod.o ;  true

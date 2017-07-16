@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/intel/ipw2x00/libipw.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/wireless/intel/ipw2x00/libipw.ko drivers/net/wireless/intel/ipw2x00/libipw.o drivers/net/wireless/intel/ipw2x00/libipw.mod.o ;  true

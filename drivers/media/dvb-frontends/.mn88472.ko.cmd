@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/mn88472.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/mn88472.ko drivers/media/dvb-frontends/mn88472.o drivers/media/dvb-frontends/mn88472.mod.o ;  true

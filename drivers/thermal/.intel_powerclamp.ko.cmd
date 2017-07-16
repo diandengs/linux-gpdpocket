@@ -1,0 +1,1 @@
+cmd_drivers/thermal/intel_powerclamp.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/thermal/intel_powerclamp.ko drivers/thermal/intel_powerclamp.o drivers/thermal/intel_powerclamp.mod.o ;  true

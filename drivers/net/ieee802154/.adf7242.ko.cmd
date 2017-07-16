@@ -1,0 +1,1 @@
+cmd_drivers/net/ieee802154/adf7242.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/ieee802154/adf7242.ko drivers/net/ieee802154/adf7242.o drivers/net/ieee802154/adf7242.mod.o ;  true

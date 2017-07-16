@@ -1,0 +1,1 @@
+cmd_drivers/mfd/built-in.o :=  rm -f drivers/mfd/built-in.o; ar rcSTPD drivers/mfd/built-in.o drivers/mfd/mfd-core.o drivers/mfd/axp20x.o drivers/mfd/axp20x-i2c.o drivers/mfd/intel-soc-pmic.o drivers/mfd/intel_soc_pmic_chtwc.o 

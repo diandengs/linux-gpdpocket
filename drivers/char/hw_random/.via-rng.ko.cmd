@@ -1,0 +1,1 @@
+cmd_drivers/char/hw_random/via-rng.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/char/hw_random/via-rng.ko drivers/char/hw_random/via-rng.o drivers/char/hw_random/via-rng.mod.o ;  true

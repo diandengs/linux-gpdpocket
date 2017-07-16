@@ -1,0 +1,1 @@
+cmd_drivers/input/touchscreen/zet6223.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/touchscreen/zet6223.ko drivers/input/touchscreen/zet6223.o drivers/input/touchscreen/zet6223.mod.o ;  true

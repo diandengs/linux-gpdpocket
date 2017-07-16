@@ -1,0 +1,25 @@
+!<thin>
+//                                              142       `
+dummycon.o/
+vgacon.o/
+fbcon.o/
+bitblit.o/
+softcursor.o/
+tileblit.o/
+fbcon_rotate.o/
+fbcon_cw.o/
+fbcon_ud.o/
+fbcon_ccw.o/
+fbcon_dmi_quirks.o/
+
+/0              0           0     0     644     4352      `
+/12             0           0     0     644     36800     `
+/22             0           0     0     644     63832     `
+/31             0           0     0     644     9064      `
+/42             0           0     0     644     3744      `
+/56             0           0     0     644     5672      `
+/68             0           0     0     644     4488      `
+/84             0           0     0     644     9456      `
+/96             0           0     0     644     9520      `
+/108            0           0     0     644     9592      `
+/121            0           0     0     644     4776      `

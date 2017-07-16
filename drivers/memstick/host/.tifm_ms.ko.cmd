@@ -1,0 +1,1 @@
+cmd_drivers/memstick/host/tifm_ms.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/memstick/host/tifm_ms.ko drivers/memstick/host/tifm_ms.o drivers/memstick/host/tifm_ms.mod.o ;  true

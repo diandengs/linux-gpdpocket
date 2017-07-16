@@ -1,0 +1,1 @@
+cmd_drivers/staging/media/built-in.o :=  rm -f drivers/staging/media/built-in.o; ar rcSTPD drivers/staging/media/built-in.o drivers/staging/media/lirc/built-in.o drivers/staging/media/atomisp/built-in.o 

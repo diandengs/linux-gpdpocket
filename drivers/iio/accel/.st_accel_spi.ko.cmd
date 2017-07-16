@@ -1,0 +1,1 @@
+cmd_drivers/iio/accel/st_accel_spi.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/accel/st_accel_spi.ko drivers/iio/accel/st_accel_spi.o drivers/iio/accel/st_accel_spi.mod.o ;  true

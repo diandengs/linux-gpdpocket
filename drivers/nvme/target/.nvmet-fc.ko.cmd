@@ -1,0 +1,1 @@
+cmd_drivers/nvme/target/nvmet-fc.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/nvme/target/nvmet-fc.ko drivers/nvme/target/nvmet-fc.o drivers/nvme/target/nvmet-fc.mod.o ;  true

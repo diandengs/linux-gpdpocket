@@ -1,0 +1,1 @@
+cmd_sound/soc/intel/boards/snd-soc-sst-broadwell.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/soc/intel/boards/snd-soc-sst-broadwell.ko sound/soc/intel/boards/snd-soc-sst-broadwell.o sound/soc/intel/boards/snd-soc-sst-broadwell.mod.o ;  true

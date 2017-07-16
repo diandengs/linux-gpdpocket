@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/mantis/hopper.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/pci/mantis/hopper.ko drivers/media/pci/mantis/hopper.o drivers/media/pci/mantis/hopper.mod.o ;  true

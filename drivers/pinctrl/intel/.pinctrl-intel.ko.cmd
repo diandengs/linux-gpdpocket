@@ -1,0 +1,1 @@
+cmd_drivers/pinctrl/intel/pinctrl-intel.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/pinctrl/intel/pinctrl-intel.ko drivers/pinctrl/intel/pinctrl-intel.o drivers/pinctrl/intel/pinctrl-intel.mod.o ;  true

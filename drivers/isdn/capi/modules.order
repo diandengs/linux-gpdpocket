@@ -1,0 +1,3 @@
+kernel/drivers/isdn/capi/kernelcapi.ko
+kernel/drivers/isdn/capi/capi.ko
+kernel/drivers/isdn/capi/capidrv.ko

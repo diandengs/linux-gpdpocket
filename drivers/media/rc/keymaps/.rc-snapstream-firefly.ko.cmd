@@ -1,0 +1,1 @@
+cmd_drivers/media/rc/keymaps/rc-snapstream-firefly.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/rc/keymaps/rc-snapstream-firefly.ko drivers/media/rc/keymaps/rc-snapstream-firefly.o drivers/media/rc/keymaps/rc-snapstream-firefly.mod.o ;  true

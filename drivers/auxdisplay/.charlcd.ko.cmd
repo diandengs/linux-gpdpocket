@@ -1,0 +1,1 @@
+cmd_drivers/auxdisplay/charlcd.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/auxdisplay/charlcd.ko drivers/auxdisplay/charlcd.o drivers/auxdisplay/charlcd.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/media/pci/bt8xx/dst_ca.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/pci/bt8xx/dst_ca.ko drivers/media/pci/bt8xx/dst_ca.o drivers/media/pci/bt8xx/dst_ca.mod.o ;  true

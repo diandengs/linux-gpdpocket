@@ -1,0 +1,1 @@
+cmd_drivers/net/ethernet/qlogic/qlge/qlge.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/ethernet/qlogic/qlge/qlge.ko drivers/net/ethernet/qlogic/qlge/qlge.o drivers/net/ethernet/qlogic/qlge/qlge.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/input/tablet/hanwang.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/tablet/hanwang.ko drivers/input/tablet/hanwang.o drivers/input/tablet/hanwang.mod.o ;  true

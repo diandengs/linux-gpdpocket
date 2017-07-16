@@ -1,0 +1,1 @@
+cmd_drivers/isdn/hardware/mISDN/hfcmulti.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/isdn/hardware/mISDN/hfcmulti.ko drivers/isdn/hardware/mISDN/hfcmulti.o drivers/isdn/hardware/mISDN/hfcmulti.mod.o ;  true

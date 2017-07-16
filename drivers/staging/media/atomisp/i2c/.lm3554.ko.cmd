@@ -1,0 +1,1 @@
+cmd_drivers/staging/media/atomisp/i2c/lm3554.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/staging/media/atomisp/i2c/lm3554.ko drivers/staging/media/atomisp/i2c/lm3554.o drivers/staging/media/atomisp/i2c/lm3554.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/net/can/usb/esd_usb2.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/can/usb/esd_usb2.ko drivers/net/can/usb/esd_usb2.o drivers/net/can/usb/esd_usb2.mod.o ;  true

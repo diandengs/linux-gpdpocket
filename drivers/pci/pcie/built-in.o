@@ -1,0 +1,29 @@
+!<thin>
+//                                              184       `
+aspm.o/
+portdrv_core.o/
+portdrv_pci.o/
+portdrv_bus.o/
+portdrv_acpi.o/
+aer/aerdrv_errprint.o/
+aer/aerdrv_core.o/
+aer/aerdrv.o/
+aer/aerdrv_acpi.o/
+aer/ecrc.o/
+pme.o/
+pcie-dpc.o/
+ptm.o/
+
+/0              0           0     0     644     21656     `
+/8              0           0     0     644     10984     `
+/24             0           0     0     644     13280     `
+/39             0           0     0     644     4056      `
+/54             0           0     0     644     2488      `
+/70             0           0     0     644     10632     `
+/93             0           0     0     644     16384     `
+/112            0           0     0     644     11016     `
+/126            0           0     0     644     3320      `
+/145            0           0     0     644     3888      `
+/157            0           0     0     644     13736     `
+/164            0           0     0     644     8424      `
+/176            0           0     0     644     4920      `

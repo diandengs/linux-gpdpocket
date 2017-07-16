@@ -1,0 +1,1 @@
+cmd_drivers/target/iscsi/cxgbit/cxgbit.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/target/iscsi/cxgbit/cxgbit.ko drivers/target/iscsi/cxgbit/cxgbit.o drivers/target/iscsi/cxgbit/cxgbit.mod.o ;  true

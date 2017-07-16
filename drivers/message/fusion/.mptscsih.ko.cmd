@@ -1,0 +1,1 @@
+cmd_drivers/message/fusion/mptscsih.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/message/fusion/mptscsih.ko drivers/message/fusion/mptscsih.o drivers/message/fusion/mptscsih.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/usb/storage/ums-karma.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/usb/storage/ums-karma.ko drivers/usb/storage/ums-karma.o drivers/usb/storage/ums-karma.mod.o ;  true

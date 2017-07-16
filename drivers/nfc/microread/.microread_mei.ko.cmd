@@ -1,0 +1,1 @@
+cmd_drivers/nfc/microread/microread_mei.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/nfc/microread/microread_mei.ko drivers/nfc/microread/microread_mei.o drivers/nfc/microread/microread_mei.mod.o ;  true

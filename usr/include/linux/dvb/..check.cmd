@@ -1,0 +1,1 @@
+cmd_usr/include/linux/dvb/.check := for f in net.h dmx.h audio.h version.h ca.h frontend.h video.h osd.h  ; do echo "./usr/include/linux/dvb/$${f}"; done | xargs perl scripts/headers_check.pl ./usr/include x86; touch usr/include/linux/dvb/.check

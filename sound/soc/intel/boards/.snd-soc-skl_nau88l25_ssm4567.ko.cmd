@@ -1,0 +1,1 @@
+cmd_sound/soc/intel/boards/snd-soc-skl_nau88l25_ssm4567.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/soc/intel/boards/snd-soc-skl_nau88l25_ssm4567.ko sound/soc/intel/boards/snd-soc-skl_nau88l25_ssm4567.o sound/soc/intel/boards/snd-soc-skl_nau88l25_ssm4567.mod.o ;  true

@@ -1,0 +1,4 @@
+kernel/drivers/pinctrl/intel/pinctrl-intel.ko
+kernel/drivers/pinctrl/intel/pinctrl-broxton.ko
+kernel/drivers/pinctrl/intel/pinctrl-cannonlake.ko
+kernel/drivers/pinctrl/intel/pinctrl-sunrisepoint.ko

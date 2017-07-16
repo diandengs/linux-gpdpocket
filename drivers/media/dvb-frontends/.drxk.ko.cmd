@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/drxk.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/drxk.ko drivers/media/dvb-frontends/drxk.o drivers/media/dvb-frontends/drxk.mod.o ;  true

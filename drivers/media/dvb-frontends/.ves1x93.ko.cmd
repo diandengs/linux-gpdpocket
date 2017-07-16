@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/ves1x93.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/ves1x93.ko drivers/media/dvb-frontends/ves1x93.o drivers/media/dvb-frontends/ves1x93.mod.o ;  true

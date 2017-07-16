@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/realtek/rtl8xxxu/rtl8xxxu.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/wireless/realtek/rtl8xxxu/rtl8xxxu.ko drivers/net/wireless/realtek/rtl8xxxu/rtl8xxxu.o drivers/net/wireless/realtek/rtl8xxxu/rtl8xxxu.mod.o ;  true

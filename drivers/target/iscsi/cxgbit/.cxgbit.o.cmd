@@ -1,0 +1,1 @@
+cmd_drivers/target/iscsi/cxgbit/cxgbit.o := ld -m elf_x86_64   -r -o drivers/target/iscsi/cxgbit/cxgbit.o drivers/target/iscsi/cxgbit/cxgbit_main.o drivers/target/iscsi/cxgbit/cxgbit_cm.o drivers/target/iscsi/cxgbit/cxgbit_target.o drivers/target/iscsi/cxgbit/cxgbit_ddp.o 

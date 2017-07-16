@@ -1,0 +1,1 @@
+cmd_sound/soc/codecs/snd-soc-es7134.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/soc/codecs/snd-soc-es7134.ko sound/soc/codecs/snd-soc-es7134.o sound/soc/codecs/snd-soc-es7134.mod.o ;  true

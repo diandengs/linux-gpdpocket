@@ -1,0 +1,1 @@
+cmd_drivers/crypto/ccp/ccp-crypto.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/crypto/ccp/ccp-crypto.ko drivers/crypto/ccp/ccp-crypto.o drivers/crypto/ccp/ccp-crypto.mod.o ;  true

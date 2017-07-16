@@ -1,0 +1,1 @@
+cmd_drivers/input/gameport/fm801-gp.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/gameport/fm801-gp.ko drivers/input/gameport/fm801-gp.o drivers/input/gameport/fm801-gp.mod.o ;  true

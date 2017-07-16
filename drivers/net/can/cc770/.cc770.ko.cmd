@@ -1,0 +1,1 @@
+cmd_drivers/net/can/cc770/cc770.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/can/cc770/cc770.ko drivers/net/can/cc770/cc770.o drivers/net/can/cc770/cc770.mod.o ;  true

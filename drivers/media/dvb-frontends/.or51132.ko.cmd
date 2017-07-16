@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/or51132.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/or51132.ko drivers/media/dvb-frontends/or51132.o drivers/media/dvb-frontends/or51132.mod.o ;  true

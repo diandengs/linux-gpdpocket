@@ -1,0 +1,1 @@
+cmd_drivers/watchdog/f71808e_wdt.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/watchdog/f71808e_wdt.ko drivers/watchdog/f71808e_wdt.o drivers/watchdog/f71808e_wdt.mod.o ;  true

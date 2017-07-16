@@ -1,0 +1,1 @@
+cmd_drivers/iio/buffer/industrialio-triggered-buffer.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/iio/buffer/industrialio-triggered-buffer.ko drivers/iio/buffer/industrialio-triggered-buffer.o drivers/iio/buffer/industrialio-triggered-buffer.mod.o ;  true

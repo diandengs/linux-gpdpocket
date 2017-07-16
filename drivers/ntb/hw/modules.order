@@ -1,0 +1,2 @@
+kernel/drivers/ntb/hw/amd/ntb_hw_amd.ko
+kernel/drivers/ntb/hw/intel/ntb_hw_intel.ko

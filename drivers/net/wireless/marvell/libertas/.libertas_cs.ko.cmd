@@ -1,0 +1,1 @@
+cmd_drivers/net/wireless/marvell/libertas/libertas_cs.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/wireless/marvell/libertas/libertas_cs.ko drivers/net/wireless/marvell/libertas/libertas_cs.o drivers/net/wireless/marvell/libertas/libertas_cs.mod.o ;  true

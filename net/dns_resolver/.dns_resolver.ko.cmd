@@ -1,0 +1,1 @@
+cmd_net/dns_resolver/dns_resolver.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o net/dns_resolver/dns_resolver.ko net/dns_resolver/dns_resolver.o net/dns_resolver/dns_resolver.mod.o ;  true

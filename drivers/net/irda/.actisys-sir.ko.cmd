@@ -1,0 +1,1 @@
+cmd_drivers/net/irda/actisys-sir.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/irda/actisys-sir.ko drivers/net/irda/actisys-sir.o drivers/net/irda/actisys-sir.mod.o ;  true

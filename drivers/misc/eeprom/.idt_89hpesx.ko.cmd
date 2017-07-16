@@ -1,0 +1,1 @@
+cmd_drivers/misc/eeprom/idt_89hpesx.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/misc/eeprom/idt_89hpesx.ko drivers/misc/eeprom/idt_89hpesx.o drivers/misc/eeprom/idt_89hpesx.mod.o ;  true

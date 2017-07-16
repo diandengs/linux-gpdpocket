@@ -1,0 +1,1 @@
+cmd_sound/soc/codecs/snd-soc-adau-utils.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/soc/codecs/snd-soc-adau-utils.ko sound/soc/codecs/snd-soc-adau-utils.o sound/soc/codecs/snd-soc-adau-utils.mod.o ;  true

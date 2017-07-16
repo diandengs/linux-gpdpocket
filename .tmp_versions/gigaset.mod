@@ -1,0 +1,3 @@
+drivers/isdn/gigaset/gigaset.ko
+drivers/isdn/gigaset/common.o drivers/isdn/gigaset/interface.o drivers/isdn/gigaset/proc.o drivers/isdn/gigaset/ev-layer.o drivers/isdn/gigaset/asyncdata.o drivers/isdn/gigaset/capi.o
+

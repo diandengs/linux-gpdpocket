@@ -1,0 +1,1 @@
+cmd_drivers/char/hw_random/virtio-rng.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/char/hw_random/virtio-rng.ko drivers/char/hw_random/virtio-rng.o drivers/char/hw_random/virtio-rng.mod.o ;  true

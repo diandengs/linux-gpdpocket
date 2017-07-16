@@ -1,0 +1,6 @@
+kernel/drivers/hid/hid.ko
+kernel/drivers/hid/hid-generic.ko
+kernel/drivers/hid/hid-ite.ko
+kernel/drivers/hid/hid-magicmouse.ko
+kernel/drivers/hid/hid-ntrig.ko
+kernel/drivers/hid/usbhid/usbhid.ko

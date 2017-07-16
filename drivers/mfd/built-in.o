@@ -1,0 +1,15 @@
+!<thin>
+//                                              106       `
+mfd-core.o/
+axp20x.o/
+axp20x-i2c.o/
+intel_soc_pmic_core.o/
+intel_soc_pmic_crc.o/
+intel_soc_pmic_chtwc.o/
+
+/0              0           0     0     644     12888     `
+/12             0           0     0     644     26760     `
+/22             0           0     0     644     5984      `
+/36             0           0     0     644     9208      `
+/59             0           0     0     644     4864      `
+/81             0           0     0     644     9048      `

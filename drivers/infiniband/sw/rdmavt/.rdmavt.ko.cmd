@@ -1,0 +1,1 @@
+cmd_drivers/infiniband/sw/rdmavt/rdmavt.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/infiniband/sw/rdmavt/rdmavt.ko drivers/infiniband/sw/rdmavt/rdmavt.o drivers/infiniband/sw/rdmavt/rdmavt.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/staging/media/atomisp/platform/intel-mid/built-in.o :=  rm -f drivers/staging/media/atomisp/platform/intel-mid/built-in.o; ar rcSTPD drivers/staging/media/atomisp/platform/intel-mid/built-in.o drivers/staging/media/atomisp/platform/intel-mid/intel_mid_pcihelpers.o drivers/staging/media/atomisp/platform/intel-mid/atomisp_gmin_platform.o 

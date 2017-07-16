@@ -1,0 +1,1 @@
+cmd_drivers/spi/spi-pxa2xx-platform.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/spi/spi-pxa2xx-platform.ko drivers/spi/spi-pxa2xx-platform.o drivers/spi/spi-pxa2xx-platform.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/media/radio/radio-maxiradio.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/radio/radio-maxiradio.ko drivers/media/radio/radio-maxiradio.o drivers/media/radio/radio-maxiradio.mod.o ;  true

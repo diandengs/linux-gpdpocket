@@ -1,0 +1,10 @@
+kernel/sound/firewire/snd-firewire-lib.ko
+kernel/sound/firewire/dice/snd-dice.ko
+kernel/sound/firewire/oxfw/snd-oxfw.ko
+kernel/sound/firewire/snd-isight.ko
+kernel/sound/firewire/fireworks/snd-fireworks.ko
+kernel/sound/firewire/bebob/snd-bebob.ko
+kernel/sound/firewire/digi00x/snd-firewire-digi00x.ko
+kernel/sound/firewire/tascam/snd-firewire-tascam.ko
+kernel/sound/firewire/motu/snd-firewire-motu.ko
+kernel/sound/firewire/fireface/snd-fireface.ko

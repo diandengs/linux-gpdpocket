@@ -1,0 +1,1 @@
+cmd_drivers/net/ethernet/packetengines/yellowfin.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/ethernet/packetengines/yellowfin.ko drivers/net/ethernet/packetengines/yellowfin.o drivers/net/ethernet/packetengines/yellowfin.mod.o ;  true

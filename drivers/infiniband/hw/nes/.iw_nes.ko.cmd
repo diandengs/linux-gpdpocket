@@ -1,0 +1,1 @@
+cmd_drivers/infiniband/hw/nes/iw_nes.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/infiniband/hw/nes/iw_nes.ko drivers/infiniband/hw/nes/iw_nes.o drivers/infiniband/hw/nes/iw_nes.mod.o ;  true

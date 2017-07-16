@@ -1,0 +1,1 @@
+cmd_drivers/platform/x86/fujitsu-tablet.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/x86/fujitsu-tablet.ko drivers/platform/x86/fujitsu-tablet.o drivers/platform/x86/fujitsu-tablet.mod.o ;  true

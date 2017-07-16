@@ -1,0 +1,1 @@
+cmd_sound/core/snd-pcm-dmaengine.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/core/snd-pcm-dmaengine.ko sound/core/snd-pcm-dmaengine.o sound/core/snd-pcm-dmaengine.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/isl6423.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/isl6423.ko drivers/media/dvb-frontends/isl6423.o drivers/media/dvb-frontends/isl6423.mod.o ;  true

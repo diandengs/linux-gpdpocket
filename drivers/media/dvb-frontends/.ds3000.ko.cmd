@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/ds3000.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/ds3000.ko drivers/media/dvb-frontends/ds3000.o drivers/media/dvb-frontends/ds3000.mod.o ;  true

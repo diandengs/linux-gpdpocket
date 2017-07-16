@@ -1,0 +1,4 @@
+kernel/net/9p/9pnet.ko
+kernel/net/9p/9pnet_xen.ko
+kernel/net/9p/9pnet_virtio.ko
+kernel/net/9p/9pnet_rdma.ko

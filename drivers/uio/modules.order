@@ -1,0 +1,6 @@
+kernel/drivers/uio/uio.ko
+kernel/drivers/uio/uio_cif.ko
+kernel/drivers/uio/uio_aec.ko
+kernel/drivers/uio/uio_sercos3.ko
+kernel/drivers/uio/uio_pci_generic.ko
+kernel/drivers/uio/uio_hv_generic.ko

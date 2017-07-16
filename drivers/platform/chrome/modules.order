@@ -1,0 +1,3 @@
+kernel/drivers/platform/chrome/chromeos_laptop.ko
+kernel/drivers/platform/chrome/chromeos_pstore.ko
+kernel/drivers/platform/chrome/cros_kbd_led_backlight.ko

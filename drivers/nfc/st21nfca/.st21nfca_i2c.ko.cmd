@@ -1,0 +1,1 @@
+cmd_drivers/nfc/st21nfca/st21nfca_i2c.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/nfc/st21nfca/st21nfca_i2c.ko drivers/nfc/st21nfca/st21nfca_i2c.o drivers/nfc/st21nfca/st21nfca_i2c.mod.o ;  true

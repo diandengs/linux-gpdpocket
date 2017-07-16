@@ -1,0 +1,1 @@
+cmd_drivers/platform/x86/intel_cht_int33fe.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/platform/x86/intel_cht_int33fe.ko drivers/platform/x86/intel_cht_int33fe.o drivers/platform/x86/intel_cht_int33fe.mod.o ;  true

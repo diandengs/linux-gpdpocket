@@ -1,0 +1,1 @@
+cmd_drivers/net/ethernet/qlogic/qed/qed.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/ethernet/qlogic/qed/qed.ko drivers/net/ethernet/qlogic/qed/qed.o drivers/net/ethernet/qlogic/qed/qed.mod.o ;  true

@@ -1,0 +1,2 @@
+kernel/sound/hda/snd-hda-core.ko
+kernel/sound/hda/ext/snd-hda-ext-core.ko

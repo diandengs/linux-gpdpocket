@@ -1,0 +1,1 @@
+cmd_drivers/input/touchscreen/gunze.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/touchscreen/gunze.ko drivers/input/touchscreen/gunze.o drivers/input/touchscreen/gunze.mod.o ;  true

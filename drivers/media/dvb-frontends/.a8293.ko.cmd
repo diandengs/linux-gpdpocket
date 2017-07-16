@@ -1,0 +1,1 @@
+cmd_drivers/media/dvb-frontends/a8293.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/dvb-frontends/a8293.ko drivers/media/dvb-frontends/a8293.o drivers/media/dvb-frontends/a8293.mod.o ;  true

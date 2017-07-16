@@ -1,0 +1,1 @@
+cmd_drivers/input/touchscreen/egalax_ts_serial.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/input/touchscreen/egalax_ts_serial.ko drivers/input/touchscreen/egalax_ts_serial.o drivers/input/touchscreen/egalax_ts_serial.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/infiniband/ulp/opa_vnic/opa_vnic.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/infiniband/ulp/opa_vnic/opa_vnic.ko drivers/infiniband/ulp/opa_vnic/opa_vnic.o drivers/infiniband/ulp/opa_vnic/opa_vnic.mod.o ;  true

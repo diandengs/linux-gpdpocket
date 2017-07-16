@@ -1,0 +1,1 @@
+cmd_sound/hda/ext/snd-hda-ext-core.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/hda/ext/snd-hda-ext-core.ko sound/hda/ext/snd-hda-ext-core.o sound/hda/ext/snd-hda-ext-core.mod.o ;  true

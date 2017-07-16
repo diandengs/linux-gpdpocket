@@ -1,0 +1,4 @@
+kernel/drivers/isdn/gigaset/gigaset.ko
+kernel/drivers/isdn/gigaset/usb_gigaset.ko
+kernel/drivers/isdn/gigaset/bas_gigaset.ko
+kernel/drivers/isdn/gigaset/ser_gigaset.ko

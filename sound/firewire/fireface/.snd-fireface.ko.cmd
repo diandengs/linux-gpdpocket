@@ -1,0 +1,1 @@
+cmd_sound/firewire/fireface/snd-fireface.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/firewire/fireface/snd-fireface.ko sound/firewire/fireface/snd-fireface.o sound/firewire/fireface/snd-fireface.mod.o ;  true

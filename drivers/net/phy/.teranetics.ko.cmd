@@ -1,0 +1,1 @@
+cmd_drivers/net/phy/teranetics.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/net/phy/teranetics.ko drivers/net/phy/teranetics.o drivers/net/phy/teranetics.mod.o ;  true

@@ -1,0 +1,1 @@
+cmd_drivers/media/radio/radio-mr800.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/media/radio/radio-mr800.ko drivers/media/radio/radio-mr800.o drivers/media/radio/radio-mr800.mod.o ;  true

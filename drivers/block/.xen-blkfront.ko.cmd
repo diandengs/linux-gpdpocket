@@ -1,0 +1,1 @@
+cmd_drivers/block/xen-blkfront.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/block/xen-blkfront.ko drivers/block/xen-blkfront.o drivers/block/xen-blkfront.mod.o ;  true

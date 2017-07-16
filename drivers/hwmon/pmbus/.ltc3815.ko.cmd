@@ -1,0 +1,1 @@
+cmd_drivers/hwmon/pmbus/ltc3815.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o drivers/hwmon/pmbus/ltc3815.ko drivers/hwmon/pmbus/ltc3815.o drivers/hwmon/pmbus/ltc3815.mod.o ;  true

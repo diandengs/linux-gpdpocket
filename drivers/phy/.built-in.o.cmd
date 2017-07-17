@@ -1,1 +1,1 @@
-cmd_drivers/phy/built-in.o :=  ld -m elf_x86_64   -r -o drivers/phy/built-in.o drivers/phy/phy-core.o 
+cmd_drivers/phy/built-in.o :=  rm -f drivers/phy/built-in.o; ar rcSTPD drivers/phy/built-in.o drivers/phy/phy-core.o drivers/phy/broadcom/built-in.o drivers/phy/hisilicon/built-in.o drivers/phy/marvell/built-in.o drivers/phy/motorola/built-in.o drivers/phy/qualcomm/built-in.o drivers/phy/samsung/built-in.o drivers/phy/st/built-in.o drivers/phy/ti/built-in.o 

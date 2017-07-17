@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -28,4 +29,4 @@ MODULE_ALIAS("acpi*:ELAN0605:*");
 MODULE_ALIAS("acpi*:ELAN1000:*");
 MODULE_ALIAS("i2c:elan_i2c");
 
-MODULE_INFO(srcversion, "6FF9B49702E6828D6D29A1D");
+MODULE_INFO(srcversion, "A21D51AD856CE74D2462C47");

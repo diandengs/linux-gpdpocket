@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=rfkill,ecdh_generic";
 
 
-MODULE_INFO(srcversion, "5A0BDC06AE46ABC37A73C56");
+MODULE_INFO(srcversion, "B6D7D6046618756A784AFAA");

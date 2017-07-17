@@ -1,4 +1,4 @@
-cmd_net/dsa/switch.o := gcc -Wp,-MD,net/dsa/.switch.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init  -DMODULE  -DKBUILD_BASENAME='"switch"'  -DKBUILD_MODNAME='"dsa_core"' -c -o net/dsa/switch.o net/dsa/switch.c
+cmd_net/dsa/switch.o := gcc -Wp,-MD,net/dsa/.switch.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init  -DMODULE  -DKBUILD_BASENAME='"switch"'  -DKBUILD_MODNAME='"dsa_core"' -c -o net/dsa/switch.o net/dsa/switch.c
 
 source_net/dsa/switch.o := net/dsa/switch.c
 
@@ -70,7 +70,6 @@ deps_net/dsa/switch.o := \
   include/linux/stddef.h \
   include/uapi/linux/stddef.h \
   include/linux/compiler.h \
-    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/kasan.h) \
@@ -212,6 +211,7 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/debug/bugverbose.h) \
   include/asm-generic/bug.h \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
+  include/linux/build_bug.h \
   include/linux/restart_block.h \
     $(wildcard include/config/compat.h) \
   arch/x86/include/asm/current.h \
@@ -244,6 +244,7 @@ deps_net/dsa/switch.o := \
   arch/x86/include/asm/processor.h \
     $(wildcard include/config/cc/stackprotector.h) \
     $(wildcard include/config/x86/debugctlmsr.h) \
+    $(wildcard include/config/cpu/sup/amd.h) \
     $(wildcard include/config/xen.h) \
   arch/x86/include/asm/processor-flags.h \
   arch/x86/include/uapi/asm/processor-flags.h \
@@ -288,13 +289,13 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/cpumask/offstack.h) \
     $(wildcard include/config/debug/per/cpu/maps.h) \
   include/linux/bitmap.h \
-    $(wildcard include/config/s390.h) \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
   include/uapi/linux/string.h \
   arch/x86/include/asm/string.h \
   arch/x86/include/asm/string_64.h \
     $(wildcard include/config/x86/mce.h) \
+    $(wildcard include/config/arch/has/uaccess/flushcache.h) \
   arch/x86/include/uapi/asm/msr.h \
   include/uapi/linux/ioctl.h \
   arch/x86/include/uapi/asm/ioctl.h \
@@ -439,7 +440,6 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/numa/emu.h) \
   include/linux/nodemask.h \
     $(wildcard include/config/highmem.h) \
-    $(wildcard include/config/movable/node.h) \
   include/linux/numa.h \
     $(wildcard include/config/nodes/shift.h) \
   arch/x86/include/asm/topology.h \
@@ -485,19 +485,16 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/pci/msi.h) \
   include/linux/rculist.h \
   include/linux/rcupdate.h \
-    $(wildcard include/config/tiny/rcu.h) \
-    $(wildcard include/config/tree/rcu.h) \
     $(wildcard include/config/preempt/rcu.h) \
-    $(wildcard include/config/rcu/trace.h) \
     $(wildcard include/config/rcu/stall/common.h) \
     $(wildcard include/config/no/hz/full.h) \
     $(wildcard include/config/rcu/nocb/cpu.h) \
     $(wildcard include/config/tasks/rcu.h) \
+    $(wildcard include/config/tree/rcu.h) \
+    $(wildcard include/config/tiny/rcu.h) \
     $(wildcard include/config/debug/objects/rcu/head.h) \
     $(wildcard include/config/prove/rcu.h) \
     $(wildcard include/config/rcu/boost.h) \
-    $(wildcard include/config/rcu/nocb/cpu/all.h) \
-    $(wildcard include/config/no/hz/full/sysidle.h) \
     $(wildcard include/config/arch/weak/release/acquire.h) \
   include/linux/rcutree.h \
   include/linux/dmaengine.h \
@@ -572,7 +569,6 @@ deps_net/dsa/switch.o := \
   include/linux/srcu.h \
     $(wildcard include/config/tiny/srcu.h) \
     $(wildcard include/config/tree/srcu.h) \
-    $(wildcard include/config/classic/srcu.h) \
   include/linux/workqueue.h \
     $(wildcard include/config/debug/objects/work.h) \
     $(wildcard include/config/freezer.h) \
@@ -599,6 +595,7 @@ deps_net/dsa/switch.o := \
   include/linux/highuid.h \
   include/linux/kref.h \
   include/linux/refcount.h \
+    $(wildcard include/config/refcount/full.h) \
   include/linux/klist.h \
   include/linux/pinctrl/devinfo.h \
     $(wildcard include/config/pm.h) \
@@ -618,6 +615,7 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/mandatory/file/locking.h) \
     $(wildcard include/config/block.h) \
     $(wildcard include/config/migration.h) \
+  include/linux/wait_bit.h \
   include/linux/kdev_t.h \
   include/uapi/linux/kdev_t.h \
   include/linux/dcache.h \
@@ -635,15 +633,40 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/slob.h) \
   include/linux/shrinker.h \
   include/linux/pid.h \
+  include/linux/mm_types.h \
+    $(wildcard include/config/have/cmpxchg/double.h) \
+    $(wildcard include/config/have/aligned/struct/page.h) \
+    $(wildcard include/config/userfaultfd.h) \
+    $(wildcard include/config/have/arch/compat/mmap/bases.h) \
+    $(wildcard include/config/aio.h) \
+    $(wildcard include/config/mmu/notifier.h) \
+  include/linux/mm_types_task.h \
+    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
+    $(wildcard include/config/split/ptlock/cpus.h) \
+    $(wildcard include/config/arch/enable/split/pmd/ptlock.h) \
+  arch/x86/include/asm/tlbbatch.h \
+  include/linux/auxvec.h \
+  include/uapi/linux/auxvec.h \
+  arch/x86/include/uapi/asm/auxvec.h \
+  include/linux/uprobes.h \
+    $(wildcard include/config/uprobes.h) \
+  arch/x86/include/asm/uprobes.h \
   include/linux/capability.h \
   include/uapi/linux/capability.h \
   include/linux/semaphore.h \
+  include/linux/fcntl.h \
+  include/uapi/linux/fcntl.h \
+  arch/x86/include/uapi/asm/fcntl.h \
+  include/uapi/asm-generic/fcntl.h \
   include/uapi/linux/fiemap.h \
   include/linux/migrate_mode.h \
   include/linux/percpu-rwsem.h \
   include/linux/rcuwait.h \
   include/linux/rcu_sync.h \
   include/linux/delayed_call.h \
+  include/linux/uuid.h \
+  include/uapi/linux/uuid.h \
+  include/linux/errseq.h \
   include/uapi/linux/fs.h \
   include/uapi/linux/limits.h \
   include/linux/quota.h \
@@ -656,10 +679,6 @@ deps_net/dsa/switch.o := \
   include/linux/projid.h \
   include/uapi/linux/quota.h \
   include/linux/nfs_fs_i.h \
-  include/linux/fcntl.h \
-  include/uapi/linux/fcntl.h \
-  arch/x86/include/uapi/asm/fcntl.h \
-  include/uapi/asm-generic/fcntl.h \
   include/linux/cred.h \
     $(wildcard include/config/debug/credentials.h) \
     $(wildcard include/config/keys.h) \
@@ -699,7 +718,6 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/latencytop.h) \
     $(wildcard include/config/function/graph/tracer.h) \
     $(wildcard include/config/kcov.h) \
-    $(wildcard include/config/uprobes.h) \
     $(wildcard include/config/bcache.h) \
     $(wildcard include/config/vmap/stack.h) \
     $(wildcard include/config/livepatch.h) \
@@ -755,12 +773,7 @@ deps_net/dsa/switch.o := \
   arch/x86/include/uapi/asm/signal.h \
   include/uapi/asm-generic/signal-defs.h \
   arch/x86/include/uapi/asm/siginfo.h \
-  include/asm-generic/siginfo.h \
   include/uapi/asm-generic/siginfo.h \
-  include/linux/mm_types_task.h \
-    $(wildcard include/config/split/ptlock/cpus.h) \
-    $(wildcard include/config/arch/enable/split/pmd/ptlock.h) \
-    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
   include/linux/task_io_accounting.h \
     $(wildcard include/config/task/io/accounting.h) \
   include/linux/sched/user.h \
@@ -801,18 +814,6 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/debug/pagealloc.h) \
     $(wildcard include/config/hibernation.h) \
     $(wildcard include/config/hugetlbfs.h) \
-  include/linux/mm_types.h \
-    $(wildcard include/config/have/cmpxchg/double.h) \
-    $(wildcard include/config/have/aligned/struct/page.h) \
-    $(wildcard include/config/userfaultfd.h) \
-    $(wildcard include/config/have/arch/compat/mmap/bases.h) \
-    $(wildcard include/config/aio.h) \
-    $(wildcard include/config/mmu/notifier.h) \
-  include/linux/auxvec.h \
-  include/uapi/linux/auxvec.h \
-  arch/x86/include/uapi/asm/auxvec.h \
-  include/linux/uprobes.h \
-  arch/x86/include/asm/uprobes.h \
   include/linux/percpu-refcount.h \
   include/linux/page_ext.h \
     $(wildcard include/config/idle/page/tracking.h) \
@@ -826,6 +827,7 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/arch/uses/pg/uncached.h) \
     $(wildcard include/config/memory/failure.h) \
     $(wildcard include/config/swap.h) \
+    $(wildcard include/config/thp/swap.h) \
     $(wildcard include/config/ksm.h) \
   arch/x86/include/asm/pgtable.h \
     $(wildcard include/config/debug/wx.h) \
@@ -835,6 +837,8 @@ deps_net/dsa/switch.o := \
   include/asm-generic/pgtable.h \
     $(wildcard include/config/have/arch/huge/vmap.h) \
   include/linux/huge_mm.h \
+  include/linux/sched/coredump.h \
+    $(wildcard include/config/core/dump/default/elf/headers.h) \
   include/linux/vmstat.h \
     $(wildcard include/config/vm/event/counters.h) \
     $(wildcard include/config/debug/tlbflush.h) \
@@ -892,6 +896,7 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/slub.h) \
   include/linux/kmemleak.h \
     $(wildcard include/config/debug/kmemleak.h) \
+  include/linux/vmalloc.h \
   include/linux/kasan.h \
   include/net/checksum.h \
   include/linux/uaccess.h \
@@ -997,6 +1002,7 @@ deps_net/dsa/switch.o := \
   include/linux/interrupt.h \
     $(wildcard include/config/irq/forced/threading.h) \
     $(wildcard include/config/generic/irq/probe.h) \
+    $(wildcard include/config/irq/timings.h) \
   include/linux/irqreturn.h \
   include/linux/hardirq.h \
   include/linux/ftrace_irq.h \
@@ -1012,8 +1018,10 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/x86/mce/amd.h) \
     $(wildcard include/config/hyperv.h) \
   include/linux/irq.h \
+    $(wildcard include/config/generic/irq/effective/aff/mask.h) \
     $(wildcard include/config/generic/irq/ipi.h) \
     $(wildcard include/config/irq/domain/hierarchy.h) \
+    $(wildcard include/config/generic/irq/migration.h) \
     $(wildcard include/config/generic/pending/irq.h) \
     $(wildcard include/config/hardirqs/sw/resend.h) \
     $(wildcard include/config/generic/irq/legacy/alloc/hwirq.h) \
@@ -1024,6 +1032,7 @@ deps_net/dsa/switch.o := \
   arch/x86/include/asm/irq_regs.h \
   include/linux/irqdesc.h \
     $(wildcard include/config/irq/preflow/fasteoi.h) \
+    $(wildcard include/config/generic/irq/debugfs.h) \
     $(wildcard include/config/sparse/irq.h) \
     $(wildcard include/config/handle/domain/irq.h) \
   arch/x86/include/asm/hw_irq.h \
@@ -1074,6 +1083,7 @@ deps_net/dsa/switch.o := \
   include/net/scm.h \
     $(wildcard include/config/security/network.h) \
   include/linux/security.h \
+    $(wildcard include/config/security/infiniband.h) \
     $(wildcard include/config/security/network/xfrm.h) \
     $(wildcard include/config/security/path.h) \
     $(wildcard include/config/audit.h) \
@@ -1088,6 +1098,155 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/net/cls/ind.h) \
   include/uapi/linux/pkt_sched.h \
   include/linux/hashtable.h \
+  include/net/switchdev.h \
+  include/net/ip_fib.h \
+  include/net/fib_rules.h \
+  include/uapi/linux/fib_rules.h \
+  include/linux/rtnetlink.h \
+    $(wildcard include/config/net/ingress.h) \
+    $(wildcard include/config/net/egress.h) \
+  include/uapi/linux/rtnetlink.h \
+  include/uapi/linux/if_addr.h \
+  include/net/rtnetlink.h \
+  include/net/netlink.h \
+    $(wildcard include/config/have/efficient/unaligned/access.h) \
+  include/net/inetpeer.h \
+  include/net/ipv6.h \
+  include/linux/ipv6.h \
+    $(wildcard include/config/ipv6/router/pref.h) \
+    $(wildcard include/config/ipv6/route/info.h) \
+    $(wildcard include/config/ipv6/optimistic/dad.h) \
+    $(wildcard include/config/ipv6/seg6/hmac.h) \
+    $(wildcard include/config/ipv6/mip6.h) \
+    $(wildcard include/config/ipv6/subtrees.h) \
+  include/uapi/linux/ipv6.h \
+  include/linux/icmpv6.h \
+  include/uapi/linux/icmpv6.h \
+  include/linux/tcp.h \
+    $(wildcard include/config/tcp/md5sig.h) \
+  include/linux/win_minmax.h \
+  include/net/sock.h \
+    $(wildcard include/config/net.h) \
+    $(wildcard include/config/inet.h) \
+  include/linux/page_counter.h \
+  include/linux/memcontrol.h \
+    $(wildcard include/config/memcg/swap.h) \
+  include/linux/vmpressure.h \
+  include/linux/eventfd.h \
+    $(wildcard include/config/eventfd.h) \
+  include/linux/writeback.h \
+  include/linux/flex_proportions.h \
+  include/linux/backing-dev-defs.h \
+    $(wildcard include/config/debug/fs.h) \
+  include/linux/blk_types.h \
+    $(wildcard include/config/blk/dev/throttling/low.h) \
+    $(wildcard include/config/blk/dev/integrity.h) \
+  include/linux/bvec.h \
+  include/linux/bio.h \
+  include/linux/highmem.h \
+  arch/x86/include/asm/cacheflush.h \
+  include/asm-generic/cacheflush.h \
+  include/linux/mempool.h \
+  include/linux/ioprio.h \
+  include/linux/iocontext.h \
+  include/linux/filter.h \
+    $(wildcard include/config/arch/has/set/memory.h) \
+    $(wildcard include/config/bpf/jit.h) \
+    $(wildcard include/config/have/ebpf/jit.h) \
+  include/linux/cryptohash.h \
+  include/linux/set_memory.h \
+  arch/x86/include/asm/set_memory.h \
+  include/asm-generic/set_memory.h \
+  include/net/sch_generic.h \
+  include/uapi/linux/pkt_cls.h \
+  include/net/gen_stats.h \
+  include/uapi/linux/gen_stats.h \
+  include/uapi/linux/filter.h \
+  include/linux/rculist_nulls.h \
+  include/linux/poll.h \
+  include/uapi/linux/poll.h \
+  arch/x86/include/uapi/asm/poll.h \
+  include/uapi/asm-generic/poll.h \
+  include/net/dst.h \
+  include/net/neighbour.h \
+  include/net/tcp_states.h \
+  include/uapi/linux/net_tstamp.h \
+  include/net/smc.h \
+  include/net/inet_connection_sock.h \
+  include/net/inet_sock.h \
+  include/linux/jhash.h \
+  include/linux/unaligned/packed_struct.h \
+  include/net/request_sock.h \
+  include/net/netns/hash.h \
+  include/net/l3mdev.h \
+  include/net/inet_timewait_sock.h \
+  include/net/timewait_sock.h \
+  include/uapi/linux/tcp.h \
+  include/linux/udp.h \
+  include/uapi/linux/udp.h \
+  include/net/if_inet6.h \
+  include/net/ndisc.h \
+  include/linux/if_arp.h \
+    $(wildcard include/config/firewire/net.h) \
+  include/uapi/linux/if_arp.h \
+  net/dsa/dsa_priv.h \
+  include/linux/phy.h \
+    $(wildcard include/config/led/trigger/phy.h) \
+    $(wildcard include/config/phylib.h) \
+    $(wildcard include/config/mdio/device.h) \
+  include/linux/mdio.h \
+  include/uapi/linux/mdio.h \
+  include/linux/mii.h \
+  include/uapi/linux/mii.h \
+  include/linux/mod_devicetable.h \
+  include/linux/module.h \
+    $(wildcard include/config/modules/tree/lookup.h) \
+    $(wildcard include/config/module/sig.h) \
+    $(wildcard include/config/kallsyms.h) \
+    $(wildcard include/config/event/tracing.h) \
+    $(wildcard include/config/module/unload.h) \
+    $(wildcard include/config/constructors.h) \
+  include/linux/kmod.h \
+  include/linux/elf.h \
+  arch/x86/include/asm/elf.h \
+  arch/x86/include/asm/user.h \
+  arch/x86/include/asm/user_64.h \
+  arch/x86/include/asm/vdso.h \
+    $(wildcard include/config/x86/x32.h) \
+  include/uapi/linux/elf.h \
+  include/uapi/linux/elf-em.h \
+  include/linux/moduleparam.h \
+    $(wildcard include/config/alpha.h) \
+    $(wildcard include/config/ppc64.h) \
+  include/linux/rbtree_latch.h \
+  arch/x86/include/asm/module.h \
+    $(wildcard include/config/m486.h) \
+    $(wildcard include/config/m586.h) \
+    $(wildcard include/config/m586tsc.h) \
+    $(wildcard include/config/m586mmx.h) \
+    $(wildcard include/config/mcore2.h) \
+    $(wildcard include/config/m686.h) \
+    $(wildcard include/config/mpentiumii.h) \
+    $(wildcard include/config/mpentiumiii.h) \
+    $(wildcard include/config/mpentiumm.h) \
+    $(wildcard include/config/mpentium4.h) \
+    $(wildcard include/config/mk6.h) \
+    $(wildcard include/config/mk8.h) \
+    $(wildcard include/config/melan.h) \
+    $(wildcard include/config/mcrusoe.h) \
+    $(wildcard include/config/mefficeon.h) \
+    $(wildcard include/config/mwinchipc6.h) \
+    $(wildcard include/config/mwinchip3d.h) \
+    $(wildcard include/config/mcyrixiii.h) \
+    $(wildcard include/config/mviac3/2.h) \
+    $(wildcard include/config/mviac7.h) \
+    $(wildcard include/config/mgeodegx1.h) \
+    $(wildcard include/config/mgeode/lx.h) \
+  include/asm-generic/module.h \
+    $(wildcard include/config/have/mod/arch/specific.h) \
+    $(wildcard include/config/modules/use/elf/rel.h) \
+    $(wildcard include/config/modules/use/elf/rela.h) \
+  include/linux/netpoll.h \
   include/net/dsa.h \
   include/linux/of.h \
     $(wildcard include/config/sparc.h) \
@@ -1103,9 +1262,6 @@ deps_net/dsa/switch.o := \
     $(wildcard include/config/change/remove.h) \
     $(wildcard include/config/of/resolve.h) \
     $(wildcard include/config/of/overlay.h) \
-  include/linux/mod_devicetable.h \
-  include/linux/uuid.h \
-  include/uapi/linux/uuid.h \
   include/linux/property.h \
   include/linux/fwnode.h \
   include/net/devlink.h \

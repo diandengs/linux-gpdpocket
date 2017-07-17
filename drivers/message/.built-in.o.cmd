@@ -1,1 +1,1 @@
-cmd_drivers/message/built-in.o :=  ld -m elf_x86_64   -r -o drivers/message/built-in.o drivers/message/fusion/built-in.o 
+cmd_drivers/message/built-in.o :=  rm -f drivers/message/built-in.o; ar rcSTPD drivers/message/built-in.o drivers/message/fusion/built-in.o 

@@ -1,1 +1,1 @@
-cmd_drivers/hid/usbhid/usbhid.o := ld -m elf_x86_64   -r -o drivers/hid/usbhid/usbhid.o drivers/hid/usbhid/hid-core.o drivers/hid/usbhid/hid-quirks.o drivers/hid/usbhid/hiddev.o drivers/hid/usbhid/hid-pidff.o 
+cmd_drivers/hid/usbhid/usbhid.o := rm -f drivers/hid/usbhid/usbhid.o; ar rcSTPD drivers/hid/usbhid/usbhid.o drivers/hid/usbhid/hid-core.o drivers/hid/usbhid/hid-quirks.o drivers/hid/usbhid/hiddev.o drivers/hid/usbhid/hid-pidff.o

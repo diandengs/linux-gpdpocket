@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=cfg80211";
 
 
-MODULE_INFO(srcversion, "4AEC2F85AFEDBCCE796C41F");
+MODULE_INFO(srcversion, "11B2BC81896C2D22BC14E46");

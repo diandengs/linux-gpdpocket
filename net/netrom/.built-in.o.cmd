@@ -1,1 +1,1 @@
-cmd_net/netrom/built-in.o :=  rm -f net/netrom/built-in.o; ar rcsD net/netrom/built-in.o
+cmd_net/netrom/built-in.o :=  rm -f net/netrom/built-in.o; ar rcSTPD net/netrom/built-in.o

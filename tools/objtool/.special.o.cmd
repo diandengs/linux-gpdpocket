@@ -1,4 +1,4 @@
-cmd_/usr/src/linux-gpdpocket/tools/objtool/special.o := gcc -Wp,-MD,/usr/src/linux-gpdpocket/tools/objtool/.special.o.d -Wp,-MT,/usr/src/linux-gpdpocket/tools/objtool/special.o -Wall -Werror -Wbad-function-cast -Wdeclaration-after-statement -Wformat-security -Wformat-y2k -Winit-self -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-system-headers -Wold-style-definition -Wpacked -Wredundant-decls -Wshadow -Wstrict-prototypes -Wswitch-default -Wswitch-enum -Wundef -Wwrite-strings -Wformat -Wstrict-aliasing=3 -fomit-frame-pointer -O2 -g -I/usr/src/linux-gpdpocket/tools/include -I/usr/src/linux-gpdpocket/tools/arch/x86/include/uapi -I/usr/src/linux-gpdpocket/tools/lib -D"BUILD_STR(s)=\#s" -c -o /usr/src/linux-gpdpocket/tools/objtool/special.o special.c
+cmd_/usr/src/linux-gpdpocket/tools/objtool/special.o := gcc -Wp,-MD,/usr/src/linux-gpdpocket/tools/objtool/.special.o.d -Wp,-MT,/usr/src/linux-gpdpocket/tools/objtool/special.o -Wall -Werror -Wbad-function-cast -Wdeclaration-after-statement -Wformat-security -Wformat-y2k -Winit-self -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-system-headers -Wold-style-definition -Wpacked -Wredundant-decls -Wshadow -Wstrict-prototypes -Wswitch-default -Wswitch-enum -Wundef -Wwrite-strings -Wformat -Wstrict-aliasing=3 -Wno-switch-default -Wno-switch-enum -fomit-frame-pointer -O2 -g -I/usr/src/linux-gpdpocket/tools/include -I/usr/src/linux-gpdpocket/tools/arch/x86/include/uapi -I/usr/src/linux-gpdpocket/tools/lib -D"BUILD_STR(s)=\#s" -c -o /usr/src/linux-gpdpocket/tools/objtool/special.o special.c
 
 source_/usr/src/linux-gpdpocket/tools/objtool/special.o := special.c
 
@@ -72,6 +72,7 @@ deps_/usr/src/linux-gpdpocket/tools/objtool/special.o := \
   /usr/include/assert.h \
   /usr/src/linux-gpdpocket/tools/include/linux/compiler.h \
   /usr/src/linux-gpdpocket/tools/include/linux/compiler-gcc.h \
+  /usr/include/byteswap.h \
   /usr/src/linux-gpdpocket/tools/include/linux/hashtable.h \
   /usr/src/linux-gpdpocket/tools/include/linux/bitops.h \
   /usr/src/linux-gpdpocket/tools/include/asm-generic/bitops.h \
@@ -88,6 +89,12 @@ deps_/usr/src/linux-gpdpocket/tools/objtool/special.o := \
   /usr/src/linux-gpdpocket/tools/include/linux/hash.h \
   /usr/src/linux-gpdpocket/tools/include/linux/log2.h \
   warn.h \
+  /usr/include/x86_64-linux-gnu/sys/stat.h \
+  /usr/include/x86_64-linux-gnu/bits/stat.h \
+  /usr/include/fcntl.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
 
 /usr/src/linux-gpdpocket/tools/objtool/special.o: $(deps_/usr/src/linux-gpdpocket/tools/objtool/special.o)
 

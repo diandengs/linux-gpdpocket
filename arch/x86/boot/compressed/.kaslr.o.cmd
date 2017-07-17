@@ -1,4 +1,4 @@
-cmd_arch/x86/boot/compressed/kaslr.o := gcc -Wp,-MD,arch/x86/boot/compressed/.kaslr.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -m64 -D__KERNEL__ -O2 -fno-strict-aliasing -fPIE -DDISABLE_BRANCH_PROFILING -mcmodel=small -mno-mmx -mno-sse -ffreestanding -fno-stack-protector    -DKBUILD_BASENAME='"kaslr"'  -DKBUILD_MODNAME='"kaslr"' -c -o arch/x86/boot/compressed/kaslr.o arch/x86/boot/compressed/kaslr.c
+cmd_arch/x86/boot/compressed/kaslr.o := gcc -Wp,-MD,arch/x86/boot/compressed/.kaslr.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -m64 -D__KERNEL__ -O2 -fno-strict-aliasing -fPIE -DDISABLE_BRANCH_PROFILING -mcmodel=small -mno-mmx -mno-sse -ffreestanding -fno-stack-protector    -DKBUILD_BASENAME='"kaslr"'  -DKBUILD_MODNAME='"kaslr"' -c -o arch/x86/boot/compressed/kaslr.o arch/x86/boot/compressed/kaslr.c
 
 source_arch/x86/boot/compressed/kaslr.o := arch/x86/boot/compressed/kaslr.c
 
@@ -15,7 +15,6 @@ deps_arch/x86/boot/compressed/kaslr.o := \
     $(wildcard include/config/randomize/base.h) \
   include/linux/linkage.h \
   include/linux/compiler.h \
-    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/enable/must/check.h) \
@@ -149,6 +148,7 @@ deps_arch/x86/boot/compressed/kaslr.o := \
     $(wildcard include/config/x86/vsmp.h) \
   include/linux/dynamic_debug.h \
     $(wildcard include/config/jump/label.h) \
+  include/linux/build_bug.h \
   include/linux/restart_block.h \
   arch/x86/include/asm/current.h \
   arch/x86/include/asm/percpu.h \
@@ -188,6 +188,7 @@ deps_arch/x86/boot/compressed/kaslr.o := \
   arch/x86/include/asm/processor.h \
     $(wildcard include/config/cc/stackprotector.h) \
     $(wildcard include/config/x86/debugctlmsr.h) \
+    $(wildcard include/config/cpu/sup/amd.h) \
     $(wildcard include/config/xen.h) \
   arch/x86/include/asm/processor-flags.h \
   arch/x86/include/uapi/asm/processor-flags.h \
@@ -224,13 +225,13 @@ deps_arch/x86/boot/compressed/kaslr.o := \
     $(wildcard include/config/hotplug/cpu.h) \
     $(wildcard include/config/debug/per/cpu/maps.h) \
   include/linux/bitmap.h \
-    $(wildcard include/config/s390.h) \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
   include/uapi/linux/string.h \
   arch/x86/include/asm/string.h \
   arch/x86/include/asm/string_64.h \
     $(wildcard include/config/x86/mce.h) \
+    $(wildcard include/config/arch/has/uaccess/flushcache.h) \
   include/linux/jump_label.h \
   include/linux/atomic.h \
     $(wildcard include/config/generic/atomic64.h) \
@@ -284,9 +285,10 @@ deps_arch/x86/boot/compressed/kaslr.o := \
     $(wildcard include/config/compaction.h) \
     $(wildcard include/config/hugetlb/page.h) \
   include/linux/mm_types_task.h \
+    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
     $(wildcard include/config/split/ptlock/cpus.h) \
     $(wildcard include/config/arch/enable/split/pmd/ptlock.h) \
-    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
+  arch/x86/include/asm/tlbbatch.h \
   include/linux/auxvec.h \
   include/uapi/linux/auxvec.h \
   include/linux/list.h \
@@ -351,42 +353,17 @@ deps_arch/x86/boot/compressed/kaslr.o := \
     $(wildcard include/config/inline/write/unlock/irqrestore.h) \
   include/linux/rbtree.h \
   include/linux/rcupdate.h \
-    $(wildcard include/config/tiny/rcu.h) \
-    $(wildcard include/config/tree/rcu.h) \
     $(wildcard include/config/preempt/rcu.h) \
-    $(wildcard include/config/rcu/trace.h) \
     $(wildcard include/config/rcu/stall/common.h) \
     $(wildcard include/config/no/hz/full.h) \
     $(wildcard include/config/rcu/nocb/cpu.h) \
     $(wildcard include/config/tasks/rcu.h) \
+    $(wildcard include/config/tree/rcu.h) \
+    $(wildcard include/config/tiny/rcu.h) \
     $(wildcard include/config/debug/objects/rcu/head.h) \
     $(wildcard include/config/prove/rcu.h) \
     $(wildcard include/config/rcu/boost.h) \
-    $(wildcard include/config/rcu/nocb/cpu/all.h) \
-    $(wildcard include/config/no/hz/full/sysidle.h) \
     $(wildcard include/config/arch/weak/release/acquire.h) \
-  include/linux/seqlock.h \
-  include/linux/debugobjects.h \
-    $(wildcard include/config/debug/objects.h) \
-    $(wildcard include/config/debug/objects/free.h) \
-  include/linux/ktime.h \
-  include/linux/time.h \
-    $(wildcard include/config/arch/uses/gettimeoffset.h) \
-  include/linux/time64.h \
-  include/uapi/linux/time.h \
-  include/linux/jiffies.h \
-  include/linux/timex.h \
-  include/uapi/linux/timex.h \
-  include/uapi/linux/param.h \
-  arch/x86/include/uapi/asm/param.h \
-  include/asm-generic/param.h \
-    $(wildcard include/config/hz.h) \
-  include/uapi/asm-generic/param.h \
-  arch/x86/include/asm/timex.h \
-  arch/x86/include/asm/tsc.h \
-    $(wildcard include/config/x86/tsc.h) \
-  include/generated/timeconst.h \
-  include/linux/timekeeping.h \
   include/linux/rcutree.h \
   include/linux/rwsem.h \
     $(wildcard include/config/rwsem/spin/on/owner.h) \
@@ -408,7 +385,7 @@ deps_arch/x86/boot/compressed/kaslr.o := \
   include/linux/srcu.h \
     $(wildcard include/config/tiny/srcu.h) \
     $(wildcard include/config/tree/srcu.h) \
-    $(wildcard include/config/classic/srcu.h) \
+    $(wildcard include/config/srcu.h) \
   include/linux/workqueue.h \
     $(wildcard include/config/debug/objects/work.h) \
     $(wildcard include/config/freezer.h) \
@@ -417,6 +394,28 @@ deps_arch/x86/boot/compressed/kaslr.o := \
   include/linux/timer.h \
     $(wildcard include/config/debug/objects/timers.h) \
     $(wildcard include/config/no/hz/common.h) \
+  include/linux/ktime.h \
+  include/linux/time.h \
+    $(wildcard include/config/arch/uses/gettimeoffset.h) \
+  include/linux/seqlock.h \
+  include/linux/time64.h \
+  include/uapi/linux/time.h \
+  include/linux/jiffies.h \
+  include/linux/timex.h \
+  include/uapi/linux/timex.h \
+  include/uapi/linux/param.h \
+  arch/x86/include/uapi/asm/param.h \
+  include/asm-generic/param.h \
+    $(wildcard include/config/hz.h) \
+  include/uapi/asm-generic/param.h \
+  arch/x86/include/asm/timex.h \
+  arch/x86/include/asm/tsc.h \
+    $(wildcard include/config/x86/tsc.h) \
+  include/generated/timeconst.h \
+  include/linux/timekeeping.h \
+  include/linux/debugobjects.h \
+    $(wildcard include/config/debug/objects.h) \
+    $(wildcard include/config/debug/objects/free.h) \
   include/linux/rcu_segcblist.h \
   include/linux/srcutree.h \
   include/linux/rcu_node_tree.h \
@@ -469,7 +468,7 @@ deps_arch/x86/boot/compressed/kaslr.o := \
   arch/x86/include/asm/bootparam_utils.h \
   arch/x86/boot/compressed/../ctype.h \
   arch/x86/boot/compressed/error.h \
-  arch/x86/boot/compressed/../boot.h \
+  arch/x86/boot/compressed/../string.h \
   include/generated/compile.h \
   include/linux/module.h \
     $(wildcard include/config/modules/tree/lookup.h) \
@@ -513,15 +512,14 @@ deps_arch/x86/boot/compressed/kaslr.o := \
     $(wildcard include/config/need/multiple/nodes.h) \
     $(wildcard include/config/have/arch/early/pfn/to/nid.h) \
     $(wildcard include/config/sparsemem/extreme.h) \
+    $(wildcard include/config/memory/hotremove.h) \
     $(wildcard include/config/have/arch/pfn/valid.h) \
     $(wildcard include/config/holes/in/zone.h) \
     $(wildcard include/config/arch/has/holes/memorymodel.h) \
   include/linux/nodemask.h \
-    $(wildcard include/config/movable/node.h) \
   include/linux/pageblock-flags.h \
     $(wildcard include/config/hugetlb/page/size/variable.h) \
   include/linux/memory_hotplug.h \
-    $(wildcard include/config/memory/hotremove.h) \
     $(wildcard include/config/have/arch/nodedata/extension.h) \
     $(wildcard include/config/have/bootmem/info/node.h) \
   arch/x86/include/asm/mmzone.h \
@@ -586,6 +584,7 @@ deps_arch/x86/boot/compressed/kaslr.o := \
   include/linux/kobject_ns.h \
   include/linux/kref.h \
   include/linux/refcount.h \
+    $(wildcard include/config/refcount/full.h) \
   include/linux/moduleparam.h \
     $(wildcard include/config/alpha.h) \
     $(wildcard include/config/ia64.h) \
@@ -709,14 +708,15 @@ deps_arch/x86/boot/compressed/kaslr.o := \
   arch/x86/include/uapi/asm/signal.h \
   include/uapi/asm-generic/signal-defs.h \
   arch/x86/include/uapi/asm/siginfo.h \
-  include/asm-generic/siginfo.h \
   include/uapi/asm-generic/siginfo.h \
   include/linux/task_io_accounting.h \
     $(wildcard include/config/task/io/accounting.h) \
   include/linux/nsproxy.h \
   include/linux/ns_common.h \
   include/uapi/linux/utsname.h \
+  include/linux/ctype.h \
   include/generated/utsrelease.h \
+  include/linux/decompress/mm.h \
   arch/x86/boot/compressed/../../lib/kaslr.c \
   arch/x86/include/asm/archrandom.h \
     $(wildcard include/config/arch/random.h) \
@@ -724,6 +724,8 @@ deps_arch/x86/boot/compressed/kaslr.o := \
   arch/x86/include/asm/e820/types.h \
     $(wildcard include/config/x86/pmem/legacy.h) \
   arch/x86/include/uapi/asm/bootparam.h \
+  arch/x86/boot/compressed/../../../../lib/ctype.c \
+  arch/x86/boot/compressed/../../../../lib/cmdline.c \
 
 arch/x86/boot/compressed/kaslr.o: $(deps_arch/x86/boot/compressed/kaslr.o)
 

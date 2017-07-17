@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -23,4 +24,4 @@ __attribute__((section(".modinfo"))) =
 
 MODULE_ALIAS("acpi*:ARMH9118:*");
 
-MODULE_INFO(srcversion, "C5FB35E6593635509AE4FB5");
+MODULE_INFO(srcversion, "B309C47A612FDB46C1D9BCC");

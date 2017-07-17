@@ -89,6 +89,8 @@
 #define SECCLASS_KCM_SOCKET                              85
 #define SECCLASS_QIPCRTR_SOCKET                          86
 #define SECCLASS_SMC_SOCKET                              87
+#define SECCLASS_INFINIBAND_PKEY                         88
+#define SECCLASS_INFINIBAND_ENDPORT                      89
 
 #define SECINITSID_KERNEL                                   1
 #define SECINITSID_SECURITY                                 2

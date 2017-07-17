@@ -7,19 +7,13 @@ kernel/sound/core/snd-timer.ko
 kernel/sound/core/snd-hrtimer.ko
 kernel/sound/core/snd-pcm.ko
 kernel/sound/core/snd-pcm-dmaengine.ko
+kernel/sound/core/snd-seq-device.ko
 kernel/sound/core/snd-rawmidi.ko
 kernel/sound/core/seq/snd-seq.ko
-kernel/sound/core/seq/snd-seq-device.ko
-kernel/sound/core/seq/snd-seq-midi-event.ko
 kernel/sound/core/seq/oss/snd-seq-oss.ko
 kernel/sound/core/seq/snd-seq-dummy.ko
-kernel/sound/core/seq/snd-seq-virmidi.ko
-kernel/sound/core/seq/snd-seq-midi-event.ko
-kernel/sound/core/seq/snd-seq-midi.ko
-kernel/sound/core/seq/snd-seq-midi-event.ko
-kernel/sound/core/seq/snd-seq-midi-event.ko
 kernel/sound/core/seq/snd-seq-midi-emul.ko
-kernel/sound/core/seq/snd-seq-midi-emul.ko
+kernel/sound/core/seq/snd-seq-midi-event.ko
 kernel/sound/core/seq/snd-seq-virmidi.ko
 kernel/sound/core/snd-compress.ko
 kernel/sound/i2c/other/snd-ak4xxx-adda.ko
@@ -169,6 +163,7 @@ kernel/sound/soc/codecs/snd-soc-da7213.ko
 kernel/sound/soc/codecs/snd-soc-da7219.ko
 kernel/sound/soc/codecs/snd-soc-dmic.ko
 kernel/sound/soc/codecs/snd-soc-es7134.ko
+kernel/sound/soc/codecs/snd-soc-es8316.ko
 kernel/sound/soc/codecs/snd-soc-es8328.ko
 kernel/sound/soc/codecs/snd-soc-es8328-i2c.ko
 kernel/sound/soc/codecs/snd-soc-es8328-spi.ko
@@ -224,6 +219,7 @@ kernel/sound/soc/intel/boards/snd-soc-sst-cht-bsw-rt5672.ko
 kernel/sound/soc/intel/boards/snd-soc-sst-cht-bsw-rt5645.ko
 kernel/sound/soc/intel/boards/snd-soc-sst-cht-bsw-max98090_ti.ko
 kernel/sound/soc/intel/boards/snd-soc-sst-byt-cht-da7213.ko
+kernel/sound/soc/intel/boards/snd-soc-sst-byt-cht-es8316.ko
 kernel/sound/soc/intel/boards/snd-soc-sst-byt-cht-nocodec.ko
 kernel/sound/soc/intel/boards/snd-soc-skl_rt286.ko
 kernel/sound/soc/intel/boards/snd-skl_nau88l25_max98357a.ko

@@ -20,8 +20,8 @@
 
 MODULE_ALIAS("wmi:"PEAQ_DOLBY_BUTTON_GUID);
 
-static struct input_polled_dev *peaq_poll_dev;
 static unsigned int peaq_ignore_events_counter;
+static struct input_polled_dev *peaq_poll_dev;
 
 /*
  * The Dolby button (yes really a Dolby button) causes an ACPI variable to get
@@ -32,11 +32,12 @@ static unsigned int peaq_ignore_events_counter;
  */
 static void peaq_wmi_poll(struct input_polled_dev *dev)
 {
-	u32 dummy = 0;
 	union acpi_object obj;
+	acpi_status status;
+	u32 dummy = 0;
+
 	struct acpi_buffer input = { sizeof(dummy), &dummy };
 	struct acpi_buffer output = { sizeof(obj), &obj };
-	acpi_status status;
 
 	status = wmi_evaluate_method(PEAQ_DOLBY_BUTTON_GUID, 1,
 				     PEAQ_DOLBY_BUTTON_METHOD_ID,

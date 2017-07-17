@@ -1,1 +1,1 @@
-cmd_fs/lockd/built-in.o :=  rm -f fs/lockd/built-in.o; ar rcsD fs/lockd/built-in.o
+cmd_fs/lockd/built-in.o :=  rm -f fs/lockd/built-in.o; ar rcSTPD fs/lockd/built-in.o

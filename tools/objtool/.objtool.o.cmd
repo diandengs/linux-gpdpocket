@@ -1,4 +1,4 @@
-cmd_/usr/src/linux-gpdpocket/tools/objtool/objtool.o := gcc -Wp,-MD,/usr/src/linux-gpdpocket/tools/objtool/.objtool.o.d -Wp,-MT,/usr/src/linux-gpdpocket/tools/objtool/objtool.o -Wall -Werror -Wbad-function-cast -Wdeclaration-after-statement -Wformat-security -Wformat-y2k -Winit-self -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-system-headers -Wold-style-definition -Wpacked -Wredundant-decls -Wshadow -Wstrict-prototypes -Wswitch-default -Wswitch-enum -Wundef -Wwrite-strings -Wformat -Wstrict-aliasing=3 -fomit-frame-pointer -O2 -g -I/usr/src/linux-gpdpocket/tools/include -I/usr/src/linux-gpdpocket/tools/arch/x86/include/uapi -I/usr/src/linux-gpdpocket/tools/lib -D"BUILD_STR(s)=\#s" -c -o /usr/src/linux-gpdpocket/tools/objtool/objtool.o objtool.c
+cmd_/usr/src/linux-gpdpocket/tools/objtool/objtool.o := gcc -Wp,-MD,/usr/src/linux-gpdpocket/tools/objtool/.objtool.o.d -Wp,-MT,/usr/src/linux-gpdpocket/tools/objtool/objtool.o -Wall -Werror -Wbad-function-cast -Wdeclaration-after-statement -Wformat-security -Wformat-y2k -Winit-self -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-system-headers -Wold-style-definition -Wpacked -Wredundant-decls -Wshadow -Wstrict-prototypes -Wswitch-default -Wswitch-enum -Wundef -Wwrite-strings -Wformat -Wstrict-aliasing=3 -Wno-switch-default -Wno-switch-enum -fomit-frame-pointer -O2 -g -I/usr/src/linux-gpdpocket/tools/include -I/usr/src/linux-gpdpocket/tools/arch/x86/include/uapi -I/usr/src/linux-gpdpocket/tools/lib -D"BUILD_STR(s)=\#s" -c -o /usr/src/linux-gpdpocket/tools/objtool/objtool.o objtool.c
 
 source_/usr/src/linux-gpdpocket/tools/objtool/objtool.o := objtool.c
 
@@ -66,6 +66,7 @@ deps_/usr/src/linux-gpdpocket/tools/objtool/objtool.o := \
   /usr/include/asm/posix_types.h \
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm-generic/posix_types.h \
+  /usr/include/byteswap.h \
   builtin.h \
 
 /usr/src/linux-gpdpocket/tools/objtool/objtool.o: $(deps_/usr/src/linux-gpdpocket/tools/objtool/objtool.o)

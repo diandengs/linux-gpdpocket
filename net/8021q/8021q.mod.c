@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=mrp,garp";
 
 
-MODULE_INFO(srcversion, "56FBEC2BA5A7999C0FE32CE");
+MODULE_INFO(srcversion, "EFDE1A10B10CE254E195C7C");

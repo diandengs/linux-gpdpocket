@@ -103,7 +103,6 @@ kernel/drivers/usb/misc/usb251xb.ko
 kernel/drivers/usb/misc/usb3503.ko
 kernel/drivers/usb/misc/usb4604.ko
 kernel/drivers/usb/misc/chaoskey.ko
-kernel/drivers/usb/misc/ucsi.ko
 kernel/drivers/usb/misc/sisusbvga/sisusbvga.ko
 kernel/drivers/usb/common/ulpi.ko
 kernel/drivers/usb/dwc3/dwc3.ko
@@ -153,6 +152,7 @@ kernel/drivers/usb/gadget/function/usb_f_ecm.ko
 kernel/drivers/usb/gadget/function/usb_f_ecm_subset.ko
 kernel/drivers/usb/gadget/function/usb_f_rndis.ko
 kernel/drivers/usb/gadget/function/usb_f_mass_storage.ko
+kernel/drivers/usb/gadget/function/u_audio.ko
 kernel/drivers/usb/gadget/function/usb_f_uac2.ko
 kernel/drivers/usb/gadget/function/usb_f_uvc.ko
 kernel/drivers/usb/gadget/function/usb_f_midi.ko
@@ -176,3 +176,5 @@ kernel/drivers/usb/usbip/vhci-hcd.ko
 kernel/drivers/usb/usbip/usbip-host.ko
 kernel/drivers/usb/usbip/usbip-vudc.ko
 kernel/drivers/usb/typec/typec.ko
+kernel/drivers/usb/typec/ucsi/typec_ucsi.ko
+kernel/drivers/usb/typec/ucsi/ucsi_acpi.ko

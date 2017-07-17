@@ -1,1 +1,1 @@
-cmd_drivers/regulator/built-in.o :=  ld -m elf_x86_64   -r -o drivers/regulator/built-in.o drivers/regulator/core.o drivers/regulator/dummy.o drivers/regulator/fixed-helper.o drivers/regulator/helpers.o drivers/regulator/devres.o 
+cmd_drivers/regulator/built-in.o :=  rm -f drivers/regulator/built-in.o; ar rcSTPD drivers/regulator/built-in.o drivers/regulator/core.o drivers/regulator/dummy.o drivers/regulator/fixed-helper.o drivers/regulator/helpers.o drivers/regulator/devres.o 

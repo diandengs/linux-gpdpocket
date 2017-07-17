@@ -1,0 +1,1 @@
+cmd_sound/soc/intel/boards/snd-soc-sst-byt-cht-es8316.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o sound/soc/intel/boards/snd-soc-sst-byt-cht-es8316.ko sound/soc/intel/boards/snd-soc-sst-byt-cht-es8316.o sound/soc/intel/boards/snd-soc-sst-byt-cht-es8316.mod.o ;  true

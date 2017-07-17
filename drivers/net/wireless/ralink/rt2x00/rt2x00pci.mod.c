@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -18,4 +19,4 @@ __attribute__((section(".modinfo"))) =
 "depends=rt2x00lib,mac80211";
 
 
-MODULE_INFO(srcversion, "9667993AFCA749BDA25C152");
+MODULE_INFO(srcversion, "F9C67B4D1B9EDC1B32C33D1");

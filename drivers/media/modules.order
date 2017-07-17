@@ -517,6 +517,7 @@ kernel/drivers/media/dvb-frontends/ascot2e.ko
 kernel/drivers/media/dvb-frontends/helene.ko
 kernel/drivers/media/dvb-frontends/zd1301_demod.ko
 kernel/drivers/media/media.ko
+kernel/drivers/media/v4l2-core/v4l2-fwnode.ko
 kernel/drivers/media/v4l2-core/videodev.ko
 kernel/drivers/media/v4l2-core/v4l2-common.ko
 kernel/drivers/media/v4l2-core/v4l2-dv-timings.ko

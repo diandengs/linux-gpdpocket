@@ -32,6 +32,7 @@ kernel/drivers/platform/x86/msi-wmi.ko
 kernel/drivers/platform/x86/peaq-wmi.ko
 kernel/drivers/platform/x86/surface3-wmi.ko
 kernel/drivers/platform/x86/topstar-laptop.ko
+kernel/drivers/platform/x86/wmi-bmof.ko
 kernel/drivers/platform/x86/toshiba_acpi.ko
 kernel/drivers/platform/x86/toshiba_bluetooth.ko
 kernel/drivers/platform/x86/toshiba_haps.ko

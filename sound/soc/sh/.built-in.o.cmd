@@ -1,1 +1,1 @@
-cmd_sound/soc/sh/built-in.o :=  rm -f sound/soc/sh/built-in.o; ar rcsD sound/soc/sh/built-in.o
+cmd_sound/soc/sh/built-in.o :=  rm -f sound/soc/sh/built-in.o; ar rcSTPD sound/soc/sh/built-in.o

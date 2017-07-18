@@ -1,6 +1,6 @@
 .section ".rodata..compressed","a",@progbits
 .globl z_input_len
-z_input_len = 7229706
+z_input_len = 7229702
 .globl z_output_len
 z_output_len = 24687304
 .globl input_data, input_data_end

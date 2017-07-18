@@ -1,1 +1,1 @@
-cmd_drivers/clocksource/built-in.o :=  ld -m elf_x86_64   -r -o drivers/clocksource/built-in.o drivers/clocksource/acpi_pm.o drivers/clocksource/i8253.o drivers/clocksource/numachip.o 
+cmd_drivers/clocksource/built-in.o :=  rm -f drivers/clocksource/built-in.o; ar rcSTPD drivers/clocksource/built-in.o drivers/clocksource/acpi_pm.o drivers/clocksource/i8253.o drivers/clocksource/numachip.o 

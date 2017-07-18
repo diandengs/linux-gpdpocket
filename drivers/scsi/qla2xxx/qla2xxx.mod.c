@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -19,7 +20,7 @@ MODULE_INFO(intree, "Y");
 static const char __module_depends[]
 __used
 __attribute__((section(".modinfo"))) =
-"depends=scsi_transport_fc";
+"depends=nvme-fc,scsi_transport_fc";
 
 MODULE_ALIAS("pci:v00001077d00002100sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00001077d00002200sv*sd*bc*sc*i*");
@@ -44,4 +45,4 @@ MODULE_ALIAS("pci:v00001077d00002071sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00001077d00002271sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00001077d00002261sv*sd*bc*sc*i*");
 
-MODULE_INFO(srcversion, "3E727134E4E962084E9955D");
+MODULE_INFO(srcversion, "7B559B2CE49B97F24596EA7");

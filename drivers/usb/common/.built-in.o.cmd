@@ -1,1 +1,1 @@
-cmd_drivers/usb/common/built-in.o :=  ld -m elf_x86_64   -r -o drivers/usb/common/built-in.o drivers/usb/common/usb-common.o 
+cmd_drivers/usb/common/built-in.o :=  rm -f drivers/usb/common/built-in.o; ar rcSTPD drivers/usb/common/built-in.o drivers/usb/common/usb-common.o 

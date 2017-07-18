@@ -1,1 +1,1 @@
-cmd_drivers/ntb/built-in.o :=  rm -f drivers/ntb/built-in.o; ar rcsD drivers/ntb/built-in.o
+cmd_drivers/ntb/built-in.o :=  rm -f drivers/ntb/built-in.o; ar rcSTPD drivers/ntb/built-in.o

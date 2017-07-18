@@ -1,4 +1,4 @@
-cmd_net/bluetooth/smp.o := gcc -Wp,-MD,net/bluetooth/.smp.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init  -DMODULE  -DKBUILD_BASENAME='"smp"'  -DKBUILD_MODNAME='"bluetooth"' -c -o net/bluetooth/smp.o net/bluetooth/smp.c
+cmd_net/bluetooth/smp.o := gcc -Wp,-MD,net/bluetooth/.smp.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init  -DMODULE  -DKBUILD_BASENAME='"smp"'  -DKBUILD_MODNAME='"bluetooth"' -c -o net/bluetooth/smp.o net/bluetooth/smp.c
 
 source_net/bluetooth/smp.o := net/bluetooth/smp.c
 
@@ -27,7 +27,6 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/migration.h) \
   include/linux/linkage.h \
   include/linux/compiler.h \
-    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/kasan.h) \
@@ -66,6 +65,7 @@ deps_net/bluetooth/smp.o := \
   arch/x86/include/asm/linkage.h \
     $(wildcard include/config/x86/64.h) \
     $(wildcard include/config/x86/alignment/16.h) \
+  include/linux/wait_bit.h \
   include/linux/wait.h \
     $(wildcard include/config/lockdep.h) \
   include/linux/list.h \
@@ -185,6 +185,7 @@ deps_net/bluetooth/smp.o := \
   include/asm-generic/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
+  include/linux/build_bug.h \
   include/linux/restart_block.h \
     $(wildcard include/config/compat.h) \
   arch/x86/include/asm/current.h \
@@ -217,6 +218,7 @@ deps_net/bluetooth/smp.o := \
   arch/x86/include/asm/processor.h \
     $(wildcard include/config/cc/stackprotector.h) \
     $(wildcard include/config/x86/debugctlmsr.h) \
+    $(wildcard include/config/cpu/sup/amd.h) \
     $(wildcard include/config/xen.h) \
   arch/x86/include/asm/processor-flags.h \
   arch/x86/include/uapi/asm/processor-flags.h \
@@ -263,13 +265,13 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/hotplug/cpu.h) \
     $(wildcard include/config/debug/per/cpu/maps.h) \
   include/linux/bitmap.h \
-    $(wildcard include/config/s390.h) \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
   include/uapi/linux/string.h \
   arch/x86/include/asm/string.h \
   arch/x86/include/asm/string_64.h \
     $(wildcard include/config/x86/mce.h) \
+    $(wildcard include/config/arch/has/uaccess/flushcache.h) \
   arch/x86/include/uapi/asm/msr.h \
   include/uapi/linux/ioctl.h \
   arch/x86/include/uapi/asm/ioctl.h \
@@ -348,48 +350,22 @@ deps_net/bluetooth/smp.o := \
   include/linux/dcache.h \
   include/linux/rculist.h \
   include/linux/rcupdate.h \
-    $(wildcard include/config/tiny/rcu.h) \
-    $(wildcard include/config/tree/rcu.h) \
     $(wildcard include/config/preempt/rcu.h) \
-    $(wildcard include/config/rcu/trace.h) \
     $(wildcard include/config/rcu/stall/common.h) \
     $(wildcard include/config/no/hz/full.h) \
     $(wildcard include/config/rcu/nocb/cpu.h) \
     $(wildcard include/config/tasks/rcu.h) \
+    $(wildcard include/config/tree/rcu.h) \
+    $(wildcard include/config/tiny/rcu.h) \
     $(wildcard include/config/debug/objects/rcu/head.h) \
     $(wildcard include/config/prove/rcu.h) \
     $(wildcard include/config/rcu/boost.h) \
-    $(wildcard include/config/rcu/nocb/cpu/all.h) \
-    $(wildcard include/config/no/hz/full/sysidle.h) \
     $(wildcard include/config/arch/weak/release/acquire.h) \
-  include/linux/seqlock.h \
-  include/linux/debugobjects.h \
-    $(wildcard include/config/debug/objects.h) \
-    $(wildcard include/config/debug/objects/free.h) \
-  include/linux/ktime.h \
-  include/linux/time.h \
-    $(wildcard include/config/arch/uses/gettimeoffset.h) \
-  include/linux/time64.h \
-  include/uapi/linux/time.h \
-  include/linux/jiffies.h \
-  include/linux/timex.h \
-  include/uapi/linux/timex.h \
-  include/uapi/linux/param.h \
-  arch/x86/include/uapi/asm/param.h \
-  include/asm-generic/param.h \
-    $(wildcard include/config/hz.h) \
-  include/uapi/asm-generic/param.h \
-  arch/x86/include/asm/timex.h \
-  arch/x86/include/asm/tsc.h \
-    $(wildcard include/config/x86/tsc.h) \
-  include/generated/timeconst.h \
-  include/linux/timekeeping.h \
-  include/linux/errno.h \
-  include/uapi/linux/errno.h \
   include/linux/rcutree.h \
   include/linux/rculist_bl.h \
   include/linux/list_bl.h \
   include/linux/bit_spinlock.h \
+  include/linux/seqlock.h \
   include/linux/lockref.h \
     $(wildcard include/config/arch/use/cmpxchg/lockref.h) \
   include/generated/bounds.h \
@@ -401,6 +377,10 @@ deps_net/bluetooth/smp.o := \
   include/linux/stat.h \
   arch/x86/include/uapi/asm/stat.h \
   include/uapi/linux/stat.h \
+  include/linux/time.h \
+    $(wildcard include/config/arch/uses/gettimeoffset.h) \
+  include/linux/time64.h \
+  include/uapi/linux/time.h \
   include/linux/uidgid.h \
     $(wildcard include/config/multiuser.h) \
     $(wildcard include/config/user/ns.h) \
@@ -410,7 +390,6 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/slob.h) \
   include/linux/nodemask.h \
     $(wildcard include/config/highmem.h) \
-    $(wildcard include/config/movable/node.h) \
     $(wildcard include/config/numa.h) \
   include/linux/numa.h \
     $(wildcard include/config/nodes/shift.h) \
@@ -431,9 +410,75 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/rwsem/spin/on/owner.h) \
     $(wildcard include/config/rwsem/generic/spinlock.h) \
   arch/x86/include/asm/rwsem.h \
+  include/linux/mm_types.h \
+    $(wildcard include/config/have/cmpxchg/double.h) \
+    $(wildcard include/config/have/aligned/struct/page.h) \
+    $(wildcard include/config/transparent/hugepage.h) \
+    $(wildcard include/config/userfaultfd.h) \
+    $(wildcard include/config/have/arch/compat/mmap/bases.h) \
+    $(wildcard include/config/aio.h) \
+    $(wildcard include/config/mmu/notifier.h) \
+    $(wildcard include/config/numa/balancing.h) \
+    $(wildcard include/config/compaction.h) \
+    $(wildcard include/config/hugetlb/page.h) \
+  include/linux/mm_types_task.h \
+    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
+    $(wildcard include/config/split/ptlock/cpus.h) \
+    $(wildcard include/config/arch/enable/split/pmd/ptlock.h) \
+  arch/x86/include/asm/tlbbatch.h \
+  include/linux/auxvec.h \
+  include/uapi/linux/auxvec.h \
+  arch/x86/include/uapi/asm/auxvec.h \
+  include/linux/completion.h \
+  include/linux/uprobes.h \
+    $(wildcard include/config/uprobes.h) \
+  include/linux/errno.h \
+  include/uapi/linux/errno.h \
+  arch/x86/include/asm/uprobes.h \
+  include/linux/notifier.h \
+  include/linux/srcu.h \
+    $(wildcard include/config/tiny/srcu.h) \
+    $(wildcard include/config/tree/srcu.h) \
+    $(wildcard include/config/srcu.h) \
+  include/linux/workqueue.h \
+    $(wildcard include/config/debug/objects/work.h) \
+    $(wildcard include/config/freezer.h) \
+    $(wildcard include/config/wq/watchdog.h) \
+  include/linux/timer.h \
+    $(wildcard include/config/debug/objects/timers.h) \
+    $(wildcard include/config/no/hz/common.h) \
+  include/linux/ktime.h \
+  include/linux/jiffies.h \
+  include/linux/timex.h \
+  include/uapi/linux/timex.h \
+  include/uapi/linux/param.h \
+  arch/x86/include/uapi/asm/param.h \
+  include/asm-generic/param.h \
+    $(wildcard include/config/hz.h) \
+  include/uapi/asm-generic/param.h \
+  arch/x86/include/asm/timex.h \
+  arch/x86/include/asm/tsc.h \
+    $(wildcard include/config/x86/tsc.h) \
+  include/generated/timeconst.h \
+  include/linux/timekeeping.h \
+  include/linux/debugobjects.h \
+    $(wildcard include/config/debug/objects.h) \
+    $(wildcard include/config/debug/objects/free.h) \
+  include/linux/rcu_segcblist.h \
+  include/linux/srcutree.h \
+  include/linux/rcu_node_tree.h \
+    $(wildcard include/config/rcu/fanout.h) \
+    $(wildcard include/config/rcu/fanout/leaf.h) \
+  include/linux/page-flags-layout.h \
+  arch/x86/include/asm/mmu.h \
+    $(wildcard include/config/modify/ldt/syscall.h) \
   include/linux/capability.h \
   include/uapi/linux/capability.h \
   include/linux/semaphore.h \
+  include/linux/fcntl.h \
+  include/uapi/linux/fcntl.h \
+  arch/x86/include/uapi/asm/fcntl.h \
+  include/uapi/asm-generic/fcntl.h \
   include/uapi/linux/fiemap.h \
   include/linux/migrate_mode.h \
   include/linux/percpu-rwsem.h \
@@ -485,8 +530,6 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/sched/mc/prio.h) \
   include/asm-generic/topology.h \
     $(wildcard include/config/have/memoryless/nodes.h) \
-  arch/x86/include/asm/mmu.h \
-    $(wildcard include/config/modify/ldt/syscall.h) \
   arch/x86/include/asm/realmode.h \
     $(wildcard include/config/acpi/sleep.h) \
   arch/x86/include/asm/io.h \
@@ -518,14 +561,10 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/pci/msi.h) \
   include/linux/rcuwait.h \
   include/linux/rcu_sync.h \
-  include/linux/workqueue.h \
-    $(wildcard include/config/debug/objects/work.h) \
-    $(wildcard include/config/freezer.h) \
-    $(wildcard include/config/wq/watchdog.h) \
-  include/linux/timer.h \
-    $(wildcard include/config/debug/objects/timers.h) \
-    $(wildcard include/config/no/hz/common.h) \
   include/linux/delayed_call.h \
+  include/linux/uuid.h \
+  include/uapi/linux/uuid.h \
+  include/linux/errseq.h \
   include/uapi/linux/fs.h \
   include/uapi/linux/limits.h \
   include/linux/quota.h \
@@ -537,7 +576,6 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/zone/device.h) \
     $(wildcard include/config/pm/sleep.h) \
     $(wildcard include/config/memory/isolation.h) \
-    $(wildcard include/config/compaction.h) \
     $(wildcard include/config/cma.h) \
   include/linux/mmzone.h \
     $(wildcard include/config/force/max/zoneorder.h) \
@@ -546,37 +584,22 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/flat/node/mem/map.h) \
     $(wildcard include/config/page/extension.h) \
     $(wildcard include/config/no/bootmem.h) \
-    $(wildcard include/config/numa/balancing.h) \
     $(wildcard include/config/deferred/struct/page/init.h) \
-    $(wildcard include/config/transparent/hugepage.h) \
     $(wildcard include/config/have/memory/present.h) \
     $(wildcard include/config/need/node/memmap/size.h) \
     $(wildcard include/config/have/memblock/node/map.h) \
     $(wildcard include/config/need/multiple/nodes.h) \
     $(wildcard include/config/have/arch/early/pfn/to/nid.h) \
     $(wildcard include/config/sparsemem/extreme.h) \
+    $(wildcard include/config/memory/hotremove.h) \
     $(wildcard include/config/have/arch/pfn/valid.h) \
     $(wildcard include/config/holes/in/zone.h) \
     $(wildcard include/config/arch/has/holes/memorymodel.h) \
   include/linux/pageblock-flags.h \
-    $(wildcard include/config/hugetlb/page.h) \
     $(wildcard include/config/hugetlb/page/size/variable.h) \
-  include/linux/page-flags-layout.h \
   include/linux/memory_hotplug.h \
-    $(wildcard include/config/memory/hotremove.h) \
     $(wildcard include/config/have/arch/nodedata/extension.h) \
     $(wildcard include/config/have/bootmem/info/node.h) \
-  include/linux/notifier.h \
-  include/linux/srcu.h \
-    $(wildcard include/config/tiny/srcu.h) \
-    $(wildcard include/config/tree/srcu.h) \
-    $(wildcard include/config/classic/srcu.h) \
-  include/linux/rcu_segcblist.h \
-  include/linux/srcutree.h \
-  include/linux/rcu_node_tree.h \
-    $(wildcard include/config/rcu/fanout.h) \
-    $(wildcard include/config/rcu/fanout/leaf.h) \
-  include/linux/completion.h \
   arch/x86/include/asm/mmzone.h \
   arch/x86/include/asm/mmzone_64.h \
   include/linux/topology.h \
@@ -589,10 +612,6 @@ deps_net/bluetooth/smp.o := \
   include/linux/projid.h \
   include/uapi/linux/quota.h \
   include/linux/nfs_fs_i.h \
-  include/linux/fcntl.h \
-  include/uapi/linux/fcntl.h \
-  arch/x86/include/uapi/asm/fcntl.h \
-  include/uapi/asm-generic/fcntl.h \
   include/linux/seq_file.h \
   include/linux/cred.h \
     $(wildcard include/config/debug/credentials.h) \
@@ -604,6 +623,7 @@ deps_net/bluetooth/smp.o := \
   include/linux/assoc_array.h \
     $(wildcard include/config/associative/array.h) \
   include/linux/refcount.h \
+    $(wildcard include/config/refcount/full.h) \
   include/linux/selinux.h \
     $(wildcard include/config/security/selinux.h) \
   include/linux/sched.h \
@@ -634,7 +654,6 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/latencytop.h) \
     $(wildcard include/config/function/graph/tracer.h) \
     $(wildcard include/config/kcov.h) \
-    $(wildcard include/config/uprobes.h) \
     $(wildcard include/config/bcache.h) \
     $(wildcard include/config/vmap/stack.h) \
     $(wildcard include/config/livepatch.h) \
@@ -690,12 +709,7 @@ deps_net/bluetooth/smp.o := \
   arch/x86/include/uapi/asm/signal.h \
   include/uapi/asm-generic/signal-defs.h \
   arch/x86/include/uapi/asm/siginfo.h \
-  include/asm-generic/siginfo.h \
   include/uapi/asm-generic/siginfo.h \
-  include/linux/mm_types_task.h \
-    $(wildcard include/config/split/ptlock/cpus.h) \
-    $(wildcard include/config/arch/enable/split/pmd/ptlock.h) \
-    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
   include/linux/task_io_accounting.h \
     $(wildcard include/config/task/io/accounting.h) \
   include/linux/sched/user.h \
@@ -722,18 +736,6 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/debug/pagealloc.h) \
     $(wildcard include/config/hibernation.h) \
     $(wildcard include/config/hugetlbfs.h) \
-  include/linux/mm_types.h \
-    $(wildcard include/config/have/cmpxchg/double.h) \
-    $(wildcard include/config/have/aligned/struct/page.h) \
-    $(wildcard include/config/userfaultfd.h) \
-    $(wildcard include/config/have/arch/compat/mmap/bases.h) \
-    $(wildcard include/config/aio.h) \
-    $(wildcard include/config/mmu/notifier.h) \
-  include/linux/auxvec.h \
-  include/uapi/linux/auxvec.h \
-  arch/x86/include/uapi/asm/auxvec.h \
-  include/linux/uprobes.h \
-  arch/x86/include/asm/uprobes.h \
   include/linux/percpu-refcount.h \
   include/linux/page_ext.h \
     $(wildcard include/config/idle/page/tracking.h) \
@@ -747,6 +749,7 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/arch/uses/pg/uncached.h) \
     $(wildcard include/config/memory/failure.h) \
     $(wildcard include/config/swap.h) \
+    $(wildcard include/config/thp/swap.h) \
     $(wildcard include/config/ksm.h) \
   arch/x86/include/asm/pgtable.h \
     $(wildcard include/config/debug/wx.h) \
@@ -756,6 +759,8 @@ deps_net/bluetooth/smp.o := \
   include/asm-generic/pgtable.h \
     $(wildcard include/config/have/arch/huge/vmap.h) \
   include/linux/huge_mm.h \
+  include/linux/sched/coredump.h \
+    $(wildcard include/config/core/dump/default/elf/headers.h) \
   include/linux/vmstat.h \
     $(wildcard include/config/vm/event/counters.h) \
     $(wildcard include/config/debug/tlbflush.h) \
@@ -772,6 +777,7 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/slub.h) \
   include/linux/kmemleak.h \
     $(wildcard include/config/debug/kmemleak.h) \
+  include/linux/vmalloc.h \
   include/linux/kasan.h \
   include/linux/uaccess.h \
   include/linux/kasan-checks.h \
@@ -781,6 +787,111 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/x86/smap.h) \
   arch/x86/include/asm/extable.h \
   arch/x86/include/asm/uaccess_64.h \
+  include/crypto/algapi.h \
+    $(wildcard include/config/have/efficient/unaligned/access.h) \
+  include/linux/skbuff.h \
+    $(wildcard include/config/nf/conntrack.h) \
+    $(wildcard include/config/bridge/netfilter.h) \
+    $(wildcard include/config/xfrm.h) \
+    $(wildcard include/config/ipv6/ndisc/nodetype.h) \
+    $(wildcard include/config/net/switchdev.h) \
+    $(wildcard include/config/net/cls/act.h) \
+    $(wildcard include/config/net/sched.h) \
+    $(wildcard include/config/net/rx/busy/poll.h) \
+    $(wildcard include/config/xps.h) \
+    $(wildcard include/config/network/secmark.h) \
+    $(wildcard include/config/network/phy/timestamping.h) \
+    $(wildcard include/config/netfilter/xt/target/trace.h) \
+    $(wildcard include/config/nf/tables.h) \
+  include/linux/kmemcheck.h \
+  include/linux/socket.h \
+  arch/x86/include/uapi/asm/socket.h \
+  include/uapi/asm-generic/socket.h \
+  arch/x86/include/uapi/asm/sockios.h \
+  include/uapi/asm-generic/sockios.h \
+  include/uapi/linux/sockios.h \
+  include/linux/uio.h \
+  include/uapi/linux/uio.h \
+  include/uapi/linux/socket.h \
+  include/linux/net.h \
+  include/linux/random.h \
+    $(wildcard include/config/gcc/plugin/latent/entropy.h) \
+    $(wildcard include/config/arch/random.h) \
+  include/linux/once.h \
+  include/uapi/linux/random.h \
+  include/linux/irqnr.h \
+  include/uapi/linux/irqnr.h \
+  arch/x86/include/asm/archrandom.h \
+  include/uapi/linux/net.h \
+  include/linux/textsearch.h \
+  include/net/checksum.h \
+  arch/x86/include/asm/checksum.h \
+  arch/x86/include/asm/checksum_64.h \
+  include/linux/dma-mapping.h \
+    $(wildcard include/config/have/generic/dma/coherent.h) \
+    $(wildcard include/config/has/dma.h) \
+    $(wildcard include/config/arch/has/dma/set/coherent/mask.h) \
+    $(wildcard include/config/need/dma/map/state.h) \
+    $(wildcard include/config/dma/api/debug.h) \
+  include/linux/sizes.h \
+  include/linux/device.h \
+    $(wildcard include/config/debug/devres.h) \
+    $(wildcard include/config/generic/msi/irq/domain.h) \
+    $(wildcard include/config/pinctrl.h) \
+    $(wildcard include/config/generic/msi/irq.h) \
+    $(wildcard include/config/dma/cma.h) \
+    $(wildcard include/config/of.h) \
+    $(wildcard include/config/devtmpfs.h) \
+    $(wildcard include/config/sysfs/deprecated.h) \
+  include/linux/ioport.h \
+  include/linux/kobject.h \
+    $(wildcard include/config/uevent/helper.h) \
+    $(wildcard include/config/debug/kobject/release.h) \
+  include/linux/sysfs.h \
+  include/linux/kernfs.h \
+    $(wildcard include/config/kernfs.h) \
+  include/linux/idr.h \
+  include/linux/kobject_ns.h \
+  include/linux/kref.h \
+  include/linux/klist.h \
+  include/linux/pinctrl/devinfo.h \
+    $(wildcard include/config/pm.h) \
+  include/linux/pinctrl/consumer.h \
+  include/linux/pinctrl/pinctrl-state.h \
+  include/linux/pm.h \
+    $(wildcard include/config/vt/console/sleep.h) \
+    $(wildcard include/config/pm/clk.h) \
+    $(wildcard include/config/pm/generic/domains.h) \
+  include/linux/ratelimit.h \
+  arch/x86/include/asm/device.h \
+    $(wildcard include/config/intel/iommu.h) \
+    $(wildcard include/config/amd/iommu.h) \
+    $(wildcard include/config/x86/dev/dma/ops.h) \
+    $(wildcard include/config/pci/domains.h) \
+  include/linux/pm_wakeup.h \
+  include/linux/dma-debug.h \
+  include/linux/dma-direction.h \
+  arch/x86/include/asm/dma-mapping.h \
+    $(wildcard include/config/isa.h) \
+    $(wildcard include/config/x86/dma/remap.h) \
+  arch/x86/include/asm/swiotlb.h \
+    $(wildcard include/config/swiotlb.h) \
+  include/linux/swiotlb.h \
+  include/linux/dma-contiguous.h \
+  include/linux/netdev_features.h \
+  include/linux/sched/clock.h \
+    $(wildcard include/config/have/unstable/sched/clock.h) \
+    $(wildcard include/config/irq/time/accounting.h) \
+  include/net/flow_dissector.h \
+  include/linux/in6.h \
+  include/uapi/linux/in6.h \
+  include/uapi/linux/libc-compat.h \
+    $(wildcard include/config/data.h) \
+  include/uapi/linux/if_ether.h \
+  include/linux/splice.h \
+  include/linux/pipe_fs_i.h \
+  include/uapi/linux/if_packet.h \
+  include/net/flow.h \
   include/crypto/b128ops.h \
   include/crypto/hash.h \
   include/net/bluetooth/bluetooth.h \
@@ -791,8 +902,6 @@ deps_net/bluetooth/smp.o := \
   include/uapi/asm-generic/poll.h \
   include/net/sock.h \
     $(wildcard include/config/ipv6.h) \
-    $(wildcard include/config/net/rx/busy/poll.h) \
-    $(wildcard include/config/xfrm.h) \
     $(wildcard include/config/net.h) \
     $(wildcard include/config/rps.h) \
     $(wildcard include/config/sock/cgroup/data.h) \
@@ -803,7 +912,6 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/hwlat/tracer.h) \
   include/linux/vtime.h \
     $(wildcard include/config/virt/cpu/accounting.h) \
-    $(wildcard include/config/irq/time/accounting.h) \
   include/linux/context_tracking_state.h \
     $(wildcard include/config/context/tracking.h) \
   arch/x86/include/asm/hardirq.h \
@@ -812,32 +920,24 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/x86/mce/amd.h) \
     $(wildcard include/config/hyperv.h) \
   include/linux/irq.h \
+    $(wildcard include/config/generic/irq/effective/aff/mask.h) \
     $(wildcard include/config/generic/irq/ipi.h) \
     $(wildcard include/config/irq/domain/hierarchy.h) \
+    $(wildcard include/config/generic/irq/migration.h) \
     $(wildcard include/config/generic/pending/irq.h) \
     $(wildcard include/config/hardirqs/sw/resend.h) \
     $(wildcard include/config/generic/irq/legacy/alloc/hwirq.h) \
     $(wildcard include/config/generic/irq/legacy.h) \
   include/linux/irqhandler.h \
   include/linux/irqreturn.h \
-  include/linux/irqnr.h \
-  include/uapi/linux/irqnr.h \
   include/linux/io.h \
   arch/x86/include/asm/irq.h \
   arch/x86/include/asm/irq_regs.h \
   include/linux/irqdesc.h \
     $(wildcard include/config/irq/preflow/fasteoi.h) \
+    $(wildcard include/config/generic/irq/debugfs.h) \
     $(wildcard include/config/sparse/irq.h) \
     $(wildcard include/config/handle/domain/irq.h) \
-  include/linux/kobject.h \
-    $(wildcard include/config/uevent/helper.h) \
-    $(wildcard include/config/debug/kobject/release.h) \
-  include/linux/sysfs.h \
-  include/linux/kernfs.h \
-    $(wildcard include/config/kernfs.h) \
-  include/linux/idr.h \
-  include/linux/kobject_ns.h \
-  include/linux/kref.h \
   arch/x86/include/asm/hw_irq.h \
     $(wildcard include/config/hpet/timer.h) \
     $(wildcard include/config/dmar/table.h) \
@@ -860,7 +960,6 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/ipv6/sit.h) \
     $(wildcard include/config/ipv6/tunnel.h) \
     $(wildcard include/config/netpoll.h) \
-    $(wildcard include/config/xps.h) \
     $(wildcard include/config/bql.h) \
     $(wildcard include/config/rfs/accel.h) \
     $(wildcard include/config/fcoe.h) \
@@ -868,15 +967,12 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/net/poll/controller.h) \
     $(wildcard include/config/libfcoe.h) \
     $(wildcard include/config/wireless/ext.h) \
-    $(wildcard include/config/net/switchdev.h) \
     $(wildcard include/config/net/l3/master/dev.h) \
     $(wildcard include/config/vlan/8021q.h) \
     $(wildcard include/config/net/dsa.h) \
     $(wildcard include/config/tipc.h) \
     $(wildcard include/config/mpls/routing.h) \
-    $(wildcard include/config/net/cls/act.h) \
     $(wildcard include/config/netfilter/ingress.h) \
-    $(wildcard include/config/net/sched.h) \
     $(wildcard include/config/garp.h) \
     $(wildcard include/config/mrp.h) \
     $(wildcard include/config/cgroup/net/prio.h) \
@@ -890,104 +986,18 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/dma/engine.h) \
     $(wildcard include/config/rapidio/dma/engine.h) \
     $(wildcard include/config/async/tx/dma.h) \
-  include/linux/device.h \
-    $(wildcard include/config/debug/devres.h) \
-    $(wildcard include/config/srcu.h) \
-    $(wildcard include/config/generic/msi/irq/domain.h) \
-    $(wildcard include/config/pinctrl.h) \
-    $(wildcard include/config/generic/msi/irq.h) \
-    $(wildcard include/config/dma/cma.h) \
-    $(wildcard include/config/of.h) \
-    $(wildcard include/config/devtmpfs.h) \
-    $(wildcard include/config/sysfs/deprecated.h) \
-  include/linux/ioport.h \
-  include/linux/klist.h \
-  include/linux/pinctrl/devinfo.h \
-    $(wildcard include/config/pm.h) \
-  include/linux/pinctrl/consumer.h \
-  include/linux/pinctrl/pinctrl-state.h \
-  include/linux/pm.h \
-    $(wildcard include/config/vt/console/sleep.h) \
-    $(wildcard include/config/pm/clk.h) \
-    $(wildcard include/config/pm/generic/domains.h) \
-  include/linux/ratelimit.h \
-  arch/x86/include/asm/device.h \
-    $(wildcard include/config/intel/iommu.h) \
-    $(wildcard include/config/amd/iommu.h) \
-    $(wildcard include/config/x86/dev/dma/ops.h) \
-    $(wildcard include/config/pci/domains.h) \
-  include/linux/pm_wakeup.h \
-  include/linux/uio.h \
-  include/uapi/linux/uio.h \
   include/linux/dynamic_queue_limits.h \
   include/linux/ethtool.h \
   include/linux/compat.h \
     $(wildcard include/config/compat/old/sigaction.h) \
     $(wildcard include/config/odd/rt/sigaction.h) \
-  include/linux/socket.h \
-  arch/x86/include/uapi/asm/socket.h \
-  include/uapi/asm-generic/socket.h \
-  arch/x86/include/uapi/asm/sockios.h \
-  include/uapi/asm-generic/sockios.h \
-  include/uapi/linux/sockios.h \
-  include/uapi/linux/socket.h \
   include/uapi/linux/if.h \
-  include/uapi/linux/libc-compat.h \
-    $(wildcard include/config/data.h) \
   include/uapi/linux/hdlc/ioctl.h \
   include/uapi/linux/aio_abi.h \
   arch/x86/include/asm/compat.h \
   arch/x86/include/asm/user32.h \
   include/uapi/linux/ethtool.h \
   include/linux/if_ether.h \
-  include/linux/skbuff.h \
-    $(wildcard include/config/nf/conntrack.h) \
-    $(wildcard include/config/bridge/netfilter.h) \
-    $(wildcard include/config/ipv6/ndisc/nodetype.h) \
-    $(wildcard include/config/network/secmark.h) \
-    $(wildcard include/config/network/phy/timestamping.h) \
-    $(wildcard include/config/netfilter/xt/target/trace.h) \
-    $(wildcard include/config/nf/tables.h) \
-  include/linux/kmemcheck.h \
-  include/linux/net.h \
-  include/linux/random.h \
-    $(wildcard include/config/gcc/plugin/latent/entropy.h) \
-    $(wildcard include/config/arch/random.h) \
-  include/linux/once.h \
-  include/uapi/linux/random.h \
-  arch/x86/include/asm/archrandom.h \
-  include/uapi/linux/net.h \
-  include/linux/textsearch.h \
-  include/net/checksum.h \
-  arch/x86/include/asm/checksum.h \
-  arch/x86/include/asm/checksum_64.h \
-  include/linux/dma-mapping.h \
-    $(wildcard include/config/have/generic/dma/coherent.h) \
-    $(wildcard include/config/has/dma.h) \
-    $(wildcard include/config/arch/has/dma/set/coherent/mask.h) \
-    $(wildcard include/config/need/dma/map/state.h) \
-    $(wildcard include/config/dma/api/debug.h) \
-  include/linux/sizes.h \
-  include/linux/dma-debug.h \
-  include/linux/dma-direction.h \
-  arch/x86/include/asm/dma-mapping.h \
-    $(wildcard include/config/isa.h) \
-    $(wildcard include/config/x86/dma/remap.h) \
-  arch/x86/include/asm/swiotlb.h \
-    $(wildcard include/config/swiotlb.h) \
-  include/linux/swiotlb.h \
-  include/linux/dma-contiguous.h \
-  include/linux/netdev_features.h \
-  include/linux/sched/clock.h \
-    $(wildcard include/config/have/unstable/sched/clock.h) \
-  include/net/flow_dissector.h \
-  include/linux/in6.h \
-  include/uapi/linux/in6.h \
-  include/uapi/linux/if_ether.h \
-  include/linux/splice.h \
-  include/linux/pipe_fs_i.h \
-  include/uapi/linux/if_packet.h \
-  include/net/flow.h \
   include/net/net_namespace.h \
     $(wildcard include/config/ieee802154/6lowpan.h) \
     $(wildcard include/config/ip/sctp.h) \
@@ -1052,6 +1062,7 @@ deps_net/bluetooth/smp.o := \
   include/linux/interrupt.h \
     $(wildcard include/config/irq/forced/threading.h) \
     $(wildcard include/config/generic/irq/probe.h) \
+    $(wildcard include/config/irq/timings.h) \
   include/net/netns/mpls.h \
   include/net/netns/can.h \
   include/linux/ns_common.h \
@@ -1089,6 +1100,7 @@ deps_net/bluetooth/smp.o := \
   include/net/scm.h \
     $(wildcard include/config/security/network.h) \
   include/linux/security.h \
+    $(wildcard include/config/security/infiniband.h) \
     $(wildcard include/config/security/network/xfrm.h) \
     $(wildcard include/config/security/path.h) \
     $(wildcard include/config/audit.h) \
@@ -1128,6 +1140,9 @@ deps_net/bluetooth/smp.o := \
     $(wildcard include/config/bpf/jit.h) \
     $(wildcard include/config/have/ebpf/jit.h) \
   include/linux/cryptohash.h \
+  include/linux/set_memory.h \
+  arch/x86/include/asm/set_memory.h \
+  include/asm-generic/set_memory.h \
   include/net/sch_generic.h \
   include/uapi/linux/pkt_cls.h \
   include/net/gen_stats.h \
@@ -1139,9 +1154,6 @@ deps_net/bluetooth/smp.o := \
   include/uapi/linux/if_addr.h \
   include/net/rtnetlink.h \
   include/net/netlink.h \
-    $(wildcard include/config/have/efficient/unaligned/access.h) \
-  arch/x86/include/asm/set_memory.h \
-  include/asm-generic/set_memory.h \
   include/uapi/linux/filter.h \
   include/linux/rculist_nulls.h \
   include/net/dst.h \

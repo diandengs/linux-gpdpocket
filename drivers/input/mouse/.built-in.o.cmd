@@ -1,1 +1,1 @@
-cmd_drivers/input/mouse/built-in.o :=  ld -m elf_x86_64   -r -o drivers/input/mouse/built-in.o drivers/input/mouse/psmouse.o 
+cmd_drivers/input/mouse/built-in.o :=  rm -f drivers/input/mouse/built-in.o; ar rcSTPD drivers/input/mouse/built-in.o drivers/input/mouse/psmouse.o 

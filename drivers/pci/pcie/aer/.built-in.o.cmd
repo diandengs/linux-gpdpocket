@@ -1,1 +1,1 @@
-cmd_drivers/pci/pcie/aer/built-in.o :=  ld -m elf_x86_64   -r -o drivers/pci/pcie/aer/built-in.o drivers/pci/pcie/aer/aerdriver.o drivers/pci/pcie/aer/ecrc.o 
+cmd_drivers/pci/pcie/aer/built-in.o :=  rm -f drivers/pci/pcie/aer/built-in.o; ar rcSTPD drivers/pci/pcie/aer/built-in.o drivers/pci/pcie/aer/aerdriver.o drivers/pci/pcie/aer/ecrc.o 

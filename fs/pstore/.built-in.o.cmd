@@ -1,1 +1,1 @@
-cmd_fs/pstore/built-in.o :=  ld -m elf_x86_64   -r -o fs/pstore/built-in.o fs/pstore/pstore.o 
+cmd_fs/pstore/built-in.o :=  rm -f fs/pstore/built-in.o; ar rcSTPD fs/pstore/built-in.o fs/pstore/pstore.o 

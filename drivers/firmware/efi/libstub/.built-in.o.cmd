@@ -1,1 +1,1 @@
-cmd_drivers/firmware/efi/libstub/built-in.o :=  ld -m elf_x86_64   -r -o drivers/firmware/efi/libstub/built-in.o drivers/firmware/efi/libstub/lib-ksyms.o 
+cmd_drivers/firmware/efi/libstub/built-in.o :=  rm -f drivers/firmware/efi/libstub/built-in.o; ar rcSTPD drivers/firmware/efi/libstub/built-in.o drivers/firmware/efi/libstub/lib-ksyms.o 

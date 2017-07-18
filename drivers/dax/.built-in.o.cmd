@@ -1,1 +1,1 @@
-cmd_drivers/dax/built-in.o :=  ld -m elf_x86_64   -r -o drivers/dax/built-in.o drivers/dax/dax.o 
+cmd_drivers/dax/built-in.o :=  rm -f drivers/dax/built-in.o; ar rcSTPD drivers/dax/built-in.o drivers/dax/dax.o 

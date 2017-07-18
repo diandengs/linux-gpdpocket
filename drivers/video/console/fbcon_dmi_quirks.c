@@ -23,8 +23,8 @@
 
 struct fbcon_dmi_rotate_data {
 	struct dmi_system_id dmi_id;
-	int width;
-	int height;
+	u32 width;
+	u32 height;
 	const char * const *bios_dates;
 	int rotate;
 };
@@ -79,7 +79,7 @@ int fbcon_platform_get_rotate(struct fb_info *info)
 	int i, j;
 
 	for (i = 0; i < ARRAY_SIZE(rotate_data); i++) {
-		if (!dmi_matches(&rotate_data[i].dmi_id))
+		if (!dmi_system_id_match(&rotate_data[i].dmi_id))
 			continue;
 
 		if (rotate_data[i].width != info->var.xres ||

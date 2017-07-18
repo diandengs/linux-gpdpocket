@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=vhost,tun,tap";
 
 
-MODULE_INFO(srcversion, "76DA4AECADC0FB3F85043A3");
+MODULE_INFO(srcversion, "E3BDB9BD0975316EC88B8C8");

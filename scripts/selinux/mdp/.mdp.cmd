@@ -75,7 +75,6 @@ deps_scripts/selinux/mdp/mdp := \
   include/uapi/linux/posix_types.h \
   include/uapi/linux/stddef.h \
   include/linux/compiler.h \
-    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/kasan.h) \

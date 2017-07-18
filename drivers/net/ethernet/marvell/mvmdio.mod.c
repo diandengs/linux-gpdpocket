@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -23,3 +24,5 @@ __attribute__((section(".modinfo"))) =
 
 MODULE_ALIAS("of:N*T*Cmarvell,orion-mdio");
 MODULE_ALIAS("of:N*T*Cmarvell,orion-mdioC*");
+MODULE_ALIAS("of:N*T*Cmarvell,xmdio");
+MODULE_ALIAS("of:N*T*Cmarvell,xmdioC*");

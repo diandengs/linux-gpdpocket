@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -18,4 +19,4 @@ __attribute__((section(".modinfo"))) =
 "depends=nfc";
 
 
-MODULE_INFO(srcversion, "2BCCB7C74A039F8885C6107");
+MODULE_INFO(srcversion, "5F8533D87394F3DBC416CBE");

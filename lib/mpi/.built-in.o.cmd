@@ -1,1 +1,1 @@
-cmd_lib/mpi/built-in.o :=  ld -m elf_x86_64   -r -o lib/mpi/built-in.o lib/mpi/mpi.o 
+cmd_lib/mpi/built-in.o :=  rm -f lib/mpi/built-in.o; ar rcSTPD lib/mpi/built-in.o lib/mpi/mpi.o 

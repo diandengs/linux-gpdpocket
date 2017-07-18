@@ -1,1 +1,1 @@
-cmd_drivers/acpi/acpica/built-in.o :=  ld -m elf_x86_64   -r -o drivers/acpi/acpica/built-in.o drivers/acpi/acpica/acpi.o 
+cmd_drivers/acpi/acpica/built-in.o :=  rm -f drivers/acpi/acpica/built-in.o; ar rcSTPD drivers/acpi/acpica/built-in.o drivers/acpi/acpica/acpi.o 

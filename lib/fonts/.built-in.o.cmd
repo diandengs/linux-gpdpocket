@@ -1,1 +1,1 @@
-cmd_lib/fonts/built-in.o :=  ld -m elf_x86_64   -r -o lib/fonts/built-in.o lib/fonts/font.o 
+cmd_lib/fonts/built-in.o :=  rm -f lib/fonts/built-in.o; ar rcSTPD lib/fonts/built-in.o lib/fonts/font.o 

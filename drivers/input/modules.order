@@ -1,3 +1,4 @@
+kernel/drivers/input/keyboard/dlink-dir685-touchkeys.ko
 kernel/drivers/input/keyboard/gpio_keys.ko
 kernel/drivers/input/keyboard/qt1070.ko
 kernel/drivers/input/keyboard/tm2-touchkey.ko
@@ -67,6 +68,7 @@ kernel/drivers/input/touchscreen/raydium_i2c_ts.ko
 kernel/drivers/input/touchscreen/silead.ko
 kernel/drivers/input/touchscreen/sis_i2c.ko
 kernel/drivers/input/touchscreen/st1232.ko
+kernel/drivers/input/touchscreen/stmfts.ko
 kernel/drivers/input/touchscreen/surface3_spi.ko
 kernel/drivers/input/touchscreen/touchit213.ko
 kernel/drivers/input/touchscreen/touchright.ko

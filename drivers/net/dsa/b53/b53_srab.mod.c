@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -33,6 +34,8 @@ MODULE_ALIAS("of:N*T*Cbrcm,bcm53019-srab");
 MODULE_ALIAS("of:N*T*Cbrcm,bcm53019-srabC*");
 MODULE_ALIAS("of:N*T*Cbrcm,bcm5301x-srab");
 MODULE_ALIAS("of:N*T*Cbrcm,bcm5301x-srabC*");
+MODULE_ALIAS("of:N*T*Cbrcm,bcm11360-srab");
+MODULE_ALIAS("of:N*T*Cbrcm,bcm11360-srabC*");
 MODULE_ALIAS("of:N*T*Cbrcm,bcm58522-srab");
 MODULE_ALIAS("of:N*T*Cbrcm,bcm58522-srabC*");
 MODULE_ALIAS("of:N*T*Cbrcm,bcm58525-srab");
@@ -47,5 +50,7 @@ MODULE_ALIAS("of:N*T*Cbrcm,bcm58625-srab");
 MODULE_ALIAS("of:N*T*Cbrcm,bcm58625-srabC*");
 MODULE_ALIAS("of:N*T*Cbrcm,bcm88312-srab");
 MODULE_ALIAS("of:N*T*Cbrcm,bcm88312-srabC*");
+MODULE_ALIAS("of:N*T*Cbrcm,cygnus-srab");
+MODULE_ALIAS("of:N*T*Cbrcm,cygnus-srabC*");
 MODULE_ALIAS("of:N*T*Cbrcm,nsp-srab");
 MODULE_ALIAS("of:N*T*Cbrcm,nsp-srabC*");

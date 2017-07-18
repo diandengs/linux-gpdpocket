@@ -1,1 +1,1 @@
-cmd_drivers/media/usb/usbvision/built-in.o :=  rm -f drivers/media/usb/usbvision/built-in.o; ar rcsD drivers/media/usb/usbvision/built-in.o
+cmd_drivers/media/usb/usbvision/built-in.o :=  rm -f drivers/media/usb/usbvision/built-in.o; ar rcSTPD drivers/media/usb/usbvision/built-in.o

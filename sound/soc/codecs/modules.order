@@ -11,6 +11,7 @@ kernel/sound/soc/codecs/snd-soc-da7213.ko
 kernel/sound/soc/codecs/snd-soc-da7219.ko
 kernel/sound/soc/codecs/snd-soc-dmic.ko
 kernel/sound/soc/codecs/snd-soc-es7134.ko
+kernel/sound/soc/codecs/snd-soc-es8316.ko
 kernel/sound/soc/codecs/snd-soc-es8328.ko
 kernel/sound/soc/codecs/snd-soc-es8328-i2c.ko
 kernel/sound/soc/codecs/snd-soc-es8328-spi.ko

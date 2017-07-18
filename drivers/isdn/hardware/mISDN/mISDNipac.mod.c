@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=mISDN_core";
 
 
-MODULE_INFO(srcversion, "13C6FAC883A7B21FDA2AB49");
+MODULE_INFO(srcversion, "DDB1D900D8F6CE9E2FC45E3");

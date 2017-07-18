@@ -1,4 +1,4 @@
-cmd_lib/timerqueue.o := gcc -Wp,-MD,lib/.timerqueue.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init    -DKBUILD_BASENAME='"timerqueue"'  -DKBUILD_MODNAME='"timerqueue"' -c -o lib/timerqueue.o lib/timerqueue.c
+cmd_lib/timerqueue.o := gcc -Wp,-MD,lib/.timerqueue.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init    -DKBUILD_BASENAME='"timerqueue"'  -DKBUILD_MODNAME='"timerqueue"' -c -o lib/timerqueue.o lib/timerqueue.c
 
 source_lib/timerqueue.o := lib/timerqueue.c
 
@@ -15,7 +15,6 @@ deps_lib/timerqueue.o := \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
     $(wildcard include/config/smp.h) \
   include/linux/compiler.h \
-    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/kasan.h) \
@@ -134,48 +133,98 @@ deps_lib/timerqueue.o := \
     $(wildcard include/config/jump/label.h) \
   include/linux/jump_label.h \
   arch/x86/include/asm/jump_label.h \
+  include/linux/build_bug.h \
   include/linux/timerqueue.h \
   include/linux/rbtree.h \
   include/linux/rcupdate.h \
-    $(wildcard include/config/tiny/rcu.h) \
-    $(wildcard include/config/tree/rcu.h) \
     $(wildcard include/config/preempt/rcu.h) \
-    $(wildcard include/config/rcu/trace.h) \
     $(wildcard include/config/preempt/count.h) \
     $(wildcard include/config/rcu/stall/common.h) \
     $(wildcard include/config/no/hz/full.h) \
     $(wildcard include/config/rcu/nocb/cpu.h) \
     $(wildcard include/config/tasks/rcu.h) \
-    $(wildcard include/config/debug/lock/alloc.h) \
+    $(wildcard include/config/tree/rcu.h) \
+    $(wildcard include/config/tiny/rcu.h) \
     $(wildcard include/config/debug/objects/rcu/head.h) \
     $(wildcard include/config/hotplug/cpu.h) \
     $(wildcard include/config/prove/rcu.h) \
+    $(wildcard include/config/debug/lock/alloc.h) \
     $(wildcard include/config/preempt.h) \
     $(wildcard include/config/rcu/boost.h) \
-    $(wildcard include/config/rcu/nocb/cpu/all.h) \
-    $(wildcard include/config/no/hz/full/sysidle.h) \
     $(wildcard include/config/arch/weak/release/acquire.h) \
-  include/linux/spinlock.h \
-    $(wildcard include/config/debug/spinlock.h) \
-    $(wildcard include/config/generic/lockbreak.h) \
+  include/linux/atomic.h \
+    $(wildcard include/config/generic/atomic64.h) \
+  arch/x86/include/asm/atomic.h \
+  arch/x86/include/asm/cmpxchg.h \
+  arch/x86/include/asm/cmpxchg_64.h \
+  arch/x86/include/asm/atomic64_64.h \
+  include/asm-generic/atomic-long.h \
+  include/linux/irqflags.h \
+    $(wildcard include/config/trace/irqflags.h) \
+    $(wildcard include/config/irqsoff/tracer.h) \
+    $(wildcard include/config/preempt/tracer.h) \
+    $(wildcard include/config/trace/irqflags/support.h) \
+  arch/x86/include/asm/irqflags.h \
+  arch/x86/include/asm/processor-flags.h \
+    $(wildcard include/config/vm86.h) \
+  arch/x86/include/uapi/asm/processor-flags.h \
+  include/uapi/linux/const.h \
+  arch/x86/include/asm/paravirt.h \
+    $(wildcard include/config/pgtable/levels.h) \
+    $(wildcard include/config/paravirt/spinlocks.h) \
+  arch/x86/include/asm/pgtable_types.h \
+    $(wildcard include/config/kmemcheck.h) \
+    $(wildcard include/config/mem/soft/dirty.h) \
+    $(wildcard include/config/proc/fs.h) \
+  arch/x86/include/asm/page_types.h \
+    $(wildcard include/config/physical/start.h) \
+    $(wildcard include/config/physical/align.h) \
+  arch/x86/include/asm/page_64_types.h \
+    $(wildcard include/config/randomize/memory.h) \
+    $(wildcard include/config/randomize/base.h) \
+  arch/x86/include/asm/kaslr.h \
+  arch/x86/include/asm/pgtable_64_types.h \
+  arch/x86/include/asm/sparsemem.h \
+    $(wildcard include/config/sparsemem.h) \
+  include/asm-generic/pgtable-nop4d.h \
+  arch/x86/include/asm/paravirt_types.h \
+    $(wildcard include/config/paravirt/debug.h) \
+  arch/x86/include/asm/desc_defs.h \
+  arch/x86/include/asm/kmap_types.h \
+    $(wildcard include/config/debug/highmem.h) \
+  include/asm-generic/kmap_types.h \
+  arch/x86/include/asm/spinlock_types.h \
+    $(wildcard include/config/nr/cpus.h) \
+  include/asm-generic/qspinlock_types.h \
+  include/asm-generic/qrwlock_types.h \
+  include/linux/cpumask.h \
+    $(wildcard include/config/cpumask/offstack.h) \
+    $(wildcard include/config/debug/per/cpu/maps.h) \
+  include/linux/threads.h \
+    $(wildcard include/config/base/small.h) \
+  include/linux/bitmap.h \
+  include/linux/string.h \
+    $(wildcard include/config/binary/printf.h) \
+  include/uapi/linux/string.h \
+  arch/x86/include/asm/string.h \
+  arch/x86/include/asm/string_64.h \
+    $(wildcard include/config/x86/mce.h) \
+    $(wildcard include/config/arch/has/uaccess/flushcache.h) \
+  arch/x86/include/asm/frame.h \
+    $(wildcard include/config/frame/pointer.h) \
   include/linux/preempt.h \
     $(wildcard include/config/debug/preempt.h) \
-    $(wildcard include/config/preempt/tracer.h) \
     $(wildcard include/config/preempt/notifiers.h) \
   include/linux/list.h \
     $(wildcard include/config/debug/list.h) \
   include/linux/poison.h \
     $(wildcard include/config/illegal/pointer/value.h) \
     $(wildcard include/config/page/poisoning/zero.h) \
-  include/uapi/linux/const.h \
   arch/x86/include/asm/preempt.h \
   arch/x86/include/asm/percpu.h \
     $(wildcard include/config/x86/64/smp.h) \
   include/asm-generic/percpu.h \
     $(wildcard include/config/have/setup/per/cpu/area.h) \
-  include/linux/threads.h \
-    $(wildcard include/config/nr/cpus.h) \
-    $(wildcard include/config/base/small.h) \
   include/linux/percpu-defs.h \
     $(wildcard include/config/debug/force/weak/per/cpu.h) \
   include/linux/thread_info.h \
@@ -187,17 +236,8 @@ deps_lib/timerqueue.o := \
     $(wildcard include/config/compat.h) \
   arch/x86/include/asm/current.h \
   arch/x86/include/asm/thread_info.h \
-    $(wildcard include/config/vm86.h) \
-    $(wildcard include/config/frame/pointer.h) \
     $(wildcard include/config/ia32/emulation.h) \
   arch/x86/include/asm/page.h \
-  arch/x86/include/asm/page_types.h \
-    $(wildcard include/config/physical/start.h) \
-    $(wildcard include/config/physical/align.h) \
-  arch/x86/include/asm/page_64_types.h \
-    $(wildcard include/config/randomize/memory.h) \
-    $(wildcard include/config/randomize/base.h) \
-  arch/x86/include/asm/kaslr.h \
   arch/x86/include/asm/page_64.h \
     $(wildcard include/config/debug/virtual.h) \
     $(wildcard include/config/flatmem.h) \
@@ -206,7 +246,6 @@ deps_lib/timerqueue.o := \
   include/asm-generic/memory_model.h \
     $(wildcard include/config/discontigmem.h) \
     $(wildcard include/config/sparsemem/vmemmap.h) \
-    $(wildcard include/config/sparsemem.h) \
   include/linux/pfn.h \
   include/asm-generic/getorder.h \
   arch/x86/include/asm/cpufeature.h \
@@ -215,33 +254,14 @@ deps_lib/timerqueue.o := \
   arch/x86/include/asm/processor.h \
     $(wildcard include/config/cc/stackprotector.h) \
     $(wildcard include/config/x86/debugctlmsr.h) \
+    $(wildcard include/config/cpu/sup/amd.h) \
     $(wildcard include/config/xen.h) \
-  arch/x86/include/asm/processor-flags.h \
-  arch/x86/include/uapi/asm/processor-flags.h \
   arch/x86/include/asm/math_emu.h \
   arch/x86/include/asm/ptrace.h \
   arch/x86/include/asm/segment.h \
     $(wildcard include/config/x86/32/lazy/gs.h) \
   arch/x86/include/uapi/asm/ptrace.h \
   arch/x86/include/uapi/asm/ptrace-abi.h \
-  arch/x86/include/asm/paravirt_types.h \
-    $(wildcard include/config/pgtable/levels.h) \
-    $(wildcard include/config/paravirt/debug.h) \
-  arch/x86/include/asm/desc_defs.h \
-  arch/x86/include/asm/kmap_types.h \
-    $(wildcard include/config/debug/highmem.h) \
-  include/asm-generic/kmap_types.h \
-  arch/x86/include/asm/pgtable_types.h \
-    $(wildcard include/config/kmemcheck.h) \
-    $(wildcard include/config/mem/soft/dirty.h) \
-    $(wildcard include/config/proc/fs.h) \
-  arch/x86/include/asm/pgtable_64_types.h \
-  arch/x86/include/asm/sparsemem.h \
-  include/asm-generic/pgtable-nop4d.h \
-  arch/x86/include/asm/spinlock_types.h \
-    $(wildcard include/config/paravirt/spinlocks.h) \
-  include/asm-generic/qspinlock_types.h \
-  include/asm-generic/qrwlock_types.h \
   include/asm-generic/ptrace.h \
   arch/x86/include/uapi/asm/sigcontext.h \
   arch/x86/include/asm/msr.h \
@@ -256,33 +276,13 @@ deps_lib/timerqueue.o := \
   include/uapi/asm-generic/errno.h \
   include/uapi/asm-generic/errno-base.h \
   arch/x86/include/asm/cpumask.h \
-  include/linux/cpumask.h \
-    $(wildcard include/config/cpumask/offstack.h) \
-    $(wildcard include/config/debug/per/cpu/maps.h) \
-  include/linux/bitmap.h \
-    $(wildcard include/config/s390.h) \
-  include/linux/string.h \
-    $(wildcard include/config/binary/printf.h) \
-  include/uapi/linux/string.h \
-  arch/x86/include/asm/string.h \
-  arch/x86/include/asm/string_64.h \
-    $(wildcard include/config/x86/mce.h) \
   arch/x86/include/uapi/asm/msr.h \
   include/uapi/linux/ioctl.h \
   arch/x86/include/uapi/asm/ioctl.h \
   include/asm-generic/ioctl.h \
   include/uapi/asm-generic/ioctl.h \
-  arch/x86/include/asm/atomic.h \
-  arch/x86/include/asm/cmpxchg.h \
-  arch/x86/include/asm/cmpxchg_64.h \
-  arch/x86/include/asm/atomic64_64.h \
   include/linux/tracepoint-defs.h \
-  include/linux/atomic.h \
-    $(wildcard include/config/generic/atomic64.h) \
-  include/asm-generic/atomic-long.h \
   include/linux/static_key.h \
-  arch/x86/include/asm/paravirt.h \
-  arch/x86/include/asm/frame.h \
   arch/x86/include/asm/special_insns.h \
   arch/x86/include/asm/fpu/types.h \
   include/linux/personality.h \
@@ -292,16 +292,19 @@ deps_lib/timerqueue.o := \
   arch/x86/include/asm/div64.h \
   include/asm-generic/div64.h \
   include/linux/err.h \
-  include/linux/irqflags.h \
-    $(wildcard include/config/trace/irqflags.h) \
-    $(wildcard include/config/irqsoff/tracer.h) \
-    $(wildcard include/config/trace/irqflags/support.h) \
-  arch/x86/include/asm/irqflags.h \
   include/linux/bottom_half.h \
-  include/linux/spinlock_types.h \
   include/linux/lockdep.h \
     $(wildcard include/config/lockdep.h) \
     $(wildcard include/config/lock/stat.h) \
+  include/linux/rcutree.h \
+  include/linux/ktime.h \
+  include/linux/time.h \
+    $(wildcard include/config/arch/uses/gettimeoffset.h) \
+  include/linux/seqlock.h \
+  include/linux/spinlock.h \
+    $(wildcard include/config/debug/spinlock.h) \
+    $(wildcard include/config/generic/lockbreak.h) \
+  include/linux/spinlock_types.h \
   include/linux/rwlock_types.h \
   arch/x86/include/asm/spinlock.h \
   arch/x86/include/asm/qspinlock.h \
@@ -340,13 +343,6 @@ deps_lib/timerqueue.o := \
     $(wildcard include/config/inline/write/unlock/irq.h) \
     $(wildcard include/config/inline/read/unlock/irqrestore.h) \
     $(wildcard include/config/inline/write/unlock/irqrestore.h) \
-  include/linux/seqlock.h \
-  include/linux/debugobjects.h \
-    $(wildcard include/config/debug/objects.h) \
-    $(wildcard include/config/debug/objects/free.h) \
-  include/linux/ktime.h \
-  include/linux/time.h \
-    $(wildcard include/config/arch/uses/gettimeoffset.h) \
   include/linux/time64.h \
   include/uapi/linux/time.h \
   include/linux/jiffies.h \
@@ -364,7 +360,6 @@ deps_lib/timerqueue.o := \
   include/linux/timekeeping.h \
   include/linux/errno.h \
   include/uapi/linux/errno.h \
-  include/linux/rcutree.h \
 
 lib/timerqueue.o: $(deps_lib/timerqueue.o)
 

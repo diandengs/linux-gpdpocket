@@ -1,1 +1,1 @@
-cmd_drivers/block/zram/built-in.o :=  rm -f drivers/block/zram/built-in.o; ar rcsD drivers/block/zram/built-in.o
+cmd_drivers/block/zram/built-in.o :=  rm -f drivers/block/zram/built-in.o; ar rcSTPD drivers/block/zram/built-in.o

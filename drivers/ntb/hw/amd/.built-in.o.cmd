@@ -1,1 +1,1 @@
-cmd_drivers/ntb/hw/amd/built-in.o :=  rm -f drivers/ntb/hw/amd/built-in.o; ar rcsD drivers/ntb/hw/amd/built-in.o
+cmd_drivers/ntb/hw/amd/built-in.o :=  rm -f drivers/ntb/hw/amd/built-in.o; ar rcSTPD drivers/ntb/hw/amd/built-in.o

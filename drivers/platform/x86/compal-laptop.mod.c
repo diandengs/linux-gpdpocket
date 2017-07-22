@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -35,4 +36,4 @@ MODULE_ALIAS("dmi*:svn*DellInc.*:pn*Inspiron1210*:");
 MODULE_ALIAS("dmi*:rn*JHL90*:rvr*REFERENCE*:");
 MODULE_ALIAS("dmi*:rn*KHLB2*:rvr*REFERENCE*:");
 
-MODULE_INFO(srcversion, "C81BD10D25032FF95FA6E63");
+MODULE_INFO(srcversion, "AE1244ED666E5B6E5425DA9");

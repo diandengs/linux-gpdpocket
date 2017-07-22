@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -96,6 +97,10 @@ MODULE_ALIAS("pci:v00001425d0000589Dsv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00001425d0000589Esv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00001425d0000589Fsv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00001425d000058A0sv*sd*bc*sc*i*");
+MODULE_ALIAS("pci:v00001425d000058A1sv*sd*bc*sc*i*");
+MODULE_ALIAS("pci:v00001425d000058A2sv*sd*bc*sc*i*");
+MODULE_ALIAS("pci:v00001425d000058A3sv*sd*bc*sc*i*");
+MODULE_ALIAS("pci:v00001425d000058A4sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00001425d00006801sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00001425d00006802sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00001425d00006803sv*sd*bc*sc*i*");
@@ -111,5 +116,8 @@ MODULE_ALIAS("pci:v00001425d00006814sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00001425d00006815sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00001425d00006880sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00001425d00006881sv*sd*bc*sc*i*");
+MODULE_ALIAS("pci:v00001425d00006882sv*sd*bc*sc*i*");
+MODULE_ALIAS("pci:v00001425d00006883sv*sd*bc*sc*i*");
+MODULE_ALIAS("pci:v00001425d00006884sv*sd*bc*sc*i*");
 
 MODULE_INFO(srcversion, "7312AB6A1993BF72E89F2D7");

@@ -132,6 +132,7 @@ deps_kernel/irq/cpuhotplug.o := \
     $(wildcard include/config/jump/label.h) \
   include/linux/jump_label.h \
   arch/x86/include/asm/jump_label.h \
+  include/linux/build_bug.h \
   include/linux/preempt.h \
     $(wildcard include/config/preempt/count.h) \
     $(wildcard include/config/debug/preempt.h) \
@@ -167,7 +168,6 @@ deps_kernel/irq/cpuhotplug.o := \
   include/asm-generic/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
-  include/linux/build_bug.h \
   include/linux/restart_block.h \
     $(wildcard include/config/compat.h) \
   arch/x86/include/asm/current.h \
@@ -248,6 +248,7 @@ deps_kernel/irq/cpuhotplug.o := \
   include/linux/bitmap.h \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
+    $(wildcard include/config/fortify/source.h) \
   include/uapi/linux/string.h \
   arch/x86/include/asm/string.h \
   arch/x86/include/asm/string_64.h \

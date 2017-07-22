@@ -1,1 +1,1 @@
-cmd_fs/overlayfs/built-in.o :=  rm -f fs/overlayfs/built-in.o; ar rcsD fs/overlayfs/built-in.o
+cmd_fs/overlayfs/built-in.o :=  rm -f fs/overlayfs/built-in.o; ar rcSTPD fs/overlayfs/built-in.o

@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=cxgb3,ib_core";
 
 
-MODULE_INFO(srcversion, "91A18721C8B7E527B56DF1A");
+MODULE_INFO(srcversion, "D6AE799E58813264116B578");

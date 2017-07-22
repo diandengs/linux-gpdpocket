@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=vfio,irqbypass,vfio_virqfd";
 
 
-MODULE_INFO(srcversion, "83DED9719D57BEC5E1ED453");
+MODULE_INFO(srcversion, "8DD454B97453CA96B6EA27F");

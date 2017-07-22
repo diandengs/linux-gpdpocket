@@ -68,6 +68,7 @@ deps_/usr/src/linux-gpdpocket/tools/objtool/parse-options.o := \
   parse-options.h \
   /usr/src/linux-gpdpocket/tools/include/linux/kernel.h \
   /usr/include/assert.h \
+  /usr/include/byteswap.h \
   subcmd-config.h \
   pager.h \
 

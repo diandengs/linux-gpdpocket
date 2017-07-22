@@ -84,6 +84,7 @@ deps_drivers/net/phy/phy-c45.o := \
   include/asm-generic/bitops/ext2-atomic-setbit.h \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
+    $(wildcard include/config/fortify/source.h) \
   /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
   include/uapi/linux/string.h \
   arch/x86/include/asm/string.h \
@@ -136,6 +137,7 @@ deps_drivers/net/phy/phy-c45.o := \
     $(wildcard include/config/x86/internode/cache/shift.h) \
     $(wildcard include/config/x86/vsmp.h) \
   include/linux/dynamic_debug.h \
+  include/linux/build_bug.h \
   include/linux/compat.h \
     $(wildcard include/config/compat/old/sigaction.h) \
     $(wildcard include/config/odd/rt/sigaction.h) \
@@ -184,7 +186,6 @@ deps_drivers/net/phy/phy-c45.o := \
   include/asm-generic/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
-  include/linux/build_bug.h \
   include/linux/restart_block.h \
   arch/x86/include/asm/current.h \
   arch/x86/include/asm/thread_info.h \

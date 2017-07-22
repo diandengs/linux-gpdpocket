@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -34,4 +35,4 @@ MODULE_ALIAS("pci:v00008086d00001D66sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00008086d00001D68sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00008086d00001D6Asv*sd*bc*sc*i*");
 
-MODULE_INFO(srcversion, "AACD70663571A936590F0DE");
+MODULE_INFO(srcversion, "6CE2285DA068954522E3E23");

@@ -212,6 +212,7 @@ const char * const x86_cap_flags[NCAPINTS*32] = {
 	[X86_FEATURE_PAUSEFILTER]	 = "pausefilter",
 	[X86_FEATURE_PFTHRESHOLD]	 = "pfthreshold",
 	[X86_FEATURE_AVIC]		 = "avic",
+	[X86_FEATURE_VIRTUAL_VMLOAD_VMSAVE] = "virtual_vmload_vmsave",
 	[X86_FEATURE_AVX512VBMI]	 = "avx512vbmi",
 	[X86_FEATURE_PKU]		 = "pku",
 	[X86_FEATURE_OSPKE]		 = "ospke",

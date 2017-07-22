@@ -626,6 +626,9 @@ static const char x86_cap_strs[] =
 #if REQUIRED_MASK15 & (1 << 13)
 	"\x0f\x0d""avic\0"
 #endif
+#if REQUIRED_MASK15 & (1 << 15)
+	"\x0f\x0f""virtual_vmload_vmsave\0"
+#endif
 #if REQUIRED_MASK16 & (1 << 1)
 	"\x10\x01""avx512vbmi\0"
 #endif

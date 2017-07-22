@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -48,3 +49,4 @@ MODULE_ALIAS("cpu:type:x86,ven0000fam0006mod008E:feature:*");
 MODULE_ALIAS("cpu:type:x86,ven0000fam0006mod009E:feature:*");
 MODULE_ALIAS("cpu:type:x86,ven0000fam0006mod0057:feature:*");
 MODULE_ALIAS("cpu:type:x86,ven0000fam0006mod0085:feature:*");
+MODULE_ALIAS("cpu:type:x86,ven0000fam0006mod005C:feature:*");

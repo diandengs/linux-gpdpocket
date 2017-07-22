@@ -67,6 +67,7 @@ deps_sound/soc/intel/skylake/skl-debug.o := \
   include/uapi/linux/uuid.h \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
+    $(wildcard include/config/fortify/source.h) \
   /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
   include/uapi/linux/string.h \
   arch/x86/include/asm/string.h \
@@ -169,6 +170,7 @@ deps_sound/soc/intel/skylake/skl-debug.o := \
     $(wildcard include/config/x86/internode/cache/shift.h) \
     $(wildcard include/config/x86/vsmp.h) \
   include/linux/dynamic_debug.h \
+  include/linux/build_bug.h \
   include/linux/errno.h \
   include/uapi/linux/errno.h \
   arch/x86/include/uapi/asm/errno.h \
@@ -285,7 +287,6 @@ deps_sound/soc/intel/skylake/skl-debug.o := \
   include/asm-generic/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
-  include/linux/build_bug.h \
   arch/x86/include/uapi/asm/msr.h \
   include/uapi/linux/ioctl.h \
   arch/x86/include/uapi/asm/ioctl.h \

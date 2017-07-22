@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=ntb_transport";
 
 
-MODULE_INFO(srcversion, "E94C6295764193264F68A3B");
+MODULE_INFO(srcversion, "AF69FF14C068E06010180AF");

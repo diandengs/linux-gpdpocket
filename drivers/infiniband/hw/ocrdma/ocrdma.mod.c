@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=be2net,ib_core";
 
 
-MODULE_INFO(srcversion, "9675F54C383866436C38E92");
+MODULE_INFO(srcversion, "A33EDA29FE0360BDE830CF0");

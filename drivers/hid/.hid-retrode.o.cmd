@@ -145,6 +145,7 @@ deps_drivers/hid/hid-retrode.o := \
     $(wildcard include/config/jump/label.h) \
   include/linux/jump_label.h \
   arch/x86/include/asm/jump_label.h \
+  include/linux/build_bug.h \
   arch/x86/include/asm/preempt.h \
   arch/x86/include/asm/percpu.h \
     $(wildcard include/config/x86/64/smp.h) \
@@ -168,7 +169,6 @@ deps_drivers/hid/hid-retrode.o := \
   include/asm-generic/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
-  include/linux/build_bug.h \
   include/linux/restart_block.h \
     $(wildcard include/config/compat.h) \
   arch/x86/include/asm/current.h \
@@ -250,6 +250,7 @@ deps_drivers/hid/hid-retrode.o := \
   include/linux/bitmap.h \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
+    $(wildcard include/config/fortify/source.h) \
   include/uapi/linux/string.h \
   arch/x86/include/asm/string.h \
   arch/x86/include/asm/string_64.h \

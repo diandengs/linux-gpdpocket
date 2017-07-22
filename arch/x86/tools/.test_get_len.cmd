@@ -1,4 +1,4 @@
-cmd_arch/x86/tools/test_get_len := gcc -Wp,-MD,arch/x86/tools/.test_get_len.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -I./tools/include -Wall -I./arch/x86/lib/ -I./arch/x86/include/uapi/ -I./arch/x86/include/ -I./arch/x86/lib/ -I./include/uapi/ -o arch/x86/tools/test_get_len arch/x86/tools/test_get_len.c  
+cmd_arch/x86/tools/test_get_len := gcc -Wp,-MD,arch/x86/tools/.test_get_len.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -I./tools/include -Wall -I./arch/x86/lib/ -I./arch/x86/include/uapi/ -I./arch/x86/include/ -I./arch/x86/lib/ -I./include/uapi/ -o arch/x86/tools/test_get_len arch/x86/tools/test_get_len.c  
 
 source_arch/x86/tools/test_get_len := arch/x86/tools/test_get_len.c
 

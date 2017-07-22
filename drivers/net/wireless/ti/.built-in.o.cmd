@@ -1,1 +1,1 @@
-cmd_drivers/net/wireless/ti/built-in.o :=  ld -m elf_x86_64   -r -o drivers/net/wireless/ti/built-in.o drivers/net/wireless/ti/wilink_platform_data.o 
+cmd_drivers/net/wireless/ti/built-in.o :=  rm -f drivers/net/wireless/ti/built-in.o; ar rcSTPD drivers/net/wireless/ti/built-in.o drivers/net/wireless/ti/wilink_platform_data.o 

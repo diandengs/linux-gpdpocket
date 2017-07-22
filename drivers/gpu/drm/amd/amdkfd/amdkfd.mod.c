@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=amd_iommu_v2";
 
 
-MODULE_INFO(srcversion, "FC7A05EC7DDF5110EC9FC1C");
+MODULE_INFO(srcversion, "7FD00D99A38033EFDE90EB0");

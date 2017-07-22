@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -86,6 +87,7 @@ MODULE_ALIAS("hdaudio:v80862809r*a01*");
 MODULE_ALIAS("hdaudio:v8086280Ar*a01*");
 MODULE_ALIAS("hdaudio:v8086280Br*a01*");
 MODULE_ALIAS("hdaudio:v8086280Dr*a01*");
+MODULE_ALIAS("hdaudio:v80862800r*a01*");
 MODULE_ALIAS("hdaudio:v80862880r*a01*");
 MODULE_ALIAS("hdaudio:v80862882r*a01*");
 MODULE_ALIAS("hdaudio:v80862883r*a01*");

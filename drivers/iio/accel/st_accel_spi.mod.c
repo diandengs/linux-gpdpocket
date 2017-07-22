@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -21,15 +22,11 @@ __used
 __attribute__((section(".modinfo"))) =
 "depends=st_accel,st_sensors_spi,industrialio";
 
-MODULE_ALIAS("spi:lsm303dlh_accel");
-MODULE_ALIAS("spi:lsm303dlhc_accel");
 MODULE_ALIAS("spi:lis3dh");
 MODULE_ALIAS("spi:lsm330d_accel");
 MODULE_ALIAS("spi:lsm330dl_accel");
 MODULE_ALIAS("spi:lsm330dlc_accel");
 MODULE_ALIAS("spi:lis331dlh");
-MODULE_ALIAS("spi:lsm303dl_accel");
-MODULE_ALIAS("spi:lsm303dlm_accel");
 MODULE_ALIAS("spi:lsm330_accel");
 MODULE_ALIAS("spi:lsm303agr_accel");
 MODULE_ALIAS("spi:lis2dh12_accel");

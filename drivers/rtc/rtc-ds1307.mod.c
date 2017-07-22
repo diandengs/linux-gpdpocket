@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,6 +23,7 @@ __attribute__((section(".modinfo"))) =
 "depends=";
 
 MODULE_ALIAS("acpi*:DS1307:*");
+MODULE_ALIAS("acpi*:DS1308:*");
 MODULE_ALIAS("acpi*:DS1337:*");
 MODULE_ALIAS("acpi*:DS1338:*");
 MODULE_ALIAS("acpi*:DS1339:*");
@@ -36,6 +38,7 @@ MODULE_ALIAS("acpi*:PT7C4338:*");
 MODULE_ALIAS("acpi*:RX8025:*");
 MODULE_ALIAS("acpi*:ISL12057:*");
 MODULE_ALIAS("i2c:ds1307");
+MODULE_ALIAS("i2c:ds1308");
 MODULE_ALIAS("i2c:ds1337");
 MODULE_ALIAS("i2c:ds1338");
 MODULE_ALIAS("i2c:ds1339");
@@ -49,3 +52,4 @@ MODULE_ALIAS("i2c:mcp7941x");
 MODULE_ALIAS("i2c:pt7c4338");
 MODULE_ALIAS("i2c:rx8025");
 MODULE_ALIAS("i2c:isl12057");
+MODULE_ALIAS("i2c:rx8130");

@@ -1,1 +1,1 @@
-cmd_drivers/staging/media/atomisp/built-in.o :=  ld -m elf_x86_64   -r -o drivers/staging/media/atomisp/built-in.o drivers/staging/media/atomisp/pci/built-in.o drivers/staging/media/atomisp/i2c/built-in.o drivers/staging/media/atomisp/platform/built-in.o 
+cmd_drivers/staging/media/atomisp/built-in.o :=  rm -f drivers/staging/media/atomisp/built-in.o; ar rcSTPD drivers/staging/media/atomisp/built-in.o drivers/staging/media/atomisp/pci/built-in.o drivers/staging/media/atomisp/i2c/built-in.o drivers/staging/media/atomisp/platform/built-in.o 

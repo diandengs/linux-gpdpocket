@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=authenc";
 
 
-MODULE_INFO(srcversion, "17BA1E6D7EA667E7A916545");
+MODULE_INFO(srcversion, "4FE42697271F76505BB0DFD");

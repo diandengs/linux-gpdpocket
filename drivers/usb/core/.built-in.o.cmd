@@ -1,1 +1,1 @@
-cmd_drivers/usb/core/built-in.o :=  ld -m elf_x86_64   -r -o drivers/usb/core/built-in.o drivers/usb/core/usbcore.o 
+cmd_drivers/usb/core/built-in.o :=  rm -f drivers/usb/core/built-in.o; ar rcSTPD drivers/usb/core/built-in.o drivers/usb/core/usbcore.o 

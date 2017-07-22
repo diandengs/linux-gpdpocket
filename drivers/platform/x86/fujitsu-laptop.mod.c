@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -19,9 +20,9 @@ MODULE_INFO(intree, "Y");
 static const char __module_depends[]
 __used
 __attribute__((section(".modinfo"))) =
-"depends=video,sparse-keymap";
+"depends=sparse-keymap,video";
 
 MODULE_ALIAS("acpi*:FUJ02B1:*");
 MODULE_ALIAS("acpi*:FUJ02E3:*");
 
-MODULE_INFO(srcversion, "44A0506574C95596BED07A5");
+MODULE_INFO(srcversion, "A13764ECC3762B31C4676FB");

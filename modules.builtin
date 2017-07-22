@@ -106,6 +106,7 @@ kernel/drivers/dma/dw/dw_dmac_core.ko
 kernel/drivers/dma/dw/dw_dmac_pci.ko
 kernel/drivers/dma/hsu/hsu_dma.ko
 kernel/drivers/edac/edac_core.ko
+kernel/drivers/extcon/extcon-core.ko
 kernel/drivers/firmware/dmi-sysfs.ko
 kernel/drivers/gpio/gpio-crystalcove.ko
 kernel/drivers/hid/hid.ko
@@ -148,6 +149,7 @@ kernel/drivers/net/phy/libphy.ko
 kernel/drivers/net/phy/fixed_phy.ko
 kernel/drivers/nvdimm/libnvdimm.ko
 kernel/drivers/nvdimm/nd_e820.ko
+kernel/drivers/nvmem/nvmem_core.ko
 kernel/drivers/pci/pci-stub.ko
 kernel/drivers/pcmcia/pcmcia_core.ko
 kernel/drivers/pcmcia/pcmcia.ko

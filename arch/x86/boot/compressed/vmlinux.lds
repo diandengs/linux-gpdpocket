@@ -1,7 +1,7 @@
 /*
  *
  * Automatically generated file; DO NOT EDIT.
- * Linux/x86 4.12.0 Kernel Configuration
+ * Linux/x86 4.13.0-rc1 Kernel Configuration
  *
  */
 /*

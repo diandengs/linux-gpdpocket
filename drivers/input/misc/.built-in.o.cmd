@@ -1,1 +1,1 @@
-cmd_drivers/input/misc/built-in.o :=  rm -f drivers/input/misc/built-in.o; ar rcsD drivers/input/misc/built-in.o
+cmd_drivers/input/misc/built-in.o :=  rm -f drivers/input/misc/built-in.o; ar rcSTPD drivers/input/misc/built-in.o

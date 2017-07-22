@@ -1,4 +1,4 @@
-cmd_arch/x86/tools/insn_sanity := gcc -Wp,-MD,arch/x86/tools/.insn_sanity.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -I./tools/include -Wall -I./arch/x86/lib/ -I./arch/x86/include/ -I./arch/x86/lib/ -I./include/ -o arch/x86/tools/insn_sanity arch/x86/tools/insn_sanity.c  
+cmd_arch/x86/tools/insn_sanity := gcc -Wp,-MD,arch/x86/tools/.insn_sanity.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -I./tools/include -Wall -I./arch/x86/lib/ -I./arch/x86/include/ -I./arch/x86/lib/ -I./include/ -o arch/x86/tools/insn_sanity arch/x86/tools/insn_sanity.c  
 
 source_arch/x86/tools/insn_sanity := arch/x86/tools/insn_sanity.c
 

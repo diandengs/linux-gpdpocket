@@ -1,1 +1,1 @@
-cmd_drivers/nvmem/nvmem_core.o := ld -m elf_x86_64   -r -o drivers/nvmem/nvmem_core.o drivers/nvmem/core.o 
+cmd_drivers/nvmem/nvmem_core.o := rm -f drivers/nvmem/nvmem_core.o; ar rcSTPD drivers/nvmem/nvmem_core.o drivers/nvmem/core.o

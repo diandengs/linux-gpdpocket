@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -29,4 +30,4 @@ MODULE_ALIAS("sdio:c*v024Cd0623*");
 MODULE_ALIAS("sdio:c*v024Cd0626*");
 MODULE_ALIAS("sdio:c*v024CdB723*");
 
-MODULE_INFO(srcversion, "057E81472E085ADCC7AC31D");
+MODULE_INFO(srcversion, "77D8071C45902C344E12771");

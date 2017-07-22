@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=pppox,l2tp_core,l2tp_netlink,ppp_generic";
 
 
-MODULE_INFO(srcversion, "21B37DD3E9CAA777F84C8B1");
+MODULE_INFO(srcversion, "9827266F58A48BDCF6E4952");

@@ -127,6 +127,7 @@ deps_drivers/net/ethernet/mellanox/mlxfw/mlxfw_mfa2_tlv_multi.o := \
     $(wildcard include/config/jump/label.h) \
   include/linux/jump_label.h \
   arch/x86/include/asm/jump_label.h \
+  include/linux/build_bug.h \
   drivers/net/ethernet/mellanox/mlxfw/mlxfw_mfa2_file.h \
   include/linux/firmware.h \
     $(wildcard include/config/fw/loader.h) \
@@ -153,7 +154,6 @@ deps_drivers/net/ethernet/mellanox/mlxfw/mlxfw_mfa2_tlv_multi.o := \
   include/asm-generic/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
-  include/linux/build_bug.h \
   include/linux/mmzone.h \
     $(wildcard include/config/force/max/zoneorder.h) \
     $(wildcard include/config/zsmalloc.h) \
@@ -287,6 +287,7 @@ deps_drivers/net/ethernet/mellanox/mlxfw/mlxfw_mfa2_tlv_multi.o := \
   include/linux/bitmap.h \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
+    $(wildcard include/config/fortify/source.h) \
   include/uapi/linux/string.h \
   arch/x86/include/asm/string.h \
   arch/x86/include/asm/string_64.h \

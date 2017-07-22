@@ -3,6 +3,7 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
+MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,4 +23,4 @@ __attribute__((section(".modinfo"))) =
 "depends=ib_core,ip6_udp_tunnel,udp_tunnel";
 
 
-MODULE_INFO(srcversion, "EB39EF5808AE24F8D36AD45");
+MODULE_INFO(srcversion, "A9F7BBAF011FE5319260CD0");

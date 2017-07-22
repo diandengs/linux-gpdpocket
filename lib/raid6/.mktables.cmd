@@ -1,4 +1,4 @@
-cmd_lib/raid6/mktables := gcc -Wp,-MD,lib/raid6/.mktables.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -o lib/raid6/mktables lib/raid6/mktables.c  
+cmd_lib/raid6/mktables := gcc -Wp,-MD,lib/raid6/.mktables.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89      -o lib/raid6/mktables lib/raid6/mktables.c  
 
 source_lib/raid6/mktables := lib/raid6/mktables.c
 

@@ -179,8 +179,7 @@ done:
 	return error;
 }
 
-/* Convert an internal btree record to an rmap record. */
-int
+static int
 xfs_rmap_btrec_to_irec(
 	union xfs_btree_rec	*rec,
 	struct xfs_rmap_irec	*irec)
@@ -2062,7 +2061,7 @@ int
 xfs_rmap_finish_one(
 	struct xfs_trans		*tp,
 	enum xfs_rmap_intent_type	type,
-	uint64_t			owner,
+	__uint64_t			owner,
 	int				whichfork,
 	xfs_fileoff_t			startoff,
 	xfs_fsblock_t			startblock,
@@ -2087,7 +2086,8 @@ xfs_rmap_finish_one(
 			startoff, blockcount, state);
 
 	if (XFS_TEST_ERROR(false, mp,
-			XFS_ERRTAG_RMAP_FINISH_ONE))
+			XFS_ERRTAG_RMAP_FINISH_ONE,
+			XFS_RANDOM_RMAP_FINISH_ONE))
 		return -EIO;
 
 	/*
@@ -2182,7 +2182,7 @@ __xfs_rmap_add(
 	struct xfs_mount		*mp,
 	struct xfs_defer_ops		*dfops,
 	enum xfs_rmap_intent_type	type,
-	uint64_t			owner,
+	__uint64_t			owner,
 	int				whichfork,
 	struct xfs_bmbt_irec		*bmap)
 {
@@ -2266,7 +2266,7 @@ xfs_rmap_alloc_extent(
 	xfs_agnumber_t		agno,
 	xfs_agblock_t		bno,
 	xfs_extlen_t		len,
-	uint64_t		owner)
+	__uint64_t		owner)
 {
 	struct xfs_bmbt_irec	bmap;
 
@@ -2290,7 +2290,7 @@ xfs_rmap_free_extent(
 	xfs_agnumber_t		agno,
 	xfs_agblock_t		bno,
 	xfs_extlen_t		len,
-	uint64_t		owner)
+	__uint64_t		owner)
 {
 	struct xfs_bmbt_irec	bmap;
 

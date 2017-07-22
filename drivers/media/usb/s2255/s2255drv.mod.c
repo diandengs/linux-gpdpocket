@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -25,4 +24,4 @@ __attribute__((section(".modinfo"))) =
 MODULE_ALIAS("usb:v1943p2255d*dc*dsc*dp*ic*isc*ip*in*");
 MODULE_ALIAS("usb:v1943p2257d*dc*dsc*dp*ic*isc*ip*in*");
 
-MODULE_INFO(srcversion, "9D671D385830CA084AB97C4");
+MODULE_INFO(srcversion, "CC5C6346F58A9EA8C6B6E18");

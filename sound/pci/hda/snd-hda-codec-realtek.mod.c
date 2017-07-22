@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,7 +21,6 @@ __used
 __attribute__((section(".modinfo"))) =
 "depends=snd-hda-codec-generic,snd-hda-codec,snd-hda-core,snd";
 
-MODULE_ALIAS("hdaudio:v10EC0215r*a01*");
 MODULE_ALIAS("hdaudio:v10EC0221r*a01*");
 MODULE_ALIAS("hdaudio:v10EC0225r*a01*");
 MODULE_ALIAS("hdaudio:v10EC0231r*a01*");
@@ -48,7 +46,6 @@ MODULE_ALIAS("hdaudio:v10EC0284r*a01*");
 MODULE_ALIAS("hdaudio:v10EC0285r*a01*");
 MODULE_ALIAS("hdaudio:v10EC0286r*a01*");
 MODULE_ALIAS("hdaudio:v10EC0288r*a01*");
-MODULE_ALIAS("hdaudio:v10EC0289r*a01*");
 MODULE_ALIAS("hdaudio:v10EC0290r*a01*");
 MODULE_ALIAS("hdaudio:v10EC0292r*a01*");
 MODULE_ALIAS("hdaudio:v10EC0293r*a01*");

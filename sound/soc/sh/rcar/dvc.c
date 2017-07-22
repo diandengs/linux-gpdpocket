@@ -249,18 +249,16 @@ static int rsnd_dvc_pcm_new(struct rsnd_mod *mod,
 			    struct snd_soc_pcm_runtime *rtd)
 {
 	struct rsnd_dvc *dvc = rsnd_mod_to_dvc(mod);
-	struct rsnd_dai *rdai = rsnd_io_to_rdai(io);
 	int is_play = rsnd_io_is_play(io);
-	int channels = rsnd_rdai_channels_get(rdai);
+	int slots = rsnd_get_slot(io);
 	int ret;
 
 	/* Volume */
 	ret = rsnd_kctrl_new_m(mod, io, rtd,
 			is_play ?
 			"DVC Out Playback Volume" : "DVC In Capture Volume",
-			rsnd_kctrl_accept_anytime,
 			rsnd_dvc_volume_update,
-			&dvc->volume, channels,
+			&dvc->volume, slots,
 			0x00800000 - 1);
 	if (ret < 0)
 		return ret;
@@ -269,9 +267,8 @@ static int rsnd_dvc_pcm_new(struct rsnd_mod *mod,
 	ret = rsnd_kctrl_new_m(mod, io, rtd,
 			is_play ?
 			"DVC Out Mute Switch" : "DVC In Mute Switch",
-			rsnd_kctrl_accept_anytime,
 			rsnd_dvc_volume_update,
-			&dvc->mute, channels,
+			&dvc->mute,  slots,
 			1);
 	if (ret < 0)
 		return ret;
@@ -280,7 +277,6 @@ static int rsnd_dvc_pcm_new(struct rsnd_mod *mod,
 	ret = rsnd_kctrl_new_s(mod, io, rtd,
 			is_play ?
 			"DVC Out Ramp Switch" : "DVC In Ramp Switch",
-			rsnd_kctrl_accept_anytime,
 			rsnd_dvc_volume_update,
 			&dvc->ren, 1);
 	if (ret < 0)
@@ -289,7 +285,6 @@ static int rsnd_dvc_pcm_new(struct rsnd_mod *mod,
 	ret = rsnd_kctrl_new_e(mod, io, rtd,
 			is_play ?
 			"DVC Out Ramp Up Rate" : "DVC In Ramp Up Rate",
-			rsnd_kctrl_accept_anytime,
 			rsnd_dvc_volume_update,
 			&dvc->rup,
 			dvc_ramp_rate);
@@ -299,7 +294,6 @@ static int rsnd_dvc_pcm_new(struct rsnd_mod *mod,
 	ret = rsnd_kctrl_new_e(mod, io, rtd,
 			is_play ?
 			"DVC Out Ramp Down Rate" : "DVC In Ramp Down Rate",
-			rsnd_kctrl_accept_anytime,
 			rsnd_dvc_volume_update,
 			&dvc->rdown,
 			dvc_ramp_rate);

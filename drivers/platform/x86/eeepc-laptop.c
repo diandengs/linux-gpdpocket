@@ -445,7 +445,7 @@ static struct attribute *platform_attributes[] = {
 	NULL
 };
 
-static const struct attribute_group platform_attribute_group = {
+static struct attribute_group platform_attribute_group = {
 	.attrs = platform_attributes
 };
 

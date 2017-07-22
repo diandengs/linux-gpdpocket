@@ -1273,14 +1273,12 @@ const insn_attr_t inat_group_table_19[INAT_GROUP_TABLE_SIZE] = {
 	[0x1] = INAT_VARIANT,
 	[0x2] = INAT_MODRM | INAT_VEXOK | INAT_VARIANT,
 	[0x3] = INAT_MODRM | INAT_VEXOK | INAT_VARIANT,
-	[0x4] = INAT_VARIANT,
 };
 const insn_attr_t inat_group_table_19_2[INAT_GROUP_TABLE_SIZE] = {
 	[0x0] = INAT_MODRM,
 	[0x1] = INAT_MODRM,
 	[0x2] = INAT_MODRM,
 	[0x3] = INAT_MODRM,
-	[0x4] = INAT_MODRM,
 };
 
 /* GrpTable: Grp16 */

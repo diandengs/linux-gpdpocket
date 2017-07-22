@@ -142,6 +142,7 @@ kernel/fs/ceph/ceph.ko
 kernel/security/keys/trusted.ko
 kernel/crypto/crypto_engine.ko
 kernel/crypto/echainiv.ko
+kernel/crypto/ecdh_generic.ko
 kernel/crypto/crypto_user.ko
 kernel/crypto/cmac.ko
 kernel/crypto/vmac.ko
@@ -193,7 +194,6 @@ kernel/crypto/842.ko
 kernel/crypto/ansi_cprng.ko
 kernel/crypto/tcrypt.ko
 kernel/crypto/ghash-generic.ko
-kernel/crypto/ecdh_generic.ko
 kernel/crypto/xor.ko
 kernel/crypto/async_tx/async_tx.ko
 kernel/crypto/async_tx/async_memcpy.ko
@@ -206,7 +206,6 @@ kernel/block/kyber-iosched.ko
 kernel/block/bfq.ko
 kernel/drivers/pinctrl/intel/pinctrl-intel.ko
 kernel/drivers/pinctrl/intel/pinctrl-broxton.ko
-kernel/drivers/pinctrl/intel/pinctrl-cannonlake.ko
 kernel/drivers/pinctrl/intel/pinctrl-sunrisepoint.ko
 kernel/drivers/gpio/gpio-exar.ko
 kernel/drivers/gpio/gpio-ich.ko
@@ -675,7 +674,6 @@ kernel/drivers/net/ethernet/mellanox/mlxsw/mlxsw_switchib.ko
 kernel/drivers/net/ethernet/mellanox/mlxsw/mlxsw_switchx2.ko
 kernel/drivers/net/ethernet/mellanox/mlxsw/mlxsw_spectrum.ko
 kernel/drivers/net/ethernet/mellanox/mlxsw/mlxsw_minimal.ko
-kernel/drivers/net/ethernet/mellanox/mlxfw/mlxfw.ko
 kernel/drivers/net/ethernet/micrel/ksz884x.ko
 kernel/drivers/net/ethernet/myricom/myri10ge/myri10ge.ko
 kernel/drivers/net/ethernet/natsemi/natsemi.ko
@@ -922,14 +920,14 @@ kernel/drivers/net/dsa/b53/b53_mdio.ko
 kernel/drivers/net/dsa/b53/b53_mmap.ko
 kernel/drivers/net/dsa/b53/b53_srab.ko
 kernel/drivers/net/dsa/mv88e6xxx/mv88e6xxx.ko
-kernel/drivers/net/dsa/dsa_loop.ko
-kernel/drivers/net/dsa/dsa_loop_bdinfo.ko
-kernel/drivers/net/dsa/mt7530.ko
 kernel/drivers/net/dsa/mv88e6060.ko
 kernel/drivers/net/dsa/qca8k.ko
+kernel/drivers/net/dsa/mt7530.ko
 kernel/drivers/net/dsa/lan9303-core.ko
 kernel/drivers/net/dsa/lan9303_i2c.ko
 kernel/drivers/net/dsa/lan9303_mdio.ko
+kernel/drivers/net/dsa/dsa_loop.ko
+kernel/drivers/net/dsa/dsa_loop_bdinfo.ko
 kernel/drivers/net/irda/irda-usb.ko
 kernel/drivers/net/irda/stir4200.ko
 kernel/drivers/net/irda/nsc-ircc.ko
@@ -1087,6 +1085,7 @@ kernel/drivers/usb/misc/usb251xb.ko
 kernel/drivers/usb/misc/usb3503.ko
 kernel/drivers/usb/misc/usb4604.ko
 kernel/drivers/usb/misc/chaoskey.ko
+kernel/drivers/usb/misc/ucsi.ko
 kernel/drivers/usb/misc/sisusbvga/sisusbvga.ko
 kernel/drivers/usb/common/ulpi.ko
 kernel/drivers/usb/dwc3/dwc3.ko
@@ -1117,7 +1116,6 @@ kernel/drivers/usb/gadget/function/usb_f_ecm.ko
 kernel/drivers/usb/gadget/function/usb_f_ecm_subset.ko
 kernel/drivers/usb/gadget/function/usb_f_rndis.ko
 kernel/drivers/usb/gadget/function/usb_f_mass_storage.ko
-kernel/drivers/usb/gadget/function/u_audio.ko
 kernel/drivers/usb/gadget/function/usb_f_uac2.ko
 kernel/drivers/usb/gadget/function/usb_f_uvc.ko
 kernel/drivers/usb/gadget/function/usb_f_midi.ko
@@ -1141,13 +1139,10 @@ kernel/drivers/usb/usbip/vhci-hcd.ko
 kernel/drivers/usb/usbip/usbip-host.ko
 kernel/drivers/usb/usbip/usbip-vudc.ko
 kernel/drivers/usb/typec/typec.ko
-kernel/drivers/usb/typec/ucsi/typec_ucsi.ko
-kernel/drivers/usb/typec/ucsi/ucsi_acpi.ko
 kernel/drivers/input/serio/serio_raw.ko
 kernel/drivers/input/serio/altera_ps2.ko
 kernel/drivers/input/serio/arc_ps2.ko
 kernel/drivers/input/serio/hyperv-keyboard.ko
-kernel/drivers/input/keyboard/dlink-dir685-touchkeys.ko
 kernel/drivers/input/keyboard/gpio_keys.ko
 kernel/drivers/input/keyboard/qt1070.ko
 kernel/drivers/input/keyboard/tm2-touchkey.ko
@@ -1217,7 +1212,6 @@ kernel/drivers/input/touchscreen/raydium_i2c_ts.ko
 kernel/drivers/input/touchscreen/silead.ko
 kernel/drivers/input/touchscreen/sis_i2c.ko
 kernel/drivers/input/touchscreen/st1232.ko
-kernel/drivers/input/touchscreen/stmfts.ko
 kernel/drivers/input/touchscreen/surface3_spi.ko
 kernel/drivers/input/touchscreen/touchit213.ko
 kernel/drivers/input/touchscreen/touchright.ko
@@ -1850,7 +1844,6 @@ kernel/drivers/media/dvb-frontends/ascot2e.ko
 kernel/drivers/media/dvb-frontends/helene.ko
 kernel/drivers/media/dvb-frontends/zd1301_demod.ko
 kernel/drivers/media/media.ko
-kernel/drivers/media/v4l2-core/v4l2-fwnode.ko
 kernel/drivers/media/v4l2-core/videodev.ko
 kernel/drivers/media/v4l2-core/v4l2-common.ko
 kernel/drivers/media/v4l2-core/v4l2-dv-timings.ko
@@ -2278,7 +2271,6 @@ kernel/drivers/hid/hid-petalynx.ko
 kernel/drivers/hid/hid-picolcd.ko
 kernel/drivers/hid/hid-plantronics.ko
 kernel/drivers/hid/hid-primax.ko
-kernel/drivers/hid/hid-retrode.ko
 kernel/drivers/hid/hid-roccat.ko
 kernel/drivers/hid/hid-roccat-common.ko
 kernel/drivers/hid/hid-roccat-arvo.ko
@@ -2376,7 +2368,6 @@ kernel/drivers/platform/x86/msi-wmi.ko
 kernel/drivers/platform/x86/peaq-wmi.ko
 kernel/drivers/platform/x86/surface3-wmi.ko
 kernel/drivers/platform/x86/topstar-laptop.ko
-kernel/drivers/platform/x86/wmi-bmof.ko
 kernel/drivers/platform/x86/toshiba_acpi.ko
 kernel/drivers/platform/x86/toshiba_bluetooth.ko
 kernel/drivers/platform/x86/toshiba_haps.ko
@@ -2404,9 +2395,6 @@ kernel/drivers/platform/chrome/chromeos_laptop.ko
 kernel/drivers/platform/chrome/chromeos_pstore.ko
 kernel/drivers/platform/chrome/cros_kbd_led_backlight.ko
 kernel/drivers/devfreq/governor_simpleondemand.ko
-kernel/drivers/extcon/extcon-axp288.ko
-kernel/drivers/extcon/extcon-intel-int3496.ko
-kernel/drivers/extcon/extcon-intel-cht-wc.ko
 kernel/drivers/powercap/intel_rapl.ko
 kernel/drivers/virtio/virtio.ko
 kernel/drivers/virtio/virtio_ring.ko
@@ -2553,6 +2541,10 @@ kernel/drivers/remoteproc/remoteproc.ko
 kernel/drivers/hv/hv_vmbus.ko
 kernel/drivers/hv/hv_utils.ko
 kernel/drivers/hv/hv_balloon.ko
+kernel/drivers/extcon/extcon-core.ko
+kernel/drivers/extcon/extcon-axp288.ko
+kernel/drivers/extcon/extcon-intel-int3496.ko
+kernel/drivers/extcon/extcon-intel-cht-wc.ko
 kernel/drivers/iio/accel/bmc150-accel-core.ko
 kernel/drivers/iio/accel/bmc150-accel-i2c.ko
 kernel/drivers/iio/accel/bmc150-accel-spi.ko
@@ -2632,7 +2624,6 @@ kernel/drivers/fmc/fmc-chardev.ko
 kernel/drivers/thunderbolt/thunderbolt.ko
 kernel/drivers/nvmem/nvmem_core.ko
 kernel/drivers/fsi/fsi-core.ko
-kernel/drivers/mux/mux-core.ko
 kernel/sound/soundcore.ko
 kernel/sound/core/oss/snd-mixer-oss.ko
 kernel/sound/core/oss/snd-pcm-oss.ko
@@ -2642,14 +2633,15 @@ kernel/sound/core/snd-timer.ko
 kernel/sound/core/snd-hrtimer.ko
 kernel/sound/core/snd-pcm.ko
 kernel/sound/core/snd-pcm-dmaengine.ko
-kernel/sound/core/snd-seq-device.ko
 kernel/sound/core/snd-rawmidi.ko
 kernel/sound/core/seq/snd-seq.ko
+kernel/sound/core/seq/snd-seq-device.ko
+kernel/sound/core/seq/snd-seq-midi-event.ko
 kernel/sound/core/seq/oss/snd-seq-oss.ko
 kernel/sound/core/seq/snd-seq-dummy.ko
-kernel/sound/core/seq/snd-seq-midi-emul.ko
-kernel/sound/core/seq/snd-seq-midi-event.ko
 kernel/sound/core/seq/snd-seq-virmidi.ko
+kernel/sound/core/seq/snd-seq-midi.ko
+kernel/sound/core/seq/snd-seq-midi-emul.ko
 kernel/sound/core/snd-compress.ko
 kernel/sound/i2c/other/snd-ak4xxx-adda.ko
 kernel/sound/i2c/other/snd-ak4114.ko
@@ -2791,7 +2783,6 @@ kernel/sound/soc/codecs/snd-soc-da7213.ko
 kernel/sound/soc/codecs/snd-soc-da7219.ko
 kernel/sound/soc/codecs/snd-soc-dmic.ko
 kernel/sound/soc/codecs/snd-soc-es7134.ko
-kernel/sound/soc/codecs/snd-soc-es8316.ko
 kernel/sound/soc/codecs/snd-soc-es8328.ko
 kernel/sound/soc/codecs/snd-soc-es8328-i2c.ko
 kernel/sound/soc/codecs/snd-soc-es8328-spi.ko
@@ -2847,7 +2838,6 @@ kernel/sound/soc/intel/boards/snd-soc-sst-cht-bsw-rt5672.ko
 kernel/sound/soc/intel/boards/snd-soc-sst-cht-bsw-rt5645.ko
 kernel/sound/soc/intel/boards/snd-soc-sst-cht-bsw-max98090_ti.ko
 kernel/sound/soc/intel/boards/snd-soc-sst-byt-cht-da7213.ko
-kernel/sound/soc/intel/boards/snd-soc-sst-byt-cht-es8316.ko
 kernel/sound/soc/intel/boards/snd-soc-sst-byt-cht-nocodec.ko
 kernel/sound/soc/intel/boards/snd-soc-skl_rt286.ko
 kernel/sound/soc/intel/boards/snd-skl_nau88l25_max98357a.ko
@@ -3338,7 +3328,6 @@ kernel/net/vmw_vsock/vmw_vsock_virtio_transport_common.ko
 kernel/lib/lz4/lz4_compress.ko
 kernel/lib/lz4/lz4hc_compress.ko
 kernel/lib/crc-itu-t.ko
-kernel/lib/crc4.ko
 kernel/lib/crc7.ko
 kernel/lib/libcrc32c.ko
 kernel/lib/crc8.ko

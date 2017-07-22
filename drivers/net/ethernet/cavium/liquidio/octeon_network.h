@@ -356,6 +356,29 @@ static inline void tx_buffer_free(void *buffer)
 #define lio_dma_free(oct, size, virt_addr, dma_addr) \
 	dma_free_coherent(&(oct)->pci_dev->dev, size, virt_addr, dma_addr)
 
+static inline void *
+lio_alloc_info_buffer(struct octeon_device *oct,
+		      struct octeon_droq *droq)
+{
+	void *virt_ptr;
+
+	virt_ptr = lio_dma_alloc(oct, (droq->max_count * OCT_DROQ_INFO_SIZE),
+				 &droq->info_list_dma);
+	if (virt_ptr) {
+		droq->info_alloc_size = droq->max_count * OCT_DROQ_INFO_SIZE;
+		droq->info_base_addr = virt_ptr;
+	}
+
+	return virt_ptr;
+}
+
+static inline void lio_free_info_buffer(struct octeon_device *oct,
+					struct octeon_droq *droq)
+{
+	lio_dma_free(oct, droq->info_alloc_size, droq->info_base_addr,
+		     droq->info_list_dma);
+}
+
 static inline
 void *get_rbd(struct sk_buff *skb)
 {
@@ -366,6 +389,12 @@ void *get_rbd(struct sk_buff *skb)
 	va = page_address(pg_info->page) + pg_info->page_offset;
 
 	return va;
+}
+
+static inline u64
+lio_map_ring_info(struct octeon_droq *droq, u32 i)
+{
+	return droq->info_list_dma + (i * sizeof(struct octeon_droq_info));
 }
 
 static inline u64
@@ -414,8 +443,8 @@ static inline void octeon_fast_packet_next(struct octeon_droq *droq,
 					   int copy_len,
 					   int idx)
 {
-	skb_put_data(nicbuf, get_rbd(droq->recv_buf_list[idx].buffer),
-		     copy_len);
+	memcpy(skb_put(nicbuf, copy_len),
+	       get_rbd(droq->recv_buf_list[idx].buffer), copy_len);
 }
 
 /**

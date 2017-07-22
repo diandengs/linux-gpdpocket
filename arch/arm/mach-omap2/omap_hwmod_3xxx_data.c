@@ -3204,7 +3204,8 @@ int __init omap3xxx_hwmod_init(void)
 	 * If DT information is missing, enable them only for GP devices.
 	 */
 
-	bus = of_find_node_by_name(NULL, "ocp");
+	if (of_have_populated_dt())
+		bus = of_find_node_by_name(NULL, "ocp");
 
 	if (h_sham && omap3xxx_hwmod_is_hs_ip_block_usable(bus, "sham")) {
 		r = omap_hwmod_register_links(h_sham);

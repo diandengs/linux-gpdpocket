@@ -971,11 +971,11 @@ batadv_purge_outstanding_packets(struct batadv_priv *bat_priv,
 
 	if (hard_iface)
 		batadv_dbg(BATADV_DBG_BATMAN, bat_priv,
-			   "%s(): %s\n",
-			   __func__, hard_iface->net_dev->name);
+			   "purge_outstanding_packets(): %s\n",
+			   hard_iface->net_dev->name);
 	else
 		batadv_dbg(BATADV_DBG_BATMAN, bat_priv,
-			   "%s()\n", __func__);
+			   "purge_outstanding_packets()\n");
 
 	/* claim bcast list for free() */
 	spin_lock_bh(&bat_priv->forw_bcast_list_lock);

@@ -1,1 +1,1 @@
-cmd_drivers/tty/serial/8250/built-in.o :=  rm -f drivers/tty/serial/8250/built-in.o; ar rcSTPD drivers/tty/serial/8250/built-in.o drivers/tty/serial/8250/8250.o drivers/tty/serial/8250/8250_base.o drivers/tty/serial/8250/8250_early.o drivers/tty/serial/8250/8250_dw.o drivers/tty/serial/8250/8250_mid.o 
+cmd_drivers/tty/serial/8250/built-in.o :=  ld -m elf_x86_64   -r -o drivers/tty/serial/8250/built-in.o drivers/tty/serial/8250/8250.o drivers/tty/serial/8250/8250_base.o drivers/tty/serial/8250/8250_early.o drivers/tty/serial/8250/8250_dw.o drivers/tty/serial/8250/8250_mid.o 

@@ -1,1 +1,1 @@
-cmd_drivers/watchdog/built-in.o :=  rm -f drivers/watchdog/built-in.o; ar rcSTPD drivers/watchdog/built-in.o drivers/watchdog/watchdog.o 
+cmd_drivers/watchdog/built-in.o :=  ld -m elf_x86_64   -r -o drivers/watchdog/built-in.o drivers/watchdog/watchdog.o 

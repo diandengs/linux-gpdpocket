@@ -2532,12 +2532,12 @@ static int setup_sort_list(struct perf_hpp_list *list, char *str,
 			ret = sort_dimension__add(list, tok, evlist, level);
 			if (ret == -EINVAL) {
 				if (!cacheline_size && !strncasecmp(tok, "dcacheline", strlen(tok)))
-					pr_err("The \"dcacheline\" --sort key needs to know the cacheline size and it couldn't be determined on this system");
+					error("The \"dcacheline\" --sort key needs to know the cacheline size and it couldn't be determined on this system");
 				else
-					pr_err("Invalid --sort key: `%s'", tok);
+					error("Invalid --sort key: `%s'", tok);
 				break;
 			} else if (ret == -ESRCH) {
-				pr_err("Unknown --sort key: `%s'", tok);
+				error("Unknown --sort key: `%s'", tok);
 				break;
 			}
 		}
@@ -2594,7 +2594,7 @@ static int setup_sort_order(struct perf_evlist *evlist)
 		return 0;
 
 	if (sort_order[1] == '\0') {
-		pr_err("Invalid --sort key: `+'");
+		error("Invalid --sort key: `+'");
 		return -EINVAL;
 	}
 
@@ -2604,7 +2604,7 @@ static int setup_sort_order(struct perf_evlist *evlist)
 	 */
 	if (asprintf(&new_sort_order, "%s,%s",
 		     get_default_sort_order(evlist), sort_order + 1) < 0) {
-		pr_err("Not enough memory to set up --sort");
+		error("Not enough memory to set up --sort");
 		return -ENOMEM;
 	}
 
@@ -2668,7 +2668,7 @@ static int __setup_sorting(struct perf_evlist *evlist)
 
 	str = strdup(sort_keys);
 	if (str == NULL) {
-		pr_err("Not enough memory to setup sort keys");
+		error("Not enough memory to setup sort keys");
 		return -ENOMEM;
 	}
 
@@ -2678,7 +2678,7 @@ static int __setup_sorting(struct perf_evlist *evlist)
 	if (!is_strict_order(field_order)) {
 		str = setup_overhead(str);
 		if (str == NULL) {
-			pr_err("Not enough memory to setup overhead keys");
+			error("Not enough memory to setup overhead keys");
 			return -ENOMEM;
 		}
 	}
@@ -2834,10 +2834,10 @@ static int setup_output_list(struct perf_hpp_list *list, char *str)
 			tok; tok = strtok_r(NULL, ", ", &tmp)) {
 		ret = output_field_add(list, tok);
 		if (ret == -EINVAL) {
-			pr_err("Invalid --fields key: `%s'", tok);
+			error("Invalid --fields key: `%s'", tok);
 			break;
 		} else if (ret == -ESRCH) {
-			pr_err("Unknown --fields key: `%s'", tok);
+			error("Unknown --fields key: `%s'", tok);
 			break;
 		}
 	}
@@ -2877,7 +2877,7 @@ static int __setup_output_field(void)
 
 	strp = str = strdup(field_order);
 	if (str == NULL) {
-		pr_err("Not enough memory to setup output fields");
+		error("Not enough memory to setup output fields");
 		return -ENOMEM;
 	}
 
@@ -2885,7 +2885,7 @@ static int __setup_output_field(void)
 		strp++;
 
 	if (!strlen(strp)) {
-		pr_err("Invalid --fields key: `+'");
+		error("Invalid --fields key: `+'");
 		goto out;
 	}
 

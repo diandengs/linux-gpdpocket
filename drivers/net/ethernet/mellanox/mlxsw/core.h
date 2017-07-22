@@ -344,17 +344,15 @@ struct mlxsw_bus {
 	u8 features;
 };
 
-struct mlxsw_fw_rev {
-	u16 major;
-	u16 minor;
-	u16 subminor;
-};
-
 struct mlxsw_bus_info {
 	const char *device_kind;
 	const char *device_name;
 	struct device *dev;
-	struct mlxsw_fw_rev fw_rev;
+	struct {
+		u16 major;
+		u16 minor;
+		u16 subminor;
+	} fw_rev;
 	u8 vsd[MLXSW_CMD_BOARDINFO_VSD_LEN];
 	u8 psid[MLXSW_CMD_BOARDINFO_PSID_LEN];
 };

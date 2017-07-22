@@ -246,9 +246,9 @@ static int xgene_enet_tx_completion(struct xgene_enet_desc_ring *cp_ring,
 	skb_frag_t *frag;
 	dma_addr_t *frag_dma_addr;
 	u16 skb_index;
-	u8 mss_index;
 	u8 status;
-	int i;
+	int i, ret = 0;
+	u8 mss_index;
 
 	skb_index = GET_VAL(USERINFO, le64_to_cpu(raw_desc->m0));
 	skb = cp_ring->cp_skb[skb_index];
@@ -275,17 +275,19 @@ static int xgene_enet_tx_completion(struct xgene_enet_desc_ring *cp_ring,
 	/* Checking for error */
 	status = GET_VAL(LERR, le64_to_cpu(raw_desc->m0));
 	if (unlikely(status > 2)) {
-		cp_ring->tx_dropped++;
-		cp_ring->tx_errors++;
+		xgene_enet_parse_error(cp_ring, netdev_priv(cp_ring->ndev),
+				       status);
+		ret = -EIO;
 	}
 
 	if (likely(skb)) {
 		dev_kfree_skb_any(skb);
 	} else {
 		netdev_err(cp_ring->ndev, "completion skb is NULL\n");
+		ret = -EIO;
 	}
 
-	return 0;
+	return ret;
 }
 
 static int xgene_enet_setup_mss(struct net_device *ndev, u32 mss)
@@ -656,18 +658,6 @@ static void xgene_enet_free_pagepool(struct xgene_enet_desc_ring *buf_pool,
 	buf_pool->head = head;
 }
 
-/* Errata 10GE_10 and ENET_15 - Fix duplicated HW statistic counters */
-static bool xgene_enet_errata_10GE_10(struct sk_buff *skb, u32 len, u8 status)
-{
-	if (status == INGRESS_CRC &&
-	    len >= (ETHER_STD_PACKET + 1) &&
-	    len <= (ETHER_STD_PACKET + 4) &&
-	    skb->protocol == htons(ETH_P_8021Q))
-		return true;
-
-	return false;
-}
-
 /* Errata 10GE_8 and ENET_11 - allow packet with length <=64B */
 static bool xgene_enet_errata_10GE_8(struct sk_buff *skb, u32 len, u8 status)
 {
@@ -718,15 +708,10 @@ static int xgene_enet_rx_frame(struct xgene_enet_desc_ring *rx_ring,
 	status = (GET_VAL(ELERR, le64_to_cpu(raw_desc->m0)) << LERR_LEN) |
 		  GET_VAL(LERR, le64_to_cpu(raw_desc->m0));
 	if (unlikely(status)) {
-		if (xgene_enet_errata_10GE_8(skb, datalen, status)) {
-			pdata->false_rflr++;
-		} else if (xgene_enet_errata_10GE_10(skb, datalen, status)) {
-			pdata->vlan_rjbr++;
-		} else {
+		if (!xgene_enet_errata_10GE_8(skb, datalen, status)) {
 			dev_kfree_skb_any(skb);
 			xgene_enet_free_pagepool(page_pool, raw_desc, exp_desc);
-			xgene_enet_parse_error(rx_ring, status);
-			rx_ring->rx_dropped++;
+			xgene_enet_parse_error(rx_ring, pdata, status);
 			goto out;
 		}
 	}
@@ -1481,9 +1466,10 @@ err:
 
 static void xgene_enet_get_stats64(
 			struct net_device *ndev,
-			struct rtnl_link_stats64 *stats)
+			struct rtnl_link_stats64 *storage)
 {
 	struct xgene_enet_pdata *pdata = netdev_priv(ndev);
+	struct rtnl_link_stats64 *stats = &pdata->stats;
 	struct xgene_enet_desc_ring *ring;
 	int i;
 
@@ -1492,8 +1478,6 @@ static void xgene_enet_get_stats64(
 		if (ring) {
 			stats->tx_packets += ring->tx_packets;
 			stats->tx_bytes += ring->tx_bytes;
-			stats->tx_dropped += ring->tx_dropped;
-			stats->tx_errors += ring->tx_errors;
 		}
 	}
 
@@ -1502,18 +1486,14 @@ static void xgene_enet_get_stats64(
 		if (ring) {
 			stats->rx_packets += ring->rx_packets;
 			stats->rx_bytes += ring->rx_bytes;
-			stats->rx_dropped += ring->rx_dropped;
-			stats->rx_errors += ring->rx_errors +
-				ring->rx_length_errors +
+			stats->rx_errors += ring->rx_length_errors +
 				ring->rx_crc_errors +
 				ring->rx_frame_errors +
 				ring->rx_fifo_errors;
-			stats->rx_length_errors += ring->rx_length_errors;
-			stats->rx_crc_errors += ring->rx_crc_errors;
-			stats->rx_frame_errors += ring->rx_frame_errors;
-			stats->rx_fifo_errors += ring->rx_fifo_errors;
+			stats->rx_dropped += ring->rx_dropped;
 		}
 	}
+	memcpy(storage, stats, sizeof(struct rtnl_link_stats64));
 }
 
 static int xgene_enet_set_mac_address(struct net_device *ndev, void *addr)
@@ -1634,7 +1614,7 @@ static int xgene_enet_get_irqs(struct xgene_enet_pdata *pdata)
 	struct device *dev = &pdev->dev;
 	int i, ret, max_irqs;
 
-	if (phy_interface_mode_is_rgmii(pdata->phy_mode))
+	if (pdata->phy_mode == PHY_INTERFACE_MODE_RGMII)
 		max_irqs = 1;
 	else if (pdata->phy_mode == PHY_INTERFACE_MODE_SGMII)
 		max_irqs = 2;
@@ -1760,7 +1740,7 @@ static int xgene_enet_get_resources(struct xgene_enet_pdata *pdata)
 		dev_err(dev, "Unable to get phy-connection-type\n");
 		return pdata->phy_mode;
 	}
-	if (!phy_interface_mode_is_rgmii(pdata->phy_mode) &&
+	if (pdata->phy_mode != PHY_INTERFACE_MODE_RGMII &&
 	    pdata->phy_mode != PHY_INTERFACE_MODE_SGMII &&
 	    pdata->phy_mode != PHY_INTERFACE_MODE_XGMII) {
 		dev_err(dev, "Incorrect phy-connection-type specified\n");
@@ -1805,18 +1785,15 @@ static int xgene_enet_get_resources(struct xgene_enet_pdata *pdata)
 	pdata->cle.base = base_addr + BLOCK_ETH_CLE_CSR_OFFSET;
 	pdata->eth_ring_if_addr = base_addr + BLOCK_ETH_RING_IF_OFFSET;
 	pdata->eth_diag_csr_addr = base_addr + BLOCK_ETH_DIAG_CSR_OFFSET;
-	if (phy_interface_mode_is_rgmii(pdata->phy_mode) ||
+	if (pdata->phy_mode == PHY_INTERFACE_MODE_RGMII ||
 	    pdata->phy_mode == PHY_INTERFACE_MODE_SGMII) {
 		pdata->mcx_mac_addr = pdata->base_addr + BLOCK_ETH_MAC_OFFSET;
-		pdata->mcx_stats_addr =
-			pdata->base_addr + BLOCK_ETH_STATS_OFFSET;
 		offset = (pdata->enet_id == XGENE_ENET1) ?
 			  BLOCK_ETH_MAC_CSR_OFFSET :
 			  X2_BLOCK_ETH_MAC_CSR_OFFSET;
 		pdata->mcx_mac_csr_addr = base_addr + offset;
 	} else {
 		pdata->mcx_mac_addr = base_addr + BLOCK_AXG_MAC_OFFSET;
-		pdata->mcx_stats_addr = base_addr + BLOCK_AXG_STATS_OFFSET;
 		pdata->mcx_mac_csr_addr = base_addr + BLOCK_AXG_MAC_CSR_OFFSET;
 		pdata->pcs_addr = base_addr + BLOCK_PCS_OFFSET;
 	}
@@ -1904,9 +1881,6 @@ static void xgene_enet_setup_ops(struct xgene_enet_pdata *pdata)
 {
 	switch (pdata->phy_mode) {
 	case PHY_INTERFACE_MODE_RGMII:
-	case PHY_INTERFACE_MODE_RGMII_ID:
-	case PHY_INTERFACE_MODE_RGMII_RXID:
-	case PHY_INTERFACE_MODE_RGMII_TXID:
 		pdata->mac_ops = &xgene_gmac_ops;
 		pdata->port_ops = &xgene_gport_ops;
 		pdata->rm = RM3;
@@ -2081,7 +2055,6 @@ static int xgene_enet_probe(struct platform_device *pdev)
 		goto err;
 
 	xgene_enet_setup_ops(pdata);
-	spin_lock_init(&pdata->mac_lock);
 
 	if (pdata->phy_mode == PHY_INTERFACE_MODE_XGMII) {
 		ndev->features |= NETIF_F_TSO | NETIF_F_RXCSUM;
@@ -2103,7 +2076,7 @@ static int xgene_enet_probe(struct platform_device *pdev)
 	if (pdata->phy_mode == PHY_INTERFACE_MODE_XGMII) {
 		INIT_DELAYED_WORK(&pdata->link_work, link_state);
 	} else if (!pdata->mdio_driver) {
-		if (phy_interface_mode_is_rgmii(pdata->phy_mode))
+		if (pdata->phy_mode == PHY_INTERFACE_MODE_RGMII)
 			ret = xgene_enet_mdio_config(pdata);
 		else
 			INIT_DELAYED_WORK(&pdata->link_work, link_state);
@@ -2111,11 +2084,6 @@ static int xgene_enet_probe(struct platform_device *pdev)
 		if (ret)
 			goto err1;
 	}
-
-	spin_lock_init(&pdata->stats_lock);
-	ret = xgene_extd_stats_init(pdata);
-	if (ret)
-		goto err2;
 
 	xgene_enet_napi_add(pdata);
 	ret = register_netdev(ndev);
@@ -2134,7 +2102,7 @@ err2:
 
 	if (pdata->mdio_driver)
 		xgene_enet_phy_disconnect(pdata);
-	else if (phy_interface_mode_is_rgmii(pdata->phy_mode))
+	else if (pdata->phy_mode == PHY_INTERFACE_MODE_RGMII)
 		xgene_enet_mdio_remove(pdata);
 err1:
 	xgene_enet_delete_desc_rings(pdata);
@@ -2158,12 +2126,12 @@ static int xgene_enet_remove(struct platform_device *pdev)
 
 	if (pdata->mdio_driver)
 		xgene_enet_phy_disconnect(pdata);
-	else if (phy_interface_mode_is_rgmii(pdata->phy_mode))
+	else if (pdata->phy_mode == PHY_INTERFACE_MODE_RGMII)
 		xgene_enet_mdio_remove(pdata);
 
 	unregister_netdev(ndev);
-	xgene_enet_delete_desc_rings(pdata);
 	pdata->port_ops->shutdown(pdata);
+	xgene_enet_delete_desc_rings(pdata);
 	free_netdev(ndev);
 
 	return 0;

@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -23,4 +22,4 @@ __attribute__((section(".modinfo"))) =
 "depends=scsi_transport_iscsi,libiscsi,cnic";
 
 
-MODULE_INFO(srcversion, "7531EDC9B1E48C4ED45D9D1");
+MODULE_INFO(srcversion, "89017D5A2BCCE85FAEC4104");

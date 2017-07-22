@@ -308,11 +308,13 @@
 		};
 	};
 
-	pwm_fan {
+	gpio_fan {
 		/* SUNON HA4010V4-0000-C99 */
+		compatible = "gpio-fan";
+		gpios = <&gpio0 24 0>;
 
-		compatible = "pwm-fan";
-		pwms = <&gpio0 24 4000>;
+		gpio-fan,speed-map = <0    0
+				      4500 1>;
 	};
 
 	dsa {

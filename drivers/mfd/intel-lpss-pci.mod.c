@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -93,18 +92,6 @@ MODULE_ALIAS("pci:v00008086d00009D63sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00008086d00009D64sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00008086d00009D65sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00008086d00009D66sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00009DA8sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00009DA9sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00009DAAsv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00009DABsv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00009DFBsv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00009DC5sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00009DC6sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00009DC7sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00009DE8sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00009DE9sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00009DEAsv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00009DEBsv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00008086d0000A127sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00008086d0000A128sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00008086d0000A129sv*sd*bc*sc*i*");
@@ -121,13 +108,3 @@ MODULE_ALIAS("pci:v00008086d0000A2E1sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00008086d0000A2E2sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00008086d0000A2E3sv*sd*bc*sc*i*");
 MODULE_ALIAS("pci:v00008086d0000A2E6sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d0000A328sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d0000A329sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d0000A32Asv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d0000A32Bsv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d0000A37Bsv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d0000A347sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d0000A368sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d0000A369sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d0000A36Asv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d0000A36Bsv*sd*bc*sc*i*");

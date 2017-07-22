@@ -1,4 +1,4 @@
-cmd_drivers/net/wireless/ath/ath6kl/cfg80211.o := gcc -Wp,-MD,drivers/net/wireless/ath/ath6kl/.cfg80211.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init  -DMODULE  -DKBUILD_BASENAME='"cfg80211"'  -DKBUILD_MODNAME='"ath6kl_core"' -c -o drivers/net/wireless/ath/ath6kl/cfg80211.o drivers/net/wireless/ath/ath6kl/cfg80211.c
+cmd_drivers/net/wireless/ath/ath6kl/cfg80211.o := gcc -Wp,-MD,drivers/net/wireless/ath/ath6kl/.cfg80211.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init  -DMODULE  -DKBUILD_BASENAME='"cfg80211"'  -DKBUILD_MODNAME='"ath6kl_core"' -c -o drivers/net/wireless/ath/ath6kl/cfg80211.o drivers/net/wireless/ath/ath6kl/cfg80211.c
 
 source_drivers/net/wireless/ath/ath6kl/cfg80211.o := drivers/net/wireless/ath/ath6kl/cfg80211.c
 
@@ -15,6 +15,7 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
     $(wildcard include/config/strict/kernel/rwx.h) \
     $(wildcard include/config/strict/module/rwx.h) \
   include/linux/compiler.h \
+    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/kasan.h) \
@@ -134,6 +135,7 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   arch/x86/include/asm/jump_label.h \
   include/linux/inetdevice.h \
   include/linux/bitmap.h \
+    $(wildcard include/config/s390.h) \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
   include/uapi/linux/string.h \
@@ -141,7 +143,6 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   arch/x86/include/asm/string_64.h \
     $(wildcard include/config/kmemcheck.h) \
     $(wildcard include/config/x86/mce.h) \
-    $(wildcard include/config/arch/has/uaccess/flushcache.h) \
   include/uapi/linux/if.h \
   include/uapi/linux/libc-compat.h \
     $(wildcard include/config/data.h) \
@@ -154,11 +155,57 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   include/uapi/asm-generic/sockios.h \
   include/uapi/linux/sockios.h \
   include/linux/uio.h \
-  include/linux/thread_info.h \
-    $(wildcard include/config/thread/info/in/task.h) \
-    $(wildcard include/config/debug/stack/usage.h) \
-    $(wildcard include/config/have/arch/within/stack/frames.h) \
-    $(wildcard include/config/hardened/usercopy.h) \
+  include/uapi/linux/uio.h \
+  include/uapi/linux/socket.h \
+  include/uapi/linux/hdlc/ioctl.h \
+  include/linux/ip.h \
+  include/linux/skbuff.h \
+    $(wildcard include/config/nf/conntrack.h) \
+    $(wildcard include/config/bridge/netfilter.h) \
+    $(wildcard include/config/xfrm.h) \
+    $(wildcard include/config/ipv6/ndisc/nodetype.h) \
+    $(wildcard include/config/net/switchdev.h) \
+    $(wildcard include/config/net/cls/act.h) \
+    $(wildcard include/config/net/sched.h) \
+    $(wildcard include/config/net/rx/busy/poll.h) \
+    $(wildcard include/config/xps.h) \
+    $(wildcard include/config/network/secmark.h) \
+    $(wildcard include/config/network/phy/timestamping.h) \
+    $(wildcard include/config/netfilter/xt/target/trace.h) \
+    $(wildcard include/config/nf/tables.h) \
+  include/linux/kmemcheck.h \
+  include/linux/mm_types.h \
+    $(wildcard include/config/have/cmpxchg/double.h) \
+    $(wildcard include/config/have/aligned/struct/page.h) \
+    $(wildcard include/config/transparent/hugepage.h) \
+    $(wildcard include/config/memcg.h) \
+    $(wildcard include/config/userfaultfd.h) \
+    $(wildcard include/config/numa.h) \
+    $(wildcard include/config/have/arch/compat/mmap/bases.h) \
+    $(wildcard include/config/pgtable/levels.h) \
+    $(wildcard include/config/aio.h) \
+    $(wildcard include/config/mmu/notifier.h) \
+    $(wildcard include/config/cpumask/offstack.h) \
+    $(wildcard include/config/numa/balancing.h) \
+    $(wildcard include/config/compaction.h) \
+    $(wildcard include/config/hugetlb/page.h) \
+  include/linux/mm_types_task.h \
+    $(wildcard include/config/split/ptlock/cpus.h) \
+    $(wildcard include/config/arch/enable/split/pmd/ptlock.h) \
+    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
+  include/linux/threads.h \
+    $(wildcard include/config/nr/cpus.h) \
+    $(wildcard include/config/base/small.h) \
+  include/linux/atomic.h \
+    $(wildcard include/config/generic/atomic64.h) \
+  arch/x86/include/asm/atomic.h \
+  arch/x86/include/asm/cmpxchg.h \
+  arch/x86/include/asm/cmpxchg_64.h \
+  arch/x86/include/asm/atomic64_64.h \
+  include/asm-generic/atomic-long.h \
+  include/linux/cpumask.h \
+    $(wildcard include/config/hotplug/cpu.h) \
+    $(wildcard include/config/debug/per/cpu/maps.h) \
   include/linux/bug.h \
     $(wildcard include/config/generic/bug.h) \
     $(wildcard include/config/bug/on/data/corruption.h) \
@@ -167,23 +214,6 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   include/asm-generic/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
-  include/linux/build_bug.h \
-  include/linux/restart_block.h \
-  arch/x86/include/asm/current.h \
-  arch/x86/include/asm/percpu.h \
-    $(wildcard include/config/x86/64/smp.h) \
-  include/asm-generic/percpu.h \
-    $(wildcard include/config/debug/preempt.h) \
-    $(wildcard include/config/have/setup/per/cpu/area.h) \
-  include/linux/threads.h \
-    $(wildcard include/config/nr/cpus.h) \
-    $(wildcard include/config/base/small.h) \
-  include/linux/percpu-defs.h \
-    $(wildcard include/config/debug/force/weak/per/cpu.h) \
-  arch/x86/include/asm/thread_info.h \
-    $(wildcard include/config/vm86.h) \
-    $(wildcard include/config/frame/pointer.h) \
-    $(wildcard include/config/ia32/emulation.h) \
   arch/x86/include/asm/page.h \
   arch/x86/include/asm/page_types.h \
     $(wildcard include/config/physical/start.h) \
@@ -204,13 +234,48 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
     $(wildcard include/config/sparsemem.h) \
   include/linux/pfn.h \
   include/asm-generic/getorder.h \
+  include/linux/auxvec.h \
+  include/uapi/linux/auxvec.h \
+  arch/x86/include/uapi/asm/auxvec.h \
+    $(wildcard include/config/ia32/emulation.h) \
+  include/linux/list.h \
+    $(wildcard include/config/debug/list.h) \
+  include/linux/poison.h \
+    $(wildcard include/config/illegal/pointer/value.h) \
+    $(wildcard include/config/page/poisoning/zero.h) \
+  include/linux/spinlock.h \
+    $(wildcard include/config/debug/spinlock.h) \
+    $(wildcard include/config/generic/lockbreak.h) \
+    $(wildcard include/config/preempt.h) \
+    $(wildcard include/config/debug/lock/alloc.h) \
+  include/linux/preempt.h \
+    $(wildcard include/config/preempt/count.h) \
+    $(wildcard include/config/debug/preempt.h) \
+    $(wildcard include/config/preempt/tracer.h) \
+    $(wildcard include/config/preempt/notifiers.h) \
+  arch/x86/include/asm/preempt.h \
+  arch/x86/include/asm/percpu.h \
+    $(wildcard include/config/x86/64/smp.h) \
+  include/asm-generic/percpu.h \
+    $(wildcard include/config/have/setup/per/cpu/area.h) \
+  include/linux/percpu-defs.h \
+    $(wildcard include/config/debug/force/weak/per/cpu.h) \
+  include/linux/thread_info.h \
+    $(wildcard include/config/thread/info/in/task.h) \
+    $(wildcard include/config/debug/stack/usage.h) \
+    $(wildcard include/config/have/arch/within/stack/frames.h) \
+    $(wildcard include/config/hardened/usercopy.h) \
+  include/linux/restart_block.h \
+  arch/x86/include/asm/current.h \
+  arch/x86/include/asm/thread_info.h \
+    $(wildcard include/config/vm86.h) \
+    $(wildcard include/config/frame/pointer.h) \
   arch/x86/include/asm/cpufeature.h \
     $(wildcard include/config/x86/feature/names.h) \
     $(wildcard include/config/x86/fast/feature/tests.h) \
   arch/x86/include/asm/processor.h \
     $(wildcard include/config/cc/stackprotector.h) \
     $(wildcard include/config/x86/debugctlmsr.h) \
-    $(wildcard include/config/cpu/sup/amd.h) \
     $(wildcard include/config/xen.h) \
   arch/x86/include/asm/processor-flags.h \
   arch/x86/include/uapi/asm/processor-flags.h \
@@ -221,7 +286,6 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   arch/x86/include/uapi/asm/ptrace.h \
   arch/x86/include/uapi/asm/ptrace-abi.h \
   arch/x86/include/asm/paravirt_types.h \
-    $(wildcard include/config/pgtable/levels.h) \
     $(wildcard include/config/paravirt/debug.h) \
   arch/x86/include/asm/desc_defs.h \
   arch/x86/include/asm/kmap_types.h \
@@ -250,23 +314,12 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   include/uapi/asm-generic/errno.h \
   include/uapi/asm-generic/errno-base.h \
   arch/x86/include/asm/cpumask.h \
-  include/linux/cpumask.h \
-    $(wildcard include/config/cpumask/offstack.h) \
-    $(wildcard include/config/hotplug/cpu.h) \
-    $(wildcard include/config/debug/per/cpu/maps.h) \
   arch/x86/include/uapi/asm/msr.h \
   include/uapi/linux/ioctl.h \
   arch/x86/include/uapi/asm/ioctl.h \
   include/asm-generic/ioctl.h \
   include/uapi/asm-generic/ioctl.h \
-  arch/x86/include/asm/atomic.h \
-  arch/x86/include/asm/cmpxchg.h \
-  arch/x86/include/asm/cmpxchg_64.h \
-  arch/x86/include/asm/atomic64_64.h \
   include/linux/tracepoint-defs.h \
-  include/linux/atomic.h \
-    $(wildcard include/config/generic/atomic64.h) \
-  include/asm-generic/atomic-long.h \
   include/linux/static_key.h \
   arch/x86/include/asm/paravirt.h \
   arch/x86/include/asm/frame.h \
@@ -282,63 +335,8 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   include/linux/irqflags.h \
     $(wildcard include/config/trace/irqflags.h) \
     $(wildcard include/config/irqsoff/tracer.h) \
-    $(wildcard include/config/preempt/tracer.h) \
     $(wildcard include/config/trace/irqflags/support.h) \
   arch/x86/include/asm/irqflags.h \
-    $(wildcard include/config/debug/lock/alloc.h) \
-  include/uapi/linux/uio.h \
-  include/uapi/linux/socket.h \
-  include/uapi/linux/hdlc/ioctl.h \
-  include/linux/ip.h \
-  include/linux/skbuff.h \
-    $(wildcard include/config/nf/conntrack.h) \
-    $(wildcard include/config/bridge/netfilter.h) \
-    $(wildcard include/config/xfrm.h) \
-    $(wildcard include/config/ipv6/ndisc/nodetype.h) \
-    $(wildcard include/config/net/switchdev.h) \
-    $(wildcard include/config/net/cls/act.h) \
-    $(wildcard include/config/net/sched.h) \
-    $(wildcard include/config/net/rx/busy/poll.h) \
-    $(wildcard include/config/xps.h) \
-    $(wildcard include/config/network/secmark.h) \
-    $(wildcard include/config/network/phy/timestamping.h) \
-    $(wildcard include/config/netfilter/xt/target/trace.h) \
-    $(wildcard include/config/nf/tables.h) \
-  include/linux/kmemcheck.h \
-  include/linux/mm_types.h \
-    $(wildcard include/config/have/cmpxchg/double.h) \
-    $(wildcard include/config/have/aligned/struct/page.h) \
-    $(wildcard include/config/transparent/hugepage.h) \
-    $(wildcard include/config/memcg.h) \
-    $(wildcard include/config/userfaultfd.h) \
-    $(wildcard include/config/numa.h) \
-    $(wildcard include/config/have/arch/compat/mmap/bases.h) \
-    $(wildcard include/config/aio.h) \
-    $(wildcard include/config/mmu/notifier.h) \
-    $(wildcard include/config/numa/balancing.h) \
-    $(wildcard include/config/compaction.h) \
-    $(wildcard include/config/hugetlb/page.h) \
-  include/linux/mm_types_task.h \
-    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
-    $(wildcard include/config/split/ptlock/cpus.h) \
-    $(wildcard include/config/arch/enable/split/pmd/ptlock.h) \
-  arch/x86/include/asm/tlbbatch.h \
-  include/linux/auxvec.h \
-  include/uapi/linux/auxvec.h \
-  arch/x86/include/uapi/asm/auxvec.h \
-  include/linux/list.h \
-    $(wildcard include/config/debug/list.h) \
-  include/linux/poison.h \
-    $(wildcard include/config/illegal/pointer/value.h) \
-    $(wildcard include/config/page/poisoning/zero.h) \
-  include/linux/spinlock.h \
-    $(wildcard include/config/debug/spinlock.h) \
-    $(wildcard include/config/generic/lockbreak.h) \
-    $(wildcard include/config/preempt.h) \
-  include/linux/preempt.h \
-    $(wildcard include/config/preempt/count.h) \
-    $(wildcard include/config/preempt/notifiers.h) \
-  arch/x86/include/asm/preempt.h \
   include/linux/bottom_half.h \
   include/linux/spinlock_types.h \
   include/linux/lockdep.h \
@@ -384,52 +382,27 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
     $(wildcard include/config/inline/write/unlock/irqrestore.h) \
   include/linux/rbtree.h \
   include/linux/rcupdate.h \
+    $(wildcard include/config/tiny/rcu.h) \
+    $(wildcard include/config/tree/rcu.h) \
     $(wildcard include/config/preempt/rcu.h) \
+    $(wildcard include/config/rcu/trace.h) \
     $(wildcard include/config/rcu/stall/common.h) \
     $(wildcard include/config/no/hz/full.h) \
     $(wildcard include/config/rcu/nocb/cpu.h) \
     $(wildcard include/config/tasks/rcu.h) \
-    $(wildcard include/config/tree/rcu.h) \
-    $(wildcard include/config/tiny/rcu.h) \
     $(wildcard include/config/debug/objects/rcu/head.h) \
     $(wildcard include/config/prove/rcu.h) \
     $(wildcard include/config/rcu/boost.h) \
+    $(wildcard include/config/rcu/nocb/cpu/all.h) \
+    $(wildcard include/config/no/hz/full/sysidle.h) \
     $(wildcard include/config/arch/weak/release/acquire.h) \
-  include/linux/rcutree.h \
-  include/linux/rwsem.h \
-    $(wildcard include/config/rwsem/spin/on/owner.h) \
-    $(wildcard include/config/rwsem/generic/spinlock.h) \
-  include/linux/osq_lock.h \
-  arch/x86/include/asm/rwsem.h \
-  include/linux/completion.h \
-  include/linux/wait.h \
-  include/uapi/linux/wait.h \
-  include/linux/uprobes.h \
-    $(wildcard include/config/uprobes.h) \
-  include/linux/errno.h \
-  include/uapi/linux/errno.h \
-  arch/x86/include/asm/uprobes.h \
-  include/linux/notifier.h \
-  include/linux/mutex.h \
-    $(wildcard include/config/mutex/spin/on/owner.h) \
-    $(wildcard include/config/debug/mutexes.h) \
-  include/linux/debug_locks.h \
-    $(wildcard include/config/debug/locking/api/selftests.h) \
-  include/linux/srcu.h \
-    $(wildcard include/config/tiny/srcu.h) \
-    $(wildcard include/config/tree/srcu.h) \
-    $(wildcard include/config/srcu.h) \
-  include/linux/workqueue.h \
-    $(wildcard include/config/debug/objects/work.h) \
-    $(wildcard include/config/freezer.h) \
-    $(wildcard include/config/wq/watchdog.h) \
-  include/linux/timer.h \
-    $(wildcard include/config/debug/objects/timers.h) \
-    $(wildcard include/config/no/hz/common.h) \
+  include/linux/seqlock.h \
+  include/linux/debugobjects.h \
+    $(wildcard include/config/debug/objects.h) \
+    $(wildcard include/config/debug/objects/free.h) \
   include/linux/ktime.h \
   include/linux/time.h \
     $(wildcard include/config/arch/uses/gettimeoffset.h) \
-  include/linux/seqlock.h \
   include/linux/time64.h \
   include/uapi/linux/time.h \
   include/linux/jiffies.h \
@@ -445,9 +418,37 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
     $(wildcard include/config/x86/tsc.h) \
   include/generated/timeconst.h \
   include/linux/timekeeping.h \
-  include/linux/debugobjects.h \
-    $(wildcard include/config/debug/objects.h) \
-    $(wildcard include/config/debug/objects/free.h) \
+  include/linux/errno.h \
+  include/uapi/linux/errno.h \
+  include/linux/rcutree.h \
+  include/linux/rwsem.h \
+    $(wildcard include/config/rwsem/spin/on/owner.h) \
+    $(wildcard include/config/rwsem/generic/spinlock.h) \
+  include/linux/osq_lock.h \
+  arch/x86/include/asm/rwsem.h \
+  include/linux/completion.h \
+  include/linux/wait.h \
+  include/uapi/linux/wait.h \
+  include/linux/uprobes.h \
+    $(wildcard include/config/uprobes.h) \
+  arch/x86/include/asm/uprobes.h \
+  include/linux/notifier.h \
+  include/linux/mutex.h \
+    $(wildcard include/config/mutex/spin/on/owner.h) \
+    $(wildcard include/config/debug/mutexes.h) \
+  include/linux/debug_locks.h \
+    $(wildcard include/config/debug/locking/api/selftests.h) \
+  include/linux/srcu.h \
+    $(wildcard include/config/tiny/srcu.h) \
+    $(wildcard include/config/tree/srcu.h) \
+    $(wildcard include/config/classic/srcu.h) \
+  include/linux/workqueue.h \
+    $(wildcard include/config/debug/objects/work.h) \
+    $(wildcard include/config/freezer.h) \
+    $(wildcard include/config/wq/watchdog.h) \
+  include/linux/timer.h \
+    $(wildcard include/config/debug/objects/timers.h) \
+    $(wildcard include/config/no/hz/common.h) \
   include/linux/rcu_segcblist.h \
   include/linux/srcutree.h \
   include/linux/rcu_node_tree.h \
@@ -486,7 +487,6 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
     $(wildcard include/config/mandatory/file/locking.h) \
     $(wildcard include/config/block.h) \
     $(wildcard include/config/migration.h) \
-  include/linux/wait_bit.h \
   include/linux/kdev_t.h \
   include/uapi/linux/kdev_t.h \
   include/linux/dcache.h \
@@ -512,6 +512,7 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
     $(wildcard include/config/slob.h) \
   include/linux/nodemask.h \
     $(wildcard include/config/highmem.h) \
+    $(wildcard include/config/movable/node.h) \
   include/linux/shrinker.h \
   include/linux/llist.h \
     $(wildcard include/config/arch/have/nmi/safe/cmpxchg.h) \
@@ -604,9 +605,6 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   include/linux/rcuwait.h \
   include/linux/rcu_sync.h \
   include/linux/delayed_call.h \
-  include/linux/uuid.h \
-  include/uapi/linux/uuid.h \
-  include/linux/errseq.h \
   include/uapi/linux/fs.h \
   include/uapi/linux/limits.h \
   include/linux/quota.h \
@@ -633,13 +631,13 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
     $(wildcard include/config/need/multiple/nodes.h) \
     $(wildcard include/config/have/arch/early/pfn/to/nid.h) \
     $(wildcard include/config/sparsemem/extreme.h) \
-    $(wildcard include/config/memory/hotremove.h) \
     $(wildcard include/config/have/arch/pfn/valid.h) \
     $(wildcard include/config/holes/in/zone.h) \
     $(wildcard include/config/arch/has/holes/memorymodel.h) \
   include/linux/pageblock-flags.h \
     $(wildcard include/config/hugetlb/page/size/variable.h) \
   include/linux/memory_hotplug.h \
+    $(wildcard include/config/memory/hotremove.h) \
     $(wildcard include/config/have/arch/nodedata/extension.h) \
     $(wildcard include/config/have/bootmem/info/node.h) \
   arch/x86/include/asm/mmzone.h \
@@ -664,7 +662,6 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
     $(wildcard include/config/slub.h) \
   include/linux/kmemleak.h \
     $(wildcard include/config/debug/kmemleak.h) \
-  include/linux/vmalloc.h \
   include/linux/kasan.h \
   include/net/checksum.h \
   include/linux/uaccess.h \
@@ -751,6 +748,7 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   arch/x86/include/uapi/asm/signal.h \
   include/uapi/asm-generic/signal-defs.h \
   arch/x86/include/uapi/asm/siginfo.h \
+  include/asm-generic/siginfo.h \
   include/uapi/asm-generic/siginfo.h \
   include/linux/task_io_accounting.h \
     $(wildcard include/config/task/io/accounting.h) \
@@ -772,6 +770,7 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   include/linux/sizes.h \
   include/linux/device.h \
     $(wildcard include/config/debug/devres.h) \
+    $(wildcard include/config/srcu.h) \
     $(wildcard include/config/generic/msi/irq/domain.h) \
     $(wildcard include/config/pinctrl.h) \
     $(wildcard include/config/generic/msi/irq.h) \
@@ -790,7 +789,6 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   include/linux/kobject_ns.h \
   include/linux/kref.h \
   include/linux/refcount.h \
-    $(wildcard include/config/refcount/full.h) \
   include/linux/klist.h \
   include/linux/pinctrl/devinfo.h \
   include/linux/pinctrl/consumer.h \
@@ -856,7 +854,6 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
     $(wildcard include/config/arch/uses/pg/uncached.h) \
     $(wildcard include/config/memory/failure.h) \
     $(wildcard include/config/swap.h) \
-    $(wildcard include/config/thp/swap.h) \
     $(wildcard include/config/ksm.h) \
   arch/x86/include/asm/pgtable.h \
     $(wildcard include/config/debug/wx.h) \
@@ -866,8 +863,6 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   include/asm-generic/pgtable.h \
     $(wildcard include/config/have/arch/huge/vmap.h) \
   include/linux/huge_mm.h \
-  include/linux/sched/coredump.h \
-    $(wildcard include/config/core/dump/default/elf/headers.h) \
   include/linux/vmstat.h \
     $(wildcard include/config/vm/event/counters.h) \
     $(wildcard include/config/debug/tlbflush.h) \
@@ -1009,7 +1004,6 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   include/linux/interrupt.h \
     $(wildcard include/config/irq/forced/threading.h) \
     $(wildcard include/config/generic/irq/probe.h) \
-    $(wildcard include/config/irq/timings.h) \
   include/linux/irqreturn.h \
   include/linux/hardirq.h \
   include/linux/ftrace_irq.h \
@@ -1025,10 +1019,8 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
     $(wildcard include/config/x86/mce/amd.h) \
     $(wildcard include/config/hyperv.h) \
   include/linux/irq.h \
-    $(wildcard include/config/generic/irq/effective/aff/mask.h) \
     $(wildcard include/config/generic/irq/ipi.h) \
     $(wildcard include/config/irq/domain/hierarchy.h) \
-    $(wildcard include/config/generic/irq/migration.h) \
     $(wildcard include/config/generic/pending/irq.h) \
     $(wildcard include/config/hardirqs/sw/resend.h) \
     $(wildcard include/config/generic/irq/legacy/alloc/hwirq.h) \
@@ -1039,7 +1031,6 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   arch/x86/include/asm/irq_regs.h \
   include/linux/irqdesc.h \
     $(wildcard include/config/irq/preflow/fasteoi.h) \
-    $(wildcard include/config/generic/irq/debugfs.h) \
     $(wildcard include/config/sparse/irq.h) \
     $(wildcard include/config/handle/domain/irq.h) \
   arch/x86/include/asm/hw_irq.h \
@@ -1090,7 +1081,6 @@ deps_drivers/net/wireless/ath/ath6kl/cfg80211.o := \
   include/net/scm.h \
     $(wildcard include/config/security/network.h) \
   include/linux/security.h \
-    $(wildcard include/config/security/infiniband.h) \
     $(wildcard include/config/security/network/xfrm.h) \
     $(wildcard include/config/security/path.h) \
     $(wildcard include/config/audit.h) \

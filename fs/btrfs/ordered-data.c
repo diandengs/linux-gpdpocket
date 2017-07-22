@@ -663,7 +663,7 @@ static void btrfs_run_ordered_extent_work(struct btrfs_work *work)
  * wait for all the ordered extents in a root.  This is done when balancing
  * space between drives.
  */
-u64 btrfs_wait_ordered_extents(struct btrfs_root *root, u64 nr,
+int btrfs_wait_ordered_extents(struct btrfs_root *root, int nr,
 			       const u64 range_start, const u64 range_len)
 {
 	struct btrfs_fs_info *fs_info = root->fs_info;
@@ -671,7 +671,7 @@ u64 btrfs_wait_ordered_extents(struct btrfs_root *root, u64 nr,
 	LIST_HEAD(skipped);
 	LIST_HEAD(works);
 	struct btrfs_ordered_extent *ordered, *next;
-	u64 count = 0;
+	int count = 0;
 	const u64 range_end = range_start + range_len;
 
 	mutex_lock(&root->ordered_extent_mutex);
@@ -701,7 +701,7 @@ u64 btrfs_wait_ordered_extents(struct btrfs_root *root, u64 nr,
 
 		cond_resched();
 		spin_lock(&root->ordered_extent_lock);
-		if (nr != U64_MAX)
+		if (nr != -1)
 			nr--;
 		count++;
 	}
@@ -720,13 +720,13 @@ u64 btrfs_wait_ordered_extents(struct btrfs_root *root, u64 nr,
 	return count;
 }
 
-u64 btrfs_wait_ordered_roots(struct btrfs_fs_info *fs_info, u64 nr,
-			     const u64 range_start, const u64 range_len)
+int btrfs_wait_ordered_roots(struct btrfs_fs_info *fs_info, int nr,
+			      const u64 range_start, const u64 range_len)
 {
 	struct btrfs_root *root;
 	struct list_head splice;
-	u64 total_done = 0;
-	u64 done;
+	int done;
+	int total_done = 0;
 
 	INIT_LIST_HEAD(&splice);
 
@@ -748,8 +748,9 @@ u64 btrfs_wait_ordered_roots(struct btrfs_fs_info *fs_info, u64 nr,
 		total_done += done;
 
 		spin_lock(&fs_info->ordered_root_lock);
-		if (nr != U64_MAX) {
+		if (nr != -1) {
 			nr -= done;
+			WARN_ON(nr < 0);
 		}
 	}
 	list_splice_tail(&splice, &fs_info->ordered_roots);

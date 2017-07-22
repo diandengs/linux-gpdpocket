@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -23,4 +22,4 @@ __attribute__((section(".modinfo"))) =
 "depends=lru_cache,libcrc32c";
 
 
-MODULE_INFO(srcversion, "2DCC561E7F1E3D63526E90D");
+MODULE_INFO(srcversion, "36141A9226B7E2B3043CBC2");

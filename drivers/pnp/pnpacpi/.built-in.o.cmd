@@ -1,1 +1,1 @@
-cmd_drivers/pnp/pnpacpi/built-in.o :=  rm -f drivers/pnp/pnpacpi/built-in.o; ar rcSTPD drivers/pnp/pnpacpi/built-in.o drivers/pnp/pnpacpi/pnp.o 
+cmd_drivers/pnp/pnpacpi/built-in.o :=  ld -m elf_x86_64   -r -o drivers/pnp/pnpacpi/built-in.o drivers/pnp/pnpacpi/pnp.o 

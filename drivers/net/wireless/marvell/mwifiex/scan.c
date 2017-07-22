@@ -2809,7 +2809,7 @@ int mwifiex_request_scan(struct mwifiex_private *priv,
 {
 	int ret;
 
-	if (mutex_lock_interruptible(&priv->async_mutex)) {
+	if (down_interruptible(&priv->async_sem)) {
 		mwifiex_dbg(priv->adapter, ERROR,
 			    "%s: acquire semaphore fail\n",
 			    __func__);
@@ -2825,7 +2825,7 @@ int mwifiex_request_scan(struct mwifiex_private *priv,
 		/* Normal scan */
 		ret = mwifiex_scan_networks(priv, NULL);
 
-	mutex_unlock(&priv->async_mutex);
+	up(&priv->async_sem);
 
 	return ret;
 }

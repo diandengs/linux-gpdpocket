@@ -1172,10 +1172,7 @@ static void bcm2835_request(struct mmc_host *mmc, struct mmc_request *mrq)
 	if (mrq->data && !is_power_of_2(mrq->data->blksz)) {
 		dev_err(dev, "unsupported block size (%d bytes)\n",
 			mrq->data->blksz);
-
-		if (mrq->cmd)
-			mrq->cmd->error = -EINVAL;
-
+		mrq->cmd->error = -EINVAL;
 		mmc_request_done(mmc, mrq);
 		return;
 	}
@@ -1197,10 +1194,7 @@ static void bcm2835_request(struct mmc_host *mmc, struct mmc_request *mrq)
 			readl(host->ioaddr + SDCMD) & SDCMD_CMD_MASK,
 			edm);
 		bcm2835_dumpregs(host);
-
-		if (mrq->cmd)
-			mrq->cmd->error = -EILSEQ;
-
+		mrq->cmd->error = -EILSEQ;
 		bcm2835_finish_request(host);
 		mutex_unlock(&host->mutex);
 		return;
@@ -1213,7 +1207,7 @@ static void bcm2835_request(struct mmc_host *mmc, struct mmc_request *mrq)
 			if (!host->use_busy)
 				bcm2835_finish_command(host);
 		}
-	} else if (mrq->cmd && bcm2835_send_command(host, mrq->cmd)) {
+	} else if (bcm2835_send_command(host, mrq->cmd)) {
 		if (host->data && host->dma_desc) {
 			/* DMA transfer starts now, PIO starts after irq */
 			bcm2835_start_dma(host);

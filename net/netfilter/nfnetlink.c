@@ -201,8 +201,7 @@ replay:
 
 		if (nc->call_rcu) {
 			err = nc->call_rcu(net, net->nfnl, skb, nlh,
-					   (const struct nlattr **)cda,
-					   extack);
+					   (const struct nlattr **)cda);
 			rcu_read_unlock();
 		} else {
 			rcu_read_unlock();
@@ -212,8 +211,7 @@ replay:
 				err = -EAGAIN;
 			else if (nc->call)
 				err = nc->call(net, net->nfnl, skb, nlh,
-					       (const struct nlattr **)cda,
-					       extack);
+					       (const struct nlattr **)cda);
 			else
 				err = -EINVAL;
 			nfnl_unlock(subsys_id);
@@ -228,11 +226,9 @@ struct nfnl_err {
 	struct list_head	head;
 	struct nlmsghdr		*nlh;
 	int			err;
-	struct netlink_ext_ack	extack;
 };
 
-static int nfnl_err_add(struct list_head *list, struct nlmsghdr *nlh, int err,
-			const struct netlink_ext_ack *extack)
+static int nfnl_err_add(struct list_head *list, struct nlmsghdr *nlh, int err)
 {
 	struct nfnl_err *nfnl_err;
 
@@ -242,7 +238,6 @@ static int nfnl_err_add(struct list_head *list, struct nlmsghdr *nlh, int err,
 
 	nfnl_err->nlh = nlh;
 	nfnl_err->err = err;
-	nfnl_err->extack = *extack;
 	list_add_tail(&nfnl_err->head, list);
 
 	return 0;
@@ -267,8 +262,7 @@ static void nfnl_err_deliver(struct list_head *err_list, struct sk_buff *skb)
 	struct nfnl_err *nfnl_err, *next;
 
 	list_for_each_entry_safe(nfnl_err, next, err_list, head) {
-		netlink_ack(skb, nfnl_err->nlh, nfnl_err->err,
-			    &nfnl_err->extack);
+		netlink_ack(skb, nfnl_err->nlh, nfnl_err->err, NULL);
 		nfnl_err_del(nfnl_err);
 	}
 }
@@ -286,7 +280,6 @@ static void nfnetlink_rcv_batch(struct sk_buff *skb, struct nlmsghdr *nlh,
 	struct net *net = sock_net(skb->sk);
 	const struct nfnetlink_subsystem *ss;
 	const struct nfnl_callback *nc;
-	struct netlink_ext_ack extack;
 	LIST_HEAD(err_list);
 	u32 status;
 	int err;
@@ -332,7 +325,6 @@ replay:
 	while (skb->len >= nlmsg_total_size(0)) {
 		int msglen, type;
 
-		memset(&extack, 0, sizeof(extack));
 		nlh = nlmsg_hdr(skb);
 		err = 0;
 
@@ -392,8 +384,7 @@ replay:
 
 			if (nc->call_batch) {
 				err = nc->call_batch(net, net->nfnl, skb, nlh,
-						     (const struct nlattr **)cda,
-						     &extack);
+						     (const struct nlattr **)cda);
 			}
 
 			/* The lock was released to autoload some module, we
@@ -411,7 +402,7 @@ ack:
 			 * processed, this avoids that the same error is
 			 * reported several times when replaying the batch.
 			 */
-			if (nfnl_err_add(&err_list, nlh, err, &extack) < 0) {
+			if (nfnl_err_add(&err_list, nlh, err) < 0) {
 				/* We failed to enqueue an error, reset the
 				 * list of errors and send OOM to userspace
 				 * pointing to the batch header.

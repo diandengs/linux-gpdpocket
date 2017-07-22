@@ -2244,7 +2244,6 @@ static int xfrm_do_migrate(struct sk_buff *skb, struct nlmsghdr *nlh,
 	int err;
 	int n = 0;
 	struct net *net = sock_net(skb->sk);
-	struct xfrm_encap_tmpl  *encap = NULL;
 
 	if (attrs[XFRMA_MIGRATE] == NULL)
 		return -EINVAL;
@@ -2262,18 +2261,9 @@ static int xfrm_do_migrate(struct sk_buff *skb, struct nlmsghdr *nlh,
 	if (!n)
 		return 0;
 
-	if (attrs[XFRMA_ENCAP]) {
-		encap = kmemdup(nla_data(attrs[XFRMA_ENCAP]),
-				sizeof(*encap), GFP_KERNEL);
-		if (!encap)
-			return 0;
-	}
+	xfrm_migrate(&pi->sel, pi->dir, type, m, n, kmp, net);
 
-	err = xfrm_migrate(&pi->sel, pi->dir, type, m, n, kmp, net, encap);
-
-	kfree(encap);
-
-	return err;
+	return 0;
 }
 #else
 static int xfrm_do_migrate(struct sk_buff *skb, struct nlmsghdr *nlh,
@@ -2315,20 +2305,17 @@ static int copy_to_user_kmaddress(const struct xfrm_kmaddress *k, struct sk_buff
 	return nla_put(skb, XFRMA_KMADDRESS, sizeof(uk), &uk);
 }
 
-static inline size_t xfrm_migrate_msgsize(int num_migrate, int with_kma,
-					  int with_encp)
+static inline size_t xfrm_migrate_msgsize(int num_migrate, int with_kma)
 {
 	return NLMSG_ALIGN(sizeof(struct xfrm_userpolicy_id))
 	      + (with_kma ? nla_total_size(sizeof(struct xfrm_kmaddress)) : 0)
-	      + (with_encp ? nla_total_size(sizeof(struct xfrm_encap_tmpl)) : 0)
 	      + nla_total_size(sizeof(struct xfrm_user_migrate) * num_migrate)
 	      + userpolicy_type_attrsize();
 }
 
 static int build_migrate(struct sk_buff *skb, const struct xfrm_migrate *m,
 			 int num_migrate, const struct xfrm_kmaddress *k,
-			 const struct xfrm_selector *sel,
-			 const struct xfrm_encap_tmpl *encap, u8 dir, u8 type)
+			 const struct xfrm_selector *sel, u8 dir, u8 type)
 {
 	const struct xfrm_migrate *mp;
 	struct xfrm_userpolicy_id *pol_id;
@@ -2347,11 +2334,6 @@ static int build_migrate(struct sk_buff *skb, const struct xfrm_migrate *m,
 
 	if (k != NULL) {
 		err = copy_to_user_kmaddress(k, skb);
-		if (err)
-			goto out_cancel;
-	}
-	if (encap) {
-		err = nla_put(skb, XFRMA_ENCAP, sizeof(*encap), encap);
 		if (err)
 			goto out_cancel;
 	}
@@ -2374,19 +2356,17 @@ out_cancel:
 
 static int xfrm_send_migrate(const struct xfrm_selector *sel, u8 dir, u8 type,
 			     const struct xfrm_migrate *m, int num_migrate,
-			     const struct xfrm_kmaddress *k,
-			     const struct xfrm_encap_tmpl *encap)
+			     const struct xfrm_kmaddress *k)
 {
 	struct net *net = &init_net;
 	struct sk_buff *skb;
 
-	skb = nlmsg_new(xfrm_migrate_msgsize(num_migrate, !!k, !!encap),
-			GFP_ATOMIC);
+	skb = nlmsg_new(xfrm_migrate_msgsize(num_migrate, !!k), GFP_ATOMIC);
 	if (skb == NULL)
 		return -ENOMEM;
 
 	/* build migrate */
-	if (build_migrate(skb, m, num_migrate, k, sel, encap, dir, type) < 0)
+	if (build_migrate(skb, m, num_migrate, k, sel, dir, type) < 0)
 		BUG();
 
 	return xfrm_nlmsg_multicast(net, skb, 0, XFRMNLGRP_MIGRATE);
@@ -2394,8 +2374,7 @@ static int xfrm_send_migrate(const struct xfrm_selector *sel, u8 dir, u8 type,
 #else
 static int xfrm_send_migrate(const struct xfrm_selector *sel, u8 dir, u8 type,
 			     const struct xfrm_migrate *m, int num_migrate,
-			     const struct xfrm_kmaddress *k,
-			     const struct xfrm_encap_tmpl *encap)
+			     const struct xfrm_kmaddress *k)
 {
 	return -ENOPROTOOPT;
 }

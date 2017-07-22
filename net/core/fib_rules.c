@@ -46,7 +46,7 @@ int fib_default_rule_add(struct fib_rules_ops *ops,
 	if (r == NULL)
 		return -ENOMEM;
 
-	refcount_set(&r->refcnt, 1);
+	atomic_set(&r->refcnt, 1);
 	r->action = FR_ACT_TO_TBL;
 	r->pref = pref;
 	r->table = table;
@@ -283,7 +283,7 @@ jumped:
 
 		if (err != -EAGAIN) {
 			if ((arg->flags & FIB_LOOKUP_NOREF) ||
-			    likely(refcount_inc_not_zero(&rule->refcnt))) {
+			    likely(atomic_inc_not_zero(&rule->refcnt))) {
 				arg->rule = rule;
 				goto out;
 			}
@@ -517,7 +517,7 @@ int fib_nl_newrule(struct sk_buff *skb, struct nlmsghdr *nlh,
 		last = r;
 	}
 
-	refcount_set(&rule->refcnt, 1);
+	fib_rule_get(rule);
 
 	if (last)
 		list_add_rcu(&rule->list, &last->list);

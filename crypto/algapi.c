@@ -260,7 +260,7 @@ void crypto_alg_tested(const char *name, int err)
 			goto found;
 	}
 
-	pr_err("alg: Unexpected test result for %s: %d\n", name, err);
+	printk(KERN_ERR "alg: Unexpected test result for %s: %d\n", name, err);
 	goto unlock;
 
 found:

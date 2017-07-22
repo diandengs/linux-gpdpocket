@@ -93,6 +93,20 @@ static const struct silead_ts_dmi_data gp_electronic_t701_data = {
 	.properties	= gp_electronic_t701_props,
 };
 
+static const struct property_entry pov_mobii_wintab_p800w_props[] = {
+	PROPERTY_ENTRY_U32("touchscreen-size-x", 1800),
+	PROPERTY_ENTRY_U32("touchscreen-size-y", 1150),
+	PROPERTY_ENTRY_BOOL("touchscreen-swapped-x-y"),
+	PROPERTY_ENTRY_STRING("firmware-name",
+			      "gsl3692-pov-mobii-wintab-p800w.fw"),
+	{ }
+};
+
+static const struct silead_ts_dmi_data pov_mobii_wintab_p800w_data = {
+	.acpi_name	= "MSSL1680:00",
+	.properties	= pov_mobii_wintab_p800w_props,
+};
+
 static const struct property_entry pipo_w2s_props[] = {
 	PROPERTY_ENTRY_U32("touchscreen-size-x", 1660),
 	PROPERTY_ENTRY_U32("touchscreen-size-y", 880),
@@ -106,20 +120,6 @@ static const struct property_entry pipo_w2s_props[] = {
 static const struct silead_ts_dmi_data pipo_w2s_data = {
 	.acpi_name	= "MSSL1680:00",
 	.properties	= pipo_w2s_props,
-};
-
-static const struct property_entry pov_mobii_wintab_p800w_props[] = {
-	PROPERTY_ENTRY_U32("touchscreen-size-x", 1800),
-	PROPERTY_ENTRY_U32("touchscreen-size-y", 1150),
-	PROPERTY_ENTRY_BOOL("touchscreen-swapped-x-y"),
-	PROPERTY_ENTRY_STRING("firmware-name",
-			      "gsl3692-pov-mobii-wintab-p800w.fw"),
-	{ }
-};
-
-static const struct silead_ts_dmi_data pov_mobii_wintab_p800w_data = {
-	.acpi_name	= "MSSL1680:00",
-	.properties	= pov_mobii_wintab_p800w_props,
 };
 
 static const struct property_entry itworks_tw891_props[] = {
@@ -174,30 +174,12 @@ static const struct dmi_system_id silead_ts_dmi_table[] = {
 		},
 	},
 	{
-		/* Ployer Momo7w (same hardware as the Trekstor ST70416-6) */
-		.driver_data = (void *)&surftab_wintron70_st70416_6_data,
-		.matches = {
-			DMI_MATCH(DMI_SYS_VENDOR, "Shenzhen PLOYER"),
-			DMI_MATCH(DMI_PRODUCT_NAME, "MOMO7W"),
-			/* Exact match, different versions need different fw */
-			DMI_MATCH(DMI_BIOS_VERSION, "MOMO.G.WI71C.MABMRBA02"),
-		},
-	},
-	{
 		/* GP-electronic T701 */
 		.driver_data = (void *)&gp_electronic_t701_data,
 		.matches = {
 			DMI_MATCH(DMI_SYS_VENDOR, "Insyde"),
 			DMI_MATCH(DMI_PRODUCT_NAME, "T701"),
 			DMI_MATCH(DMI_BIOS_VERSION, "BYT70A.YNCHENG.WIN.007"),
-		},
-	},
-	{
-		/* Pipo W2S */
-		.driver_data = (void *)&pipo_w2s_data,
-		.matches = {
-			DMI_MATCH(DMI_SYS_VENDOR, "PIPO"),
-			DMI_MATCH(DMI_PRODUCT_NAME, "W2S"),
 		},
 	},
 	{
@@ -209,6 +191,14 @@ static const struct dmi_system_id silead_ts_dmi_table[] = {
 			DMI_MATCH(DMI_BIOS_VERSION, "3BAIR1013"),
 			/* Above matches are too generic, add bios-date match */
 			DMI_MATCH(DMI_BIOS_DATE, "08/22/2014"),
+		},
+	},
+	{
+		/* Pipo W2S */
+		.driver_data = (void *)&pipo_w2s_data,
+		.matches = {
+			DMI_MATCH(DMI_SYS_VENDOR, "PIPO"),
+			DMI_MATCH(DMI_PRODUCT_NAME, "W2S"),
 		},
 	},
 	{

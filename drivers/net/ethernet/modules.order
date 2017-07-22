@@ -75,7 +75,6 @@ kernel/drivers/net/ethernet/mellanox/mlxsw/mlxsw_switchib.ko
 kernel/drivers/net/ethernet/mellanox/mlxsw/mlxsw_switchx2.ko
 kernel/drivers/net/ethernet/mellanox/mlxsw/mlxsw_spectrum.ko
 kernel/drivers/net/ethernet/mellanox/mlxsw/mlxsw_minimal.ko
-kernel/drivers/net/ethernet/mellanox/mlxfw/mlxfw.ko
 kernel/drivers/net/ethernet/micrel/ksz884x.ko
 kernel/drivers/net/ethernet/myricom/myri10ge/myri10ge.ko
 kernel/drivers/net/ethernet/natsemi/natsemi.ko

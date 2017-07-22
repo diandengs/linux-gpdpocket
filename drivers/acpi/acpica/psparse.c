@@ -56,7 +56,6 @@
 #include "acdispat.h"
 #include "amlcode.h"
 #include "acinterp.h"
-#include "acnamesp.h"
 
 #define _COMPONENT          ACPI_PARSER
 ACPI_MODULE_NAME("psparse")
@@ -539,16 +538,9 @@ acpi_status acpi_ps_parse_aml(struct acpi_walk_state *walk_state)
 			/* Either the method parse or actual execution failed */
 
 			acpi_ex_exit_interpreter();
-			if (status == AE_ABORT_METHOD) {
-				acpi_ns_print_node_pathname(walk_state->
-							    method_node,
-							    "Method aborted:");
-				acpi_os_printf("\n");
-			} else {
-				ACPI_ERROR_METHOD
-				    ("Method parse/execution failed",
-				     walk_state->method_node, NULL, status);
-			}
+			ACPI_ERROR_METHOD("Method parse/execution failed",
+					  walk_state->method_node, NULL,
+					  status);
 			acpi_ex_enter_interpreter();
 
 			/* Check for possible multi-thread reentrancy problem */

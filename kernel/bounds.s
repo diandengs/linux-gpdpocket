@@ -3,8 +3,8 @@
 #	compiled by GNU C version 5.4.0 20160609, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3
 # GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 # options passed:  -nostdinc -I ./arch/x86/include
-# -I ./arch/x86/include/generated -I ./include -I ./arch/x86/include/uapi
-# -I ./arch/x86/include/generated/uapi -I ./include/uapi
+# -I ./arch/x86/include/generated/uapi -I ./arch/x86/include/generated
+# -I ./include -I ./arch/x86/include/uapi -I ./include/uapi
 # -I ./include/generated/uapi -imultiarch x86_64-linux-gnu -D __KERNEL__
 # -D CONFIG_AS_CFI=1 -D CONFIG_AS_CFI_SIGNAL_FRAME=1
 # -D CONFIG_AS_CFI_SECTIONS=1 -D CONFIG_AS_FXSAVEQ=1 -D CONFIG_AS_SSSE3=1

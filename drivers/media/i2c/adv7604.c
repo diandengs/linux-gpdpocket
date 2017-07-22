@@ -33,7 +33,6 @@
 #include <linux/i2c.h>
 #include <linux/kernel.h>
 #include <linux/module.h>
-#include <linux/of_graph.h>
 #include <linux/slab.h>
 #include <linux/v4l2-dv-timings.h>
 #include <linux/videodev2.h>
@@ -46,7 +45,7 @@
 #include <media/v4l2-device.h>
 #include <media/v4l2-event.h>
 #include <media/v4l2-dv-timings.h>
-#include <media/v4l2-fwnode.h>
+#include <media/v4l2-of.h>
 
 static int debug;
 module_param(debug, int, 0644);
@@ -3070,7 +3069,7 @@ MODULE_DEVICE_TABLE(of, adv76xx_of_id);
 
 static int adv76xx_parse_dt(struct adv76xx_state *state)
 {
-	struct v4l2_fwnode_endpoint bus_cfg;
+	struct v4l2_of_endpoint bus_cfg;
 	struct device_node *endpoint;
 	struct device_node *np;
 	unsigned int flags;
@@ -3084,7 +3083,7 @@ static int adv76xx_parse_dt(struct adv76xx_state *state)
 	if (!endpoint)
 		return -EINVAL;
 
-	ret = v4l2_fwnode_endpoint_parse(of_fwnode_handle(endpoint), &bus_cfg);
+	ret = v4l2_of_parse_endpoint(endpoint, &bus_cfg);
 	if (ret) {
 		of_node_put(endpoint);
 		return ret;

@@ -12,7 +12,6 @@ deps_config := \
 	drivers/crypto/virtio/Kconfig \
 	drivers/crypto/chelsio/Kconfig \
 	drivers/crypto/vmx/Kconfig \
-	drivers/crypto/cavium/nitrox/Kconfig \
 	drivers/crypto/cavium/cpt/Kconfig \
 	drivers/crypto/qat/Kconfig \
 	drivers/crypto/ccp/Kconfig \
@@ -37,7 +36,6 @@ deps_config := \
 	lib/Kconfig.kgdb \
 	samples/Kconfig \
 	kernel/trace/Kconfig \
-	kernel/rcu/Kconfig.debug \
 	lib/Kconfig.kasan \
 	lib/Kconfig.kmemcheck \
 	mm/Kconfig.debug \
@@ -117,7 +115,6 @@ deps_config := \
 	drivers/firmware/google/Kconfig \
 	drivers/firmware/broadcom/Kconfig \
 	drivers/firmware/Kconfig \
-	drivers/mux/Kconfig \
 	drivers/tee/optee/Kconfig \
 	drivers/tee/Kconfig \
 	drivers/fsi/Kconfig \
@@ -134,19 +131,7 @@ deps_config := \
 	drivers/perf/Kconfig \
 	drivers/mcb/Kconfig \
 	drivers/powercap/Kconfig \
-	drivers/phy/ti/Kconfig \
 	drivers/phy/tegra/Kconfig \
-	drivers/phy/st/Kconfig \
-	drivers/phy/samsung/Kconfig \
-	drivers/phy/rockchip/Kconfig \
-	drivers/phy/renesas/Kconfig \
-	drivers/phy/qualcomm/Kconfig \
-	drivers/phy/motorola/Kconfig \
-	drivers/phy/marvell/Kconfig \
-	drivers/phy/hisilicon/Kconfig \
-	drivers/phy/broadcom/Kconfig \
-	drivers/phy/amlogic/Kconfig \
-	drivers/phy/allwinner/Kconfig \
 	drivers/phy/Kconfig \
 	drivers/fmc/Kconfig \
 	drivers/reset/tegra/Kconfig \
@@ -174,7 +159,6 @@ deps_config := \
 	drivers/iio/potentiometer/Kconfig \
 	drivers/iio/trigger/Kconfig \
 	drivers/iio/orientation/Kconfig \
-	drivers/iio/multiplexer/Kconfig \
 	drivers/iio/magnetometer/Kconfig \
 	drivers/iio/light/Kconfig \
 	drivers/iio/imu/st_lsm6dsx/Kconfig \
@@ -214,7 +198,6 @@ deps_config := \
 	drivers/soc/sunxi/Kconfig \
 	drivers/soc/samsung/Kconfig \
 	drivers/soc/rockchip/Kconfig \
-	drivers/soc/renesas/Kconfig \
 	drivers/soc/qcom/Kconfig \
 	drivers/soc/mediatek/Kconfig \
 	drivers/soc/imx/Kconfig \
@@ -223,7 +206,6 @@ deps_config := \
 	drivers/soc/fsl/Kconfig \
 	drivers/soc/bcm/Kconfig \
 	drivers/soc/atmel/Kconfig \
-	drivers/soc/actions/Kconfig \
 	drivers/soc/Kconfig \
 	drivers/rpmsg/Kconfig \
 	drivers/remoteproc/Kconfig \
@@ -241,7 +223,6 @@ deps_config := \
 	drivers/clk/mvebu/Kconfig \
 	drivers/clk/meson/Kconfig \
 	drivers/clk/mediatek/Kconfig \
-	drivers/clk/keystone/Kconfig \
 	drivers/clk/hisilicon/Kconfig \
 	drivers/clk/bcm/Kconfig \
 	drivers/clk/versatile/Kconfig \
@@ -296,7 +277,6 @@ deps_config := \
 	drivers/staging/android/Kconfig \
 	drivers/staging/media/lirc/Kconfig \
 	drivers/staging/media/omap4iss/Kconfig \
-	drivers/staging/media/imx/Kconfig \
 	drivers/staging/media/davinci_vpfe/Kconfig \
 	drivers/staging/media/cxd2099/Kconfig \
 	drivers/staging/media/bcm2048/Kconfig \
@@ -395,7 +375,6 @@ deps_config := \
 	drivers/mmc/core/Kconfig \
 	drivers/mmc/Kconfig \
 	drivers/uwb/Kconfig \
-	drivers/usb/typec/ucsi/Kconfig \
 	drivers/usb/typec/Kconfig \
 	drivers/usb/gadget/legacy/Kconfig \
 	drivers/usb/gadget/udc/bdc/Kconfig \
@@ -427,7 +406,6 @@ deps_config := \
 	drivers/hid/usbhid/Kconfig \
 	drivers/hid/Kconfig \
 	sound/oss/Kconfig \
-	sound/synth/Kconfig \
 	sound/x86/Kconfig \
 	sound/soc/generic/Kconfig \
 	sound/soc/codecs/Kconfig \
@@ -692,7 +670,6 @@ deps_config := \
 	drivers/w1/masters/Kconfig \
 	drivers/w1/Kconfig \
 	drivers/gpio/Kconfig \
-	drivers/pinctrl/zte/Kconfig \
 	drivers/pinctrl/mediatek/Kconfig \
 	drivers/pinctrl/vt8500/Kconfig \
 	drivers/pinctrl/uniphier/Kconfig \
@@ -767,8 +744,6 @@ deps_config := \
 	drivers/net/wan/Kconfig \
 	drivers/net/wimax/i2400m/Kconfig \
 	drivers/net/wimax/Kconfig \
-	drivers/net/wireless/quantenna/qtnfmac/Kconfig \
-	drivers/net/wireless/quantenna/Kconfig \
 	drivers/net/wireless/zydas/zd1211rw/Kconfig \
 	drivers/net/wireless/zydas/Kconfig \
 	drivers/net/wireless/ti/wlcore/Kconfig \
@@ -865,7 +840,6 @@ deps_config := \
 	drivers/net/ethernet/moxa/Kconfig \
 	drivers/net/ethernet/microchip/Kconfig \
 	drivers/net/ethernet/micrel/Kconfig \
-	drivers/net/ethernet/mellanox/mlxfw/Kconfig \
 	drivers/net/ethernet/mellanox/mlxsw/Kconfig \
 	drivers/net/ethernet/mellanox/mlx5/core/Kconfig \
 	drivers/net/ethernet/mellanox/mlx4/Kconfig \
@@ -924,7 +898,6 @@ deps_config := \
 	drivers/net/ethernet/3com/Kconfig \
 	drivers/net/ethernet/Kconfig \
 	drivers/net/dsa/mv88e6xxx/Kconfig \
-	drivers/net/dsa/microchip/Kconfig \
 	drivers/net/dsa/b53/Kconfig \
 	drivers/net/dsa/Kconfig \
 	drivers/net/caif/Kconfig \
@@ -1119,7 +1092,6 @@ deps_config := \
 	net/smc/Kconfig \
 	net/iucv/Kconfig \
 	net/xfrm/Kconfig \
-	net/tls/Kconfig \
 	net/unix/Kconfig \
 	net/packet/Kconfig \
 	net/Kconfig \
@@ -1171,7 +1143,6 @@ deps_config := \
 	kernel/gcov/Kconfig \
 	arch/Kconfig \
 	usr/Kconfig \
-	kernel/rcu/Kconfig \
 	kernel/time/Kconfig \
 	kernel/irq/Kconfig \
 	init/Kconfig \

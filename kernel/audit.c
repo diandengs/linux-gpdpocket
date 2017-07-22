@@ -575,16 +575,12 @@ static void kauditd_retry_skb(struct sk_buff *skb)
 
 /**
  * auditd_reset - Disconnect the auditd connection
- * @ac: auditd connection state
  *
  * Description:
  * Break the auditd/kauditd connection and move all the queued records into the
- * hold queue in case auditd reconnects.  It is important to note that the @ac
- * pointer should never be dereferenced inside this function as it may be NULL
- * or invalid, you can only compare the memory address!  If @ac is NULL then
- * the connection will always be reset.
+ * hold queue in case auditd reconnects.
  */
-static void auditd_reset(const struct auditd_connection *ac)
+static void auditd_reset(void)
 {
 	unsigned long flags;
 	struct sk_buff *skb;
@@ -594,20 +590,16 @@ static void auditd_reset(const struct auditd_connection *ac)
 	spin_lock_irqsave(&auditd_conn_lock, flags);
 	ac_old = rcu_dereference_protected(auditd_conn,
 					   lockdep_is_held(&auditd_conn_lock));
-	if (ac && ac != ac_old) {
-		/* someone already registered a new auditd connection */
-		spin_unlock_irqrestore(&auditd_conn_lock, flags);
-		return;
-	}
 	rcu_assign_pointer(auditd_conn, NULL);
 	spin_unlock_irqrestore(&auditd_conn_lock, flags);
 
 	if (ac_old)
 		call_rcu(&ac_old->rcu, auditd_conn_free);
 
-	/* flush the retry queue to the hold queue, but don't touch the main
-	 * queue since we need to process that normally for multicast */
+	/* flush all of the main and retry queues to the hold queue */
 	while ((skb = skb_dequeue(&audit_retry_queue)))
+		kauditd_hold_skb(skb);
+	while ((skb = skb_dequeue(&audit_queue)))
 		kauditd_hold_skb(skb);
 }
 
@@ -657,8 +649,8 @@ static int auditd_send_unicast_skb(struct sk_buff *skb)
 	return rc;
 
 err:
-	if (ac && rc == -ECONNREFUSED)
-		auditd_reset(ac);
+	if (rc == -ECONNREFUSED)
+		auditd_reset();
 	return rc;
 }
 
@@ -803,9 +795,9 @@ static int kauditd_thread(void *dummy)
 		rc = kauditd_send_queue(sk, portid,
 					&audit_hold_queue, UNICAST_RETRIES,
 					NULL, kauditd_rehold_skb);
-		if (ac && rc < 0) {
+		if (rc < 0) {
 			sk = NULL;
-			auditd_reset(ac);
+			auditd_reset();
 			goto main_queue;
 		}
 
@@ -813,9 +805,9 @@ static int kauditd_thread(void *dummy)
 		rc = kauditd_send_queue(sk, portid,
 					&audit_retry_queue, UNICAST_RETRIES,
 					NULL, kauditd_hold_skb);
-		if (ac && rc < 0) {
+		if (rc < 0) {
 			sk = NULL;
-			auditd_reset(ac);
+			auditd_reset();
 			goto main_queue;
 		}
 
@@ -823,13 +815,12 @@ main_queue:
 		/* process the main queue - do the multicast send and attempt
 		 * unicast, dump failed record sends to the retry queue; if
 		 * sk == NULL due to previous failures we will just do the
-		 * multicast send and move the record to the hold queue */
+		 * multicast send and move the record to the retry queue */
 		rc = kauditd_send_queue(sk, portid, &audit_queue, 1,
 					kauditd_send_multicast_skb,
-					(sk ?
-					 kauditd_retry_skb : kauditd_hold_skb));
-		if (ac && rc < 0)
-			auditd_reset(ac);
+					kauditd_retry_skb);
+		if (sk == NULL || rc < 0)
+			auditd_reset();
 		sk = NULL;
 
 		/* drop our netns reference, no auditd sends past this line */
@@ -1239,7 +1230,7 @@ static int audit_receive_msg(struct sk_buff *skb, struct nlmsghdr *nlh)
 								auditd_pid, 1);
 
 				/* unregister the auditd connection */
-				auditd_reset(NULL);
+				auditd_reset();
 			}
 		}
 		if (s.mask & AUDIT_STATUS_RATE_LIMIT) {
@@ -2008,10 +1999,22 @@ void audit_log_cap(struct audit_buffer *ab, char *prefix, kernel_cap_t *cap)
 
 static void audit_log_fcaps(struct audit_buffer *ab, struct audit_names *name)
 {
-	audit_log_cap(ab, "cap_fp", &name->fcap.permitted);
-	audit_log_cap(ab, "cap_fi", &name->fcap.inheritable);
-	audit_log_format(ab, " cap_fe=%d cap_fver=%x",
-			 name->fcap.fE, name->fcap_ver);
+	kernel_cap_t *perm = &name->fcap.permitted;
+	kernel_cap_t *inh = &name->fcap.inheritable;
+	int log = 0;
+
+	if (!cap_isclear(*perm)) {
+		audit_log_cap(ab, "cap_fp", perm);
+		log = 1;
+	}
+	if (!cap_isclear(*inh)) {
+		audit_log_cap(ab, "cap_fi", inh);
+		log = 1;
+	}
+
+	if (log)
+		audit_log_format(ab, " cap_fe=%d cap_fver=%x",
+				 name->fcap.fE, name->fcap_ver);
 }
 
 static inline int audit_copy_fcaps(struct audit_names *name,

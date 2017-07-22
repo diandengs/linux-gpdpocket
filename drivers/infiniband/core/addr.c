@@ -179,7 +179,8 @@ static int ib_nl_ip_send_msg(struct rdma_dev_addr *dev_addr,
 	}
 
 	/* Construct the family header first */
-	header = skb_put(skb, NLMSG_ALIGN(sizeof(*header)));
+	header = (struct rdma_ls_ip_resolve_header *)
+		skb_put(skb, NLMSG_ALIGN(sizeof(*header)));
 	header->ifindex = dev_addr->bound_dev_if;
 	nla_put(skb, attrtype, size, daddr);
 

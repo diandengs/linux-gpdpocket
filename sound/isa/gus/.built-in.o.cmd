@@ -1,1 +1,1 @@
-cmd_sound/isa/gus/built-in.o :=  rm -f sound/isa/gus/built-in.o; ar rcSTPD sound/isa/gus/built-in.o
+cmd_sound/isa/gus/built-in.o :=  rm -f sound/isa/gus/built-in.o; ar rcsD sound/isa/gus/built-in.o

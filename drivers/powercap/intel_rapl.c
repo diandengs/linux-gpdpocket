@@ -874,9 +874,7 @@ static int rapl_write_data_raw(struct rapl_domain *rd,
 
 	cpu = rd->rp->lead_cpu;
 	bits = rapl_unit_xlate(rd, rp->unit, value, 1);
-	bits <<= rp->shift;
-	bits &= rp->mask;
-
+	bits |= bits << rp->shift;
 	memset(&ma, 0, sizeof(ma));
 
 	ma.msr_no = rd->msrs[rp->id];

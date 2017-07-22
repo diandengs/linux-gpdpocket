@@ -1,1 +1,1 @@
-cmd_drivers/pci/hotplug/built-in.o :=  rm -f drivers/pci/hotplug/built-in.o; ar rcSTPD drivers/pci/hotplug/built-in.o drivers/pci/hotplug/pci_hotplug.o drivers/pci/hotplug/pciehp.o drivers/pci/hotplug/acpiphp.o 
+cmd_drivers/pci/hotplug/built-in.o :=  ld -m elf_x86_64   -r -o drivers/pci/hotplug/built-in.o drivers/pci/hotplug/pci_hotplug.o drivers/pci/hotplug/pciehp.o drivers/pci/hotplug/acpiphp.o 

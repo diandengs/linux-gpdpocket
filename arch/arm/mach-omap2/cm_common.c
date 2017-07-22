@@ -32,10 +32,10 @@ static struct cm_ll_data null_cm_ll_data;
 static struct cm_ll_data *cm_ll_data = &null_cm_ll_data;
 
 /* cm_base: base virtual address of the CM IP block */
-struct omap_domain_base cm_base;
+void __iomem *cm_base;
 
 /* cm2_base: base virtual address of the CM2 IP block (OMAP44xx only) */
-struct omap_domain_base cm2_base;
+void __iomem *cm2_base;
 
 #define CM_NO_CLOCKS		0x1
 #define CM_SINGLE_INSTANCE	0x2
@@ -49,8 +49,8 @@ struct omap_domain_base cm2_base;
  */
 void __init omap2_set_globals_cm(void __iomem *cm, void __iomem *cm2)
 {
-	cm_base.va = cm;
-	cm2_base.va = cm2;
+	cm_base = cm;
+	cm2_base = cm2;
 }
 
 /**
@@ -315,34 +315,27 @@ int __init omap2_cm_base_init(void)
 	struct device_node *np;
 	const struct of_device_id *match;
 	struct omap_prcm_init_data *data;
-	struct resource res;
-	int ret;
-	struct omap_domain_base *mem = NULL;
+	void __iomem *mem;
 
 	for_each_matching_node_and_match(np, omap_cm_dt_match_table, &match) {
 		data = (struct omap_prcm_init_data *)match->data;
 
-		ret = of_address_to_resource(np, 0, &res);
-		if (ret)
-			return ret;
+		mem = of_iomap(np, 0);
+		if (!mem)
+			return -ENOMEM;
 
 		if (data->index == TI_CLKM_CM)
-			mem = &cm_base;
+			cm_base = mem + data->offset;
 
 		if (data->index == TI_CLKM_CM2)
-			mem = &cm2_base;
+			cm2_base = mem + data->offset;
 
-		data->mem = ioremap(res.start, resource_size(&res));
-
-		if (mem) {
-			mem->pa = res.start + data->offset;
-			mem->va = data->mem + data->offset;
-		}
+		data->mem = mem;
 
 		data->np = np;
 
 		if (data->init && (data->flags & CM_SINGLE_INSTANCE ||
-				   (cm_base.va && cm2_base.va)))
+				   (cm_base && cm2_base)))
 			data->init(data);
 	}
 

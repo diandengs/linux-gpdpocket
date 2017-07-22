@@ -461,6 +461,8 @@ found:
 	else
 		iov->dev = dev;
 
+	mutex_init(&iov->lock);
+
 	dev->sriov = iov;
 	dev->is_physfn = 1;
 	rc = compute_max_vf_buses(dev);
@@ -488,6 +490,8 @@ static void sriov_release(struct pci_dev *dev)
 
 	if (dev != dev->sriov->dev)
 		pci_dev_put(dev->sriov->dev);
+
+	mutex_destroy(&dev->sriov->lock);
 
 	kfree(dev->sriov);
 	dev->sriov = NULL;

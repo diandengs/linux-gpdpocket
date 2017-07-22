@@ -162,8 +162,6 @@
 };
 
 &cpm_mdio {
-	status = "okay";
-
 	phy0: ethernet-phy@0 {
 		reg = <0>;
 	};
@@ -186,4 +184,8 @@
 	status = "okay";
 	phy = <&phy1>;
 	phy-mode = "rgmii-id";
+};
+
+&cpm_crypto {
+	status = "okay";
 };

@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -20,17 +19,9 @@ MODULE_INFO(intree, "Y");
 static const char __module_depends[]
 __used
 __attribute__((section(".modinfo"))) =
-"depends=nvmem_core";
+"depends=";
 
 MODULE_ALIAS("pci:v00008086d00001513sv00002222sd00001111bc08sc80i00*");
 MODULE_ALIAS("pci:v00008086d00001547sv00002222sd00001111bc08sc80i00*");
 MODULE_ALIAS("pci:v00008086d0000156Asv*sd*bc08sc80i00*");
 MODULE_ALIAS("pci:v00008086d0000156Csv*sd*bc08sc80i00*");
-MODULE_ALIAS("pci:v00008086d00001575sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d00001577sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d000015DDsv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d000015BFsv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d000015DCsv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d000015D9sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d000015D2sv*sd*bc*sc*i*");
-MODULE_ALIAS("pci:v00008086d000015DEsv*sd*bc*sc*i*");

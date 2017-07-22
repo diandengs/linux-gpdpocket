@@ -479,7 +479,6 @@ done:
 		pr_debug("%s: status %d\n", __func__, status);
 	return status ? : len;
 }
-static CLASS_ATTR_WO(export);
 
 static ssize_t unexport_store(struct class *class,
 				struct class_attribute *attr,
@@ -515,20 +514,18 @@ done:
 		pr_debug("%s: status %d\n", __func__, status);
 	return status ? : len;
 }
-static CLASS_ATTR_WO(unexport);
 
-static struct attribute *gpio_class_attrs[] = {
-	&class_attr_export.attr,
-	&class_attr_unexport.attr,
-	NULL,
+static struct class_attribute gpio_class_attrs[] = {
+	__ATTR(export, 0200, NULL, export_store),
+	__ATTR(unexport, 0200, NULL, unexport_store),
+	__ATTR_NULL,
 };
-ATTRIBUTE_GROUPS(gpio_class);
 
 static struct class gpio_class = {
 	.name =		"gpio",
 	.owner =	THIS_MODULE,
 
-	.class_groups = gpio_class_groups,
+	.class_attrs =	gpio_class_attrs,
 };
 
 

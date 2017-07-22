@@ -1,4 +1,4 @@
-cmd_arch/x86/purgatory/purgatory.o := gcc -Wp,-MD,arch/x86/purgatory/.purgatory.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -fno-strict-aliasing -Wall -Wstrict-prototypes -fno-zero-initialized-in-bss -fno-builtin -ffreestanding -c -MD -Os -mcmodel=large -m64 -fno-PIE    -DKBUILD_BASENAME='"purgatory"'  -DKBUILD_MODNAME='"purgatory"' -c -o arch/x86/purgatory/purgatory.o arch/x86/purgatory/purgatory.c
+cmd_arch/x86/purgatory/purgatory.o := gcc -Wp,-MD,arch/x86/purgatory/.purgatory.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -fno-strict-aliasing -Wall -Wstrict-prototypes -fno-zero-initialized-in-bss -fno-builtin -ffreestanding -c -MD -Os -mcmodel=large -m64 -fno-PIE    -DKBUILD_BASENAME='"purgatory"'  -DKBUILD_MODNAME='"purgatory"' -c -o arch/x86/purgatory/purgatory.o arch/x86/purgatory/purgatory.c
 
 source_arch/x86/purgatory/purgatory.o := arch/x86/purgatory/purgatory.c
 
@@ -15,6 +15,7 @@ deps_arch/x86/purgatory/purgatory.o := \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
     $(wildcard include/config/smp.h) \
   include/linux/compiler.h \
+    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/kasan.h) \
@@ -131,7 +132,6 @@ deps_arch/x86/purgatory/purgatory.o := \
     $(wildcard include/config/x86/vsmp.h) \
   include/linux/dynamic_debug.h \
     $(wildcard include/config/jump/label.h) \
-  include/linux/build_bug.h \
   arch/x86/include/asm/purgatory.h \
   include/linux/purgatory.h \
   include/crypto/sha.h \

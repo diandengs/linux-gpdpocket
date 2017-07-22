@@ -1481,7 +1481,6 @@ void __sched rt_mutex_lock(struct rt_mutex *lock)
 {
 	might_sleep();
 
-	mutex_acquire(&lock->dep_map, 0, 0, _RET_IP_);
 	rt_mutex_fastlock(lock, TASK_UNINTERRUPTIBLE, rt_mutex_slowlock);
 }
 EXPORT_SYMBOL_GPL(rt_mutex_lock);
@@ -1497,16 +1496,9 @@ EXPORT_SYMBOL_GPL(rt_mutex_lock);
  */
 int __sched rt_mutex_lock_interruptible(struct rt_mutex *lock)
 {
-	int ret;
-
 	might_sleep();
 
-	mutex_acquire(&lock->dep_map, 0, 0, _RET_IP_);
-	ret = rt_mutex_fastlock(lock, TASK_INTERRUPTIBLE, rt_mutex_slowlock);
-	if (ret)
-		mutex_release(&lock->dep_map, 1, _RET_IP_);
-
-	return ret;
+	return rt_mutex_fastlock(lock, TASK_INTERRUPTIBLE, rt_mutex_slowlock);
 }
 EXPORT_SYMBOL_GPL(rt_mutex_lock_interruptible);
 
@@ -1534,18 +1526,11 @@ int __sched rt_mutex_futex_trylock(struct rt_mutex *lock)
 int
 rt_mutex_timed_lock(struct rt_mutex *lock, struct hrtimer_sleeper *timeout)
 {
-	int ret;
-
 	might_sleep();
 
-	mutex_acquire(&lock->dep_map, 0, 0, _RET_IP_);
-	ret = rt_mutex_timed_fastlock(lock, TASK_INTERRUPTIBLE, timeout,
+	return rt_mutex_timed_fastlock(lock, TASK_INTERRUPTIBLE, timeout,
 				       RT_MUTEX_MIN_CHAINWALK,
 				       rt_mutex_slowlock);
-	if (ret)
-		mutex_release(&lock->dep_map, 1, _RET_IP_);
-
-	return ret;
 }
 EXPORT_SYMBOL_GPL(rt_mutex_timed_lock);
 
@@ -1562,16 +1547,10 @@ EXPORT_SYMBOL_GPL(rt_mutex_timed_lock);
  */
 int __sched rt_mutex_trylock(struct rt_mutex *lock)
 {
-	int ret;
-
 	if (WARN_ON_ONCE(in_irq() || in_nmi() || in_serving_softirq()))
 		return 0;
 
-	ret = rt_mutex_fasttrylock(lock, rt_mutex_slowtrylock);
-	if (ret)
-		mutex_acquire(&lock->dep_map, 0, 1, _RET_IP_);
-
-	return ret;
+	return rt_mutex_fasttrylock(lock, rt_mutex_slowtrylock);
 }
 EXPORT_SYMBOL_GPL(rt_mutex_trylock);
 
@@ -1582,7 +1561,6 @@ EXPORT_SYMBOL_GPL(rt_mutex_trylock);
  */
 void __sched rt_mutex_unlock(struct rt_mutex *lock)
 {
-	mutex_release(&lock->dep_map, 1, _RET_IP_);
 	rt_mutex_fastunlock(lock, rt_mutex_slowunlock);
 }
 EXPORT_SYMBOL_GPL(rt_mutex_unlock);
@@ -1642,6 +1620,7 @@ void rt_mutex_destroy(struct rt_mutex *lock)
 	lock->magic = NULL;
 #endif
 }
+
 EXPORT_SYMBOL_GPL(rt_mutex_destroy);
 
 /**
@@ -1653,16 +1632,14 @@ EXPORT_SYMBOL_GPL(rt_mutex_destroy);
  *
  * Initializing of a locked rt lock is not allowed
  */
-void __rt_mutex_init(struct rt_mutex *lock, const char *name,
-		     struct lock_class_key *key)
+void __rt_mutex_init(struct rt_mutex *lock, const char *name)
 {
 	lock->owner = NULL;
 	raw_spin_lock_init(&lock->wait_lock);
 	lock->waiters = RB_ROOT;
 	lock->waiters_leftmost = NULL;
 
-	if (name && key)
-		debug_rt_mutex_init(lock, name, key);
+	debug_rt_mutex_init(lock, name);
 }
 EXPORT_SYMBOL_GPL(__rt_mutex_init);
 
@@ -1683,7 +1660,7 @@ EXPORT_SYMBOL_GPL(__rt_mutex_init);
 void rt_mutex_init_proxy_locked(struct rt_mutex *lock,
 				struct task_struct *proxy_owner)
 {
-	__rt_mutex_init(lock, NULL, NULL);
+	__rt_mutex_init(lock, NULL);
 	debug_rt_mutex_proxy_lock(lock, proxy_owner);
 	rt_mutex_set_owner(lock, proxy_owner);
 }

@@ -1,4 +1,4 @@
-cmd_fs/nls/mac-celtic.mod.o := gcc -Wp,-MD,fs/nls/.mac-celtic.mod.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init  -DKBUILD_BASENAME='"mac_celtic.mod"'  -DKBUILD_MODNAME='"mac_celtic"' -DMODULE  -c -o fs/nls/mac-celtic.mod.o fs/nls/mac-celtic.mod.c
+cmd_fs/nls/mac-celtic.mod.o := gcc -Wp,-MD,fs/nls/.mac-celtic.mod.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -m64 -falign-jumps=1 -falign-loops=1 -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mskip-rax-setup -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_SSSE3=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -DCONFIG_AS_AVX512=1 -DCONFIG_AS_SHA1_NI=1 -DCONFIG_AS_SHA256_NI=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=2048 -fstack-protector-strong -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types -Werror=designated-init  -DKBUILD_BASENAME='"mac_celtic.mod"'  -DKBUILD_MODNAME='"mac_celtic"' -DMODULE  -c -o fs/nls/mac-celtic.mod.o fs/nls/mac-celtic.mod.c
 
 source_fs/nls/mac-celtic.mod.o := fs/nls/mac-celtic.mod.c
 
@@ -41,6 +41,7 @@ deps_fs/nls/mac-celtic.mod.o := \
   include/linux/stddef.h \
   include/uapi/linux/stddef.h \
   include/linux/compiler.h \
+    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/kasan.h) \
@@ -180,7 +181,6 @@ deps_fs/nls/mac-celtic.mod.o := \
   include/asm-generic/bug.h \
     $(wildcard include/config/bug.h) \
     $(wildcard include/config/generic/bug/relative/pointers.h) \
-  include/linux/build_bug.h \
   include/linux/restart_block.h \
     $(wildcard include/config/compat.h) \
   arch/x86/include/asm/current.h \
@@ -213,7 +213,6 @@ deps_fs/nls/mac-celtic.mod.o := \
   arch/x86/include/asm/processor.h \
     $(wildcard include/config/cc/stackprotector.h) \
     $(wildcard include/config/x86/debugctlmsr.h) \
-    $(wildcard include/config/cpu/sup/amd.h) \
     $(wildcard include/config/xen.h) \
   arch/x86/include/asm/processor-flags.h \
   arch/x86/include/uapi/asm/processor-flags.h \
@@ -259,13 +258,13 @@ deps_fs/nls/mac-celtic.mod.o := \
     $(wildcard include/config/hotplug/cpu.h) \
     $(wildcard include/config/debug/per/cpu/maps.h) \
   include/linux/bitmap.h \
+    $(wildcard include/config/s390.h) \
   include/linux/string.h \
     $(wildcard include/config/binary/printf.h) \
   include/uapi/linux/string.h \
   arch/x86/include/asm/string.h \
   arch/x86/include/asm/string_64.h \
     $(wildcard include/config/x86/mce.h) \
-    $(wildcard include/config/arch/has/uaccess/flushcache.h) \
   arch/x86/include/uapi/asm/msr.h \
   include/uapi/linux/ioctl.h \
   arch/x86/include/uapi/asm/ioctl.h \
@@ -377,7 +376,6 @@ deps_fs/nls/mac-celtic.mod.o := \
     $(wildcard include/config/need/multiple/nodes.h) \
     $(wildcard include/config/have/arch/early/pfn/to/nid.h) \
     $(wildcard include/config/sparsemem/extreme.h) \
-    $(wildcard include/config/memory/hotremove.h) \
     $(wildcard include/config/have/arch/pfn/valid.h) \
     $(wildcard include/config/holes/in/zone.h) \
     $(wildcard include/config/arch/has/holes/memorymodel.h) \
@@ -386,12 +384,14 @@ deps_fs/nls/mac-celtic.mod.o := \
   include/linux/numa.h \
     $(wildcard include/config/nodes/shift.h) \
   include/linux/nodemask.h \
+    $(wildcard include/config/movable/node.h) \
   include/linux/pageblock-flags.h \
     $(wildcard include/config/hugetlb/page.h) \
     $(wildcard include/config/hugetlb/page/size/variable.h) \
   include/linux/page-flags-layout.h \
   include/generated/bounds.h \
   include/linux/memory_hotplug.h \
+    $(wildcard include/config/memory/hotremove.h) \
     $(wildcard include/config/have/arch/nodedata/extension.h) \
     $(wildcard include/config/have/bootmem/info/node.h) \
   include/linux/notifier.h \
@@ -410,27 +410,25 @@ deps_fs/nls/mac-celtic.mod.o := \
   include/linux/srcu.h \
     $(wildcard include/config/tiny/srcu.h) \
     $(wildcard include/config/tree/srcu.h) \
-    $(wildcard include/config/srcu.h) \
+    $(wildcard include/config/classic/srcu.h) \
   include/linux/rcupdate.h \
+    $(wildcard include/config/tiny/rcu.h) \
+    $(wildcard include/config/tree/rcu.h) \
     $(wildcard include/config/preempt/rcu.h) \
+    $(wildcard include/config/rcu/trace.h) \
     $(wildcard include/config/rcu/stall/common.h) \
     $(wildcard include/config/no/hz/full.h) \
     $(wildcard include/config/rcu/nocb/cpu.h) \
     $(wildcard include/config/tasks/rcu.h) \
-    $(wildcard include/config/tree/rcu.h) \
-    $(wildcard include/config/tiny/rcu.h) \
     $(wildcard include/config/debug/objects/rcu/head.h) \
     $(wildcard include/config/prove/rcu.h) \
     $(wildcard include/config/rcu/boost.h) \
+    $(wildcard include/config/rcu/nocb/cpu/all.h) \
+    $(wildcard include/config/no/hz/full/sysidle.h) \
     $(wildcard include/config/arch/weak/release/acquire.h) \
-  include/linux/rcutree.h \
-  include/linux/workqueue.h \
-    $(wildcard include/config/debug/objects/work.h) \
-    $(wildcard include/config/freezer.h) \
-    $(wildcard include/config/wq/watchdog.h) \
-  include/linux/timer.h \
-    $(wildcard include/config/debug/objects/timers.h) \
-    $(wildcard include/config/no/hz/common.h) \
+  include/linux/debugobjects.h \
+    $(wildcard include/config/debug/objects.h) \
+    $(wildcard include/config/debug/objects/free.h) \
   include/linux/ktime.h \
   include/linux/jiffies.h \
   include/linux/timex.h \
@@ -445,9 +443,14 @@ deps_fs/nls/mac-celtic.mod.o := \
     $(wildcard include/config/x86/tsc.h) \
   include/generated/timeconst.h \
   include/linux/timekeeping.h \
-  include/linux/debugobjects.h \
-    $(wildcard include/config/debug/objects.h) \
-    $(wildcard include/config/debug/objects/free.h) \
+  include/linux/rcutree.h \
+  include/linux/workqueue.h \
+    $(wildcard include/config/debug/objects/work.h) \
+    $(wildcard include/config/freezer.h) \
+    $(wildcard include/config/wq/watchdog.h) \
+  include/linux/timer.h \
+    $(wildcard include/config/debug/objects/timers.h) \
+    $(wildcard include/config/no/hz/common.h) \
   include/linux/rcu_segcblist.h \
   include/linux/srcutree.h \
   include/linux/rcu_node_tree.h \
@@ -556,10 +559,9 @@ deps_fs/nls/mac-celtic.mod.o := \
     $(wildcard include/config/aio.h) \
     $(wildcard include/config/mmu/notifier.h) \
   include/linux/mm_types_task.h \
-    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
     $(wildcard include/config/split/ptlock/cpus.h) \
     $(wildcard include/config/arch/enable/split/pmd/ptlock.h) \
-  arch/x86/include/asm/tlbbatch.h \
+    $(wildcard include/config/arch/want/batched/unmap/tlb/flush.h) \
   include/linux/auxvec.h \
   include/uapi/linux/auxvec.h \
   include/linux/uprobes.h \
@@ -579,7 +581,6 @@ deps_fs/nls/mac-celtic.mod.o := \
   include/linux/kobject_ns.h \
   include/linux/kref.h \
   include/linux/refcount.h \
-    $(wildcard include/config/refcount/full.h) \
   include/linux/moduleparam.h \
     $(wildcard include/config/alpha.h) \
     $(wildcard include/config/ia64.h) \

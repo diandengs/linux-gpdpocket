@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -23,4 +22,4 @@ __attribute__((section(".modinfo"))) =
 "depends=usbip-core";
 
 
-MODULE_INFO(srcversion, "B6F85042379098D0F055DC8");
+MODULE_INFO(srcversion, "05F3E795FDD6C1DD2E77F6D");

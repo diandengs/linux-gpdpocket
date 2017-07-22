@@ -320,16 +320,13 @@ static irqreturn_t gsta_gpio_handler(int irq, void *dev_id)
 	return ret;
 }
 
-static int gsta_alloc_irq_chip(struct gsta_gpio *chip)
+static void gsta_alloc_irq_chip(struct gsta_gpio *chip)
 {
 	struct irq_chip_generic *gc;
 	struct irq_chip_type *ct;
 
 	gc = irq_alloc_generic_chip(KBUILD_MODNAME, 1, chip->irq_base,
 				     chip->reg_base, handle_simple_irq);
-	if (!gc)
-		return -ENOMEM;
-
 	gc->private = chip;
 	ct = gc->chip_types;
 
@@ -353,8 +350,6 @@ static int gsta_alloc_irq_chip(struct gsta_gpio *chip)
 		}
 		gc->irq_cnt = i - gc->irq_base;
 	}
-
-	return 0;
 }
 
 /* The platform device used here is instantiated by the MFD device */
@@ -405,10 +400,7 @@ static int gsta_probe(struct platform_device *dev)
 		return err;
 	}
 	chip->irq_base = err;
-
-	err = gsta_alloc_irq_chip(chip);
-	if (err)
-		return err;
+	gsta_alloc_irq_chip(chip);
 
 	err = devm_request_irq(&dev->dev, pdev->irq, gsta_gpio_handler,
 			       IRQF_SHARED, KBUILD_MODNAME, chip);

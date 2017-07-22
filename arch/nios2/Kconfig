@@ -1,6 +1,6 @@
 config NIOS2
 	def_bool y
-	select TIMER_OF
+	select CLKSRC_OF
 	select GENERIC_ATOMIC64
 	select GENERIC_CLOCKEVENTS
 	select GENERIC_CPU_DEVICES

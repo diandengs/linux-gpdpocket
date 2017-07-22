@@ -223,7 +223,7 @@ int aq_ring_rx_clean(struct aq_ring_s *self, int *work_done, int budget)
 		skb->protocol = eth_type_trans(skb, ndev);
 		if (unlikely(buff->is_cso_err)) {
 			++self->stats.rx.errors;
-			skb->ip_summed = CHECKSUM_NONE;
+			__skb_mark_checksum_bad(skb);
 		} else {
 			if (buff->is_ip_cso) {
 				__skb_incr_checksum_unnecessary(skb);

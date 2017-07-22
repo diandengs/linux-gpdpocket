@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -23,4 +22,4 @@ __attribute__((section(".modinfo"))) =
 "depends=fscache,dns_resolver";
 
 
-MODULE_INFO(srcversion, "F51A7A4CA77774075FE1CAE");
+MODULE_INFO(srcversion, "EFF2F03E3942494B146DF2D");

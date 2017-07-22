@@ -105,7 +105,6 @@
 #include <net/dst.h>
 #include <net/dst_metadata.h>
 #include <net/pkt_sched.h>
-#include <net/pkt_cls.h>
 #include <net/checksum.h>
 #include <net/xfrm.h>
 #include <linux/highmem.h>
@@ -143,7 +142,6 @@
 #include <linux/hrtimer.h>
 #include <linux/netfilter_ingress.h>
 #include <linux/crash_dump.h>
-#include <linux/sctp.h>
 
 #include "net-sysfs.h"
 
@@ -163,7 +161,6 @@ static int netif_rx_internal(struct sk_buff *skb);
 static int call_netdevice_notifiers_info(unsigned long val,
 					 struct net_device *dev,
 					 struct netdev_notifier_info *info);
-static struct napi_struct *napi_by_id(unsigned int napi_id);
 
 /*
  * The @dev_base_head list is protected by @dev_base_lock and the rtnl
@@ -866,31 +863,6 @@ struct net_device *dev_get_by_index(struct net *net, int ifindex)
 	return dev;
 }
 EXPORT_SYMBOL(dev_get_by_index);
-
-/**
- *	dev_get_by_napi_id - find a device by napi_id
- *	@napi_id: ID of the NAPI struct
- *
- *	Search for an interface by NAPI ID. Returns %NULL if the device
- *	is not found or a pointer to the device. The device has not had
- *	its reference counter increased so the caller must be careful
- *	about locking. The caller must hold RCU lock.
- */
-
-struct net_device *dev_get_by_napi_id(unsigned int napi_id)
-{
-	struct napi_struct *napi;
-
-	WARN_ON_ONCE(!rcu_read_lock_held());
-
-	if (napi_id < MIN_NAPI_ID)
-		return NULL;
-
-	napi = napi_by_id(napi_id);
-
-	return napi ? napi->dev : NULL;
-}
-EXPORT_SYMBOL(dev_get_by_napi_id);
 
 /**
  *	netdev_get_name - get a netdevice name, knowing its ifindex.
@@ -1862,7 +1834,7 @@ static inline int deliver_skb(struct sk_buff *skb,
 {
 	if (unlikely(skb_orphan_frags(skb, GFP_ATOMIC)))
 		return -ENOMEM;
-	refcount_inc(&skb->users);
+	atomic_inc(&skb->users);
 	return pt_prev->func(skb, skb->dev, pt_prev, orig_dev);
 }
 
@@ -2484,10 +2456,10 @@ void __dev_kfree_skb_irq(struct sk_buff *skb, enum skb_free_reason reason)
 	if (unlikely(!skb))
 		return;
 
-	if (likely(refcount_read(&skb->users) == 1)) {
+	if (likely(atomic_read(&skb->users) == 1)) {
 		smp_rmb();
-		refcount_set(&skb->users, 0);
-	} else if (likely(!refcount_dec_and_test(&skb->users))) {
+		atomic_set(&skb->users, 0);
+	} else if (likely(!atomic_dec_and_test(&skb->users))) {
 		return;
 	}
 	get_kfree_skb_cb(skb)->reason = reason;
@@ -2639,47 +2611,6 @@ out:
 	return ret;
 }
 EXPORT_SYMBOL(skb_checksum_help);
-
-int skb_crc32c_csum_help(struct sk_buff *skb)
-{
-	__le32 crc32c_csum;
-	int ret = 0, offset, start;
-
-	if (skb->ip_summed != CHECKSUM_PARTIAL)
-		goto out;
-
-	if (unlikely(skb_is_gso(skb)))
-		goto out;
-
-	/* Before computing a checksum, we should make sure no frag could
-	 * be modified by an external entity : checksum could be wrong.
-	 */
-	if (unlikely(skb_has_shared_frag(skb))) {
-		ret = __skb_linearize(skb);
-		if (ret)
-			goto out;
-	}
-	start = skb_checksum_start_offset(skb);
-	offset = start + offsetof(struct sctphdr, checksum);
-	if (WARN_ON_ONCE(offset >= skb_headlen(skb))) {
-		ret = -EINVAL;
-		goto out;
-	}
-	if (skb_cloned(skb) &&
-	    !skb_clone_writable(skb, offset + sizeof(__le32))) {
-		ret = pskb_expand_head(skb, 0, 0, GFP_ATOMIC);
-		if (ret)
-			goto out;
-	}
-	crc32c_csum = cpu_to_le32(~__skb_checksum(skb, start,
-						  skb->len - start, ~(__u32)0,
-						  crc32c_csum_stub));
-	*(__le32 *)(skb->data + offset) = crc32c_csum;
-	skb->ip_summed = CHECKSUM_NONE;
-	skb->csum_not_inet = 0;
-out:
-	return ret;
-}
 
 __be16 skb_network_protocol(struct sk_buff *skb, int *depth)
 {
@@ -3023,17 +2954,6 @@ static struct sk_buff *validate_xmit_vlan(struct sk_buff *skb,
 	return skb;
 }
 
-int skb_csum_hwoffload_help(struct sk_buff *skb,
-			    const netdev_features_t features)
-{
-	if (unlikely(skb->csum_not_inet))
-		return !!(features & NETIF_F_SCTP_CRC) ? 0 :
-			skb_crc32c_csum_help(skb);
-
-	return !!(features & NETIF_F_CSUM_MASK) ? 0 : skb_checksum_help(skb);
-}
-EXPORT_SYMBOL(skb_csum_hwoffload_help);
-
 static struct sk_buff *validate_xmit_skb(struct sk_buff *skb, struct net_device *dev)
 {
 	netdev_features_t features;
@@ -3072,7 +2992,8 @@ static struct sk_buff *validate_xmit_skb(struct sk_buff *skb, struct net_device 
 			else
 				skb_set_transport_header(skb,
 							 skb_checksum_start_offset(skb));
-			if (skb_csum_hwoffload_help(skb, features))
+			if (!(features & NETIF_F_CSUM_MASK) &&
+			    skb_checksum_help(skb))
 				goto out_kfree_skb;
 		}
 	}
@@ -3258,7 +3179,7 @@ sch_handle_egress(struct sk_buff *skb, int *ret, struct net_device *dev)
 	/* qdisc_skb_cb(skb)->pkt_len was already set by the caller. */
 	qdisc_bstats_cpu_update(cl->q, skb);
 
-	switch (tcf_classify(skb, cl, &cl_res, false)) {
+	switch (tc_classify(skb, cl, &cl_res, false)) {
 	case TC_ACT_OK:
 	case TC_ACT_RECLASSIFY:
 		skb->tc_index = TC_H_MIN(cl_res.classid);
@@ -3270,7 +3191,6 @@ sch_handle_egress(struct sk_buff *skb, int *ret, struct net_device *dev)
 		return NULL;
 	case TC_ACT_STOLEN:
 	case TC_ACT_QUEUED:
-	case TC_ACT_TRAP:
 		*ret = NET_XMIT_SUCCESS;
 		consume_skb(skb);
 		return NULL;
@@ -3955,7 +3875,7 @@ static __latent_entropy void net_tx_action(struct softirq_action *h)
 
 			clist = clist->next;
 
-			WARN_ON(refcount_read(&skb->users));
+			WARN_ON(atomic_read(&skb->users));
 			if (likely(get_kfree_skb_cb(skb)->reason == SKB_REASON_CONSUMED))
 				trace_consume_skb(skb);
 			else
@@ -4029,7 +3949,7 @@ sch_handle_ingress(struct sk_buff *skb, struct packet_type **pt_prev, int *ret,
 	skb->tc_at_ingress = 1;
 	qdisc_bstats_cpu_update(cl->q, skb);
 
-	switch (tcf_classify(skb, cl, &cl_res, false)) {
+	switch (tc_classify(skb, cl, &cl_res, false)) {
 	case TC_ACT_OK:
 	case TC_ACT_RECLASSIFY:
 		skb->tc_index = TC_H_MIN(cl_res.classid);
@@ -4040,7 +3960,6 @@ sch_handle_ingress(struct sk_buff *skb, struct packet_type **pt_prev, int *ret,
 		return NULL;
 	case TC_ACT_STOLEN:
 	case TC_ACT_QUEUED:
-	case TC_ACT_TRAP:
 		consume_skb(skb);
 		return NULL;
 	case TC_ACT_REDIRECT:
@@ -4342,12 +4261,13 @@ static struct static_key generic_xdp_needed __read_mostly;
 
 static int generic_xdp_install(struct net_device *dev, struct netdev_xdp *xdp)
 {
-	struct bpf_prog *old = rtnl_dereference(dev->xdp_prog);
 	struct bpf_prog *new = xdp->prog;
 	int ret = 0;
 
 	switch (xdp->command) {
-	case XDP_SETUP_PROG:
+	case XDP_SETUP_PROG: {
+		struct bpf_prog *old = rtnl_dereference(dev->xdp_prog);
+
 		rcu_assign_pointer(dev->xdp_prog, new);
 		if (old)
 			bpf_prog_put(old);
@@ -4359,10 +4279,10 @@ static int generic_xdp_install(struct net_device *dev, struct netdev_xdp *xdp)
 			dev_disable_lro(dev);
 		}
 		break;
+	}
 
 	case XDP_QUERY_PROG:
-		xdp->prog_attached = !!old;
-		xdp->prog_id = old ? old->aux->id : 0;
+		xdp->prog_attached = !!rcu_access_pointer(dev->xdp_prog);
 		break;
 
 	default:
@@ -4715,6 +4635,9 @@ static enum gro_result dev_gro_receive(struct napi_struct *napi, struct sk_buff 
 	int grow;
 
 	if (netif_elide_gro(skb->dev))
+		goto normal;
+
+	if (skb->csum_bad)
 		goto normal;
 
 	gro_list_prepare(napi, skb);
@@ -6765,7 +6688,7 @@ int dev_change_flags(struct net_device *dev, unsigned int flags)
 }
 EXPORT_SYMBOL(dev_change_flags);
 
-int __dev_set_mtu(struct net_device *dev, int new_mtu)
+static int __dev_set_mtu(struct net_device *dev, int new_mtu)
 {
 	const struct net_device_ops *ops = dev->netdev_ops;
 
@@ -6775,7 +6698,6 @@ int __dev_set_mtu(struct net_device *dev, int new_mtu)
 	dev->mtu = new_mtu;
 	return 0;
 }
-EXPORT_SYMBOL(__dev_set_mtu);
 
 /**
  *	dev_set_mtu - Change maximum transfer unit
@@ -6945,7 +6867,7 @@ int dev_change_proto_down(struct net_device *dev, bool proto_down)
 }
 EXPORT_SYMBOL(dev_change_proto_down);
 
-u8 __dev_xdp_attached(struct net_device *dev, xdp_op_t xdp_op, u32 *prog_id)
+bool __dev_xdp_attached(struct net_device *dev, xdp_op_t xdp_op)
 {
 	struct netdev_xdp xdp;
 
@@ -6954,25 +6876,18 @@ u8 __dev_xdp_attached(struct net_device *dev, xdp_op_t xdp_op, u32 *prog_id)
 
 	/* Query must always succeed. */
 	WARN_ON(xdp_op(dev, &xdp) < 0);
-	if (prog_id)
-		*prog_id = xdp.prog_id;
-
 	return xdp.prog_attached;
 }
 
 static int dev_xdp_install(struct net_device *dev, xdp_op_t xdp_op,
-			   struct netlink_ext_ack *extack, u32 flags,
+			   struct netlink_ext_ack *extack,
 			   struct bpf_prog *prog)
 {
 	struct netdev_xdp xdp;
 
 	memset(&xdp, 0, sizeof(xdp));
-	if (flags & XDP_FLAGS_HW_MODE)
-		xdp.command = XDP_SETUP_PROG_HW;
-	else
-		xdp.command = XDP_SETUP_PROG;
+	xdp.command = XDP_SETUP_PROG;
 	xdp.extack = extack;
-	xdp.flags = flags;
 	xdp.prog = prog;
 
 	return xdp_op(dev, &xdp);
@@ -6998,7 +6913,7 @@ int dev_change_xdp_fd(struct net_device *dev, struct netlink_ext_ack *extack,
 	ASSERT_RTNL();
 
 	xdp_op = xdp_chk = ops->ndo_xdp;
-	if (!xdp_op && (flags & (XDP_FLAGS_DRV_MODE | XDP_FLAGS_HW_MODE)))
+	if (!xdp_op && (flags & XDP_FLAGS_DRV_MODE))
 		return -EOPNOTSUPP;
 	if (!xdp_op || (flags & XDP_FLAGS_SKB_MODE))
 		xdp_op = generic_xdp_install;
@@ -7006,10 +6921,10 @@ int dev_change_xdp_fd(struct net_device *dev, struct netlink_ext_ack *extack,
 		xdp_chk = generic_xdp_install;
 
 	if (fd >= 0) {
-		if (xdp_chk && __dev_xdp_attached(dev, xdp_chk, NULL))
+		if (xdp_chk && __dev_xdp_attached(dev, xdp_chk))
 			return -EEXIST;
 		if ((flags & XDP_FLAGS_UPDATE_IF_NOEXIST) &&
-		    __dev_xdp_attached(dev, xdp_op, NULL))
+		    __dev_xdp_attached(dev, xdp_op))
 			return -EBUSY;
 
 		prog = bpf_prog_get_type(fd, BPF_PROG_TYPE_XDP);
@@ -7017,7 +6932,7 @@ int dev_change_xdp_fd(struct net_device *dev, struct netlink_ext_ack *extack,
 			return PTR_ERR(prog);
 	}
 
-	err = dev_xdp_install(dev, xdp_op, extack, flags, prog);
+	err = dev_xdp_install(dev, xdp_op, extack, prog);
 	if (err < 0 && prog)
 		bpf_prog_put(prog);
 
@@ -7108,7 +7023,7 @@ static void rollback_registered_many(struct list_head *head)
 
 		if (!dev->rtnl_link_ops ||
 		    dev->rtnl_link_state == RTNL_LINK_INITIALIZED)
-			skb = rtmsg_ifinfo_build_skb(RTM_DELLINK, dev, ~0U, 0,
+			skb = rtmsg_ifinfo_build_skb(RTM_DELLINK, dev, ~0U,
 						     GFP_KERNEL);
 
 		/*
@@ -7836,7 +7751,7 @@ void netdev_stats_to_stats64(struct rtnl_link_stats64 *stats64,
 {
 #if BITS_PER_LONG == 64
 	BUILD_BUG_ON(sizeof(*stats64) < sizeof(*netdev_stats));
-	memcpy(stats64, netdev_stats, sizeof(*netdev_stats));
+	memcpy(stats64, netdev_stats, sizeof(*stats64));
 	/* zero out counters that only exist in rtnl_link_stats64 */
 	memset((char *)stats64 + sizeof(*netdev_stats), 0,
 	       sizeof(*stats64) - sizeof(*netdev_stats));
@@ -8693,6 +8608,7 @@ static int __init net_dev_init(void)
 	rc = cpuhp_setup_state_nocalls(CPUHP_NET_DEV_DEAD, "net/dev:dead",
 				       NULL, dev_cpu_dead);
 	WARN_ON(rc < 0);
+	dst_subsys_init();
 	rc = 0;
 out:
 	return rc;

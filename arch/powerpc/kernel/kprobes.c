@@ -164,13 +164,17 @@ NOKPROBE_SYMBOL(arch_prepare_kprobe);
 
 void arch_arm_kprobe(struct kprobe *p)
 {
-	patch_instruction(p->addr, BREAKPOINT_INSTRUCTION);
+	*p->addr = BREAKPOINT_INSTRUCTION;
+	flush_icache_range((unsigned long) p->addr,
+			   (unsigned long) p->addr + sizeof(kprobe_opcode_t));
 }
 NOKPROBE_SYMBOL(arch_arm_kprobe);
 
 void arch_disarm_kprobe(struct kprobe *p)
 {
-	patch_instruction(p->addr, p->opcode);
+	*p->addr = p->opcode;
+	flush_icache_range((unsigned long) p->addr,
+			   (unsigned long) p->addr + sizeof(kprobe_opcode_t));
 }
 NOKPROBE_SYMBOL(arch_disarm_kprobe);
 
@@ -217,7 +221,7 @@ static nokprobe_inline void set_current_kprobe(struct kprobe *p, struct pt_regs 
 	kcb->kprobe_saved_msr = regs->msr;
 }
 
-bool arch_kprobe_on_func_entry(unsigned long offset)
+bool arch_function_offset_within_entry(unsigned long offset)
 {
 #ifdef PPC64_ELF_ABI_v2
 #ifdef CONFIG_KPROBES_ON_FTRACE

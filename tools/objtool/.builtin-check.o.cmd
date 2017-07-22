@@ -1,19 +1,46 @@
-cmd_/usr/src/linux-gpdpocket/tools/objtool/builtin-check.o := gcc -Wp,-MD,/usr/src/linux-gpdpocket/tools/objtool/.builtin-check.o.d -Wp,-MT,/usr/src/linux-gpdpocket/tools/objtool/builtin-check.o -Wall -Werror -Wbad-function-cast -Wdeclaration-after-statement -Wformat-security -Wformat-y2k -Winit-self -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-system-headers -Wold-style-definition -Wpacked -Wredundant-decls -Wshadow -Wstrict-prototypes -Wswitch-default -Wswitch-enum -Wundef -Wwrite-strings -Wformat -Wstrict-aliasing=3 -Wno-switch-default -Wno-switch-enum -fomit-frame-pointer -O2 -g -I/usr/src/linux-gpdpocket/tools/include -I/usr/src/linux-gpdpocket/tools/arch/x86/include/uapi -I/usr/src/linux-gpdpocket/tools/lib -D"BUILD_STR(s)=\#s" -c -o /usr/src/linux-gpdpocket/tools/objtool/builtin-check.o builtin-check.c
+cmd_/usr/src/linux-gpdpocket/tools/objtool/builtin-check.o := gcc -Wp,-MD,/usr/src/linux-gpdpocket/tools/objtool/.builtin-check.o.d -Wp,-MT,/usr/src/linux-gpdpocket/tools/objtool/builtin-check.o -Wall -Werror -Wbad-function-cast -Wdeclaration-after-statement -Wformat-security -Wformat-y2k -Winit-self -Wmissing-declarations -Wmissing-prototypes -Wnested-externs -Wno-system-headers -Wold-style-definition -Wpacked -Wredundant-decls -Wshadow -Wstrict-prototypes -Wswitch-default -Wswitch-enum -Wundef -Wwrite-strings -Wformat -Wstrict-aliasing=3 -fomit-frame-pointer -O2 -g -I/usr/src/linux-gpdpocket/tools/include -I/usr/src/linux-gpdpocket/tools/arch/x86/include/uapi -I/usr/src/linux-gpdpocket/tools/lib -D"BUILD_STR(s)=\#s" -c -o /usr/src/linux-gpdpocket/tools/objtool/builtin-check.o builtin-check.c
 
 source_/usr/src/linux-gpdpocket/tools/objtool/builtin-check.o := builtin-check.c
 
 deps_/usr/src/linux-gpdpocket/tools/objtool/builtin-check.o := \
   /usr/include/stdc-predef.h \
-  /usr/src/linux-gpdpocket/tools/lib/subcmd/parse-options.h \
-  /usr/src/linux-gpdpocket/tools/include/linux/kernel.h \
-  /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
-  /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h \
-  /usr/include/assert.h \
+  /usr/include/string.h \
   /usr/include/features.h \
   /usr/include/x86_64-linux-gnu/sys/cdefs.h \
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h \
+  /usr/include/xlocale.h \
+  /usr/include/x86_64-linux-gnu/bits/string.h \
+  /usr/include/x86_64-linux-gnu/bits/string2.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap-16.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/string3.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/sigset.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/select2.h \
+  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
+  /usr/src/linux-gpdpocket/tools/lib/subcmd/parse-options.h \
+  /usr/src/linux-gpdpocket/tools/include/linux/kernel.h \
+  /usr/lib/gcc/x86_64-linux-gnu/5/include/stdarg.h \
+  /usr/include/assert.h \
   /usr/src/linux-gpdpocket/tools/include/linux/compiler.h \
   /usr/src/linux-gpdpocket/tools/include/linux/compiler-gcc.h \
   /usr/src/linux-gpdpocket/tools/include/linux/types.h \
@@ -30,15 +57,7 @@ deps_/usr/src/linux-gpdpocket/tools/objtool/builtin-check.o := \
   /usr/include/asm/posix_types.h \
   /usr/include/asm/posix_types_64.h \
   /usr/include/asm-generic/posix_types.h \
-  /usr/include/endian.h \
-  /usr/include/x86_64-linux-gnu/bits/endian.h \
-  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
-  /usr/include/x86_64-linux-gnu/bits/types.h \
-  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
-  /usr/include/x86_64-linux-gnu/bits/byteswap-16.h \
-  /usr/include/byteswap.h \
   builtin.h \
-  check.h \
   elf.h \
   /usr/include/stdio.h \
   /usr/include/libio.h \
@@ -50,15 +69,6 @@ deps_/usr/src/linux-gpdpocket/tools/objtool/builtin-check.o := \
   /usr/include/x86_64-linux-gnu/bits/stdio2.h \
   /usr/include/gelf.h \
   /usr/include/libelf.h \
-  /usr/include/x86_64-linux-gnu/sys/types.h \
-  /usr/include/time.h \
-  /usr/include/x86_64-linux-gnu/sys/select.h \
-  /usr/include/x86_64-linux-gnu/bits/select.h \
-  /usr/include/x86_64-linux-gnu/bits/sigset.h \
-  /usr/include/x86_64-linux-gnu/bits/time.h \
-  /usr/include/x86_64-linux-gnu/bits/select2.h \
-  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
-  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/elf.h \
   /usr/include/x86_64-linux-gnu/bits/auxv.h \
   /usr/src/linux-gpdpocket/tools/include/linux/list.h \
@@ -78,8 +88,9 @@ deps_/usr/src/linux-gpdpocket/tools/objtool/builtin-check.o := \
   /usr/src/linux-gpdpocket/tools/include/asm-generic/bitops/atomic.h \
   /usr/src/linux-gpdpocket/tools/include/linux/hash.h \
   /usr/src/linux-gpdpocket/tools/include/linux/log2.h \
-  cfi.h \
+  special.h \
   arch.h \
+  warn.h \
 
 /usr/src/linux-gpdpocket/tools/objtool/builtin-check.o: $(deps_/usr/src/linux-gpdpocket/tools/objtool/builtin-check.o)
 

@@ -1,1 +1,1 @@
-cmd_net/packet/built-in.o :=  rm -f net/packet/built-in.o; ar rcSTPD net/packet/built-in.o net/packet/af_packet.o 
+cmd_net/packet/built-in.o :=  ld -m elf_x86_64   -r -o net/packet/built-in.o net/packet/af_packet.o 

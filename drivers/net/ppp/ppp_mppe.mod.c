@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -23,4 +22,4 @@ __attribute__((section(".modinfo"))) =
 "depends=ppp_generic";
 
 
-MODULE_INFO(srcversion, "1354553F28FE3C49400B0D3");
+MODULE_INFO(srcversion, "FC1AFC8C392517AA166FDEE");

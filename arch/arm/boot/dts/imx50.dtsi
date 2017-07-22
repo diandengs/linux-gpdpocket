@@ -12,7 +12,6 @@
  */
 
 #include "imx50-pinfunc.h"
-#include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/clock/imx5-clock.h>
 
 / {

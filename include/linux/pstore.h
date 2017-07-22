@@ -138,10 +138,7 @@ struct pstore_record {
  *		memory allocation may be broken during an Oops. Regardless,
  *		@buf must be proccesed or copied before returning. The
  *		backend is also expected to write @id with something that
- *		can help identify this record to a future @erase callback.
- *		The @time field will be prepopulated with the current time,
- *		when available. The @size field will have the size of data
- *		in @buf.
+ 8		can help identify this record to a future @erase callback.
  *
  *	Returns 0 on success, and non-zero on error.
  *

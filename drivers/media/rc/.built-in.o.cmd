@@ -1,1 +1,1 @@
-cmd_drivers/media/rc/built-in.o :=  rm -f drivers/media/rc/built-in.o; ar rcSTPD drivers/media/rc/built-in.o drivers/media/rc/keymaps/built-in.o 
+cmd_drivers/media/rc/built-in.o :=  ld -m elf_x86_64   -r -o drivers/media/rc/built-in.o drivers/media/rc/keymaps/built-in.o 

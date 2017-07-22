@@ -1,4 +1,4 @@
-cmd_arch/x86/kernel/vmlinux.lds := gcc -E -Wp,-MD,arch/x86/kernel/.vmlinux.lds.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__     -Ux86_64 -P -C -Ux86 -D__ASSEMBLY__ -DLINKER_SCRIPT -o arch/x86/kernel/vmlinux.lds arch/x86/kernel/vmlinux.lds.S
+cmd_arch/x86/kernel/vmlinux.lds := gcc -E -Wp,-MD,arch/x86/kernel/.vmlinux.lds.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__     -Ux86_64 -P -C -Ux86 -D__ASSEMBLY__ -DLINKER_SCRIPT -o arch/x86/kernel/vmlinux.lds arch/x86/kernel/vmlinux.lds.S
 
 source_arch/x86/kernel/vmlinux.lds := arch/x86/kernel/vmlinux.lds.S
 
@@ -21,7 +21,8 @@ deps_arch/x86/kernel/vmlinux.lds := \
     $(wildcard include/config/tracing.h) \
     $(wildcard include/config/ftrace/syscalls.h) \
     $(wildcard include/config/serial/earlycon.h) \
-    $(wildcard include/config/timer/of.h) \
+    $(wildcard include/config/clksrc/of.h) \
+    $(wildcard include/config/clkevt/of.h) \
     $(wildcard include/config/irqchip.h) \
     $(wildcard include/config/common/clk.h) \
     $(wildcard include/config/of/iommu.h) \
@@ -49,6 +50,7 @@ deps_arch/x86/kernel/vmlinux.lds := \
     $(wildcard include/config/compat.h) \
     $(wildcard include/config/ia32/emulation.h) \
   include/linux/compiler.h \
+    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/enable/must/check.h) \
     $(wildcard include/config/enable/warn/deprecated.h) \
   arch/x86/include/asm/page.h \

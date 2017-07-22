@@ -132,15 +132,18 @@ static int cxl_handle_segment_miss(struct cxl_context *ctx,
 	return IRQ_HANDLED;
 }
 
-int cxl_handle_mm_fault(struct mm_struct *mm, u64 dsisr, u64 dar)
+static void cxl_handle_page_fault(struct cxl_context *ctx,
+				  struct mm_struct *mm, u64 dsisr, u64 dar)
 {
 	unsigned flt = 0;
 	int result;
 	unsigned long access, flags, inv_flags = 0;
 
+	trace_cxl_pte_miss(ctx, dsisr, dar);
+
 	if ((result = copro_handle_mm_fault(mm, dar, dsisr, &flt))) {
 		pr_devel("copro_handle_mm_fault failed: %#x\n", result);
-		return result;
+		return cxl_ack_ae(ctx);
 	}
 
 	if (!radix_enabled()) {
@@ -152,8 +155,9 @@ int cxl_handle_mm_fault(struct mm_struct *mm, u64 dsisr, u64 dar)
 		if (dsisr & CXL_PSL_DSISR_An_S)
 			access |= _PAGE_WRITE;
 
-		if (!mm && (REGION_ID(dar) != USER_REGION_ID))
-			access |= _PAGE_PRIVILEGED;
+		access |= _PAGE_PRIVILEGED;
+		if ((!ctx->kernel) || (REGION_ID(dar) == USER_REGION_ID))
+			access &= ~_PAGE_PRIVILEGED;
 
 		if (dsisr & DSISR_NOHPTE)
 			inv_flags |= HPTE_NOHPTE_UPDATE;
@@ -162,21 +166,8 @@ int cxl_handle_mm_fault(struct mm_struct *mm, u64 dsisr, u64 dar)
 		hash_page_mm(mm, dar, access, 0x300, inv_flags);
 		local_irq_restore(flags);
 	}
-	return 0;
-}
-
-static void cxl_handle_page_fault(struct cxl_context *ctx,
-				  struct mm_struct *mm,
-				  u64 dsisr, u64 dar)
-{
-	trace_cxl_pte_miss(ctx, dsisr, dar);
-
-	if (cxl_handle_mm_fault(mm, dsisr, dar)) {
-		cxl_ack_ae(ctx);
-	} else {
-		pr_devel("Page fault successfully handled for pe: %i!\n", ctx->pe);
-		cxl_ops->ack_irq(ctx, CXL_PSL_TFC_An_R, 0);
-	}
+	pr_devel("Page fault successfully handled for pe: %i!\n", ctx->pe);
+	cxl_ops->ack_irq(ctx, CXL_PSL_TFC_An_R, 0);
 }
 
 /*

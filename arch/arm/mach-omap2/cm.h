@@ -24,11 +24,8 @@
 
 # ifndef __ASSEMBLER__
 #include <linux/clk/ti.h>
-
-#include "prcm-common.h"
-
-extern struct omap_domain_base cm_base;
-extern struct omap_domain_base cm2_base;
+extern void __iomem *cm_base;
+extern void __iomem *cm2_base;
 extern void omap2_set_globals_cm(void __iomem *cm, void __iomem *cm2);
 # endif
 

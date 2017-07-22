@@ -1,1 +1,1 @@
-cmd_sound/isa/galaxy/built-in.o :=  rm -f sound/isa/galaxy/built-in.o; ar rcSTPD sound/isa/galaxy/built-in.o
+cmd_sound/isa/galaxy/built-in.o :=  rm -f sound/isa/galaxy/built-in.o; ar rcsD sound/isa/galaxy/built-in.o

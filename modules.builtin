@@ -106,7 +106,6 @@ kernel/drivers/dma/dw/dw_dmac_core.ko
 kernel/drivers/dma/dw/dw_dmac_pci.ko
 kernel/drivers/dma/hsu/hsu_dma.ko
 kernel/drivers/edac/edac_core.ko
-kernel/drivers/extcon/extcon-core.ko
 kernel/drivers/firmware/dmi-sysfs.ko
 kernel/drivers/gpio/gpio-crystalcove.ko
 kernel/drivers/hid/hid.ko

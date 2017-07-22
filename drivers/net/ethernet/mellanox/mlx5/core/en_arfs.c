@@ -178,25 +178,33 @@ static int arfs_add_default_rule(struct mlx5e_priv *priv,
 	struct mlx5_flow_destination dest;
 	MLX5_DECLARE_FLOW_ACT(flow_act);
 	struct mlx5_flow_spec *spec;
-	enum mlx5e_traffic_types tt;
 	int err = 0;
 
-	spec = kvzalloc(sizeof(*spec), GFP_KERNEL);
+	spec = mlx5_vzalloc(sizeof(*spec));
 	if (!spec) {
+		netdev_err(priv->netdev, "%s: alloc failed\n", __func__);
 		err = -ENOMEM;
 		goto out;
 	}
 
 	dest.type = MLX5_FLOW_DESTINATION_TYPE_TIR;
-	tt = arfs_get_tt(type);
-	if (tt == -EINVAL) {
-		netdev_err(priv->netdev, "%s: bad arfs_type: %d\n",
-			   __func__, type);
+	switch (type) {
+	case ARFS_IPV4_TCP:
+		dest.tir_num = tir[MLX5E_TT_IPV4_TCP].tirn;
+		break;
+	case ARFS_IPV4_UDP:
+		dest.tir_num = tir[MLX5E_TT_IPV4_UDP].tirn;
+		break;
+	case ARFS_IPV6_TCP:
+		dest.tir_num = tir[MLX5E_TT_IPV6_TCP].tirn;
+		break;
+	case ARFS_IPV6_UDP:
+		dest.tir_num = tir[MLX5E_TT_IPV6_UDP].tirn;
+		break;
+	default:
 		err = -EINVAL;
 		goto out;
 	}
-
-	dest.tir_num = tir[tt].tirn;
 
 	arfs_t->default_rule = mlx5_add_flow_rules(arfs_t->ft.t, spec,
 						   &flow_act,
@@ -229,7 +237,7 @@ static int arfs_create_groups(struct mlx5e_flow_table *ft,
 
 	ft->g = kcalloc(MLX5E_ARFS_NUM_GROUPS,
 			sizeof(*ft->g), GFP_KERNEL);
-	in = kvzalloc(inlen, GFP_KERNEL);
+	in = mlx5_vzalloc(inlen);
 	if  (!in || !ft->g) {
 		kvfree(ft->g);
 		kvfree(in);
@@ -473,8 +481,9 @@ static struct mlx5_flow_handle *arfs_add_rule(struct mlx5e_priv *priv,
 	struct mlx5_flow_table *ft;
 	int err = 0;
 
-	spec = kvzalloc(sizeof(*spec), GFP_KERNEL);
+	spec = mlx5_vzalloc(sizeof(*spec));
 	if (!spec) {
+		netdev_err(priv->netdev, "%s: alloc failed\n", __func__);
 		err = -ENOMEM;
 		goto out;
 	}

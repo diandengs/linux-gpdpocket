@@ -21,7 +21,6 @@
 #include <linux/percpu-refcount.h>
 #include <linux/list.h>
 #include <linux/mutex.h>
-#include <linux/uuid.h>
 #include <linux/nvme.h>
 #include <linux/configfs.h>
 #include <linux/rcupdate.h>
@@ -47,7 +46,6 @@ struct nvmet_ns {
 	u32			blksize_shift;
 	loff_t			size;
 	u8			nguid[16];
-	uuid_t			uuid;
 
 	bool			enabled;
 	struct nvmet_subsys	*subsys;

@@ -263,8 +263,7 @@ static int refill_swap_slots_cache(struct swap_slots_cache *cache)
 
 	cache->cur = 0;
 	if (swap_slot_cache_active)
-		cache->nr = get_swap_pages(SWAP_SLOTS_CACHE_SIZE, false,
-					   cache->slots);
+		cache->nr = get_swap_pages(SWAP_SLOTS_CACHE_SIZE, cache->slots);
 
 	return cache->nr;
 }
@@ -273,11 +272,11 @@ int free_swap_slot(swp_entry_t entry)
 {
 	struct swap_slots_cache *cache;
 
-	cache = raw_cpu_ptr(&swp_slots);
+	cache = &get_cpu_var(swp_slots);
 	if (use_swap_slot_cache && cache->slots_ret) {
 		spin_lock_irq(&cache->free_lock);
 		/* Swap slots cache may be deactivated before acquiring lock */
-		if (!use_swap_slot_cache || !cache->slots_ret) {
+		if (!use_swap_slot_cache) {
 			spin_unlock_irq(&cache->free_lock);
 			goto direct_free;
 		}
@@ -297,22 +296,15 @@ int free_swap_slot(swp_entry_t entry)
 direct_free:
 		swapcache_free_entries(&entry, 1);
 	}
+	put_cpu_var(swp_slots);
 
 	return 0;
 }
 
-swp_entry_t get_swap_page(struct page *page)
+swp_entry_t get_swap_page(void)
 {
 	swp_entry_t entry, *pentry;
 	struct swap_slots_cache *cache;
-
-	entry.val = 0;
-
-	if (PageTransHuge(page)) {
-		if (IS_ENABLED(CONFIG_THP_SWAP))
-			get_swap_pages(1, true, &entry);
-		return entry;
-	}
 
 	/*
 	 * Preemption is allowed here, because we may sleep
@@ -325,6 +317,7 @@ swp_entry_t get_swap_page(struct page *page)
 	 */
 	cache = raw_cpu_ptr(&swp_slots);
 
+	entry.val = 0;
 	if (check_cache_active()) {
 		mutex_lock(&cache->alloc_lock);
 		if (cache->slots) {
@@ -344,7 +337,7 @@ repeat:
 			return entry;
 	}
 
-	get_swap_pages(1, false, &entry);
+	get_swap_pages(1, &entry);
 
 	return entry;
 }

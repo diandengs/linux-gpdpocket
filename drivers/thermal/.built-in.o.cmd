@@ -1,1 +1,1 @@
-cmd_drivers/thermal/built-in.o :=  rm -f drivers/thermal/built-in.o; ar rcSTPD drivers/thermal/built-in.o drivers/thermal/thermal_sys.o drivers/thermal/broadcom/built-in.o drivers/thermal/samsung/built-in.o 
+cmd_drivers/thermal/built-in.o :=  ld -m elf_x86_64   -r -o drivers/thermal/built-in.o drivers/thermal/thermal_sys.o drivers/thermal/broadcom/built-in.o drivers/thermal/samsung/built-in.o 

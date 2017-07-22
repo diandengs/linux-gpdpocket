@@ -1,1 +1,1 @@
-cmd_drivers/usb/mon/built-in.o :=  rm -f drivers/usb/mon/built-in.o; ar rcSTPD drivers/usb/mon/built-in.o drivers/usb/mon/usbmon.o 
+cmd_drivers/usb/mon/built-in.o :=  ld -m elf_x86_64   -r -o drivers/usb/mon/built-in.o drivers/usb/mon/usbmon.o 

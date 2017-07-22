@@ -483,6 +483,11 @@ static DECLARE_DELAYED_WORK(optimizing_work, kprobe_optimizer);
  */
 static void do_optimize_kprobes(void)
 {
+	/* Optimization never be done when disarmed */
+	if (kprobes_all_disarmed || !kprobes_allow_optimization ||
+	    list_empty(&optimizing_list))
+		return;
+
 	/*
 	 * The optimization/unoptimization refers online_cpus via
 	 * stop_machine() and cpu-hotplug modifies online_cpus.
@@ -490,19 +495,14 @@ static void do_optimize_kprobes(void)
 	 * This combination can cause a deadlock (cpu-hotplug try to lock
 	 * text_mutex but stop_machine can not be done because online_cpus
 	 * has been changed)
-	 * To avoid this deadlock, caller must have locked cpu hotplug
+	 * To avoid this deadlock, we need to call get_online_cpus()
 	 * for preventing cpu-hotplug outside of text_mutex locking.
 	 */
-	lockdep_assert_cpus_held();
-
-	/* Optimization never be done when disarmed */
-	if (kprobes_all_disarmed || !kprobes_allow_optimization ||
-	    list_empty(&optimizing_list))
-		return;
-
+	get_online_cpus();
 	mutex_lock(&text_mutex);
 	arch_optimize_kprobes(&optimizing_list);
 	mutex_unlock(&text_mutex);
+	put_online_cpus();
 }
 
 /*
@@ -513,13 +513,12 @@ static void do_unoptimize_kprobes(void)
 {
 	struct optimized_kprobe *op, *tmp;
 
-	/* See comment in do_optimize_kprobes() */
-	lockdep_assert_cpus_held();
-
 	/* Unoptimization must be done anytime */
 	if (list_empty(&unoptimizing_list))
 		return;
 
+	/* Ditto to do_optimize_kprobes */
+	get_online_cpus();
 	mutex_lock(&text_mutex);
 	arch_unoptimize_kprobes(&unoptimizing_list, &freeing_list);
 	/* Loop free_list for disarming */
@@ -538,6 +537,7 @@ static void do_unoptimize_kprobes(void)
 			list_del_init(&op->list);
 	}
 	mutex_unlock(&text_mutex);
+	put_online_cpus();
 }
 
 /* Reclaim all kprobes on the free_list */
@@ -562,7 +562,6 @@ static void kick_kprobe_optimizer(void)
 static void kprobe_optimizer(struct work_struct *work)
 {
 	mutex_lock(&kprobe_mutex);
-	cpus_read_lock();
 	/* Lock modules while optimizing kprobes */
 	mutex_lock(&module_mutex);
 
@@ -588,7 +587,6 @@ static void kprobe_optimizer(struct work_struct *work)
 	do_free_cleaned_kprobes();
 
 	mutex_unlock(&module_mutex);
-	cpus_read_unlock();
 	mutex_unlock(&kprobe_mutex);
 
 	/* Step 5: Kick optimizer again if needed */
@@ -652,8 +650,9 @@ static void optimize_kprobe(struct kprobe *p)
 /* Short cut to direct unoptimizing */
 static void force_unoptimize_kprobe(struct optimized_kprobe *op)
 {
-	lockdep_assert_cpus_held();
+	get_online_cpus();
 	arch_unoptimize_kprobe(op);
+	put_online_cpus();
 	if (kprobe_disabled(&op->kp))
 		arch_disarm_kprobe(&op->kp);
 }
@@ -792,7 +791,6 @@ static void try_to_optimize_kprobe(struct kprobe *p)
 		return;
 
 	/* For preparing optimization, jump_label_text_reserved() is called */
-	cpus_read_lock();
 	jump_label_lock();
 	mutex_lock(&text_mutex);
 
@@ -814,7 +812,6 @@ static void try_to_optimize_kprobe(struct kprobe *p)
 out:
 	mutex_unlock(&text_mutex);
 	jump_label_unlock();
-	cpus_read_unlock();
 }
 
 #ifdef CONFIG_SYSCTL
@@ -829,7 +826,6 @@ static void optimize_all_kprobes(void)
 	if (kprobes_allow_optimization)
 		goto out;
 
-	cpus_read_lock();
 	kprobes_allow_optimization = true;
 	for (i = 0; i < KPROBE_TABLE_SIZE; i++) {
 		head = &kprobe_table[i];
@@ -837,7 +833,6 @@ static void optimize_all_kprobes(void)
 			if (!kprobe_disabled(p))
 				optimize_kprobe(p);
 	}
-	cpus_read_unlock();
 	printk(KERN_INFO "Kprobes globally optimized\n");
 out:
 	mutex_unlock(&kprobe_mutex);
@@ -856,7 +851,6 @@ static void unoptimize_all_kprobes(void)
 		return;
 	}
 
-	cpus_read_lock();
 	kprobes_allow_optimization = false;
 	for (i = 0; i < KPROBE_TABLE_SIZE; i++) {
 		head = &kprobe_table[i];
@@ -865,7 +859,6 @@ static void unoptimize_all_kprobes(void)
 				unoptimize_kprobe(p, false);
 		}
 	}
-	cpus_read_unlock();
 	mutex_unlock(&kprobe_mutex);
 
 	/* Wait for unoptimizing completion */
@@ -1017,11 +1010,14 @@ static void arm_kprobe(struct kprobe *kp)
 		arm_kprobe_ftrace(kp);
 		return;
 	}
-	cpus_read_lock();
+	/*
+	 * Here, since __arm_kprobe() doesn't use stop_machine(),
+	 * this doesn't cause deadlock on text_mutex. So, we don't
+	 * need get_online_cpus().
+	 */
 	mutex_lock(&text_mutex);
 	__arm_kprobe(kp);
 	mutex_unlock(&text_mutex);
-	cpus_read_unlock();
 }
 
 /* Disarm a kprobe with text_mutex */
@@ -1031,12 +1027,10 @@ static void disarm_kprobe(struct kprobe *kp, bool reopt)
 		disarm_kprobe_ftrace(kp);
 		return;
 	}
-
-	cpus_read_lock();
+	/* Ditto */
 	mutex_lock(&text_mutex);
 	__disarm_kprobe(kp, reopt);
 	mutex_unlock(&text_mutex);
-	cpus_read_unlock();
 }
 
 /*
@@ -1304,10 +1298,13 @@ static int register_aggr_kprobe(struct kprobe *orig_p, struct kprobe *p)
 	int ret = 0;
 	struct kprobe *ap = orig_p;
 
-	cpus_read_lock();
-
 	/* For preparing optimization, jump_label_text_reserved() is called */
 	jump_label_lock();
+	/*
+	 * Get online CPUs to avoid text_mutex deadlock.with stop machine,
+	 * which is invoked by unoptimize_kprobe() in add_new_kprobe()
+	 */
+	get_online_cpus();
 	mutex_lock(&text_mutex);
 
 	if (!kprobe_aggrprobe(orig_p)) {
@@ -1355,8 +1352,8 @@ static int register_aggr_kprobe(struct kprobe *orig_p, struct kprobe *p)
 
 out:
 	mutex_unlock(&text_mutex);
+	put_online_cpus();
 	jump_label_unlock();
-	cpus_read_unlock();
 
 	if (ret == 0 && kprobe_disabled(ap) && !kprobe_disabled(p)) {
 		ap->flags &= ~KPROBE_FLAG_DISABLED;
@@ -1558,12 +1555,9 @@ int register_kprobe(struct kprobe *p)
 		goto out;
 	}
 
-	cpus_read_lock();
-	/* Prevent text modification */
-	mutex_lock(&text_mutex);
+	mutex_lock(&text_mutex);	/* Avoiding text modification */
 	ret = prepare_kprobe(p);
 	mutex_unlock(&text_mutex);
-	cpus_read_unlock();
 	if (ret)
 		goto out;
 
@@ -1576,6 +1570,7 @@ int register_kprobe(struct kprobe *p)
 
 	/* Try to optimize kprobe */
 	try_to_optimize_kprobe(p);
+
 out:
 	mutex_unlock(&kprobe_mutex);
 
@@ -1771,13 +1766,24 @@ unsigned long __weak arch_deref_entry_point(void *entry)
 
 int register_jprobes(struct jprobe **jps, int num)
 {
+	struct jprobe *jp;
 	int ret = 0, i;
 
 	if (num <= 0)
 		return -EINVAL;
-
 	for (i = 0; i < num; i++) {
-		ret = register_jprobe(jps[i]);
+		unsigned long addr, offset;
+		jp = jps[i];
+		addr = arch_deref_entry_point(jp->entry);
+
+		/* Verify probepoint is a function entry point */
+		if (kallsyms_lookup_size_offset(addr, NULL, &offset) &&
+		    offset == 0) {
+			jp->kp.pre_handler = setjmp_pre_handler;
+			jp->kp.break_handler = longjmp_break_handler;
+			ret = register_kprobe(&jp->kp);
+		} else
+			ret = -EINVAL;
 
 		if (ret < 0) {
 			if (i > 0)
@@ -1785,30 +1791,13 @@ int register_jprobes(struct jprobe **jps, int num)
 			break;
 		}
 	}
-
 	return ret;
 }
 EXPORT_SYMBOL_GPL(register_jprobes);
 
 int register_jprobe(struct jprobe *jp)
 {
-	unsigned long addr, offset;
-	struct kprobe *kp = &jp->kp;
-
-	/*
-	 * Verify probepoint as well as the jprobe handler are
-	 * valid function entry points.
-	 */
-	addr = arch_deref_entry_point(jp->entry);
-
-	if (kallsyms_lookup_size_offset(addr, NULL, &offset) && offset == 0 &&
-	    kprobe_on_func_entry(kp->addr, kp->symbol_name, kp->offset)) {
-		kp->pre_handler = setjmp_pre_handler;
-		kp->break_handler = longjmp_break_handler;
-		return register_kprobe(kp);
-	}
-
-	return -EINVAL;
+	return register_jprobes(&jp, 1);
 }
 EXPORT_SYMBOL_GPL(register_jprobe);
 
@@ -1894,12 +1883,12 @@ static int pre_handler_kretprobe(struct kprobe *p, struct pt_regs *regs)
 }
 NOKPROBE_SYMBOL(pre_handler_kretprobe);
 
-bool __weak arch_kprobe_on_func_entry(unsigned long offset)
+bool __weak arch_function_offset_within_entry(unsigned long offset)
 {
 	return !offset;
 }
 
-bool kprobe_on_func_entry(kprobe_opcode_t *addr, const char *sym, unsigned long offset)
+bool function_offset_within_entry(kprobe_opcode_t *addr, const char *sym, unsigned long offset)
 {
 	kprobe_opcode_t *kp_addr = _kprobe_addr(addr, sym, offset);
 
@@ -1907,7 +1896,7 @@ bool kprobe_on_func_entry(kprobe_opcode_t *addr, const char *sym, unsigned long 
 		return false;
 
 	if (!kallsyms_lookup_size_offset((unsigned long)kp_addr, NULL, &offset) ||
-						!arch_kprobe_on_func_entry(offset))
+						!arch_function_offset_within_entry(offset))
 		return false;
 
 	return true;
@@ -1920,7 +1909,7 @@ int register_kretprobe(struct kretprobe *rp)
 	int i;
 	void *addr;
 
-	if (!kprobe_on_func_entry(rp->kp.addr, rp->kp.symbol_name, rp->kp.offset))
+	if (!function_offset_within_entry(rp->kp.addr, rp->kp.symbol_name, rp->kp.offset))
 		return -EINVAL;
 
 	if (kretprobe_blacklist_size) {

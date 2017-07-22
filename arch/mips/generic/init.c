@@ -161,7 +161,7 @@ void __init plat_time_init(void)
 		}
 	}
 
-	timer_probe();
+	clocksource_probe();
 }
 
 void __init arch_init_irq(void)

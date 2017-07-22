@@ -87,5 +87,4 @@
 
 &pp0 {
 	compatible = "marvell,prestera-98dx4251";
-	interrupts = <33>, <34>, <35>, <36>;
 };

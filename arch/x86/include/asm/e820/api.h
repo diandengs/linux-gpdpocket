@@ -4,7 +4,6 @@
 #include <asm/e820/types.h>
 
 extern struct e820_table *e820_table;
-extern struct e820_table *e820_table_kexec;
 extern struct e820_table *e820_table_firmware;
 
 extern unsigned long pci_mem_start;

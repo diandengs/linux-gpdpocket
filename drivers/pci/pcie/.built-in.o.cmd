@@ -1,1 +1,1 @@
-cmd_drivers/pci/pcie/built-in.o :=  rm -f drivers/pci/pcie/built-in.o; ar rcSTPD drivers/pci/pcie/built-in.o drivers/pci/pcie/aspm.o drivers/pci/pcie/pcieportdrv.o drivers/pci/pcie/aer/built-in.o drivers/pci/pcie/pme.o drivers/pci/pcie/pcie-dpc.o drivers/pci/pcie/ptm.o 
+cmd_drivers/pci/pcie/built-in.o :=  ld -m elf_x86_64   -r -o drivers/pci/pcie/built-in.o drivers/pci/pcie/aspm.o drivers/pci/pcie/pcieportdrv.o drivers/pci/pcie/aer/built-in.o drivers/pci/pcie/pme.o drivers/pci/pcie/pcie-dpc.o drivers/pci/pcie/ptm.o 

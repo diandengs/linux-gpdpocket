@@ -991,7 +991,7 @@ static noinline int bpf_jit_insn(struct bpf_jit *jit, struct bpf_prog *fp, int i
 		}
 		break;
 	}
-	case BPF_JMP | BPF_TAIL_CALL:
+	case BPF_JMP | BPF_CALL | BPF_X:
 		/*
 		 * Implicit input:
 		 *  B1: pointer to ctx
@@ -1329,7 +1329,6 @@ struct bpf_prog *bpf_int_jit_compile(struct bpf_prog *fp)
 	bpf_jit_binary_lock_ro(header);
 	fp->bpf_func = (void *) jit.prg_buf;
 	fp->jited = 1;
-	fp->jited_len = jit.size;
 free_addrs:
 	kfree(jit.addrs);
 out:

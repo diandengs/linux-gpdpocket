@@ -49,7 +49,6 @@ kernel/drivers/hid/hid-petalynx.ko
 kernel/drivers/hid/hid-picolcd.ko
 kernel/drivers/hid/hid-plantronics.ko
 kernel/drivers/hid/hid-primax.ko
-kernel/drivers/hid/hid-retrode.ko
 kernel/drivers/hid/hid-roccat.ko
 kernel/drivers/hid/hid-roccat-common.ko
 kernel/drivers/hid/hid-roccat-arvo.ko

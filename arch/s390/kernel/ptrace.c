@@ -1160,8 +1160,6 @@ static int s390_gs_cb_get(struct task_struct *target,
 		return -ENODEV;
 	if (!data)
 		return -ENODATA;
-	if (target == current)
-		save_gs_cb(data);
 	return user_regset_copyout(&pos, &count, &kbuf, &ubuf,
 				   data, 0, sizeof(struct gs_cb));
 }
@@ -1172,7 +1170,6 @@ static int s390_gs_cb_set(struct task_struct *target,
 			  const void *kbuf, const void __user *ubuf)
 {
 	struct gs_cb *data = target->thread.gs_cb;
-	int rc;
 
 	if (!MACHINE_HAS_GS)
 		return -ENODEV;
@@ -1180,18 +1177,10 @@ static int s390_gs_cb_set(struct task_struct *target,
 		data = kzalloc(sizeof(*data), GFP_KERNEL);
 		if (!data)
 			return -ENOMEM;
-		data->gsd = 25;
 		target->thread.gs_cb = data;
-		if (target == current)
-			__ctl_set_bit(2, 4);
-	} else if (target == current) {
-		save_gs_cb(data);
 	}
-	rc = user_regset_copyin(&pos, &count, &kbuf, &ubuf,
-				data, 0, sizeof(struct gs_cb));
-	if (target == current)
-		restore_gs_cb(data);
-	return rc;
+	return user_regset_copyin(&pos, &count, &kbuf, &ubuf,
+				  data, 0, sizeof(struct gs_cb));
 }
 
 static int s390_gs_bc_get(struct task_struct *target,

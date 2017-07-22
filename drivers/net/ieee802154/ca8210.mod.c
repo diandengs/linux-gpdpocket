@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -25,4 +24,4 @@ __attribute__((section(".modinfo"))) =
 MODULE_ALIAS("of:N*T*Ccascoda,ca8210");
 MODULE_ALIAS("of:N*T*Ccascoda,ca8210C*");
 
-MODULE_INFO(srcversion, "49720C4188D384F2E2E66E8");
+MODULE_INFO(srcversion, "1F4ED5EDDCE194F722399E8");

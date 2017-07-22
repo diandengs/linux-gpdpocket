@@ -1,1 +1,1 @@
-cmd_drivers/net/built-in.o :=  rm -f drivers/net/built-in.o; ar rcSTPD drivers/net/built-in.o drivers/net/Space.o drivers/net/loopback.o drivers/net/phy/built-in.o drivers/net/ethernet/built-in.o drivers/net/hamradio/built-in.o drivers/net/wireless/built-in.o drivers/net/usb/built-in.o 
+cmd_drivers/net/built-in.o :=  ld -m elf_x86_64   -r -o drivers/net/built-in.o drivers/net/Space.o drivers/net/loopback.o drivers/net/phy/built-in.o drivers/net/ethernet/built-in.o drivers/net/hamradio/built-in.o drivers/net/wireless/built-in.o drivers/net/usb/built-in.o 

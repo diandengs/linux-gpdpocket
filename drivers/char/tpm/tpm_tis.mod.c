@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -22,6 +21,8 @@ __used
 __attribute__((section(".modinfo"))) =
 "depends=tpm_tis_core,tpm";
 
+MODULE_ALIAS("acpi*:MSFT0101:*");
+MODULE_ALIAS("acpi*:??????:*");
 MODULE_ALIAS("pnp:dPNP0C31*");
 MODULE_ALIAS("acpi*:PNP0C31:*");
 MODULE_ALIAS("pnp:dATM1200*");
@@ -38,6 +39,5 @@ MODULE_ALIAS("pnp:dICO0102*");
 MODULE_ALIAS("acpi*:ICO0102:*");
 MODULE_ALIAS("pnp:d*");
 MODULE_ALIAS("acpi*::*");
-MODULE_ALIAS("acpi*:MSFT0101:*");
 
-MODULE_INFO(srcversion, "4C2CC369C5BE9992F310DE0");
+MODULE_INFO(srcversion, "3969784A3426432DC396F05");

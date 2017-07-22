@@ -227,14 +227,15 @@ static void  nicvf_handle_mbx_intr(struct nicvf *nic)
 		nic->speed = mbx.link_status.speed;
 		nic->mac_type = mbx.link_status.mac_type;
 		if (nic->link_up) {
-			netdev_info(nic->netdev, "Link is Up %d Mbps %s duplex\n",
-				    nic->speed,
+			netdev_info(nic->netdev, "%s: Link is Up %d Mbps %s\n",
+				    nic->netdev->name, nic->speed,
 				    nic->duplex == DUPLEX_FULL ?
-				    "Full" : "Half");
+				"Full duplex" : "Half duplex");
 			netif_carrier_on(nic->netdev);
 			netif_tx_start_all_queues(nic->netdev);
 		} else {
-			netdev_info(nic->netdev, "Link is Down\n");
+			netdev_info(nic->netdev, "%s: Link is Down\n",
+				    nic->netdev->name);
 			netif_carrier_off(nic->netdev);
 			netif_tx_stop_all_queues(nic->netdev);
 		}
@@ -720,7 +721,8 @@ static void nicvf_rcv_pkt_handler(struct net_device *netdev,
 		return;
 
 	if (netif_msg_pktdata(nic)) {
-		netdev_info(nic->netdev, "skb 0x%p, len=%d\n", skb, skb->len);
+		netdev_info(nic->netdev, "%s: skb 0x%p, len=%d\n", netdev->name,
+			    skb, skb->len);
 		print_hex_dump(KERN_INFO, "", DUMP_PREFIX_OFFSET, 16, 1,
 			       skb->data, skb->len, true);
 	}
@@ -852,8 +854,10 @@ done:
 			netif_tx_wake_queue(txq);
 			nic = nic->pnicvf;
 			this_cpu_inc(nic->drv_stats->txq_wake);
-			netif_warn(nic, tx_err, netdev,
-				   "Transmit queue wakeup SQ%d\n", txq_idx);
+			if (netif_msg_tx_err(nic))
+				netdev_warn(netdev,
+					    "%s: Transmit queue wakeup SQ%d\n",
+					    netdev->name, txq_idx);
 		}
 	}
 
@@ -924,8 +928,9 @@ static void nicvf_handle_qs_err(unsigned long data)
 
 static void nicvf_dump_intr_status(struct nicvf *nic)
 {
-	netif_info(nic, intr, nic->netdev, "interrupt status 0x%llx\n",
-		   nicvf_reg_read(nic, NIC_VF_INT));
+	if (netif_msg_intr(nic))
+		netdev_info(nic->netdev, "%s: interrupt status 0x%llx\n",
+			    nic->netdev->name, nicvf_reg_read(nic, NIC_VF_INT));
 }
 
 static irqreturn_t nicvf_misc_intr_handler(int irq, void *nicvf_irq)
@@ -1207,8 +1212,10 @@ static netdev_tx_t nicvf_xmit(struct sk_buff *skb, struct net_device *netdev)
 			netif_tx_wake_queue(txq);
 		} else {
 			this_cpu_inc(nic->drv_stats->txq_stop);
-			netif_warn(nic, tx_err, netdev,
-				   "Transmit ring full, stopping SQ%d\n", qid);
+			if (netif_msg_tx_err(nic))
+				netdev_warn(netdev,
+					    "%s: Transmit ring full, stopping SQ%d\n",
+					    netdev->name, qid);
 		}
 		return NETDEV_TX_BUSY;
 	}
@@ -1593,7 +1600,9 @@ static void nicvf_tx_timeout(struct net_device *dev)
 {
 	struct nicvf *nic = netdev_priv(dev);
 
-	netif_warn(nic, tx_err, dev, "Transmit timed out, resetting\n");
+	if (netif_msg_tx_err(nic))
+		netdev_warn(dev, "%s: Transmit timed out, resetting\n",
+			    dev->name);
 
 	this_cpu_inc(nic->drv_stats->tx_timeout);
 	schedule_work(&nic->reset_task);
@@ -1754,7 +1763,6 @@ static int nicvf_xdp(struct net_device *netdev, struct netdev_xdp *xdp)
 		return nicvf_xdp_setup(nic, xdp->prog);
 	case XDP_QUERY_PROG:
 		xdp->prog_attached = !!nic->xdp_prog;
-		xdp->prog_id = nic->xdp_prog ? nic->xdp_prog->aux->id : 0;
 		return 0;
 	default:
 		return -EINVAL;

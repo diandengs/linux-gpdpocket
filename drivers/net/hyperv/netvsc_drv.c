@@ -37,8 +37,6 @@
 #include <net/route.h>
 #include <net/sock.h>
 #include <net/pkt_sched.h>
-#include <net/checksum.h>
-#include <net/ip6_checksum.h>
 
 #include "hyperv_net.h"
 
@@ -68,8 +66,7 @@ static void netvsc_set_multicast_list(struct net_device *net)
 
 static int netvsc_open(struct net_device *net)
 {
-	struct net_device_context *ndev_ctx = netdev_priv(net);
-	struct netvsc_device *nvdev = ndev_ctx->nvdev;
+	struct netvsc_device *nvdev = net_device_to_netvsc_device(net);
 	struct rndis_device *rdev;
 	int ret = 0;
 
@@ -85,7 +82,7 @@ static int netvsc_open(struct net_device *net)
 	netif_tx_wake_all_queues(net);
 
 	rdev = nvdev->extension;
-	if (!rdev->link_state && !ndev_ctx->datapath)
+	if (!rdev->link_state)
 		netif_carrier_on(net);
 
 	return ret;
@@ -96,7 +93,7 @@ static int netvsc_close(struct net_device *net)
 	struct net_device_context *net_device_ctx = netdev_priv(net);
 	struct netvsc_device *nvdev = rtnl_dereference(net_device_ctx->nvdev);
 	int ret;
-	u32 aread, i, msec = 10, retry = 0, retry_max = 20;
+	u32 aread, awrite, i, msec = 10, retry = 0, retry_max = 20;
 	struct vmbus_channel *chn;
 
 	netif_tx_disable(net);
@@ -115,11 +112,15 @@ static int netvsc_close(struct net_device *net)
 			if (!chn)
 				continue;
 
-			aread = hv_get_bytes_to_read(&chn->inbound);
+			hv_get_ringbuffer_availbytes(&chn->inbound, &aread,
+						     &awrite);
+
 			if (aread)
 				break;
 
-			aread = hv_get_bytes_to_read(&chn->outbound);
+			hv_get_ringbuffer_availbytes(&chn->outbound, &aread,
+						     &awrite);
+
 			if (aread)
 				break;
 		}
@@ -315,14 +316,34 @@ static u32 init_page_array(void *hdr, u32 len, struct sk_buff *skb,
 	return slots_used;
 }
 
-/* Estimate number of page buffers neede to transmit
- * Need at most 2 for RNDIS header plus skb body and fragments.
- */
-static unsigned int netvsc_get_slots(const struct sk_buff *skb)
+static int count_skb_frag_slots(struct sk_buff *skb)
 {
-	return PFN_UP(offset_in_page(skb->data) + skb_headlen(skb))
-		+ skb_shinfo(skb)->nr_frags
-		+ 2;
+	int i, frags = skb_shinfo(skb)->nr_frags;
+	int pages = 0;
+
+	for (i = 0; i < frags; i++) {
+		skb_frag_t *frag = skb_shinfo(skb)->frags + i;
+		unsigned long size = skb_frag_size(frag);
+		unsigned long offset = frag->page_offset;
+
+		/* Skip unused frames from start of page */
+		offset &= ~PAGE_MASK;
+		pages += PFN_UP(offset + size);
+	}
+	return pages;
+}
+
+static int netvsc_get_slots(struct sk_buff *skb)
+{
+	char *data = skb->data;
+	unsigned int offset = offset_in_page(data);
+	unsigned int len = skb_headlen(skb);
+	int slots;
+	int frag_slots;
+
+	slots = DIV_ROUND_UP(offset + len, PAGE_SIZE);
+	frag_slots = count_skb_frag_slots(skb);
+	return slots + frag_slots;
 }
 
 static u32 net_checksum_info(struct sk_buff *skb)
@@ -360,18 +381,21 @@ static int netvsc_start_xmit(struct sk_buff *skb, struct net_device *net)
 	struct hv_page_buffer page_buf[MAX_PAGE_BUFFER_COUNT];
 	struct hv_page_buffer *pb = page_buf;
 
-	/* We can only transmit MAX_PAGE_BUFFER_COUNT number
+	/* We will atmost need two pages to describe the rndis
+	 * header. We can only transmit MAX_PAGE_BUFFER_COUNT number
 	 * of pages in a single packet. If skb is scattered around
 	 * more pages we try linearizing it.
 	 */
-	num_data_pgs = netvsc_get_slots(skb);
+
+	num_data_pgs = netvsc_get_slots(skb) + 2;
+
 	if (unlikely(num_data_pgs > MAX_PAGE_BUFFER_COUNT)) {
 		++net_device_ctx->eth_stats.tx_scattered;
 
 		if (skb_linearize(skb))
 			goto no_memory;
 
-		num_data_pgs = netvsc_get_slots(skb);
+		num_data_pgs = netvsc_get_slots(skb) + 2;
 		if (num_data_pgs > MAX_PAGE_BUFFER_COUNT) {
 			++net_device_ctx->eth_stats.tx_too_big;
 			goto drop;
@@ -594,7 +618,7 @@ static struct sk_buff *netvsc_alloc_recv_skb(struct net_device *net,
 	 * Copy to skb. This copy is needed here since the memory pointed by
 	 * hv_netvsc_packet cannot be deallocated
 	 */
-	skb_put_data(skb, data, buflen);
+	memcpy(skb_put(skb, buflen), data, buflen);
 
 	skb->protocol = eth_type_trans(skb, net);
 
@@ -1285,8 +1309,7 @@ static void netvsc_link_change(struct work_struct *w)
 	case RNDIS_STATUS_MEDIA_CONNECT:
 		if (rdev->link_state) {
 			rdev->link_state = false;
-			if (!ndev_ctx->datapath)
-				netif_carrier_on(net);
+			netif_carrier_on(net);
 			netif_tx_wake_all_queues(net);
 		} else {
 			notify = true;

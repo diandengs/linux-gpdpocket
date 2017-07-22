@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -23,4 +22,4 @@ __attribute__((section(".modinfo"))) =
 "depends=libfcoe,libfc,scsi_transport_fc,cnic";
 
 
-MODULE_INFO(srcversion, "3AF40B6ABDD11D537D8A7B7");
+MODULE_INFO(srcversion, "C5043243120C1F88EF2D5D7");

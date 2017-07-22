@@ -886,14 +886,12 @@ static int advk_pcie_probe(struct platform_device *pdev)
 	struct advk_pcie *pcie;
 	struct resource *res;
 	struct pci_bus *bus, *child;
-	struct pci_host_bridge *bridge;
 	int ret, irq;
 
-	bridge = devm_pci_alloc_host_bridge(dev, sizeof(struct advk_pcie));
-	if (!bridge)
+	pcie = devm_kzalloc(dev, sizeof(struct advk_pcie), GFP_KERNEL);
+	if (!pcie)
 		return -ENOMEM;
 
-	pcie = pci_host_bridge_priv(bridge);
 	pcie->pdev = pdev;
 
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
@@ -931,20 +929,13 @@ static int advk_pcie_probe(struct platform_device *pdev)
 		return ret;
 	}
 
-	list_splice_init(&pcie->resources, &bridge->windows);
-	bridge->dev.parent = dev;
-	bridge->sysdata = pcie;
-	bridge->busnr = 0;
-	bridge->ops = &advk_pcie_ops;
-
-	ret = pci_scan_root_bus_bridge(bridge);
-	if (ret < 0) {
+	bus = pci_scan_root_bus(dev, 0, &advk_pcie_ops,
+				pcie, &pcie->resources);
+	if (!bus) {
 		advk_pcie_remove_msi_irq_domain(pcie);
 		advk_pcie_remove_irq_domain(pcie);
-		return ret;
+		return -ENOMEM;
 	}
-
-	bus = bridge->bus;
 
 	pci_bus_assign_resources(bus);
 

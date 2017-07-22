@@ -35,7 +35,6 @@ struct kvm_pmu {
 	int irq_num;
 	struct kvm_pmc pmc[ARMV8_PMU_MAX_COUNTERS];
 	bool ready;
-	bool created;
 	bool irq_level;
 };
 
@@ -64,7 +63,6 @@ int kvm_arm_pmu_v3_get_attr(struct kvm_vcpu *vcpu,
 			    struct kvm_device_attr *attr);
 int kvm_arm_pmu_v3_has_attr(struct kvm_vcpu *vcpu,
 			    struct kvm_device_attr *attr);
-int kvm_arm_pmu_v3_enable(struct kvm_vcpu *vcpu);
 #else
 struct kvm_pmu {
 };
@@ -113,10 +111,6 @@ static inline int kvm_arm_pmu_v3_has_attr(struct kvm_vcpu *vcpu,
 					  struct kvm_device_attr *attr)
 {
 	return -ENXIO;
-}
-static inline int kvm_arm_pmu_v3_enable(struct kvm_vcpu *vcpu)
-{
-	return 0;
 }
 #endif
 

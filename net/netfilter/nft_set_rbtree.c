@@ -251,8 +251,7 @@ cont:
 	read_unlock_bh(&priv->lock);
 }
 
-static unsigned int nft_rbtree_privsize(const struct nlattr * const nla[],
-					const struct nft_set_desc *desc)
+static unsigned int nft_rbtree_privsize(const struct nlattr * const nla[])
 {
 	return sizeof(struct nft_rbtree);
 }
@@ -284,11 +283,13 @@ static void nft_rbtree_destroy(const struct nft_set *set)
 static bool nft_rbtree_estimate(const struct nft_set_desc *desc, u32 features,
 				struct nft_set_estimate *est)
 {
+	unsigned int nsize;
+
+	nsize = sizeof(struct nft_rbtree_elem);
 	if (desc->size)
-		est->size = sizeof(struct nft_rbtree) +
-			    desc->size * sizeof(struct nft_rbtree_elem);
+		est->size = sizeof(struct nft_rbtree) + desc->size * nsize;
 	else
-		est->size = ~0;
+		est->size = nsize;
 
 	est->lookup = NFT_SET_CLASS_O_LOG_N;
 	est->space  = NFT_SET_CLASS_O_N;
@@ -296,9 +297,7 @@ static bool nft_rbtree_estimate(const struct nft_set_desc *desc, u32 features,
 	return true;
 }
 
-static struct nft_set_type nft_rbtree_type;
 static struct nft_set_ops nft_rbtree_ops __read_mostly = {
-	.type		= &nft_rbtree_type,
 	.privsize	= nft_rbtree_privsize,
 	.elemsize	= offsetof(struct nft_rbtree_elem, ext),
 	.estimate	= nft_rbtree_estimate,
@@ -312,21 +311,17 @@ static struct nft_set_ops nft_rbtree_ops __read_mostly = {
 	.lookup		= nft_rbtree_lookup,
 	.walk		= nft_rbtree_walk,
 	.features	= NFT_SET_INTERVAL | NFT_SET_MAP | NFT_SET_OBJECT,
-};
-
-static struct nft_set_type nft_rbtree_type __read_mostly = {
-	.ops		= &nft_rbtree_ops,
 	.owner		= THIS_MODULE,
 };
 
 static int __init nft_rbtree_module_init(void)
 {
-	return nft_register_set(&nft_rbtree_type);
+	return nft_register_set(&nft_rbtree_ops);
 }
 
 static void __exit nft_rbtree_module_exit(void)
 {
-	nft_unregister_set(&nft_rbtree_type);
+	nft_unregister_set(&nft_rbtree_ops);
 }
 
 module_init(nft_rbtree_module_init);

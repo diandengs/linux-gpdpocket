@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -19,4 +18,4 @@ __attribute__((section(".modinfo"))) =
 "depends=bluetooth";
 
 
-MODULE_INFO(srcversion, "492247813F6655084CED9E5");
+MODULE_INFO(srcversion, "6520F47F24391411A7B6265");

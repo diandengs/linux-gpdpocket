@@ -8,7 +8,6 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <linux/compiler.h>
 #include <linux/list.h>
 #include <linux/kernel.h>
 #include <linux/bitops.h>
@@ -1275,7 +1274,7 @@ error:
 }
 
 static int __desc_attr__fprintf(FILE *fp, const char *name, const char *val,
-				void *priv __maybe_unused)
+				void *priv __attribute__((unused)))
 {
 	return fprintf(fp, ", %s = %s", name, val);
 }

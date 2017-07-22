@@ -27,7 +27,7 @@ u16 __initdata memstart_offset_seed;
 static __init u64 get_kaslr_seed(void *fdt)
 {
 	int node, len;
-	fdt64_t *prop;
+	u64 *prop;
 	u64 ret;
 
 	node = fdt_path_offset(fdt, "/chosen");

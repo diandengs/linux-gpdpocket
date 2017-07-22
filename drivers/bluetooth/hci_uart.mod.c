@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -39,22 +38,6 @@ MODULE_ALIAS("acpi*:BCM2E7C:*");
 MODULE_ALIAS("acpi*:BCM2E95:*");
 MODULE_ALIAS("acpi*:BCM2E96:*");
 MODULE_ALIAS("acpi*:INT33E1:*");
-MODULE_ALIAS("of:N*T*Cti,wl1271-st");
-MODULE_ALIAS("of:N*T*Cti,wl1271-stC*");
-MODULE_ALIAS("of:N*T*Cti,wl1273-st");
-MODULE_ALIAS("of:N*T*Cti,wl1273-stC*");
-MODULE_ALIAS("of:N*T*Cti,wl1281-st");
-MODULE_ALIAS("of:N*T*Cti,wl1281-stC*");
-MODULE_ALIAS("of:N*T*Cti,wl1283-st");
-MODULE_ALIAS("of:N*T*Cti,wl1283-stC*");
-MODULE_ALIAS("of:N*T*Cti,wl1285-st");
-MODULE_ALIAS("of:N*T*Cti,wl1285-stC*");
-MODULE_ALIAS("of:N*T*Cti,wl1801-st");
-MODULE_ALIAS("of:N*T*Cti,wl1801-stC*");
-MODULE_ALIAS("of:N*T*Cti,wl1805-st");
-MODULE_ALIAS("of:N*T*Cti,wl1805-stC*");
-MODULE_ALIAS("of:N*T*Cti,wl1807-st");
-MODULE_ALIAS("of:N*T*Cti,wl1807-stC*");
 MODULE_ALIAS("of:N*T*Cti,wl1831-st");
 MODULE_ALIAS("of:N*T*Cti,wl1831-stC*");
 MODULE_ALIAS("of:N*T*Cti,wl1835-st");
@@ -62,4 +45,4 @@ MODULE_ALIAS("of:N*T*Cti,wl1835-stC*");
 MODULE_ALIAS("of:N*T*Cti,wl1837-st");
 MODULE_ALIAS("of:N*T*Cti,wl1837-stC*");
 
-MODULE_INFO(srcversion, "CE59EBE6308BEEECED39E29");
+MODULE_INFO(srcversion, "9076AF31E6F612ED232B88D");

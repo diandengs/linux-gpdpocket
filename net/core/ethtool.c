@@ -2322,12 +2322,16 @@ static int ethtool_set_tunable(struct net_device *dev, void __user *useraddr)
 	ret = ethtool_tunable_valid(&tuna);
 	if (ret)
 		return ret;
+	data = kmalloc(tuna.len, GFP_USER);
+	if (!data)
+		return -ENOMEM;
 	useraddr += sizeof(tuna);
-	data = memdup_user(useraddr, tuna.len);
-	if (IS_ERR(data))
-		return PTR_ERR(data);
+	ret = -EFAULT;
+	if (copy_from_user(data, useraddr, tuna.len))
+		goto out;
 	ret = ops->set_tunable(dev, &tuna, data);
 
+out:
 	kfree(data);
 	return ret;
 }
@@ -2503,14 +2507,18 @@ static int set_phy_tunable(struct net_device *dev, void __user *useraddr)
 	ret = ethtool_phy_tunable_valid(&tuna);
 	if (ret)
 		return ret;
+	data = kmalloc(tuna.len, GFP_USER);
+	if (!data)
+		return -ENOMEM;
 	useraddr += sizeof(tuna);
-	data = memdup_user(useraddr, tuna.len);
-	if (IS_ERR(data))
-		return PTR_ERR(data);
+	ret = -EFAULT;
+	if (copy_from_user(data, useraddr, tuna.len))
+		goto out;
 	mutex_lock(&phydev->lock);
 	ret = phydev->drv->set_tunable(phydev, &tuna, data);
 	mutex_unlock(&phydev->lock);
 
+out:
 	kfree(data);
 	return ret;
 }

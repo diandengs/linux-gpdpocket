@@ -105,8 +105,4 @@
 
 #define SO_COOKIE		57
 
-#define SCM_TIMESTAMPING_PKTINFO	58
-
-#define SO_PEERGROUPS		59
-
 #endif /* _UAPI_ASM_SOCKET_H */

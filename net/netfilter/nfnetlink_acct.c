@@ -49,8 +49,7 @@ struct nfacct_filter {
 
 static int nfnl_acct_new(struct net *net, struct sock *nfnl,
 			 struct sk_buff *skb, const struct nlmsghdr *nlh,
-			 const struct nlattr * const tb[],
-			 struct netlink_ext_ack *extack)
+			 const struct nlattr * const tb[])
 {
 	struct nf_acct *nfacct, *matching = NULL;
 	char *acct_name;
@@ -265,8 +264,7 @@ nfacct_filter_alloc(const struct nlattr * const attr)
 
 static int nfnl_acct_get(struct net *net, struct sock *nfnl,
 			 struct sk_buff *skb, const struct nlmsghdr *nlh,
-			 const struct nlattr * const tb[],
-			 struct netlink_ext_ack *extack)
+			 const struct nlattr * const tb[])
 {
 	int ret = -ENOENT;
 	struct nf_acct *cur;
@@ -345,8 +343,7 @@ static int nfnl_acct_try_del(struct nf_acct *cur)
 
 static int nfnl_acct_del(struct net *net, struct sock *nfnl,
 			 struct sk_buff *skb, const struct nlmsghdr *nlh,
-			 const struct nlattr * const tb[],
-			 struct netlink_ext_ack *extack)
+			 const struct nlattr * const tb[])
 {
 	struct nf_acct *cur, *tmp;
 	int ret = -ENOENT;

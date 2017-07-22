@@ -1302,10 +1302,7 @@ static int diff__config(const char *var, const char *value,
 			void *cb __maybe_unused)
 {
 	if (!strcmp(var, "diff.order")) {
-		int ret;
-		if (perf_config_int(&ret, var, value) < 0)
-			return -1;
-		sort_compute = ret;
+		sort_compute = perf_config_int(var, value);
 		return 0;
 	}
 	if (!strcmp(var, "diff.compute")) {

@@ -1,3 +1,3 @@
-sound/core/snd-seq-device.ko
-sound/core/seq_device.o
+sound/core/seq/snd-seq-device.ko
+sound/core/seq/seq_device.o
 

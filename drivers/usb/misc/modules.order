@@ -18,4 +18,5 @@ kernel/drivers/usb/misc/usb251xb.ko
 kernel/drivers/usb/misc/usb3503.ko
 kernel/drivers/usb/misc/usb4604.ko
 kernel/drivers/usb/misc/chaoskey.ko
+kernel/drivers/usb/misc/ucsi.ko
 kernel/drivers/usb/misc/sisusbvga/sisusbvga.ko

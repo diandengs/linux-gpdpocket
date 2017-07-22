@@ -1,1 +1,1 @@
-cmd_lib/lzo/lzo_compress.o := rm -f lib/lzo/lzo_compress.o; ar rcSTPD lib/lzo/lzo_compress.o lib/lzo/lzo1x_compress.o
+cmd_lib/lzo/lzo_compress.o := ld -m elf_x86_64   -r -o lib/lzo/lzo_compress.o lib/lzo/lzo1x_compress.o 

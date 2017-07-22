@@ -20,6 +20,7 @@
  */
 #include "spk_priv.h"
 #include "speakup.h"
+#include "serialio.h"
 
 #define DRV_VERSION "2.11"
 #define SYNTH_CLEAR 0x18 /* flush synth buffer */
@@ -100,14 +101,13 @@ static struct spk_synth synth_audptr = {
 	.trigger = 50,
 	.jiffies = 30,
 	.full = 18000,
-	.dev_name = SYNTH_DEFAULT_DEV,
 	.startup = SYNTH_START,
 	.checkval = SYNTH_CHECK,
 	.vars = vars,
-	.io_ops = &spk_ttyio_ops,
+	.io_ops = &spk_serial_io_ops,
 	.probe = synth_probe,
-	.release = spk_ttyio_release,
-	.synth_immediate = spk_ttyio_synth_immediate,
+	.release = spk_serial_release,
+	.synth_immediate = spk_serial_synth_immediate,
 	.catch_up = spk_do_catch_up,
 	.flush = synth_flush,
 	.is_alive = spk_synth_is_alive_restart,
@@ -128,7 +128,6 @@ static struct spk_synth synth_audptr = {
 
 static void synth_flush(struct spk_synth *synth)
 {
-	synth->io_ops->flush_buffer();
 	synth->io_ops->send_xchar(SYNTH_CLEAR);
 	synth->io_ops->synth_out(synth, PROCSPEECH);
 }
@@ -139,11 +138,11 @@ static void synth_version(struct spk_synth *synth)
 	char synth_id[40] = "";
 
 	synth->synth_immediate(synth, "\x05[Q]");
-	synth_id[test] = synth->io_ops->synth_in();
+	synth_id[test] = spk_serial_in();
 	if (synth_id[test] == 'A') {
 		do {
 			/* read version string from synth */
-			synth_id[++test] = synth->io_ops->synth_in();
+			synth_id[++test] = spk_serial_in();
 		} while (synth_id[test] != '\n' && test < 32);
 		synth_id[++test] = 0x00;
 	}
@@ -155,7 +154,7 @@ static int synth_probe(struct spk_synth *synth)
 {
 	int failed;
 
-	failed = spk_ttyio_synth_probe(synth);
+	failed = spk_serial_synth_probe(synth);
 	if (failed == 0)
 		synth_version(synth);
 	synth->alive = !failed;
@@ -163,11 +162,9 @@ static int synth_probe(struct spk_synth *synth)
 }
 
 module_param_named(ser, synth_audptr.ser, int, 0444);
-module_param_named(dev, synth_audptr.dev_name, charp, S_IRUGO);
 module_param_named(start, synth_audptr.startup, short, 0444);
 
 MODULE_PARM_DESC(ser, "Set the serial port for the synthesizer (0-based).");
-MODULE_PARM_DESC(dev, "Set the device e.g. ttyUSB0, for the synthesizer.");
 MODULE_PARM_DESC(start, "Start the synthesizer once it is loaded.");
 
 module_spk_synth(synth_audptr);

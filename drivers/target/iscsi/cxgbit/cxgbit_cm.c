@@ -752,8 +752,7 @@ void _cxgbit_free_csk(struct kref *kref)
 				   &sin6->sin6_addr.s6_addr, 1);
 	}
 
-	cxgb4_remove_tid(csk->com.cdev->lldi.tids, 0, csk->tid,
-			 csk->com.local_addr.ss_family);
+	cxgb4_remove_tid(csk->com.cdev->lldi.tids, 0, csk->tid);
 	dst_release(csk->dst);
 	cxgb4_l2t_release(csk->l2t);
 
@@ -1085,7 +1084,8 @@ cxgbit_pass_accept_rpl(struct cxgbit_sock *csk, struct cpl_pass_accept_req *req)
 		return;
 	}
 
-	rpl5 = __skb_put_zero(skb, len);
+	rpl5 = (struct cpl_t5_pass_accept_rpl *)__skb_put(skb, len);
+	memset(rpl5, 0, len);
 
 	INIT_TP_WR(rpl5, csk->tid);
 	OPCODE_TID(rpl5) = cpu_to_be32(MK_OPCODE_TID(CPL_PASS_ACCEPT_RPL,
@@ -1313,7 +1313,8 @@ cxgbit_pass_accept_req(struct cxgbit_device *cdev, struct sk_buff *skb)
 	spin_lock(&cdev->cskq.lock);
 	list_add_tail(&csk->list, &cdev->cskq.list);
 	spin_unlock(&cdev->cskq.lock);
-	cxgb4_insert_tid(t, csk, tid, csk->com.local_addr.ss_family);
+
+	cxgb4_insert_tid(t, csk, tid);
 	cxgbit_pass_accept_rpl(csk, req);
 	goto rel_skb;
 
@@ -1366,7 +1367,8 @@ u32 cxgbit_send_tx_flowc_wr(struct cxgbit_sock *csk)
 	flowclen16 = cxgbit_tx_flowc_wr_credits(csk, &nparams, &flowclen);
 
 	skb = __skb_dequeue(&csk->skbq);
-	flowc = __skb_put_zero(skb, flowclen);
+	flowc = (struct fw_flowc_wr *)__skb_put(skb, flowclen);
+	memset(flowc, 0, flowclen);
 
 	flowc->op_to_nparams = cpu_to_be32(FW_WR_OP_V(FW_FLOWC_WR) |
 					   FW_FLOWC_WR_NPARAMS_V(nparams));
@@ -1437,7 +1439,8 @@ int cxgbit_setup_conn_digest(struct cxgbit_sock *csk)
 		return -ENOMEM;
 
 	/*  set up ulp submode */
-	req = __skb_put_zero(skb, len);
+	req = (struct cpl_set_tcb_field *)__skb_put(skb, len);
+	memset(req, 0, len);
 
 	INIT_TP_WR(req, csk->tid);
 	OPCODE_TID(req) = htonl(MK_OPCODE_TID(CPL_SET_TCB_FIELD, csk->tid));
@@ -1473,7 +1476,8 @@ int cxgbit_setup_conn_pgidx(struct cxgbit_sock *csk, u32 pg_idx)
 	if (!skb)
 		return -ENOMEM;
 
-	req = __skb_put_zero(skb, len);
+	req = (struct cpl_set_tcb_field *)__skb_put(skb, len);
+	memset(req, 0, len);
 
 	INIT_TP_WR(req, csk->tid);
 	OPCODE_TID(req) = htonl(MK_OPCODE_TID(CPL_SET_TCB_FIELD, csk->tid));

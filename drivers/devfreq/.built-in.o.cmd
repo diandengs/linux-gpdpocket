@@ -1,1 +1,1 @@
-cmd_drivers/devfreq/built-in.o :=  rm -f drivers/devfreq/built-in.o; ar rcSTPD drivers/devfreq/built-in.o drivers/devfreq/devfreq.o 
+cmd_drivers/devfreq/built-in.o :=  ld -m elf_x86_64   -r -o drivers/devfreq/built-in.o drivers/devfreq/devfreq.o 

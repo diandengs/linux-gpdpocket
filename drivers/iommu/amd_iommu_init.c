@@ -29,7 +29,6 @@
 #include <linux/export.h>
 #include <linux/iommu.h>
 #include <linux/kmemleak.h>
-#include <linux/crash_dump.h>
 #include <asm/pci-direct.h>
 #include <asm/iommu.h>
 #include <asm/gart.h>
@@ -237,7 +236,6 @@ enum iommu_init_state {
 	IOMMU_INITIALIZED,
 	IOMMU_NOT_FOUND,
 	IOMMU_INIT_ERROR,
-	IOMMU_CMDLINE_DISABLED,
 };
 
 /* Early ioapic and hpet maps from kernel command line */
@@ -590,8 +588,6 @@ void amd_iommu_reset_cmd_buffer(struct amd_iommu *iommu)
 
 	writel(0x00, iommu->mmio_base + MMIO_CMD_HEAD_OFFSET);
 	writel(0x00, iommu->mmio_base + MMIO_CMD_TAIL_OFFSET);
-	iommu->cmd_buf_head = 0;
-	iommu->cmd_buf_tail = 0;
 
 	iommu_feature_enable(iommu, CONTROL_CMDBUF_EN);
 }
@@ -1902,14 +1898,6 @@ static void init_device_table_dma(void)
 	for (devid = 0; devid <= amd_iommu_last_bdf; ++devid) {
 		set_dev_entry_bit(devid, DEV_ENTRY_VALID);
 		set_dev_entry_bit(devid, DEV_ENTRY_TRANSLATION);
-		/*
-		 * In kdump kernels in-flight DMA from the old kernel might
-		 * cause IO_PAGE_FAULTs. There are no reports that a kdump
-		 * actually failed because of that, so just disable fault
-		 * reporting in the hardware to get rid of the messages
-		 */
-		if (is_kdump_kernel())
-			set_dev_entry_bit(devid, DEV_ENTRY_NO_PAGE_FAULT);
 	}
 }
 
@@ -2109,27 +2097,23 @@ static struct syscore_ops amd_iommu_syscore_ops = {
 	.resume = amd_iommu_resume,
 };
 
-static void __init free_iommu_resources(void)
+static void __init free_on_init_error(void)
 {
 	kmemleak_free(irq_lookup_table);
 	free_pages((unsigned long)irq_lookup_table,
 		   get_order(rlookup_table_size));
-	irq_lookup_table = NULL;
 
 	kmem_cache_destroy(amd_iommu_irq_cache);
 	amd_iommu_irq_cache = NULL;
 
 	free_pages((unsigned long)amd_iommu_rlookup_table,
 		   get_order(rlookup_table_size));
-	amd_iommu_rlookup_table = NULL;
 
 	free_pages((unsigned long)amd_iommu_alias_table,
 		   get_order(alias_table_size));
-	amd_iommu_alias_table = NULL;
 
 	free_pages((unsigned long)amd_iommu_dev_table,
 		   get_order(dev_table_size));
-	amd_iommu_dev_table = NULL;
 
 	free_iommu_all();
 
@@ -2199,7 +2183,6 @@ static void __init free_dma_resources(void)
 {
 	free_pages((unsigned long)amd_iommu_pd_alloc_bitmap,
 		   get_order(MAX_DOMAIN_ID/8));
-	amd_iommu_pd_alloc_bitmap = NULL;
 
 	free_unity_maps();
 }
@@ -2324,9 +2307,6 @@ static int __init early_amd_iommu_init(void)
 	if (ret)
 		goto out;
 
-	/* Disable any previously enabled IOMMUs */
-	disable_iommus();
-
 	if (amd_iommu_irq_remap)
 		amd_iommu_irq_remap = check_ioapic_information();
 
@@ -2430,13 +2410,6 @@ static int __init state_next(void)
 	case IOMMU_IVRS_DETECTED:
 		ret = early_amd_iommu_init();
 		init_state = ret ? IOMMU_INIT_ERROR : IOMMU_ACPI_FINISHED;
-		if (init_state == IOMMU_ACPI_FINISHED && amd_iommu_disabled) {
-			pr_info("AMD-Vi: AMD IOMMU disabled on kernel command-line\n");
-			free_dma_resources();
-			free_iommu_resources();
-			init_state = IOMMU_CMDLINE_DISABLED;
-			ret = -EINVAL;
-		}
 		break;
 	case IOMMU_ACPI_FINISHED:
 		early_enable_iommus();
@@ -2465,7 +2438,6 @@ static int __init state_next(void)
 		break;
 	case IOMMU_NOT_FOUND:
 	case IOMMU_INIT_ERROR:
-	case IOMMU_CMDLINE_DISABLED:
 		/* Error states => do nothing */
 		ret = -EINVAL;
 		break;
@@ -2479,14 +2451,13 @@ static int __init state_next(void)
 
 static int __init iommu_go_to_state(enum iommu_init_state state)
 {
-	int ret = -EINVAL;
+	int ret = 0;
 
 	while (init_state != state) {
-		if (init_state == IOMMU_NOT_FOUND         ||
-		    init_state == IOMMU_INIT_ERROR        ||
-		    init_state == IOMMU_CMDLINE_DISABLED)
-			break;
 		ret = state_next();
+		if (init_state == IOMMU_NOT_FOUND ||
+		    init_state == IOMMU_INIT_ERROR)
+			break;
 	}
 
 	return ret;
@@ -2551,7 +2522,7 @@ static int __init amd_iommu_init(void)
 		free_dma_resources();
 		if (!irq_remapping_enabled) {
 			disable_iommus();
-			free_iommu_resources();
+			free_on_init_error();
 		} else {
 			struct amd_iommu *iommu;
 
@@ -2576,6 +2547,9 @@ int __init amd_iommu_detect(void)
 	int ret;
 
 	if (no_iommu || (iommu_detected && !gart_iommu_aperture))
+		return -ENODEV;
+
+	if (amd_iommu_disabled)
 		return -ENODEV;
 
 	ret = iommu_go_to_state(IOMMU_IVRS_DETECTED);

@@ -170,6 +170,7 @@ static int __mlx5e_add_vlan_rule(struct mlx5e_priv *priv,
 
 	spec->match_criteria_enable = MLX5_MATCH_OUTER_HEADERS;
 
+
 	switch (rule_type) {
 	case MLX5E_VLAN_RULE_TYPE_UNTAGGED:
 		rule_p = &priv->fs.vlan.untagged_rule;
@@ -217,9 +218,11 @@ static int mlx5e_add_vlan_rule(struct mlx5e_priv *priv,
 	struct mlx5_flow_spec *spec;
 	int err = 0;
 
-	spec = kvzalloc(sizeof(*spec), GFP_KERNEL);
-	if (!spec)
+	spec = mlx5_vzalloc(sizeof(*spec));
+	if (!spec) {
+		netdev_err(priv->netdev, "%s: alloc failed\n", __func__);
 		return -ENOMEM;
+	}
 
 	if (rule_type == MLX5E_VLAN_RULE_TYPE_MATCH_VID)
 		mlx5e_vport_context_update_vlans(priv);
@@ -657,9 +660,11 @@ mlx5e_generate_ttc_rule(struct mlx5e_priv *priv,
 	struct mlx5_flow_spec *spec;
 	int err = 0;
 
-	spec = kvzalloc(sizeof(*spec), GFP_KERNEL);
-	if (!spec)
+	spec = mlx5_vzalloc(sizeof(*spec));
+	if (!spec) {
+		netdev_err(priv->netdev, "%s: alloc failed\n", __func__);
 		return ERR_PTR(-ENOMEM);
+	}
 
 	if (proto) {
 		spec->match_criteria_enable = MLX5_MATCH_OUTER_HEADERS;
@@ -737,7 +742,7 @@ static int mlx5e_create_ttc_table_groups(struct mlx5e_ttc_table *ttc)
 			sizeof(*ft->g), GFP_KERNEL);
 	if (!ft->g)
 		return -ENOMEM;
-	in = kvzalloc(inlen, GFP_KERNEL);
+	in = mlx5_vzalloc(inlen);
 	if (!in) {
 		kfree(ft->g);
 		return -ENOMEM;
@@ -847,9 +852,11 @@ static int mlx5e_add_l2_flow_rule(struct mlx5e_priv *priv,
 	u8 *mc_dmac;
 	u8 *mv_dmac;
 
-	spec = kvzalloc(sizeof(*spec), GFP_KERNEL);
-	if (!spec)
+	spec = mlx5_vzalloc(sizeof(*spec));
+	if (!spec) {
+		netdev_err(priv->netdev, "%s: alloc failed\n", __func__);
 		return -ENOMEM;
+	}
 
 	mc_dmac = MLX5_ADDR_OF(fte_match_param, spec->match_criteria,
 			       outer_headers.dmac_47_16);
@@ -909,7 +916,7 @@ static int mlx5e_create_l2_table_groups(struct mlx5e_l2_table *l2_table)
 	ft->g = kcalloc(MLX5E_NUM_L2_GROUPS, sizeof(*ft->g), GFP_KERNEL);
 	if (!ft->g)
 		return -ENOMEM;
-	in = kvzalloc(inlen, GFP_KERNEL);
+	in = mlx5_vzalloc(inlen);
 	if (!in) {
 		kfree(ft->g);
 		return -ENOMEM;
@@ -1064,7 +1071,7 @@ static int mlx5e_create_vlan_table_groups(struct mlx5e_flow_table *ft)
 	int inlen = MLX5_ST_SZ_BYTES(create_flow_group_in);
 	int err;
 
-	in = kvzalloc(inlen, GFP_KERNEL);
+	in = mlx5_vzalloc(inlen);
 	if (!in)
 		return -ENOMEM;
 

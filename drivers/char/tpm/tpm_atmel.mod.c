@@ -3,7 +3,6 @@
 #include <linux/compiler.h>
 
 MODULE_INFO(vermagic, VERMAGIC_STRING);
-MODULE_INFO(name, KBUILD_MODNAME);
 
 __visible struct module __this_module
 __attribute__((section(".gnu.linkonce.this_module"))) = {
@@ -23,4 +22,4 @@ __attribute__((section(".modinfo"))) =
 "depends=tpm";
 
 
-MODULE_INFO(srcversion, "0E1BE0FFC2A14B3678F3465");
+MODULE_INFO(srcversion, "A49A3EC113C8A718B06E2EC");

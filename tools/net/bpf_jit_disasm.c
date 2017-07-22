@@ -159,8 +159,8 @@ static void put_log_buff(char *buff)
 	free(buff);
 }
 
-static uint8_t *get_last_jit_image(char *haystack, size_t hlen,
-				   unsigned int *ilen)
+static unsigned int get_last_jit_image(char *haystack, size_t hlen,
+				       uint8_t *image, size_t ilen)
 {
 	char *ptr, *pptr, *tmp;
 	off_t off = 0;
@@ -168,10 +168,9 @@ static uint8_t *get_last_jit_image(char *haystack, size_t hlen,
 	regmatch_t pmatch[1];
 	unsigned long base;
 	regex_t regex;
-	uint8_t *image;
 
 	if (hlen == 0)
-		return NULL;
+		return 0;
 
 	ret = regcomp(&regex, "flen=[[:alnum:]]+ proglen=[[:digit:]]+ "
 		      "pass=[[:digit:]]+ image=[[:xdigit:]]+", REG_EXTENDED);
@@ -195,22 +194,11 @@ static uint8_t *get_last_jit_image(char *haystack, size_t hlen,
 		     &flen, &proglen, &pass, &base);
 	if (ret != 4) {
 		regfree(&regex);
-		return NULL;
+		return 0;
 	}
-	if (proglen > 1000000) {
-		printf("proglen of %d too big, stopping\n", proglen);
-		return NULL;
-	}
-
-	image = malloc(proglen);
-	if (!image) {
-		printf("Out of memory\n");
-		return NULL;
-	}
-	memset(image, 0, proglen);
 
 	tmp = ptr = haystack + off;
-	while ((ptr = strtok(tmp, "\n")) != NULL && ulen < proglen) {
+	while ((ptr = strtok(tmp, "\n")) != NULL && ulen < ilen) {
 		tmp = NULL;
 		if (!strstr(ptr, "JIT code"))
 			continue;
@@ -220,12 +208,10 @@ static uint8_t *get_last_jit_image(char *haystack, size_t hlen,
 		ptr = pptr;
 		do {
 			image[ulen++] = (uint8_t) strtoul(pptr, &pptr, 16);
-			if (ptr == pptr) {
+			if (ptr == pptr || ulen >= ilen) {
 				ulen--;
 				break;
 			}
-			if (ulen >= proglen)
-				break;
 			ptr = pptr;
 		} while (1);
 	}
@@ -236,8 +222,7 @@ static uint8_t *get_last_jit_image(char *haystack, size_t hlen,
 	printf("%lx + <x>:\n", base);
 
 	regfree(&regex);
-	*ilen = ulen;
-	return image;
+	return ulen;
 }
 
 static void usage(void)
@@ -252,12 +237,12 @@ static void usage(void)
 int main(int argc, char **argv)
 {
 	unsigned int len, klen, opt, opcodes = 0;
+	static uint8_t image[32768];
 	char *kbuff, *file = NULL;
 	char *ofile = NULL;
 	int ofd;
 	ssize_t nr;
 	uint8_t *pos;
-	uint8_t *image = NULL;
 
 	while ((opt = getopt(argc, argv, "of:O:")) != -1) {
 		switch (opt) {
@@ -277,6 +262,7 @@ int main(int argc, char **argv)
 	}
 
 	bfd_init();
+	memset(image, 0, sizeof(image));
 
 	kbuff = get_log_buff(file, &klen);
 	if (!kbuff) {
@@ -284,8 +270,8 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
-	image = get_last_jit_image(kbuff, klen, &len);
-	if (!image) {
+	len = get_last_jit_image(kbuff, klen, image, sizeof(image));
+	if (len <= 0) {
 		fprintf(stderr, "No JIT image found!\n");
 		goto done;
 	}
@@ -315,6 +301,5 @@ int main(int argc, char **argv)
 
 done:
 	put_log_buff(kbuff);
-	free(image);
 	return 0;
 }

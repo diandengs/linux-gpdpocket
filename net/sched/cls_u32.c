@@ -441,8 +441,7 @@ static void u32_remove_hw_knode(struct tcf_proto *tp, u32 handle)
 		offload.cls_u32->command = TC_CLSU32_DELETE_KNODE;
 		offload.cls_u32->knode.handle = handle;
 		dev->netdev_ops->ndo_setup_tc(dev, tp->q->handle,
-					      tp->chain->index, tp->protocol,
-					      &offload);
+					      tp->protocol, &offload);
 	}
 }
 
@@ -466,8 +465,7 @@ static int u32_replace_hw_hnode(struct tcf_proto *tp, struct tc_u_hnode *h,
 	offload.cls_u32->hnode.prio = h->prio;
 
 	err = dev->netdev_ops->ndo_setup_tc(dev, tp->q->handle,
-					    tp->chain->index, tp->protocol,
-					    &offload);
+					    tp->protocol, &offload);
 	if (tc_skip_sw(flags))
 		return err;
 
@@ -490,8 +488,7 @@ static void u32_clear_hw_hnode(struct tcf_proto *tp, struct tc_u_hnode *h)
 		offload.cls_u32->hnode.prio = h->prio;
 
 		dev->netdev_ops->ndo_setup_tc(dev, tp->q->handle,
-					      tp->chain->index, tp->protocol,
-					      &offload);
+					      tp->protocol, &offload);
 	}
 }
 
@@ -525,8 +522,7 @@ static int u32_replace_hw_knode(struct tcf_proto *tp, struct tc_u_knode *n,
 		offload.cls_u32->knode.link_handle = n->ht_down->handle;
 
 	err = dev->netdev_ops->ndo_setup_tc(dev, tp->q->handle,
-					    tp->chain->index, tp->protocol,
-					    &offload);
+					    tp->protocol, &offload);
 
 	if (!err)
 		n->flags |= TCA_CLS_FLAGS_IN_HW;

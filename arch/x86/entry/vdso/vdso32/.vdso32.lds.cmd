@@ -1,4 +1,4 @@
-cmd_arch/x86/entry/vdso/vdso32/vdso32.lds := gcc -E -Wp,-MD,arch/x86/entry/vdso/vdso32/.vdso32.lds.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./arch/x86/include/generated/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__     -P -C -P -C -Ux86 -D__ASSEMBLY__ -DLINKER_SCRIPT -o arch/x86/entry/vdso/vdso32/vdso32.lds arch/x86/entry/vdso/vdso32/vdso32.lds.S
+cmd_arch/x86/entry/vdso/vdso32/vdso32.lds := gcc -E -Wp,-MD,arch/x86/entry/vdso/vdso32/.vdso32.lds.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/5/include -I./arch/x86/include -I./arch/x86/include/generated/uapi -I./arch/x86/include/generated  -I./include -I./arch/x86/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__     -P -C -P -C -Ux86 -D__ASSEMBLY__ -DLINKER_SCRIPT -o arch/x86/entry/vdso/vdso32/vdso32.lds arch/x86/entry/vdso/vdso32/vdso32.lds.S
 
 source_arch/x86/entry/vdso/vdso32/vdso32.lds := arch/x86/entry/vdso/vdso32/vdso32.lds.S
 
@@ -46,6 +46,7 @@ deps_arch/x86/entry/vdso/vdso32/vdso32.lds := \
     $(wildcard include/config/compat.h) \
   include/linux/linkage.h \
   include/linux/compiler.h \
+    $(wildcard include/config/sparse/rcu/pointer.h) \
     $(wildcard include/config/trace/branch/profiling.h) \
     $(wildcard include/config/profile/all/branches.h) \
     $(wildcard include/config/enable/must/check.h) \

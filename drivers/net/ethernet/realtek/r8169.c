@@ -2148,9 +2148,7 @@ static int rtl8169_get_link_ksettings_xmii(struct net_device *dev,
 {
 	struct rtl8169_private *tp = netdev_priv(dev);
 
-	mii_ethtool_get_link_ksettings(&tp->mii, cmd);
-
-	return 0;
+	return mii_ethtool_get_link_ksettings(&tp->mii, cmd);
 }
 
 static int rtl8169_get_link_ksettings(struct net_device *dev,

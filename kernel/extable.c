@@ -55,8 +55,7 @@ const struct exception_table_entry *search_exception_tables(unsigned long addr)
 {
 	const struct exception_table_entry *e;
 
-	e = search_extable(__start___ex_table,
-			   __stop___ex_table - __start___ex_table, addr);
+	e = search_extable(__start___ex_table, __stop___ex_table-1, addr);
 	if (!e)
 		e = search_module_extables(addr);
 	return e;
@@ -70,13 +69,13 @@ static inline int init_kernel_text(unsigned long addr)
 	return 0;
 }
 
-int notrace core_kernel_text(unsigned long addr)
+int core_kernel_text(unsigned long addr)
 {
 	if (addr >= (unsigned long)_stext &&
 	    addr < (unsigned long)_etext)
 		return 1;
 
-	if (system_state < SYSTEM_RUNNING &&
+	if (system_state == SYSTEM_BOOTING &&
 	    init_kernel_text(addr))
 		return 1;
 	return 0;
